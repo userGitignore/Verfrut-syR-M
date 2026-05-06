@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1e3a2f">
+    <title>Compras | Verfrut's R&M</title>
+    <link rel="icon" href="img-navbar/img-navbar.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background-color: #d4d4d4; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #d4d4d4; color: #1f2937; line-height: 1.6; }
+        @media (pointer: fine) {
+            body { cursor: none; }
+            .cursor-dot { width: 8px; height: 8px; background: #2E7D32; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%); box-shadow: 0 0 8px rgba(46,125,50,0.6); }
+            .cursor-outline { width: 40px; height: 40px; border: 2px solid rgba(46,125,50,0.5); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s; }
+            body.hover-link .cursor-outline { width: 55px; height: 55px; background: rgba(46,125,50,0.12); border-color: #2E7D32; box-shadow: 0 0 15px rgba(46,125,50,0.4); }
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-top-padding-large { padding-top: 8rem; }
+        .section-min-height { min-height: 70vh; }
+        .page-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #1e3a2f; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.4s ease-out; }
+        .page-loader.hidden { opacity: 0; pointer-events: none; }
+        .loader-wrapper { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .loader-spinner { width: 50px; height: 50px; border: 4px solid rgba(76,175,80,0.3); border-top: 4px solid #4CAF50; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loader-logo { width: 60px; height: 60px; animation: pulse 1.5s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .loader-text { color: #fff; font-size: 1.2rem; font-weight: 600; margin-top: 10px; }
+        .navbar { background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%); position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid #1B5E20; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2.5rem; }
+        .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .nav-logo img { width: 44px; height: 44px; }
+        .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+        .nav-logo-title { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 1.5rem; font-weight: bold; color: #fff; letter-spacing: 0.5px; }
+        .nav-logo-sub { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3em; color: #a5d6a7; margin-top: 1px; font-weight: 700; }
+        .nav-links { display: flex; align-items: center; gap: 0.1rem; list-style: none; }
+        .nav-links li { position: relative; }
+        .nav-links a { text-decoration: none; color: #fff; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; padding: 0.6rem 1rem; transition: all 0.25s ease; display: inline-block; border-radius: 30px; }
+        .nav-links a:hover { background: rgba(255,255,255,0.15); color: #fff; transform: scale(1.02); }
+        .nav-links a.active { background: rgba(255,255,255,0.25); color: #fff; }
+        .dropdown .arrow { font-size: 0.6rem; margin-left: 3px; opacity: 0.8; color: #fff; }
+        .dropdown-menu { position: absolute; top: calc(100% + 0.5rem); left: 0; background: #1B5E20; border: 1px solid #2E7D32; border-radius: 0.5rem; padding: 0.5rem 0; min-width: 180px; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: all 0.3s ease; list-style: none; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu li { margin: 0; padding: 0; }
+        .dropdown-menu a { display: block; padding: 0.75rem 1.25rem; color: #fff; font-weight: 700; font-size: 0.75rem; text-transform: none; letter-spacing: 0.02em; transition: all 0.25s ease; border-radius: 0.35rem; margin: 0.15rem 0.5rem; background: transparent; }
+        .dropdown-menu a:hover { color: #FFC107; background: rgba(46,125,50,0.4); transform: translateX(4px); }
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.3rem; color: #fff; cursor: pointer; padding: 0.5rem; font-weight: 700; }
+        .section { padding: 80px 0; position: relative; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.5rem; color: #1B5E20; margin-bottom: 15px; position: relative; display: inline-block; font-weight: 800; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: #FF6F00; border-radius: 2px; }
+        .section-header p { color: #555; font-size: 1.05rem; margin-top: 25px; }
+        .btn-primary { background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 25%, #FF6F00 50%, #FF8F00 75%, #FF6F00 100%); background-size: 300% 300%; color: #fff; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: 700; display: inline-block; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem; box-shadow: 0 0 20px rgba(255,111,0,0.4); letter-spacing: 0.5px; }
+        .btn-primary:hover { background: linear-gradient(135deg, #E65100 0%, #FF6F00 50%, #E65100 100%); transform: translateY(-3px) scale(1.03); box-shadow: 0 0 30px rgba(255,111,0,0.6); }
+        .sheets-container { width: 100%; height: 600px; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .sheets-container iframe { width: 100%; height: 100%; border: none; }
+        .footer { background: #111827; color: #f3f4f6; padding: 60px 0 20px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-brand { display: flex; flex-direction: column; }
+        .footer-logo { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; color: #fff; }
+        .footer-logo img { width: 40px; height: 40px; }
+        .footer-brand p { color: #e5e7eb; margin-bottom: 15px; line-height: 1.6; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #2E7D32; border-radius: 50%; color: #fff; transition: all 0.3s; text-decoration: none; }
+        .social-links a:hover { background: #FF6F00; transform: translateY(-3px); }
+        .social-links svg { width: 20px; height: 20px; }
+        .footer-col { display: flex; flex-direction: column; }
+        .footer-col h4 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
+        .footer-line { height: 2px; background: #FF6F00; width: 40px; margin-bottom: 15px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #e5e7eb; text-decoration: none; transition: all 0.3s; font-size: 0.9rem; font-weight: 500; }
+        .footer-col ul li a:hover { color: #4CAF50; padding-left: 5px; }
+        .footer-contact p { color: #e5e7eb; margin-bottom: 10px; font-size: 0.9rem; }
+        .footer-bottom { border-top: 1px solid #374151; padding-top: 20px; text-align: center; color: #9ca3af; font-size: 0.85rem; }
+        .scroll-top { position: fixed; bottom: -60px; right: 20px; width: 50px; height: 50px; background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%); color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; z-index: 999; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .scroll-top.visible { bottom: 20px; }
+        .scroll-top:hover { background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%); transform: translateY(-3px); }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%); flex-direction: column; padding: 1rem 0; gap: 0; border-top: 1px solid #2E7D32; }
+            .nav-links.active { display: flex; }
+            .nav-links a { padding: 1rem 2rem; width: 100%; text-align: center; border-radius: 0; }
+            .dropdown-menu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; background: #1B5E20; display: none; padding: 0; }
+            .dropdown.active .dropdown-menu { display: block; }
+            .dropdown-menu a { margin: 0; border-radius: 0; padding: 0.75rem 2rem; text-align: center; }
+            .section-header h2 { font-size: 2rem; }
+            .sheets-container { height: 500px; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .social-links { justify-content: center; }
+            .footer-logo { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-wrapper">
+            <div class="loader-spinner"></div>
+            <img src="img-navbar/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
+        </div>
+        <p class="loader-text">Verfrut's y R&M</p>
+    </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img width="44" src="img-navbar/img-navbar.png" alt="Logo">
+                <div class="nav-logo-text">
+                    <span class="nav-logo-title">Verfrut's y R&M</span>
+                    <span class="nav-logo-sub">Frutas - Verduras - Canasta Básica.</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="productos.html">Productos <span class="arrow">&#9662;</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="productos.html#frutas">Frutas</a></li>
+                        <li><a href="productos.html#verduras">Verduras</a></li>
+                        <li><a href="productos.html#canasta">Canasta Básica</a></li>
+                    </ul>
+                </li>
+                <li><a href="compras.html" class="active">Compras</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="ubicacion.html">Ubicación</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
+        </div>
+    </nav>
+
+    <section class="section section-top-padding-large section-min-height">
+        <div class="container">
+            <div class="section-header">
+                <h2>Realiza tu Pedido</h2>
+                <p>Completa tu pedido en nuestro formulario o contáctanos por WhatsApp</p>
+            </div>
+            <div class="sheets-container">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vXXXXXX/pubhtml?widget=true&headers=false" style="width:100%; height:100%; border:none;" title="Pedidos Verfruts"></iframe>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="color: #9ca3af; margin-bottom: 1rem;">¿Prefieres pedir por WhatsApp?</p>
+                <a href="https://wa.me/50360649103" class="btn-primary">Escribir por WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img width="40" height="40" src="img-navbar/img-navbar.png" alt="Logo">
+                    Verfrut's y R&M
+                </div>
+                <p>Tu tienda de referencia en Jucuapa, donde la frescura se encuentra con la excelencia.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Negocio</h4>
+                <div class="footer-line"></div>
+                <ul>
+                    <li><a href="#">Historia</a></li>
+                    <li><a href="compras.html">Compras</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="galeria.html">Galería Visual</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Team</h4>
+                <div class="footer-line"></div>
+                <ul>  
+                    <li><a href="#">Historia</a></li>
+                    <li><a href="#">Conoce al equipo detras del proyecto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h4>Contáctanos</h4>
+                <div class="footer-line"></div>
+                <p>Jucuapa, Usulután, El Salvador</p>
+                <p>+503 6064-9103 | +503 6971-8315</p>
+                <p><span class="icon">&#9993;</span> ola@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Verfrut's y R&M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. | <span style="font-style: italic;">This website was created and designed by:</span> <span style="font-weight: bold;">Either Design STR Team.</span></p>
+        </div>
+    </footer>
+    <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
+
+    <script>
+        (function() {
+            const loader = document.getElementById('pageLoader');
+            if (loader) {
+                window.addEventListener('load', () => setTimeout(() => loader.classList.add('hidden'), 400));
+                if (document.readyState === 'complete') setTimeout(() => loader.classList.add('hidden'), 400);
+            }
+            const toggle = document.getElementById('menuToggle');
+            const nav = document.getElementById('navLinks');
+            if (toggle && nav) {
+                toggle.addEventListener('click', () => nav.classList.toggle('active'));
+                nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('active')));
+            }
+            document.querySelectorAll('.dropdown').forEach(drop => {
+                drop.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        drop.classList.toggle('active');
+                    }
+                });
+            });
+            const scrollBtn = document.getElementById('scrollTop');
+            if (scrollBtn) {
+                window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 400));
+                scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            }
+            if (!window.matchMedia('(pointer: coarse)').matches) {
+                const dot = document.createElement('div'); dot.className = 'cursor-dot';
+                const outline = document.createElement('div'); outline.className = 'cursor-outline';
+                document.body.appendChild(dot); document.body.appendChild(outline);
+                let x=0,y=0,ox=0,oy=0;
+                document.addEventListener('mousemove', (e) => { x=e.clientX; y=e.clientY; dot.style.left=x+'px'; dot.style.top=y+'px'; });
+                function animate() { ox+=(x-ox)*0.15; oy+=(y-oy)*0.15; outline.style.left=ox+'px'; outline.style.top=oy+'px'; requestAnimationFrame(animate); }
+                animate();
+                const interactives = 'a, button, .scroll-top, .menu-toggle, .btn-primary';
+                document.querySelectorAll(interactives).forEach(el => {
+                    el.addEventListener('mouseenter', () => document.body.classList.add('hover-link'));
+                    el.addEventListener('mouseleave', () => document.body.classList.remove('hover-link'));
+                });
+            }
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        const target = document.querySelector(href);
+                        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
