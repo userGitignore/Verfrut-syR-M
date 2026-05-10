@@ -1,10 +1,10 @@
-/* ================================================
-   SCRIPT DE INTERACTIVIDAD - VERFRUT'S Y R&M
-   ================================================ */
+/* ============================================
+   INTERACTIVIDAD DEL SITIO
+   ============================================ */
 
-/* -----------------------------------------------
-   SECCION 1: PANTALLA DE CARGA
-   ----------------------------------------------- */
+/* --------------------------------------------
+   Pantalla de carga
+   -------------------------------------------- */
 function initLoader() {
     const loader = document.getElementById('pageLoader');
     if (!loader) return;
@@ -22,9 +22,9 @@ function initLoader() {
     }
 }
 
-/* -----------------------------------------------
-   SECCION 2: SLIDER INFINITO
-   ----------------------------------------------- */
+/* --------------------------------------------
+   Slider infinito con clones - 5 segundos
+   -------------------------------------------- */
 function initSlider() {
     const track = document.querySelector('.slider-track');
     const dots = document.querySelectorAll('.dot');
@@ -160,9 +160,9 @@ function initSlider() {
     start();
 }
 
-/* -----------------------------------------------
-   SECCION 3: MODAL DE IMAGENES
-   ----------------------------------------------- */
+/* --------------------------------------------
+   Modal de imagenes
+   -------------------------------------------- */
 function initModal() {
     const modal = document.getElementById('imageModal');
     if (!modal) return;
@@ -186,41 +186,29 @@ function initModal() {
         }
     });
 
-    if (modalClose) {
-        modalClose.addEventListener('click', close);
-    }
-    
-    modal.addEventListener('click', function(e) { 
-        if (e.target === modal) close(); 
-    });
-    
-    document.addEventListener('keydown', function(e) { 
-        if (e.key === 'Escape') close(); 
-    });
+    modalClose.addEventListener('click', close);
+    modal.addEventListener('click', function(e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close(); });
 }
 
-/* -----------------------------------------------
-   SECCION 4: MENU MOVIL
-   ----------------------------------------------- */
+/* --------------------------------------------
+   Menu movil
+   -------------------------------------------- */
 function initMobileMenu() {
     const toggle = document.getElementById('menuToggle');
     const nav = document.getElementById('navLinks');
     if (!toggle || !nav) return;
 
-    toggle.addEventListener('click', function() { 
-        nav.classList.toggle('active'); 
-    });
+    toggle.addEventListener('click', function() { nav.classList.toggle('active'); });
 
     nav.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() { 
-            nav.classList.remove('active'); 
-        });
+        a.addEventListener('click', function() { nav.classList.remove('active'); });
     });
 }
 
-/* -----------------------------------------------
-   SECCION 5: DROPDOWN EN MOVIL
-   ----------------------------------------------- */
+/* --------------------------------------------
+   Dropdown en movil
+   -------------------------------------------- */
 function initDropdown() {
     document.querySelectorAll('.dropdown').forEach(function(drop) {
         drop.addEventListener('click', function(e) {
@@ -232,19 +220,16 @@ function initDropdown() {
     });
 }
 
-/* -----------------------------------------------
-   SECCION 6: BOTON IR ARRIBA
-   ----------------------------------------------- */
+/* --------------------------------------------
+   Boton ir arriba
+   -------------------------------------------- */
 function initScrollTop() {
     const btn = document.getElementById('scrollTop');
     if (!btn) return;
 
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 400) {
-            btn.classList.add('visible');
-        } else {
-            btn.classList.remove('visible');
-        }
+        if (window.scrollY > 400) btn.classList.add('visible');
+        else btn.classList.remove('visible');
     });
 
     btn.addEventListener('click', function() {
@@ -252,9 +237,9 @@ function initScrollTop() {
     });
 }
 
-/* -----------------------------------------------
-   SECCION 7: CURSOR INTERACTIVO CON ROTACION
-   ----------------------------------------------- */
+/* --------------------------------------------
+   Cursor interactivo
+   -------------------------------------------- */
 function initCursor() {
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
@@ -265,40 +250,7 @@ function initCursor() {
     document.body.appendChild(dot);
     document.body.appendChild(outline);
 
-    let x = 0;
-    let y = 0;
-    let ox = 0;
-    let oy = 0;
-
-    const cursorStates = [
-        { type: 'default' },
-        { type: 'image', src: 'Apio.png' },
-        { type: 'image', src: 'Zanahoria.png' },
-        { type: 'image', src: 'Mango.png' }
-    ];
-    
-    let currentCursorState = 0;
-
-    function applyCursorState() {
-        const state = cursorStates[currentCursorState];
-        
-        if (state.type === 'default') {
-            outline.style.backgroundImage = 'none';
-            outline.style.borderColor = 'rgba(46, 125, 50, 0.5)';
-            outline.style.backgroundColor = 'transparent';
-        } else {
-            outline.style.backgroundImage = 'url(' + state.src + ')';
-            outline.style.backgroundSize = 'cover';
-            outline.style.backgroundPosition = 'center';
-            outline.style.borderColor = 'transparent';
-            outline.style.backgroundColor = 'transparent';
-        }
-    }
-
-    setInterval(function() {
-        currentCursorState = (currentCursorState + 1) % cursorStates.length;
-        applyCursorState();
-    }, 7000);
+    let x = 0, y = 0, ox = 0, oy = 0;
 
     document.addEventListener('mousemove', function(e) {
         x = e.clientX;
@@ -316,21 +268,16 @@ function initCursor() {
     }
     animate();
 
-    const interactives = 'a, button, .slider-arrow, .gallery-item, .product-card, .category-card, .add-to-cart, .scroll-top, .menu-toggle, .testimonial-card, .show-more-btn, .page-hero-btn';
-    
+    const interactives = 'a, button, .slider-arrow, .gallery-item, .product-card, .category-card, .add-to-cart, .scroll-top, .menu-toggle, .testimonial-card, .show-more-btn';
     document.querySelectorAll(interactives).forEach(function(el) {
-        el.addEventListener('mouseenter', function() { 
-            document.body.classList.add('hover-link'); 
-        });
-        el.addEventListener('mouseleave', function() { 
-            document.body.classList.remove('hover-link'); 
-        });
+        el.addEventListener('mouseenter', function() { document.body.classList.add('hover-link'); });
+        el.addEventListener('mouseleave', function() { document.body.classList.remove('hover-link'); });
     });
 }
 
-/* -----------------------------------------------
-   SECCION 8: SCROLL SUAVE PARA ANCLAS
-   ----------------------------------------------- */
+/* --------------------------------------------
+   Scroll suave para anclas
+   -------------------------------------------- */
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
@@ -346,9 +293,9 @@ function initSmoothScroll() {
     });
 }
 
-/* -----------------------------------------------
-   SECCION 9: VER MAS / VER MENOS EN PRODUCTOS
-   ----------------------------------------------- */
+/* --------------------------------------------
+   Ver mas / Ver menos en productos
+   -------------------------------------------- */
 function initShowMore() {
     document.querySelectorAll('.show-more-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
@@ -367,9 +314,7 @@ function initShowMore() {
             } else {
                 const allItems = grid.querySelectorAll('.product-card');
                 allItems.forEach(function(item, index) {
-                    if (index >= 6) {
-                        item.classList.add('product-hidden');
-                    }
+                    if (index >= 6) item.classList.add('product-hidden');
                 });
                 this.textContent = originalText;
             }
@@ -377,9 +322,9 @@ function initShowMore() {
     });
 }
 
-/* -----------------------------------------------
-   SECCION 10: INICIALIZACION GLOBAL
-   ----------------------------------------------- */
+/* --------------------------------------------
+   Inicializacion
+   -------------------------------------------- */
 document.addEventListener('DOMContentLoaded', function() {
     initLoader();
     initSlider();
