@@ -18,6 +18,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
@@ -516,15 +517,25 @@
            ============================================ */
         .section {
             padding: 80px 0;
-            background-color: rgb(3, 0, 19);
+            background-color: #0a0a0a; /* NEGRO CÁLIDO - recomendado */
         }
 
+        /* ============================================
+           COLOR DE FONDO - SECCIÓN "VISITA NUESTRAS CATEGORÍAS"
+           Cambia el valor de background para modificar el color.
+           Línea original: background: #1f2937;
+           ============================================ */
+        /* ============================================
+           COLOR DE FONDO - SECCIÓN "VISITA NUESTRAS CATEGORÍAS"
+           Cambia el valor de background para modificar el color.
+           Línea original: background: #1f2937;
+           ============================================ */
         .products-section {
-            background: #1f2937;
+            background: #0a0f0a; /* NEGRO VERDOSO - recomendado */
         }
 
         .about-section {
-            background: #111827;
+            background: #0f1a0f; /* VERDE MUY OSCURO - recomendado */
         }
 
         .section-header {
@@ -540,6 +551,18 @@
             display: inline-block;
             font-weight: 800;
             letter-spacing: -0.5px;
+            transition: all 0.4s ease;
+        }
+
+        .section:hover .section-header h2 {
+            text-shadow: 0 0 25px rgba(34, 197, 94, 0.3);
+            transform: scale(1.02);
+        }
+
+        .section:hover .section-header h2::after {
+            width: 120px;
+            background: linear-gradient(90deg, #FF6F00, #22c55e);
+            transition: all 0.4s ease;
         }
 
         .section-header h2::after {
@@ -574,16 +597,80 @@
             border-radius: 17px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 3px solid #ffffff;
             position: relative;
             z-index: 1;
         }
 
+        /* ============================================
+           EFECTO DE BRILLO EN TARJETA DE PRODUCTO
+           ============================================ */
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.06), transparent);
+            transition: left 0.7s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(34, 197, 94, 0.25), 0 0 60px rgba(34, 197, 94, 0.08);
             border-color: #22c55e;
+        }
+
+        /* ============================================
+           EFECTO HOVER EN IMAGEN DE PRODUCTO (OFERTAS)
+           ============================================ */
+        .product-card .product-image {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.12);
+            filter: brightness(1.15) saturate(1.2);
+        }
+
+        /* ============================================
+           EFECTO HOVER EN INFO DE PRODUCTO (OFERTAS)
+           ============================================ */
+        .product-card .product-info {
+            transition: background 0.3s ease;
+        }
+
+        .product-card:hover .product-info {
+            background: linear-gradient(180deg, #141b24 0%, #0d1f0d 100%);
+        }
+
+        .product-card:hover .product-name {
+            color: #22c55e;
+            transition: color 0.3s ease;
+        }
+
+        .product-card:hover .product-category {
+            letter-spacing: 2px;
+            transition: letter-spacing 0.3s ease;
+        }
+
+        .product-card:hover .price {
+            text-shadow: 0 0 10px rgba(255, 111, 0, 0.4);
+            transition: text-shadow 0.3s ease;
+        }
+
+        .product-card:hover .add-to-cart {
+            transform: scale(1.15) rotate(90deg);
+            background: #FF6F00;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .product-image {
@@ -591,7 +678,7 @@
             width: 100%;
             object-fit: cover;
             display: block;
-            background: #111827;
+            background: #0f1a0f; /* VERDE MUY OSCURO - recomendado */
             position: relative;
             cursor: pointer;
         }
@@ -665,14 +752,34 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-size: 1.2rem;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .add-to-cart:hover {
             background: #16a34a;
             transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+        }
+
+        .add-to-cart:hover::before {
+            opacity: 1;
+        }
+
+        .add-to-cart:active {
+            transform: scale(0.95);
         }
 
         /* ============================================
@@ -685,11 +792,11 @@
         }
 
         .category-card {
-            background: #1f2937;
+            background: #05081a;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             text-decoration: none;
@@ -700,9 +807,83 @@
         }
 
         .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.2), 0 0 80px rgba(34, 197, 94, 0.06);
             border-color: #22c55e;
+        }
+
+        /* ============================================
+           EFECTO HOVER EN IMAGEN DE CATEGORÍA
+           ============================================ */
+        .category-card .category-image {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
+        }
+
+        .category-card:hover .category-image {
+            transform: scale(1.15);
+            filter: brightness(1.2) contrast(1.1);
+        }
+
+        /* ============================================
+           EFECTO HOVER EN CONTENIDO DE CATEGORÍA
+           ============================================ */
+        .category-card .category-content {
+            transition: background 0.4s ease, transform 0.4s ease;
+        }
+
+        .category-card:hover .category-content {
+            background: linear-gradient(180deg, #05081a 0%, #0a1a0a 100%);
+            transform: translateY(-5px);
+        }
+
+        .category-card:hover .category-content h3 {
+            color: #22c55e;
+            text-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-content p {
+            color: #d1d5db;
+            transition: color 0.3s ease;
+        }
+
+        /* ============================================
+           EFECTO OVERLAY BRILLANTE EN CATEGORÍA
+           ============================================ */
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.08), transparent);
+            transition: left 0.6s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .category-card:hover::before {
+            left: 100%;
+        }
+
+        /* ============================================
+           EFECTO DE BRILLO EN BORDE DE CATEGORÍA
+           ============================================ */
+        .category-card::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 21px;
+            background: linear-gradient(135deg, transparent 40%, rgba(34, 197, 94, 0.3), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .category-card:hover::after {
+            opacity: 1;
         }
 
         .category-image {
@@ -739,7 +920,7 @@
         }
 
         .mvv-card {
-            background: #1d1d1d;
+            background: #161616;
             border-radius: 15px;
             padding: 2.5rem 2rem;
             text-align: center;
@@ -1198,7 +1379,16 @@
 
         @media (max-width: 768px) {
             .nav-container {
-                padding: 1rem 1.5rem;
+                padding: 0.8rem 1rem;
+            }
+
+            .nav-logo img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .nav-logo-title {
+                font-size: 1.2rem;
             }
 
             #navOverlay {
@@ -1299,8 +1489,10 @@
             }
 
             .scroll-top {
-                bottom: 1.5rem;
-                right: 1.5rem;
+                bottom: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
             }
             
             .cursor-dot,
@@ -1318,12 +1510,37 @@
                 padding: 50px 0;
             }
 
+            .section-header h2 {
+                font-size: 1.8rem !important;
+            }
+
+            .section-header p {
+                font-size: 0.9rem !important;
+            }
+
             .slide-content h2 {
                 font-size: 1.6rem;
             }
 
             .footer-logo {
                 font-size: 1.8rem;
+            }
+
+            .product-info {
+                padding: 15px;
+            }
+
+            .category-content {
+                padding: 18px;
+            }
+
+            .product-card,
+            .category-card {
+                border-radius: 14px;
+            }
+
+            .mvv-card {
+                padding: 1.8rem 1.2rem;
             }
         }
 
@@ -1334,6 +1551,18 @@
             position: relative;
             width: 100%;
             padding: 0 10px;
+        }
+
+        /* ============================================
+           EFECTO HOVER EN BOTONES DEL CAROUSEL
+           ============================================ */
+        .carousel-btn {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .carousel-btn:hover {
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
         }
 
         .carousel-track {
@@ -1386,11 +1615,111 @@
         .carousel-btn.prev { left: -10px; }
         .carousel-btn.next { right: -10px; }
 
+        /* ============================================
+           INDICADORES DE PAGINACIÓN PARA CAROUSEL
+           ============================================ */
+        .carousel-dots {
+            display: none;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding-bottom: 10px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background: #22c55e;
+            width: 20px;
+            border-radius: 4px;
+        }
+
         @media (max-width: 768px) {
-            .carousel-btn { display: none; }
+            .carousel-dots {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
             .carousel-track .product-card {
-                flex: 0 0 260px;
-                width: 260px;
+                flex: 0 0 85vw;
+                width: 85vw;
+                max-width: 320px;
+            }
+
+            /* ============================================
+               BOTONES CAROUSEL EN MÓVIL - BARRA INFERIOR
+               ============================================ */
+            .carousel-wrapper {
+                padding-bottom: 60px;
+            }
+
+            .carousel-btn {
+                position: absolute;
+                top: auto;
+                bottom: 0;
+                transform: none;
+                width: 44px;
+                height: 44px;
+                background: #141b24;
+                border: 2px solid #22c55e;
+                z-index: 10;
+            }
+
+            .carousel-btn.prev { 
+                left: 50%; 
+                transform: translateX(-55px);
+            }
+            .carousel-btn.next { 
+                right: 50%; 
+                transform: translateX(55px);
+            }
+
+            .carousel-btn:active {
+                background: #22c55e;
+                transform: translateX(-55px) scale(0.95);
+            }
+
+            .carousel-btn.next:active {
+                transform: translateX(55px) scale(0.95);
+            }
+
+            /* Indicadores de scroll visuales */
+            .carousel-track {
+                padding-bottom: 15px;
+                scroll-snap-type: x mandatory;
+            }
+
+            /* Scroll hint - sombra lateral */
+            .carousel-wrapper::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 60px;
+                width: 40px;
+                background: linear-gradient(90deg, transparent, rgba(10,10,10,0.8));
+                pointer-events: none;
+                z-index: 5;
+            }
+
+            .carousel-wrapper::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 60px;
+                width: 40px;
+                background: linear-gradient(270deg, transparent, rgba(10,10,10,0.8));
+                pointer-events: none;
+                z-index: 5;
             }
         }
 
@@ -1526,15 +1855,12 @@
         }
 
     </style>
-    
-
-
-
+<base target="_blank">
+<base target="_blank">
 <base target="_blank">
 <base target="_blank">
 <base target="_blank">
 </head>
-
 <body>
     <!-- ============================================
          PANTALLA DE CARGA INICIAL
@@ -1550,6 +1876,9 @@
     <!-- ============================================
          BARRA DE NAVEGACION
          ============================================ -->
+    <!-- Overlay para cerrar menú al tocar fuera -->
+    <div id="navOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998;" onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
+
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -1587,40 +1916,40 @@
                 <img src="img-oferts-index/canastabasica.png" alt="Canasta Básica clon">
                 <div class="slide-content">
                     <h2>Canasta Básica</h2>
-                    <p>Productos básicos al mejor precio</p>
-                    <a href="productos.html#canasta" class="btn-primary">Ver catálogo</a>
+                    <p>Productos básicos, frescos y de calidad.</p>
+                    <a href="productos.html#canasta" class="btn-primary">Visitar el catalogo</a>
                 </div>
             </div>
             <div class="slide">
                 <img src="img-slider-index/frutas.png" alt="Frutas Frescas">
                 <div class="slide-content">
                     <h2>Frutas Frescas</h2>
-                    <p>Las mejores frutas de Jucuapa</p>
-                    <a href="productos.html#frutas" class="btn-primary">Ver catálogo</a>
+                    <p>Siente el sabor único.</p>
+                    <a href="productos.html#frutas" class="btn-primary">Visitar el catalogo</a>
                 </div>
             </div>
             <div class="slide">
                 <img src="img-slider-index/Verduras.png" alt="Verduras Variadas">
                 <div class="slide-content">
                     <h2>Verduras Variadas</h2>
-                    <p>Directo del campo a tu mesa</p>
-                    <a href="productos.html#verduras" class="btn-primary">Ver catálogo</a>
+                    <p>Frescas y de la mejor calidad.</p>
+                    <a href="productos.html#verduras" class="btn-primary">Visitar el catalogo</a>
                 </div>
             </div>
             <div class="slide">
                 <img src="img-slider-index/canastabasica.png" alt="Canasta Básica">
                 <div class="slide-content">
                     <h2>Canasta Básica</h2>
-                    <p>Productos básicos al mejor precio</p>
-                    <a href="productos.html#canasta" class="btn-primary">Ver catálogo</a>
+                    <p>Productos básicos, frescos y de calidad.</p>
+                    <a href="productos.html#canasta" class="btn-primary">Visitar el catalogo</a>
                 </div>
             </div>
             <div class="slide">
                 <img src="img-slider-index/frutas.png" alt="Frutas Frescas clon">
                 <div class="slide-content">
                     <h2>Frutas Frescas</h2>
-                    <p>Las mejores frutas de Jucuapa</p>
-                    <a href="productos.html#frutas" class="btn-primary">Ver catálogo</a>
+                    <p>Siente el sabor único.</p>
+                    <a href="productos.html#frutas" class="btn-primary">Visitar el catalogo</a>
                 </div>
             </div>
         </div>
@@ -1639,14 +1968,14 @@
     <section class="section" id="ofertas">
         <div class="container">
             <div class="section-header">
-                <h2>Nuestras ofertas disponibles.</h2>
-                <p class="subtitle-bold">Productos seleccionados con los mejores precios!</p>
+                <h2>Explora algunas de nuestras ofertas.</h2>
+                <p class="subtitle-bold">Productos seleccionados.</p>
             </div>
             <div class="carousel-wrapper">
                 <button class="carousel-btn prev" id="carouselPrev" aria-label="Anterior">&#10094;</button>
                 <div class="carousel-track" id="prodTrack">
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/fresas.jpg" alt="Fresas">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/fresas.png" alt="Fresas">
                         <div class="product-info">
                             <div class="product-category">Frutas</div>
                             <h3 class="product-name">Fresas</h3>
@@ -1682,11 +2011,11 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/manzanas.jpg" alt="Manzanas">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/loroco.png" alt="Loroco">
                         <div class="product-info">
-                            <div class="product-category">Frutas</div>
-                            <h3 class="product-name">Manzanas Rojas</h3>
-                            <p class="product-desc">Crujientes y dulces, directas del huerto.</p>
+                            <div class="product-category">Especies</div>
+                            <h3 class="product-name">Loroco</h3>
+                            <p class="product-desc">Crujientes y ricos.</p>
                             <div class="product-price">
                                 <span class="price">$2.50 <span class="price-unit">la libra</span></span>
                                 <a href="compras.html" class="add-to-cart">+</a>
@@ -1694,47 +2023,47 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/platanos.jpg" alt="Platanos">
-                        <div class="product-info">
-                            <div class="product-category">Frutas</div>
-                            <h3 class="product-name">Plátanos</h3>
-                            <p class="product-desc">Maduros y energéticos para tu desayuno.</p>
-                            <div class="product-price">
-                                <span class="price">$1.80 <span class="price-unit">la libra</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/naranjas.jpg" alt="Naranjas">
-                        <div class="product-info">
-                            <div class="product-category">Frutas</div>
-                            <h3 class="product-name">Naranjas Dulces</h3>
-                            <p class="product-desc">Jugosas y refrescantes, llenas de vitamina C.</p>
-                            <div class="product-price">
-                                <span class="price">$2.20 <span class="price-unit">la libra</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/tomates.jpg" alt="Tomates">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/tomates.png" alt="Tomates">
                         <div class="product-info">
                             <div class="product-category">Verduras</div>
                             <h3 class="product-name">Tomates Frescos</h3>
                             <p class="product-desc">Rojos y firmes para tus salsas y ensaladas.</p>
                             <div class="product-price">
-                                <span class="price">$1.50 <span class="price-unit">la libra</span></span>
+                                <span class="price">$0.00 <span class="price-unit">la libra</span></span>
                                 <a href="compras.html" class="add-to-cart">+</a>
                             </div>
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/cebollas.jpg" alt="Cebollas">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/turrones.png" alt="Naranjas">
+                        <div class="product-info">
+                            <div class="product-category">POR DEFINIR</div>
+                            <h3 class="product-name">Turrones</h3>
+                            <p class="product-desc">Sin descripcion disponible.</p>
+                            <div class="product-price">
+                                <span class="price">$0.00 <span class="price-unit">la libra</span></span>
+                                <a href="compras.html" class="add-to-cart">+</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/harina.png" alt="Harina">
+                        <div class="product-info">
+                            <div class="product-category">Canasta Básica</div>
+                            <h3 class="product-name">Harina de Trigo</h3>
+                            <p class="product-desc">Ideal para preparar panes y pasteles.</p>
+                            <div class="product-price">
+                                <span class="price">$0.00 <span class="price-unit">la libra</span></span>
+                                <a href="compras.html" class="add-to-cart">+</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/papas.png" alt="Papas">
                         <div class="product-info">
                             <div class="product-category">Verduras</div>
-                            <h3 class="product-name">Cebollas</h3>
-                            <p class="product-desc">Picantes y aromáticas para sazonar tus platillos.</p>
+                            <h3 class="product-name">Papas</h3>
+                            <p class="product-desc">Versátiles y frescas para cualquier preparación.</p>
                             <div class="product-price">
                                 <span class="price">$1.30 <span class="price-unit">la libra</span></span>
                                 <a href="compras.html" class="add-to-cart">+</a>
@@ -1742,11 +2071,11 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/papas.jpg" alt="Papas">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/aceiteOrisol.png" alt="AceiteOrisol">
                         <div class="product-info">
-                            <div class="product-category">Verduras</div>
-                            <h3 class="product-name">Papas</h3>
-                            <p class="product-desc">Versátiles y frescas para cualquier preparación.</p>
+                            <div class="product-category">Canasta Básica</div>
+                            <h3 class="product-name">Aceite</h3>
+                            <p class="product-desc">Extra virgen y de primera calidad.</p>
                             <div class="product-price">
                                 <span class="price">$1.40 <span class="price-unit">la libra</span></span>
                                 <a href="compras.html" class="add-to-cart">+</a>
@@ -1754,45 +2083,9 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/arroz.jpg" alt="Arroz">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/cafeMolido.png" alt="Cafe Molido">
                         <div class="product-info">
                             <div class="product-category">Canasta Básica</div>
-                            <h3 class="product-name">Arroz Blanco</h3>
-                            <p class="product-desc">Grano largo y suelto, esencial en tu mesa.</p>
-                            <div class="product-price">
-                                <span class="price">$0.90 <span class="price-unit">la libra</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/frijol.jpg" alt="Frijol">
-                        <div class="product-info">
-                            <div class="product-category">Canasta Básica</div>
-                            <h3 class="product-name">Frijol Rojo</h3>
-                            <p class="product-desc">De primera calidad, listo para cocinar.</p>
-                            <div class="product-price">
-                                <span class="price">$1.10 <span class="price-unit">la libra</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/aceite.jpg" alt="Aceite">
-                        <div class="product-info">
-                            <div class="product-category">Canasta Básica</div>
-                            <h3 class="product-name">Aceite Vegetal</h3>
-                            <p class="product-desc">Puro y ligero para freír o cocinar.</p>
-                            <div class="product-price">
-                                <span class="price">$2.80 <span class="price-unit">la unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/cafe.jpg" alt="Cafe">
-                        <div class="product-info">
-                            <div class="product-category">Especies</div>
                             <h3 class="product-name">Café Molido</h3>
                             <p class="product-desc">Aroma intenso y sabor tradicional salvadoreño.</p>
                             <div class="product-price">
@@ -1802,11 +2095,47 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/leche.jpg" alt="Leche">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/Guisquiles.png" alt="Guisquiles">
                         <div class="product-info">
-                            <div class="product-category">Canasta Básica</div>
-                            <h3 class="product-name">Leche en Polvo</h3>
-                            <p class="product-desc">Nutritiva y duradera para toda la familia.</p>
+                            <div class="product-category">Verduras</div>
+                            <h3 class="product-name">Guisquiles</h3>
+                            <p class="product-desc">De primera calidad, listo para cocinar.</p>
+                            <div class="product-price">
+                                <span class="price">$1.10 <span class="price-unit">la libra</span></span>
+                                <a href="compras.html" class="add-to-cart">+</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/elotes.png" alt="Elotes">
+                        <div class="product-info">
+                            <div class="product-category">Verduras</div>
+                            <h3 class="product-name">Elotes</h3>
+                            <p class="product-desc">Jugosos y deliciosos, perfectos para disfrutar en cualquier ocasión.</p>
+                            <div class="product-price">
+                                <span class="price">$1.50 <span class="price-unit">la unidad</span></span>
+                                <a href="compras.html" class="add-to-cart">+</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/platanos.png" alt="Plátanos">
+                        <div class="product-info">
+                            <div class="product-category">Frutas</div>
+                            <h3 class="product-name">Plátanos</h3>
+                            <p class="product-desc">Maduros y dulces, ideales para el desayuno o como snack saludable.</p>
+                            <div class="product-price">
+                                <span class="price">$4.50 <span class="price-unit">la libra</span></span>
+                                <a href="compras.html" class="add-to-cart">+</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/naranjas.png" alt="Naranjas">
+                        <div class="product-info">
+                            <div class="product-category">Frutas</div>
+                            <h3 class="product-name">Naranjas</h3>
+                            <p class="product-desc">Cítricas y jugosas, ricas en vitamina C.</p>
                             <div class="product-price">
                                 <span class="price">$3.20 <span class="price-unit">la unidad</span></span>
                                 <a href="compras.html" class="add-to-cart">+</a>
@@ -1814,26 +2143,27 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/avena.jpg" alt="Avena">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/embutidos.png" alt="Embutidos">
                         <div class="product-info">
                             <div class="product-category">Canasta Básica</div>
-                            <h3 class="product-name">Avena en Hojuelas</h3>
-                            <p class="product-desc">Saludable y perfecta para un desayuno completo.</p>
+                            <h3 class="product-name">Embutidos</h3>
+                            <p class="product-desc">Selección de embutidos de calidad para tu mesa.</p>
                             <div class="product-price">
                                 <span class="price">$1.60 <span class="price-unit">la libra</span></span>
                                 <a href="compras.html" class="add-to-cart">+</a>
                             </div>
                         </div>
                     </div>
-                    <div class="product-card product-card-logo">
-                        <div class="product-logo-content">
-                            <img src="img-navbar/img-navbar.png" alt="Verfrut's Logo">
-                            <h3>Verfrut's y R&amp;M</h3>
-                            <p>Frutas - Verduras - Canasta Básica</p>
-                        </div>
-                    </div>
                 </div>
                 <button class="carousel-btn next" id="carouselNext" aria-label="Siguiente">&#10095;</button>
+                <!-- Indicadores de paginación para móvil -->
+                <div class="carousel-dots" id="carouselDots">
+                    <span class="carousel-dot active" data-index="0"></span>
+                    <span class="carousel-dot" data-index="1"></span>
+                    <span class="carousel-dot" data-index="2"></span>
+                    <span class="carousel-dot" data-index="3"></span>
+                    <span class="carousel-dot" data-index="4"></span>
+                </div>
             </div>
         </div>
     </section>
@@ -1844,8 +2174,8 @@
     <section class="section products-section" id="categorias">
         <div class="container">
             <div class="section-header">
-                <h2>Nuestras Categorías.</h2>
-                <p class="subtitle-bold">Explora nuestro catálogo completo</p>
+                <h2>Visita nuestras Categorías.</h2>
+                <p class="subtitle-bold">Y explora nuestro catálogo completo.</p>
             </div>
             <div class="categories-grid">
                 <a href="productos.html#frutas" class="category-card">
@@ -1893,8 +2223,8 @@
     <section class="section about-section" id="mvv">
         <div class="container">
             <div class="section-header">
-                <h2>Nuestra Esencia.</h2>
-                <p class="subtitle-bold">Lo que nos define como tu tienda de confianza en Jucuapa</p>
+                <h2>Lo que nos define.</h2>
+                <p class="subtitle-bold">Nuestra esencia.</p>
             </div>
             <div class="mvv-grid">
                 <div class="mvv-card">
@@ -2143,6 +2473,11 @@
                 parentLink.addEventListener('click', function (e) {
                     if (window.innerWidth <= 768) {
                         e.preventDefault();
+                        e.stopPropagation();
+                        // Cerrar otros dropdowns abiertos
+                        document.querySelectorAll('.dropdown.active').forEach(function(d) {
+                            if (d !== parentLink.parentElement) d.classList.remove('active');
+                        });
                         parentLink.parentElement.classList.toggle('active');
                     }
                 });
@@ -2262,35 +2597,133 @@
         }
 
         /* ============================================
-           9. CAROUSEL PRODUCTOS CIRCULAR
+           9. CAROUSEL PRODUCTOS CIRCULAR - CORREGIDO
            ============================================ */
         function initProductCarousel() {
             const track = document.getElementById('prodTrack');
             const prevBtn = document.getElementById('carouselPrev');
             const nextBtn = document.getElementById('carouselNext');
+            const dots = document.querySelectorAll('.carousel-dot');
             if (!track || !prevBtn || !nextBtn) return;
 
-            const cardWidth = track.children[0].offsetWidth + 30;
-            const maxScroll = track.scrollWidth - track.clientWidth;
+            const cards = Array.from(track.children);
+            const totalCards = cards.length;
+
+            function getCardWidth() {
+                return cards[0].offsetWidth + 30;
+            }
+
+            function getVisibleCount() {
+                return Math.max(1, Math.floor(track.clientWidth / getCardWidth()));
+            }
+
+            function getMaxScrollIndex() {
+                const visible = getVisibleCount();
+                return Math.max(0, totalCards - visible);
+            }
+
+            function getCurrentIndex() {
+                const cardWidth = getCardWidth();
+                const scrollPos = track.scrollLeft;
+                return Math.round(scrollPos / cardWidth);
+            }
+
+            function updateDots(activeIndex) {
+                if (!dots.length) return;
+                const visible = getVisibleCount();
+                const maxIndex = getMaxScrollIndex();
+
+                let pageIndex = 0;
+                if (maxIndex > 0) {
+                    pageIndex = Math.round((activeIndex / maxIndex) * (dots.length - 1));
+                }
+                pageIndex = Math.max(0, Math.min(pageIndex, dots.length - 1));
+
+                dots.forEach(function(d, i) {
+                    d.classList.toggle('active', i === pageIndex);
+                });
+            }
+
+            function scrollToIndex(index, smooth) {
+                const maxIndex = getMaxScrollIndex();
+
+                if (index > maxIndex) {
+                    index = 0;
+                    smooth = false;
+                }
+                if (index < 0) {
+                    index = maxIndex;
+                    smooth = false;
+                }
+
+                const cardWidth = getCardWidth();
+                const targetScroll = index * cardWidth;
+
+                if (smooth) {
+                    track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+                } else {
+                    track.style.scrollBehavior = 'auto';
+                    track.scrollLeft = targetScroll;
+                    requestAnimationFrame(function() {
+                        track.style.scrollBehavior = 'smooth';
+                    });
+                }
+
+                updateDots(index);
+            }
 
             nextBtn.addEventListener('click', function () {
-                if (track.scrollLeft + cardWidth >= maxScroll - 5) {
-                    track.classList.add('no-transition');
-                    track.scrollLeft = 0;
-                    setTimeout(function () { track.classList.remove('no-transition'); }, 50);
+                const currentIndex = getCurrentIndex();
+                const visible = getVisibleCount();
+                const maxIndex = getMaxScrollIndex();
+                let nextIndex = currentIndex + visible;
+
+                if (nextIndex > maxIndex) {
+                    nextIndex = 0;
+                    scrollToIndex(nextIndex, false);
                 } else {
-                    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                    scrollToIndex(nextIndex, true);
                 }
             });
 
             prevBtn.addEventListener('click', function () {
-                if (track.scrollLeft <= 5) {
-                    track.classList.add('no-transition');
-                    track.scrollLeft = maxScroll;
-                    setTimeout(function () { track.classList.remove('no-transition'); }, 50);
+                const currentIndex = getCurrentIndex();
+                const visible = getVisibleCount();
+                let prevIndex = currentIndex - visible;
+
+                if (prevIndex < 0) {
+                    const maxIndex = getMaxScrollIndex();
+                    scrollToIndex(maxIndex, false);
                 } else {
-                    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+                    scrollToIndex(prevIndex, true);
                 }
+            });
+
+            dots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    const dotIndex = parseInt(this.dataset.index);
+                    const maxIndex = getMaxScrollIndex();
+                    const targetIndex = Math.round((dotIndex / (dots.length - 1)) * maxIndex);
+                    scrollToIndex(targetIndex, true);
+                });
+            });
+
+            let scrollTimeout;
+            track.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    updateDots(getCurrentIndex());
+                }, 150);
+            }, { passive: true });
+
+            updateDots(0);
+
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function() {
+                    updateDots(getCurrentIndex());
+                }, 200);
             });
         }
 
