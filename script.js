@@ -165,7 +165,6 @@
            Compatible con TODAS las páginas del sitio.
            ============================================ */
         function initCursor() {
-            // No ejecutar en dispositivos táctiles
             if (window.matchMedia('(pointer: coarse)').matches) return;
 
             let dot = document.querySelector('.cursor-dot');
@@ -182,51 +181,49 @@
                 document.body.appendChild(ring);
             }
 
-            let isMoving = false;
-            let moveTimeout;
-
-            function updateCursorPosition(x, y) {
-                dot.style.left = x + 'px';
-                dot.style.top = y + 'px';
-                ring.style.left = x + 'px';
-                ring.style.top = y + 'px';
-            }
+            let mouseX = 0, mouseY = 0;
+            let dotX = 0, dotY = 0;
+            let ringX = 0, ringY = 0;
 
             document.addEventListener('mousemove', function (e) {
-                updateCursorPosition(e.clientX, e.clientY);
-
-                if (!isMoving) {
-                    isMoving = true;
-                    dot.style.opacity = '1';
-                    ring.style.opacity = '1';
-                }
-
-                clearTimeout(moveTimeout);
-                moveTimeout = setTimeout(function() {
-                    isMoving = false;
-                }, 120);
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.opacity = '1';
+                ring.style.opacity = '1';
             });
 
-            const interactives = 'a, button, .slider-arrow, .product-card, .category-card, .add-to-cart, .scroll-top, .menu-toggle, .lightbox-close, .product-image, .hero-btn, .show-more-btn, .carousel-btn, .lightbox-nav, .gallery-item, .info-card, .social-links a, .dropdown > a, .nav-links a, .footer-col a';
+            function renderCursor() {
+                dotX += (mouseX - dotX) * 0.25;
+                dotY += (mouseY - dotY) * 0.25;
+                ringX += (mouseX - ringX) * 0.15;
+                ringY += (mouseY - ringY) * 0.15;
 
-            function addHover() { document.body.classList.add('hover-link'); }
-            function removeHover() { document.body.classList.remove('hover-link'); }
+                dot.style.left = `${dotX}px`;
+                dot.style.top = `${dotY}px`;
+                ring.style.left = `${ringX}px`;
+                ring.style.top = `${ringY}px`;
 
-            document.querySelectorAll(interactives).forEach(function (el) {
-                if (el.dataset.cursorHoverAttached) return;
-                el.dataset.cursorHoverAttached = 'true';
-                el.addEventListener('mouseenter', addHover);
-                el.addEventListener('mouseleave', removeHover);
+                requestAnimationFrame(renderCursor);
+            }
+            requestAnimationFrame(renderCursor);
+
+            const interactivesSelector = 'a, button, .slider-arrow, .product-card, .category-card, .add-to-cart, .scroll-top, .menu-toggle, .lightbox-close, .product-image, .hero-btn, .show-more-btn, .carousel-btn, .lightbox-nav, .gallery-item, .info-card, .social-links a, .dropdown > a, .nav-links a, .footer-col a';
+
+            document.addEventListener('mouseover', function (e) {
+                if (e.target.closest(interactivesSelector)) {
+                    document.body.classList.add('hover-link');
+                }
+            });
+
+            document.addEventListener('mouseout', function (e) {
+                if (e.target.closest(interactivesSelector)) {
+                    document.body.classList.remove('hover-link');
+                }
             });
 
             document.addEventListener('mouseleave', function() {
                 dot.style.opacity = '0';
                 ring.style.opacity = '0';
-            });
-
-            document.addEventListener('mouseenter', function() {
-                dot.style.opacity = '1';
-                ring.style.opacity = '1';
             });
         }
 

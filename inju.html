@@ -4,12 +4,1087 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instituto Nacional de Jucuapa | Verfrut's y R&M</title>
+    <meta name="theme-color" content="#0a1f0a">
+    <title>Instituto Nacional de Jucuapa | Excelencia y Tradición</title>
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ============================================
+           ESTILOS ESPECIFICOS PARA INJU.HTML
+           Sin variables CSS - Todo en local
+           ============================================ */
+
+        /* --- HERO PRINCIPAL --- */
+        .hero-inju {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            /* ESPACIO PARA IMAGEN DE FONDO - Reemplazar URL */
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-inju::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.85) 0%, 
+                rgba(0, 0, 0, 0.70) 40%,
+                rgba(0, 0, 0, 0.85) 100%);
+            z-index: 1;
+        }
+
+        .hero-inju::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(34, 197, 94, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(34, 197, 94, 0.10) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 111, 0, 0.05) 0%, transparent 30%);
+            z-index: 1;
+            animation: heroParticles 20s ease-in-out infinite;
+        }
+
+        @keyframes heroParticles {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .hero-inju-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .hero-inju-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #ffffff;
+            padding: 0.6rem 2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4), 0 0 30px rgba(34, 197, 94, 0.2);
+            animation: badgePulse 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-inju-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: badgeShine 3s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4), 0 0 30px rgba(34, 197, 94, 0.2); }
+            50% { box-shadow: 0 4px 25px rgba(34, 197, 94, 0.6), 0 0 50px rgba(34, 197, 94, 0.3); }
+        }
+
+        @keyframes badgeShine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .hero-inju h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5), 0 0 60px rgba(34, 197, 94, 0.2);
+            line-height: 1.1;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-inju-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-inju-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+
+        .btn-inju-primary {
+            background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+            color: #ffffff;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.7px;
+            box-shadow: 0 5px 15px rgba(255, 111, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-inju-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-inju-primary:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(255, 111, 0, 0.4), 0 0 40px rgba(255, 143, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-inju-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-inju-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-inju-secondary:hover {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: rgba(34, 197, 94, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.2);
+        }
+
+        .scroll-indicator-inju {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .scroll-indicator-inju svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* --- ESTADISTICAS --- */
+        .stats-section {
+            padding: 0 0 80px;
+            background: #0a0a0a;
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: -80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
+            padding: 2.5rem 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 4px solid #22c55e;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.06), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2), 0 0 60px rgba(34, 197, 94, 0.08);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #22c55e 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: #9ca3af;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .stat-icon {
+            background: #22c55e;
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+        }
+
+        /* --- TIMELINE --- */
+        .timeline-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #0a0a0a 0%, #0f1a0f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            animation: pulseGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .history-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 4rem auto 0;
+            padding: 2rem 0;
+        }
+
+        .history-timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(180deg, #22c55e, #FF6F00, #22c55e);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .timeline-item {
+            padding: 1rem 3rem;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #22c55e;
+            border-radius: 50%;
+            top: 24px;
+            z-index: 1;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5), 0 0 30px rgba(34, 197, 94, 0.3);
+            border: 3px solid #0a0a0a;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover::after {
+            transform: scale(1.3);
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.8), 0 0 50px rgba(34, 197, 94, 0.4);
+        }
+
+        .timeline-left { left: 0; text-align: right; }
+        .timeline-left::after { right: -10px; }
+        .timeline-right { left: 50%; text-align: left; }
+        .timeline-right::after { left: -10px; }
+
+        .timeline-content {
+            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
+            padding: 1.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .timeline-content:hover::before {
+            left: 100%;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(34, 197, 94, 0.15);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        .timeline-year {
+            color: #22c55e;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .timeline-content p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* --- DOCENTE --- */
+        .teacher-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #0f1a0f 0%, #0a0f0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teacher-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 50%, rgba(255, 111, 0, 0.03) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .teacher-card-premium {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .teacher-card-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.04), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .teacher-card-premium:hover::before {
+            left: 100%;
+        }
+
+        .teacher-card-premium:hover {
+            box-shadow: 0 30px 70px rgba(34, 197, 94, 0.15), 0 0 80px rgba(34, 197, 94, 0.05);
+            border-color: rgba(34, 197, 94, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .teacher-img-wrapper {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(34, 197, 94, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .teacher-img-wrapper:hover {
+            transform: scale(1.02);
+            box-shadow: 0 35px 70px rgba(34, 197, 94, 0.2);
+            border-color: rgba(34, 197, 94, 0.6);
+        }
+
+        .teacher-img-wrapper img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .teacher-img-wrapper:hover img {
+            transform: scale(1.1);
+        }
+
+        .teacher-img-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #0d1f0d 0%, #141b24 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            text-align: center;
+            padding: 2rem;
+            border: 2px dashed rgba(34, 197, 94, 0.3);
+            border-radius: 25px;
+        }
+
+        .teacher-info h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin: 1rem 0;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .teacher-role {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .teacher-quote {
+            color: #9ca3af;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-style: italic;
+            border-left: 3px solid #22c55e;
+            padding-left: 1.5rem;
+        }
+
+        .teacher-stats {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .teacher-stat {
+            background: rgba(34, 197, 94, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            flex: 1;
+            min-width: 140px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .teacher-stat:hover {
+            background: rgba(34, 197, 94, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.15);
+        }
+
+        .teacher-stat h4 {
+            color: #22c55e;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .teacher-stat p {
+            color: #9ca3af;
+            font-size: 0.8rem;
+        }
+
+        /* --- ESTUDIANTES --- */
+        .students-section {
+            padding: 100px 0;
+            background: #0a0a0a;
+            position: relative;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .student-card {
+            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 1;
+        }
+
+        .student-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.06), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .student-card:hover::before {
+            left: 100%;
+        }
+
+        .student-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2), 0 0 60px rgba(34, 197, 94, 0.08);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .student-img-wrapper {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .student-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .student-card:hover .student-img-wrapper img {
+            transform: scale(1.15);
+        }
+
+        .student-img-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(145deg, #0d1f0d 0%, #141b24 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            text-align: center;
+            padding: 2rem;
+            border-bottom: 2px dashed rgba(34, 197, 94, 0.3);
+        }
+
+        .student-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 1.5rem 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .student-card:hover .student-overlay {
+            opacity: 1;
+        }
+
+        .student-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .student-info h3 {
+            color: #ffffff;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .student-card:hover .student-info h3 {
+            color: #22c55e;
+        }
+
+        .student-role {
+            color: #22c55e;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* --- GALERIA PREMIUM --- */
+        .gallery-premium-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #0f1a0f 0%, #0a0a0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-premium-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(34, 197, 94, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(255, 111, 0, 0.03) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .premium-gallery {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 250px 250px;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item-premium {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gallery-item-premium:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+            border-color: rgba(34, 197, 94, 0.4);
+            z-index: 2;
+        }
+
+        .gallery-item-premium img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item-premium:hover img {
+            transform: scale(1.15);
+        }
+
+        .gallery-item-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            text-align: center;
+            padding: 2rem;
+            border: 2px dashed rgba(34, 197, 94, 0.3);
+        }
+
+        .gallery-item-main {
+            grid-row: span 2;
+        }
+
+        .gallery-overlay-premium {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item-premium:hover .gallery-overlay-premium {
+            opacity: 1;
+        }
+
+        .gallery-overlay-premium h4 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-overlay-premium p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+        }
+
+        .gallery-quote {
+            background: linear-gradient(145deg, #22c55e 0%, #16a34a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .gallery-quote h3 {
+            color: #ffffff;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- INFO INSTITUCIONAL --- */
+        .info-section {
+            padding: 100px 0;
+            background: #0a0a0a;
+            position: relative;
+        }
+
+        .info-grid-inju {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .info-card-inju {
+            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
+            border-radius: 25px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card-inju::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.05), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .info-card-inju:hover::before {
+            left: 100%;
+        }
+
+        .info-card-inju:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.15);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        .info-card-inju h3 {
+            color: #22c55e;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .info-card-inju h3 span {
+            font-size: 1.8rem;
+        }
+
+        .info-card-inju ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-card-inju li {
+            color: #9ca3af;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.7;
+            transition: color 0.3s ease;
+        }
+
+        .info-card-inju li:hover {
+            color: #d1d5db;
+        }
+
+        .info-card-inju li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .info-quote-card {
+            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
+            border-radius: 25px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-quote-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 6rem;
+            color: rgba(34, 197, 94, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .info-quote-card p {
+            color: #d1d5db;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-quote-card .quote-author {
+            color: #22c55e;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .teacher-card-premium {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .premium-gallery {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+            .gallery-item-main {
+                grid-row: span 1;
+            }
+            .info-grid-inju {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .stat-card {
+                padding: 1.5rem 1rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            .timeline-item {
+                width: 100%;
+                text-align: left !important;
+                padding-left: 3rem;
+                padding-right: 1rem;
+            }
+            .timeline-item::after {
+                left: -10px !important;
+                right: auto !important;
+            }
+            .history-timeline::after {
+                left: 0;
+            }
+            .timeline-right {
+                left: 0;
+            }
+            .premium-gallery {
+                grid-template-columns: 1fr;
+            }
+            .teacher-card-premium {
+                padding: 1.5rem;
+            }
+            .teacher-info h2 {
+                font-size: 2rem;
+            }
+            .hero-inju-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-inju-primary,
+            .btn-inju-secondary {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                margin-top: -40px;
+            }
+            .stat-card {
+                padding: 1.5rem;
+            }
+            .hero-inju-content {
+                padding: 1rem;
+            }
+            .timeline-content {
+                padding: 1.2rem;
+            }
+            .timeline-year {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+<base target="_blank">
 </head>
 
 <body>
+    <!-- ============================================
+         PANTALLA DE CARGA INICIAL
+         ============================================ -->
+    <div class="page-loader" id="pageLoader" style="background: linear-gradient(145deg, #0a1f0a 0%, #0d2815 50%, #051a05 100%);">
+        <div class="loader-wrapper">
+            <div class="loader-spinner"></div>
+            <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
+        </div>
+        <p class="loader-text">Verfrut's y R&amp;M</p>
+    </div>
+
+    <!-- ============================================
+         BARRA DE NAVEGACION - IGUAL A INDEX.HTML
+         ============================================ -->
     <div id="navOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998;" onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
 
     <nav class="navbar" id="navbar">
@@ -17,7 +1092,7 @@
             <a href="index.html" class="nav-logo">
                 <img width="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
                 <div class="nav-logo-text">
-                    <span class="nav-logo-title">Verfrut's y R&M</span>
+                    <span class="nav-logo-title">Verfrut's y R&amp;M</span>
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -41,207 +1116,346 @@
         </div>
     </nav>
 
-    <section class="hero hero-inju">
-        <div class="hero-content container reveal reveal-delay-1">
-            <span class="hero-badge">Educación que transforma</span>
+    <!-- ============================================
+         HERO PRINCIPAL - ESPACIO PARA IMAGEN DE FONDO
+         ============================================ -->
+    <section class="hero-inju" id="hero">
+        <div class="hero-inju-content">
+            <span class="hero-inju-badge">Fundado en 1966</span>
             <h1>Instituto Nacional de Jucuapa</h1>
-            <p>Un centro educativo oficial con tradición, excelencia académica y un futuro sostenible en Usulután.</p>
-            <div class="hero-photo-placeholder reveal reveal-delay-2">
-                <span>Foto INJU disponible</span>
+            <p class="hero-inju-subtitle">Liderazgo, innovación y valores sólidos en el corazón de Usulután. Formando a los profesionales del mañana con excelencia académica y compromiso social.</p>
+            <div class="hero-inju-actions">
+                <a href="#historia" class="btn-inju-primary">Nuestra Historia</a>
+                <a href="#estudiantes" class="btn-inju-secondary">Conoce al Equipo</a>
+            </div>
+        </div>
+        <a href="#estadisticas" class="scroll-indicator-inju">
+            <span>Explorar</span>
+            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </a>
+    </section>
+
+    <!-- ============================================
+         ESTADISTICAS
+         ============================================ -->
+    <section class="stats-section" id="estadisticas">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card reveal">
+                    <div class="stat-icon">&#127963;</div>
+                    <span class="stat-number">58+</span>
+                    <span class="stat-label">Años de Historia</span>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-icon">&#128104;&#8205;&#127979;</div>
+                    <span class="stat-number">40+</span>
+                    <span class="stat-label">Docentes Expertos</span>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-icon">&#128218;</div>
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Especialidades</span>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-icon">&#127891;</div>
+                    <span class="stat-number">1k+</span>
+                    <span class="stat-label">Alumnos Graduados</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section about-section" id="info">
+    <!-- ============================================
+         HISTORIA / TIMELINE
+         ============================================ -->
+    <section class="timeline-section" id="historia">
         <div class="container">
             <div class="section-header">
-                <h2>La historia del INJU</h2>
-                <p>Más de cinco décadas formando jóvenes comprometidos con la comunidad y el progreso social.</p>
+                <h2>Nuestra Trayectoria</h2>
+                <p>Un recorrido por los hitos que han marcado nuestra institución desde su fundación.</p>
             </div>
-            <div class="feature-grid reveal reveal-delay-2">
-                <article class="feature-card">
-                    <h3>Fundado en 1966</h3>
-                    <p>Una institución con raíces profundas en Jucuapa y una amplia trayectoria académica.</p>
-                </article>
-                <article class="feature-card">
-                    <h3>5 especialidades clave</h3>
-                    <p>Ciencias naturales, sociales, humanas, idiomas y matemáticas para formar líderes completos.</p>
-                </article>
-                <article class="feature-card">
-                    <h3>40 docentes calificados</h3>
-                    <p>Profesores dedicados y comprometidos con el crecimiento de cada estudiante.</p>
-                </article>
-                <article class="feature-card">
-                    <h3>Jornada Matutina</h3>
-                    <p>Horario pensado para maximizar el aprendizaje y el desarrollo personal.</p>
-                </article>
+            <div class="history-timeline">
+                <div class="timeline-item timeline-left reveal">
+                    <div class="timeline-content">
+                        <span class="timeline-year">1966</span>
+                        <p>Fundación oficial del Instituto Nacional de Jucuapa como respuesta a la creciente necesidad educativa de la zona norte de Usulután. Primer centro de educación media en la región oriental.</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-right reveal">
+                    <div class="timeline-content">
+                        <span class="timeline-year">1985</span>
+                        <p>Ampliación significativa de instalaciones y apertura del bachillerato en Ciencias y Letras. Modernización de laboratorios y creación de nuevos espacios deportivos.</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-left reveal">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2005</span>
+                        <p>Modernización del laboratorio de ciencias con equipamiento de última generación. Implementación de aulas tecnológicas y programa de computación avanzada.</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-right reveal">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2020</span>
+                        <p>Adaptación a nuevas metodologías de enseñanza digital. Fortalecimiento del programa de Desarrollo de Software y nuevas especialidades técnicas.</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-left reveal">
+                    <div class="timeline-content">
+                        <span class="timeline-year">Hoy</span>
+                        <p>Líderes en formación integral en la zona oriental. Compromiso continuo con la excelencia académica y el desarrollo de valores cívicos en cada generación.</p>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="info-grid reveal reveal-delay-2">
-                <div>
-                    <h3>Datos clave</h3>
+    <!-- ============================================
+         DOCENTE DESTACADO
+         ============================================ -->
+    <section class="teacher-section" id="docente">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestro Guía</h2>
+                <p>Conoce al profesional que lidera la excelencia académica del INJU.</p>
+            </div>
+            <div class="teacher-card-premium reveal">
+                <div class="teacher-img-wrapper">
+                    <!-- ESPACIO PARA IMAGEN DEL DOCENTE - Reemplazar src -->
+                    <img src="img-teacher-alumnos/profeRoberto.jpeg" alt="Roberto Machado - Docente INJU" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="teacher-img-placeholder" style="display:none;">
+                        <span>&#128248;<br>Imagen del Docente<br><small>Reemplazar con foto local</small></span>
+                    </div>
+                </div>
+                <div class="teacher-info">
+                    <span class="teacher-role">Docente Destacado</span>
+                    <h2>Roberto Machado García</h2>
+                    <p class="teacher-quote">"En el INJU, no solo enseñamos materias; cultivamos visiones. Mi compromiso es asegurar que cada joven encuentre su propósito y las herramientas para alcanzarlo. La educación transforma vidas y comunidades enteras."</p>
+                    <div class="teacher-stats">
+                        <div class="teacher-stat">
+                            <h4>Excelencia</h4>
+                            <p>Compromiso total con la calidad educativa</p>
+                        </div>
+                        <div class="teacher-stat">
+                            <h4>Visión</h4>
+                            <p>Preparados para los retos del futuro</p>
+                        </div>
+                        <div class="teacher-stat">
+                            <h4>Valores</h4>
+                            <p>Ética, respeto y responsabilidad</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ESTUDIANTES DESTACADOS
+         ============================================ -->
+    <section class="students-section" id="estudiantes">
+        <div class="container">
+            <div class="section-header">
+                <h2>Talento INJU</h2>
+                <p>Nuestros estudiantes son el reflejo vivo de nuestra excelencia académica.</p>
+            </div>
+            <div class="students-grid">
+                <div class="student-card reveal">
+                    <div class="student-img-wrapper">
+                        <!-- ESPACIO PARA IMAGEN ESTUDIANTE 1 - Reemplazar src -->
+                        <img src="" alt="Javier Martínez" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="student-img-placeholder" style="display:none;">
+                            <span>&#128248;<br>Estudiante 1<br><small>Reemplazar con foto local</small></span>
+                        </div>
+                        <div class="student-overlay">
+                            <h4 style="color:#fff; margin-bottom:0.3rem;">Javier Martínez</h4>
+                            <p style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Líder Estudiantil</p>
+                        </div>
+                    </div>
+                    <div class="student-info">
+                        <h3>Javier Martínez</h3>
+                        <span class="student-role">Líder Estudiantil</span>
+                    </div>
+                </div>
+                <div class="student-card reveal">
+                    <div class="student-img-wrapper">
+                        <!-- ESPACIO PARA IMAGEN ESTUDIANTE 2 - Reemplazar src -->
+                        <img src="" alt="Ana Rodríguez" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="student-img-placeholder" style="display:none;">
+                            <span>&#128248;<br>Estudiante 2<br><small>Reemplazar con foto local</small></span>
+                        </div>
+                        <div class="student-overlay">
+                            <h4 style="color:#fff; margin-bottom:0.3rem;">Ana Rodríguez</h4>
+                            <p style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Innovación Digital</p>
+                        </div>
+                    </div>
+                    <div class="student-info">
+                        <h3>Ana Rodríguez</h3>
+                        <span class="student-role">Innovación Digital</span>
+                    </div>
+                </div>
+                <div class="student-card reveal">
+                    <div class="student-img-wrapper">
+                        <!-- ESPACIO PARA IMAGEN ESTUDIANTE 3 - Reemplazar src -->
+                        <img src="" alt="Carlos Pérez" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="student-img-placeholder" style="display:none;">
+                            <span>&#128248;<br>Estudiante 3<br><small>Reemplazar con foto local</small></span>
+                        </div>
+                        <div class="student-overlay">
+                            <h4 style="color:#fff; margin-bottom:0.3rem;">Carlos Pérez</h4>
+                            <p style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Deportista Destacado</p>
+                        </div>
+                    </div>
+                    <div class="student-info">
+                        <h3>Carlos Pérez</h3>
+                        <span class="student-role">Deportista Destacado</span>
+                    </div>
+                </div>
+                <div class="student-card reveal">
+                    <div class="student-img-wrapper">
+                        <!-- ESPACIO PARA IMAGEN ESTUDIANTE 4 - Reemplazar src -->
+                        <img src="" alt="María López" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="student-img-placeholder" style="display:none;">
+                            <span>&#128248;<br>Estudiante 4<br><small>Reemplazar con foto local</small></span>
+                        </div>
+                        <div class="student-overlay">
+                            <h4 style="color:#fff; margin-bottom:0.3rem;">María López</h4>
+                            <p style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Excelencia Académica</p>
+                        </div>
+                    </div>
+                    <div class="student-info">
+                        <h3>María López</h3>
+                        <span class="student-role">Excelencia Académica</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         GALERIA PREMIUM
+         ============================================ -->
+    <section class="gallery-premium-section" id="galeria-inju">
+        <div class="container">
+            <div class="section-header">
+                <h2>Vida Institucional</h2>
+                <p>Capturando momentos que definen nuestra esencia y tradición.</p>
+            </div>
+            <div class="premium-gallery">
+                <div class="gallery-item-premium gallery-item-main reveal">
+                    <!-- ESPACIO PARA IMAGEN GALERIA 1 - Reemplazar src -->
+                    <img src="" alt="Campus INJU" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-item-placeholder" style="display:none;">
+                        <span>&#128248; Campus INJU<br><small>Reemplazar con foto local</small></span>
+                    </div>
+                    <div class="gallery-overlay-premium">
+                        <div>
+                            <h4>Campus Jucuapa</h4>
+                            <p>Espacios diseñados para el aprendizaje integral</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item-premium reveal">
+                    <!-- ESPACIO PARA IMAGEN GALERIA 2 - Reemplazar src -->
+                    <img src="" alt="Instalaciones INJU" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-item-placeholder" style="display:none;">
+                        <span>&#128248; Instalaciones<br><small>Reemplazar con foto local</small></span>
+                    </div>
+                    <div class="gallery-overlay-premium">
+                        <div>
+                            <h4>Excelencia Académica</h4>
+                            <p>Compromiso con el saber</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item-premium gallery-quote reveal">
+                    <h3>"La educación es el arma más poderosa que puedes usar para cambiar el mundo."</h3>
+                </div>
+                <div class="gallery-item-premium reveal">
+                    <!-- ESPACIO PARA IMAGEN GALERIA 3 - Reemplazar src -->
+                    <img src="" alt="Actividades INJU" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-item-placeholder" style="display:none;">
+                        <span>&#128248; Actividades<br><small>Reemplazar con foto local</small></span>
+                    </div>
+                    <div class="gallery-overlay-premium">
+                        <div>
+                            <h4>Vida Estudiantil</h4>
+                            <p>Momentos inolvidables</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item-premium reveal">
+                    <!-- ESPACIO PARA IMAGEN GALERIA 4 - Reemplazar src -->
+                    <img src="" alt="Eventos INJU" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-item-placeholder" style="display:none;">
+                        <span>&#128248; Eventos<br><small>Reemplazar con foto local</small></span>
+                    </div>
+                    <div class="gallery-overlay-premium">
+                        <div>
+                            <h4>Eventos Especiales</h4>
+                            <p>Celebrando nuestra comunidad</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         INFORMACION INSTITUCIONAL
+         ============================================ -->
+    <section class="info-section" id="info">
+        <div class="container">
+            <div class="section-header">
+                <h2>Información Institucional</h2>
+                <p>Datos importantes sobre el Instituto Nacional de Jucuapa.</p>
+            </div>
+            <div class="info-grid-inju">
+                <div class="info-card-inju reveal">
+                    <h3><span>&#128203;</span> Datos Generales</h3>
                     <ul>
                         <li><strong>Nombre:</strong> Instituto Nacional de Jucuapa</li>
                         <li><strong>Código:</strong> 12585</li>
-                        <li><strong>Tipo de sede:</strong> Centro educativo oficial</li>
-                        <li><strong>Tipo de calendario:</strong> Nacional</li>
-                        <li><strong>Jornada:</strong> Matutino</li>
-                        <li><strong>Teléfono:</strong> +503 2665-2154</li>
-                        <li><strong>Correo:</strong> institutodejucuapa@gmail.com</li>
+                        <li><strong>Tipo:</strong> Centro educativo oficial</li>
+                        <li><strong>Calendario:</strong> Nacional</li>
+                        <li><strong>Jornada:</strong> Matutina</li>
                         <li><strong>Dirección:</strong> Final Calle 2 de Abril, Barrio La Cruz, Jucuapa, Usulután</li>
+                        <li><strong>Teléfono:</strong> 2665-2154</li>
+                        <li><strong>Correo:</strong> institutodejucuapa@gmail.com</li>
                     </ul>
                 </div>
-                <div class="info-quote">
-                    <p>En INJU creemos que la educación es la base para construir una comunidad más justa y próspera. Por eso, trabajamos cada día para brindar formación integral, innovación y valores sólidos.</p>
+                <div class="info-card-inju reveal">
+                    <h3><span>&#127919;</span> Especialidades</h3>
+                    <ul>
+                        <li>Ciencias Naturales</li>
+                        <li>Ciencias Sociales</li>
+                        <li>Matemáticas</li>
+                        <li>Idiomas y Humanidades</li>
+                        <li>Desarrollo de Software (BTV)</li>
+                        <li>Actividades extracurriculares y deportivas</li>
+                    </ul>
+                </div>
+                <div class="info-quote-card reveal">
+                    <p>El INJU ha sido desde sus inicios una institución educativa reconocida por su compromiso con la excelencia académica. Formamos jóvenes con valores sólidos y una educación de calidad que trasciende generaciones.</p>
+                    <p class="quote-author">— Comunidad Educativa INJU</p>
+                </div>
+                <div class="info-card-inju reveal">
+                    <h3><span>&#127942;</span> Logros Destacados</h3>
+                    <ul>
+                        <li>Primer centro de educación media en la zona oriental</li>
+                        <li>Reconocimiento nacional por excelencia académica</li>
+                        <li>Programas de extensión comunitaria activos</li>
+                        <li>Formación integral de más de 1,000 graduados</li>
+                        <li>Modernas instalaciones y laboratorios equipados</li>
+                        <li>Docentes altamente calificados y comprometidos</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-light" id="facilitador">
-        <div class="container">
-            <div class="section-header">
-                <h2>Facilitador</h2>
-                <p>La guía que impulsa el talento y la motivación de cada estudiante.</p>
-            </div>
-            <div class="team-card team-lead reveal reveal-delay-2">
-                <div class="team-avatar team-avatar-large">
-                    <span>Foto disponible</span>
-                </div>
-                <div class="team-details">
-                    <span class="team-role">Facilitador</span>
-                    <h3>Roberto Machado García</h3>
-                    <p>Un mentor con visión humana, compromiso académico y experiencia para acompañar el aprendizaje de los jóvenes del INJU.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section about-section" id="estudiantes">
-        <div class="container">
-            <div class="section-header">
-                <h2>Estudiantes destacados</h2>
-                <p>Presentamos cuatro perfiles de estudiantes con potencial académico y liderazgo.</p>
-            </div>
-            <div class="students-grid">
-                <article class="student-card reveal reveal-delay-1">
-                    <div class="team-avatar profile-avatar">
-                        <span>Foto</span>
-                    </div>
-                    <div class="team-details">
-                        <span class="team-role">Estudiante</span>
-                        <h3>Javier Martínez</h3>
-                        <p>Apasionado por las ciencias y el trabajo en equipo.</p>
-                    </div>
-                </article>
-                <article class="student-card reveal reveal-delay-2">
-                    <div class="team-avatar profile-avatar">
-                        <span>Foto</span>
-                    </div>
-                    <div class="team-details">
-                        <span class="team-role">Estudiante</span>
-                        <h3>Ana Rodríguez</h3>
-                        <p>Interesada en tecnología, innovación y aprendizaje continuo.</p>
-                    </div>
-                </article>
-                <article class="student-card reveal reveal-delay-3">
-                    <div class="team-avatar profile-avatar">
-                        <span>Foto</span>
-                    </div>
-                    <div class="team-details">
-                        <span class="team-role">Estudiante</span>
-                        <h3>Laura Gómez</h3>
-                        <p>Comprometida con la comunidad y la excelencia académica.</p>
-                    </div>
-                </article>
-                <article class="student-card reveal reveal-delay-1">
-                    <div class="team-avatar profile-avatar">
-                        <span>Foto</span>
-                    </div>
-                    <div class="team-details">
-                        <span class="team-role">Estudiante</span>
-                        <h3>Marco Cabrera</h3>
-                        <p>Creativo, responsable y listo para los retos del mañana.</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section-light" id="galeria">
-        <div class="container">
-            <div class="section-header">
-                <h2>Galería del INJU</h2>
-                <p>Espacios de aprendizaje, convivencia y actividades que inspiran.</p>
-            </div>
-            <div class="gallery-grid reveal reveal-delay-3">
-                <article class="gallery-card">
-                    <div class="gallery-placeholder">
-                        <span>Imagen 1 disponible</span>
-                    </div>
-                    <div class="gallery-overlay">Instalaciones modernas y espacios verdes.</div>
-                </article>
-                <article class="gallery-card">
-                    <div class="gallery-placeholder">
-                        <span>Imagen 2 disponible</span>
-                    </div>
-                    <div class="gallery-overlay">Momentos de creatividad y trabajo en equipo.</div>
-                </article>
-                <article class="gallery-card">
-                    <div class="gallery-placeholder">
-                        <span>Imagen 3 disponible</span>
-                    </div>
-                    <div class="gallery-overlay">Actividades educativas y convivencia.</div>
-                </article>
-                <article class="gallery-card">
-                    <div class="gallery-placeholder">
-                        <span>Imagen 4 disponible</span>
-                    </div>
-                    <div class="gallery-overlay">La energía de una institución en movimiento.</div>
-                </article>
-                <article class="gallery-card">
-                    <div class="gallery-placeholder">
-                        <span>Imagen 5 disponible</span>
-                    </div>
-                    <div class="gallery-overlay">Proyectos escolares y trabajo comunitario.</div>
-                </article>
-                <article class="gallery-card">
-                    <div class="gallery-placeholder">
-                        <span>Imagen 6 disponible</span>
-                    </div>
-                    <div class="gallery-overlay">Bienestar estudiantil y actividades extracurriculares.</div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="section about-section contact-section" id="contacto">
-        <div class="container contact-grid">
-            <div>
-                <div class="section-header">
-                    <h2>Contacto</h2>
-                    <p>Estamos listos para atender tus preguntas y solicitudes.</p>
-                </div>
-                <div class="contact-details">
-                    <p><strong>Dirección:</strong> Final Calle 2 de Abril, Barrio La Cruz, Jucuapa, Usulután</p>
-                    <p><strong>Teléfono:</strong> +503 2665-2154</p>
-                    <p><strong>Correo:</strong> institutodejucuapa@gmail.com</p>
-                    <p><strong>Horario:</strong> Lunes a Sábado 8:00 AM - 5:00 PM</p>
-                </div>
-                <p class="contact-note">Puedes dejar este espacio en blanco para agregar tu botón aquí cuando quieras.</p>
-            </div>
-            <div class="contact-card">
-                <h3>¿Quieres saber más?</h3>
-                <p>Solicita información sobre inscripciones, servicios académicos o eventos institucionales.</p>
-                <ul>
-                    <li>Atención personalizada</li>
-                    <li>Plan de estudios actualizado</li>
-                    <li>Ambiente seguro y colaborativo</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
+    <!-- ============================================
+         FOOTER - IGUAL A INDEX.HTML
+         ============================================ -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
@@ -253,17 +1467,17 @@
                 <div class="social-links">
                     <a href="#" class="social-facebook" aria-label="Facebook">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                         </svg>
                     </a>
                     <a href="#" class="social-instagram" aria-label="Instagram">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
                         </svg>
                     </a>
-                    <a href="https://wa.me/50326652154" class="social-whatsapp" aria-label="WhatsApp">
+                    <a href="#" class="social-whatsapp" aria-label="WhatsApp">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                         </svg>
                     </a>
                 </div>
@@ -295,13 +1509,59 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. | <span style="font-style: italic;">This website was designed and created by:</span> <span style="font-weight: bold;">Either Design STR Team.</span></p>
+            <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
+                <span style="font-style: italic;">This website was designed and created by:</span> <span
+                    style="font-weight: bold;">Either Design STR Team.</span>
+            </p>
         </div>
     </footer>
 
     <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
+
+    <!-- ============================================
+         JAVASCRIPT GLOBAL
+         ============================================ -->
     <script src="script.js"></script>
+    <script>
+        /* ============================================
+           INJU - SCRIPTS ESPECIFICOS
+           ============================================ */
+
+        // Timeline Intersection Observer
+        function initTimelineAnimations() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+            timelineItems.forEach(function(item) {
+                observer.observe(item);
+            });
+        }
+
+        // Smooth scroll para anclas internas
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            initTimelineAnimations();
+        });
+    </script>
 </body>
 
 </html>
-
