@@ -158,41 +158,107 @@
         }
 
         /* ============================================
-           6. CURSOR PERSONALIZADO MINIMALISTA
+           6. CURSOR PERSONALIZADO - ORIGINAL RESTAURADO
+           ============================================
+           Círculo verde oscuro grande + punto central verde brillante.
+           Hover: círculo se hace blanco y más grande.
+           Compatible con TODAS las páginas del sitio.
            ============================================ */
         function initCursor() {
+            // No ejecutar en dispositivos táctiles
             if (window.matchMedia('(pointer: coarse)').matches) return;
 
-            const dot = document.createElement('div');
-            dot.className = 'cursor-dot';
-            const ring = document.createElement('div');
-            ring.className = 'cursor-ring';
-            document.body.appendChild(dot);
-            document.body.appendChild(ring);
+            // Crear elementos del cursor si no existen
+            let dot = document.querySelector('.cursor-dot');
+            let ring = document.querySelector('.cursor-ring');
+
+            if (!dot) {
+                dot = document.createElement('div');
+                dot.className = 'cursor-dot';
+                document.body.appendChild(dot);
+            }
+            if (!ring) {
+                ring = document.createElement('div');
+                ring.className = 'cursor-ring';
+                document.body.appendChild(ring);
+            }
 
             let mouseX = 0, mouseY = 0;
             let ringX = 0, ringY = 0;
+            let isMoving = false;
+            let moveTimeout;
 
+            // Seguimiento del mouse
             document.addEventListener('mousemove', function (e) {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
                 dot.style.left = mouseX + 'px';
                 dot.style.top = mouseY + 'px';
+
+                // Mostrar cursor al mover el mouse
+                if (!isMoving) {
+                    isMoving = true;
+                    dot.style.opacity = '1';
+                    ring.style.opacity = '1';
+                }
+
+                clearTimeout(moveTimeout);
+                moveTimeout = setTimeout(function() {
+                    isMoving = false;
+                }, 100);
             });
 
+            // Animación suave del anillo (efecto de retardo)
             function animateRing() {
-                ringX += (mouseX - ringX) * 0.18;
-                ringY += (mouseY - ringY) * 0.18;
+                ringX += (mouseX - ringX) * 0.15;
+                ringY += (mouseY - ringY) * 0.15;
                 ring.style.left = ringX + 'px';
                 ring.style.top = ringY + 'px';
                 requestAnimationFrame(animateRing);
             }
             animateRing();
 
-            const interactives = 'a, button, .slider-arrow, .product-card, .category-card, .add-to-cart, .scroll-top, .menu-toggle, .dot, .lightbox-close, .product-image';
-            document.querySelectorAll(interactives).forEach(function (el) {
-                el.addEventListener('mouseenter', function () { document.body.classList.add('hover-link'); });
-                el.addEventListener('mouseleave', function () { document.body.classList.remove('hover-link'); });
+            // Lista de selectores para elementos interactivos
+            const interactives = 'a, button, .slider-arrow, .product-card, .category-card, .add-to-cart, .scroll-top, .menu-toggle, .dot, .lightbox-close, .product-image, .hero-btn, .show-more-btn, .carousel-btn, .lightbox-nav, .gallery-item, .info-card, .social-links a, .dropdown > a, .nav-links a, .footer-col a';
+
+            // Función para agregar/remover clase hover
+            function addHover() { document.body.classList.add('hover-link'); }
+            function removeHover() { document.body.classList.remove('hover-link'); }
+
+            // Aplicar a elementos existentes
+            function attachHoverEvents() {
+                document.querySelectorAll(interactives).forEach(function (el) {
+                    // Evitar duplicados
+                    if (el.dataset.cursorHoverAttached) return;
+                    el.dataset.cursorHoverAttached = 'true';
+
+                    el.addEventListener('mouseenter', addHover);
+                    el.addEventListener('mouseleave', removeHover);
+                });
+            }
+
+            // Attach inicial
+            attachHoverEvents();
+
+            // Observar nuevos elementos dinámicamente (para contenido cargado después)
+            const observer = new MutationObserver(function(mutations) {
+                attachHoverEvents();
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+
+            // Ocultar cursor cuando sale de la ventana
+            document.addEventListener('mouseleave', function() {
+                dot.style.opacity = '0';
+                ring.style.opacity = '0';
+            });
+
+            document.addEventListener('mouseenter', function() {
+                dot.style.opacity = '1';
+                ring.style.opacity = '1';
             });
         }
 
@@ -386,7 +452,94 @@
         }
 
         /* ============================================
-           10. NAVBAR SCROLL EFFECT
+           10. LIGHTBOX GALERIA CON NAVEGACION
+           ============================================ */
+        function initLightboxGallery() {
+            const overlay = document.getElementById('lightboxOverlay');
+            const img = document.getElementById('lightboxImg');
+            const closeBtn = document.getElementById('lightboxClose');
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            if (!overlay || !img || galleryItems.length === 0) return;
+
+            let currentIndex = 0;
+            const galleryData = Array.from(galleryItems).map(function(item) {
+                return item.querySelector('img').src;
+            });
+
+            function open(index) {
+                currentIndex = index;
+                img.src = galleryData[currentIndex];
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function close() {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function next() {
+                currentIndex = (currentIndex + 1) % galleryData.length;
+                img.style.opacity = '0';
+                setTimeout(function() {
+                    img.src = galleryData[currentIndex];
+                    img.style.opacity = '1';
+                }, 150);
+            }
+
+            function prev() {
+                currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+                img.style.opacity = '0';
+                setTimeout(function() {
+                    img.src = galleryData[currentIndex];
+                    img.style.opacity = '1';
+                }, 150);
+            }
+
+            galleryItems.forEach(function(item, index) {
+                item.addEventListener('click', function() { open(index); });
+            });
+
+            closeBtn.addEventListener('click', close);
+            nextBtn.addEventListener('click', function(e) { e.stopPropagation(); next(); });
+            prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prev(); });
+            overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') close();
+                if (e.key === 'ArrowRight') next();
+                if (e.key === 'ArrowLeft') prev();
+            });
+        }
+
+        /* ============================================
+           11. INTERSECTION OBSERVER (REVEAL ANIMATIONS)
+           ============================================ */
+        function initRevealAnimations() {
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+        }
+
+        /* ============================================
+           12. HERO LOADED EFFECT
+           ============================================ */
+        function initHeroLoaded() {
+            setTimeout(function() {
+                const hero = document.getElementById('hero');
+                if (hero) hero.classList.add('loaded');
+            }, 100);
+        }
+
+        /* ============================================
+           13. NAVBAR SCROLL EFFECT
            ============================================ */
         function initNavbarScroll() {
             const navbar = document.getElementById('navbar');
@@ -413,7 +566,10 @@
             initCursor();
             initSmoothScroll();
             initLightbox();
+            initLightboxGallery();
             initProductCarousel();
             initNavbarScroll();
+            initRevealAnimations();
+            initHeroLoaded();
         });
     

@@ -30,79 +30,77 @@
         }
 
         /* ============================================
-           2. CURSOR PERSONALIZADO MINIMALISTA
+           2. CURSOR PERSONALIZADO - DISEÑO ORIGINAL RESTAURADO
+           ============================================
+           Círculo blanco grande con punto central verde brillante.
+           En hover sobre links: círculo se hace blanco y más grande.
            ============================================ */
         @media (pointer: fine) {
             body {
                 cursor: none;
             }
-        }
 
-        .cursor-dot {
-            width: 12px;
-            height: 12px;
-            background: #00ff41;
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 999999;
-            transform: translate(-50%, -50%);
-            transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
-            will-change: transform, left, top;
-            box-shadow: 
-                0 0 10px #00ff41,
-                0 0 20px #00ff41,
-                0 0 40px rgba(0, 255, 65, 0.6),
-                0 0 80px rgba(0, 255, 65, 0.3);
-            mix-blend-mode: screen;
-        }
+            /* Círculo exterior - verde oscuro con brillo sutil */
+            .cursor-ring { 
+                width: 40px; 
+                height: 40px; 
+                border: 2px solid rgba(0, 80, 30, 0.6); 
+                background: rgba(0, 40, 15, 0.25);
+                border-radius: 50%; 
+                position: fixed; 
+                top: 0; 
+                left: 0; 
+                pointer-events: none; 
+                z-index: 99998; 
+                transform: translate(-50%, -50%) scale(1); 
+                transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+                box-shadow: 
+                    0 0 15px rgba(34, 197, 94, 0.15),
+                    0 0 30px rgba(34, 197, 94, 0.05),
+                    inset 0 0 10px rgba(34, 197, 94, 0.05);
+            }
 
-        .cursor-ring {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #00ff41;
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 999998;
-            transform: translate(-50%, -50%) scale(1);
-            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                        border-color 0.2s ease, 
-                        background 0.2s ease,
-                        width 0.2s ease,
-                        height 0.2s ease;
-            will-change: transform, left, top;
-            box-shadow: 
-                0 0 15px rgba(0, 255, 65, 0.4),
-                0 0 30px rgba(0, 255, 65, 0.2),
-                inset 0 0 15px rgba(0, 255, 65, 0.1);
-            mix-blend-mode: screen;
-        }
+            /* Punto central - verde puro y muy brillante */
+            .cursor-dot { 
+                width: 8px; 
+                height: 8px; 
+                background: #00ff44; 
+                border-radius: 50%; 
+                position: fixed; 
+                top: 0; 
+                left: 0; 
+                pointer-events: none; 
+                z-index: 99999; 
+                transform: translate(-50%, -50%); 
+                transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+                box-shadow: 
+                    0 0 10px rgba(0, 255, 68, 0.8),
+                    0 0 20px rgba(0, 255, 68, 0.5),
+                    0 0 40px rgba(0, 255, 68, 0.3);
+            }
 
-        body.hover-link .cursor-dot {
-            width: 2px;
-            height: 2px;
-            background: #ffffff;
-            box-shadow: 
-                0 0 15px #ffffff,
-                0 0 30px #00ff41,
-                0 0 60px rgba(0, 255, 65, 0.8);
-        }
+            /* HOVER: Cuando el cursor está sobre cualquier link o elemento interactivo */
+            body.hover-link .cursor-ring { 
+                transform: translate(-50%, -50%) scale(1.6); 
+                border-color: rgba(255, 255, 255, 0.9); 
+                background: rgba(255, 255, 255, 0.08); 
+                width: 40px; 
+                height: 40px;
+                box-shadow: 
+                    0 0 20px rgba(255, 255, 255, 0.3),
+                    0 0 40px rgba(255, 255, 255, 0.1),
+                    inset 0 0 15px rgba(255, 255, 255, 0.1);
+            }
 
-        body.hover-link .cursor-ring {
-            transform: translate(-50%, -50%) scale(1.0);
-            border-color: #ffffff;
-            background: rgb(0, 58, 14);
-            width: 50px;
-            height: 50px;
-            box-shadow: 
-                0 0 25px rgba(0, 0, 0, 0.6),
-                0 0 17px rgb(201, 201, 201),
-                inset 0 0 20px rgb(0, 0, 0);
+            body.hover-link .cursor-dot { 
+                width: 6px; 
+                height: 6px; 
+                background: #ffffff;
+                box-shadow: 
+                    0 0 15px rgba(255, 255, 255, 0.9),
+                    0 0 30px rgba(255, 255, 255, 0.5),
+                    0 0 50px rgba(255, 255, 255, 0.2);
+            }
         }
 
         /* ============================================
@@ -122,7 +120,7 @@
            4. NAVEGACION PRINCIPAL - MEJORADA
            ============================================ */
         .navbar {
-            background: rgba(6, 75, 40, 0.95);
+            background: linear-gradient(145deg, #0a1f0a 0%, #0d2815 50%, #051a05 100%);
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
@@ -132,7 +130,7 @@
         }
 
         .navbar.scrolled {
-            background: rgba(6, 75, 40, 0.98);
+            background: linear-gradient(145deg, #0e380e 0%, #0c2212 50%, #041304 100%);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
@@ -563,30 +561,101 @@
            6. BOTONES PRINCIPALES
            ============================================ */
         .btn-primary {
-            background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
-            color: #ffffff;
-            padding: 15px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            animation: slideInLeft 1s ease 0.4s both;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.5px;
-        }
+    background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+    color: #ffffff;
+    padding: 15px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 1rem;
+    animation: slideInLeft 1s ease 0.4s both, btnFloat 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.7px;
+    box-shadow: 
+        0 5px 15px rgba(255, 111, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
 
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #E65100 0%, #FF6F00 100%);
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 10px 25px rgba(255, 111, 0, 0.3);
-        }
+/* Brillo sutil que recorre el borde - SIEMPRE VISIBLE */
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 44, 10, 0.418),
+        transparent
+    );
+    animation: btnShine 4s ease-in-out infinite;
+    pointer-events: none;
+    border-radius: 30px;
+}
 
-        /* ============================================
+/* Borde brillante animado - SIEMPRE VISIBLE */
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 32px;
+    background-size: 300% 300%;
+    z-index: -1;
+    animation: borderGradient 4s ease infinite;
+    opacity: 0.2;
+    filter: blur(3px);
+}
+
+@keyframes btnFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes btnShine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+}
+
+@keyframes borderGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #E65100 0%, #FF6F00 50%, #FF8F00 100%);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow:
+        0 10px 30px rgba(255, 111, 0, 0.4),
+        0 0 40px rgba(255, 143, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover::before {
+    animation-duration: 3.5s;
+}
+
+.btn-primary:hover::after {
+    opacity: 0.7;
+    filter: blur(4px);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3);
+    transition: all 1.1s ease;
+}
+/* ============================================
            7. SECCIONES GENERALES
            ============================================ */
         .section {
@@ -1163,6 +1232,58 @@
             height: 20px;
             fill: currentColor;
         }
+        /* ============================================
+           ESTILOS ESPECÍFICOS POR RED SOCIAL
+           ============================================ */
+
+        /* --- FACEBOOK --- */
+        .social-links .social-facebook {
+            color: #9ca3af;
+        }
+
+        .social-links .social-facebook::before {
+            background: radial-gradient(circle at center, rgba(24, 119, 242, 0.25) 0%, transparent 70%);
+        }
+
+        .social-links .social-facebook:hover {
+            border-color: #1877F2;
+            color: #1877F2;
+            background: rgba(24, 119, 242, 0.12);
+            box-shadow: 0 0 20px rgba(24, 119, 242, 0.25), 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- INSTAGRAM --- */
+        .social-links .social-instagram {
+            color: #9ca3af;
+        }
+
+        .social-links .social-instagram::before {
+            background: radial-gradient(circle at center, rgba(225, 48, 108, 0.25) 0%, transparent 70%);
+        }
+
+        .social-links .social-instagram:hover {
+            border-color: #E1306C;
+            color: #E1306C;
+            background: rgba(225, 48, 108, 0.12);
+            box-shadow: 0 0 20px rgba(225, 48, 108, 0.25), 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- WHATSAPP --- */
+        .social-links .social-whatsapp {
+            color: #9ca3af;
+        }
+
+        .social-links .social-whatsapp::before {
+            background: radial-gradient(circle at center, rgba(37, 211, 102, 0.25) 0%, transparent 70%);
+        }
+
+        .social-links .social-whatsapp:hover {
+            border-color: #25D366;
+            color: #25D366;
+            background: rgba(37, 211, 102, 0.12);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.25), 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
 
         .footer-col h4 {
             color: #f3f4f6;
@@ -1313,7 +1434,7 @@
         .page-loader {
             position: fixed;
             inset: 0;
-            background: #01471c;
+            background: linear-gradient(145deg, #0a1f0a 0%, #0d2815 50%, #051a05 100%);
             z-index: 999999;
             display: flex;
             flex-direction: column;
@@ -1361,6 +1482,7 @@
         .loader-text {
             color: #ffffff;
             font-size: 0.85rem;
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 0.2em;
             animation: loaderPulse 1.5s ease-in-out infinite;
@@ -1436,6 +1558,31 @@
         .lightbox-close:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+        }
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
 
         /* ============================================
            15. RESPONSIVE
@@ -1841,6 +1988,31 @@
         .lightbox-close:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+        }
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
 
         /* ============================================
            LOADER CON CSS PURO (sin javascript)
@@ -3001,3 +3173,211 @@
             }
         }
     
+
+/* ============================================
+   SECCION 4: ESTILOS ESPECIFICOS PARA GALERIA
+   ============================================ */
+
+        /* ============================================
+           PAGE HERO - HERO DE PAGINAS INTERNAS
+           ============================================ */
+        .page-hero {
+            position: relative;
+            width: 100%;
+            min-height: 500px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        /* Imagen de fondo del hero - Reemplaza src en el HTML */
+        .page-hero-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+            transform: scale(1.1);
+            transition: transform 8s ease;
+            z-index: 0;
+        }
+        .page-hero.loaded .page-hero-bg { transform: scale(1); }
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(6, 75, 40, 0.7) 0%, rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
+        }
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 800px;
+            padding: 0 25px;
+            width: 100%;
+        }
+        .page-hero-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            opacity: 0;
+            margin-bottom: 1rem;
+            display: block;
+            animation: fadeInDown 0.8s ease forwards 0.3s;
+            color: #22c55e;
+        }
+        .page-hero-title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+            line-height: 1.2;
+        }
+        .page-hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease forwards 0.7s;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 0.9; transform: translateY(0); }
+        }
+        .scroll-line-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1s;
+        }
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.5);
+            animation: bounceLine 2s infinite;
+        }
+        .scroll-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        @keyframes bounceLine { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.6); } }
+
+        /* ============================================
+           UTILIDADES GALERIA
+           ============================================ */
+        .section-top-padding { padding-top: 5rem; }
+        .gallery-section { 
+            position: relative;
+            background-color: rgb(3, 0, 19);
+            overflow: hidden;
+        }
+        /* FONDO DE IMAGEN - Reemplaza la URL con tu imagen de fondo */
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .gallery-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           GALERIA GRID
+           ============================================ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 17px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            aspect-ratio: 4/3;
+            background: #141b24;
+            border: 3px solid #ffffff;
+        }
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(6, 75, 40, 0.8) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+        }
+        .gallery-item:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+            border-color: #22c55e;
+        }
+        .gallery-item:hover::before { opacity: 1; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        /* ============================================
+           ANIMACIONES DE ENTRADA (REVEAL)
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ============================================
+           RESPONSIVE GALERIA
+           ============================================ */
+        @media (max-width: 768px) {
+            .page-hero-title { font-size: 2.2rem; }
+            .page-hero { min-height: 400px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+            .lightbox-nav { display: none; }
+        }
+        @media (max-width: 480px) {
+            .page-hero-title { font-size: 1.8rem; }
+        }
