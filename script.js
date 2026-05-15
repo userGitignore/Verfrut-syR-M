@@ -168,7 +168,6 @@
             // No ejecutar en dispositivos táctiles
             if (window.matchMedia('(pointer: coarse)').matches) return;
 
-            // Crear elementos del cursor si no existen
             let dot = document.querySelector('.cursor-dot');
             let ring = document.querySelector('.cursor-ring');
 
@@ -183,19 +182,19 @@
                 document.body.appendChild(ring);
             }
 
-            let mouseX = 0, mouseY = 0;
-            let ringX = 0, ringY = 0;
             let isMoving = false;
             let moveTimeout;
 
-            // Seguimiento del mouse
-            document.addEventListener('mousemove', function (e) {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                dot.style.left = mouseX + 'px';
-                dot.style.top = mouseY + 'px';
+            function updateCursorPosition(x, y) {
+                dot.style.left = x + 'px';
+                dot.style.top = y + 'px';
+                ring.style.left = x + 'px';
+                ring.style.top = y + 'px';
+            }
 
-                // Mostrar cursor al mover el mouse
+            document.addEventListener('mousemove', function (e) {
+                updateCursorPosition(e.clientX, e.clientY);
+
                 if (!isMoving) {
                     isMoving = true;
                     dot.style.opacity = '1';
@@ -205,52 +204,21 @@
                 clearTimeout(moveTimeout);
                 moveTimeout = setTimeout(function() {
                     isMoving = false;
-                }, 100);
+                }, 120);
             });
 
-            // Animación suave del anillo (efecto de retardo)
-            function animateRing() {
-                ringX += (mouseX - ringX) * 0.15;
-                ringY += (mouseY - ringY) * 0.15;
-                ring.style.left = ringX + 'px';
-                ring.style.top = ringY + 'px';
-                requestAnimationFrame(animateRing);
-            }
-            animateRing();
+            const interactives = 'a, button, .slider-arrow, .product-card, .category-card, .add-to-cart, .scroll-top, .menu-toggle, .lightbox-close, .product-image, .hero-btn, .show-more-btn, .carousel-btn, .lightbox-nav, .gallery-item, .info-card, .social-links a, .dropdown > a, .nav-links a, .footer-col a';
 
-            // Lista de selectores para elementos interactivos
-            const interactives = 'a, button, .slider-arrow, .product-card, .category-card, .add-to-cart, .scroll-top, .menu-toggle, .dot, .lightbox-close, .product-image, .hero-btn, .show-more-btn, .carousel-btn, .lightbox-nav, .gallery-item, .info-card, .social-links a, .dropdown > a, .nav-links a, .footer-col a';
-
-            // Función para agregar/remover clase hover
             function addHover() { document.body.classList.add('hover-link'); }
             function removeHover() { document.body.classList.remove('hover-link'); }
 
-            // Aplicar a elementos existentes
-            function attachHoverEvents() {
-                document.querySelectorAll(interactives).forEach(function (el) {
-                    // Evitar duplicados
-                    if (el.dataset.cursorHoverAttached) return;
-                    el.dataset.cursorHoverAttached = 'true';
-
-                    el.addEventListener('mouseenter', addHover);
-                    el.addEventListener('mouseleave', removeHover);
-                });
-            }
-
-            // Attach inicial
-            attachHoverEvents();
-
-            // Observar nuevos elementos dinámicamente (para contenido cargado después)
-            const observer = new MutationObserver(function(mutations) {
-                attachHoverEvents();
+            document.querySelectorAll(interactives).forEach(function (el) {
+                if (el.dataset.cursorHoverAttached) return;
+                el.dataset.cursorHoverAttached = 'true';
+                el.addEventListener('mouseenter', addHover);
+                el.addEventListener('mouseleave', removeHover);
             });
 
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-
-            // Ocultar cursor cuando sale de la ventana
             document.addEventListener('mouseleave', function() {
                 dot.style.opacity = '0';
                 ring.style.opacity = '0';

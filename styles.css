@@ -29,6 +29,41 @@
             line-height: 1.6;
         }
 
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .team-avatar,
+        .gallery-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.15), rgba(10, 20, 10, 0.95));
+            color: rgba(244, 244, 244, 0.75);
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            text-align: center;
+            border: 2px dashed rgba(255, 255, 255, 0.14);
+            border-radius: 24px;
+            min-height: 280px;
+            padding: 1rem;
+        }
+
+        .team-avatar {
+            min-height: 240px;
+        }
+
+        .team-avatar-large {
+            min-height: 320px;
+        }
+
+        .gallery-placeholder span,
+        .team-avatar span {
+            max-width: 90%;
+            display: block;
+        }
+
         /* ============================================
            2. CURSOR PERSONALIZADO - DISEÑO ORIGINAL RESTAURADO
            ============================================
@@ -51,7 +86,7 @@
                 top: 0; 
                 left: 0; 
                 pointer-events: none; 
-                z-index: 99998; 
+                z-index: 1000001; 
                 transform: translate(-50%, -50%) scale(1); 
                 transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
                 box-shadow: 
@@ -70,7 +105,7 @@
                 top: 0; 
                 left: 0; 
                 pointer-events: none; 
-                z-index: 99999; 
+                z-index: 1000002; 
                 transform: translate(-50%, -50%); 
                 transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
                 box-shadow: 
@@ -1558,6 +1593,612 @@
         .lightbox-close:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+
+        /* ============================================
+           15. ESTILOS PARA inju.html
+           ============================================ */
+        .hero-inju {
+            min-height: 680px;
+            display: flex;
+            align-items: center;
+            background-image: linear-gradient(180deg, rgba(3, 21, 39, 0.96) 0%, rgba(4, 27, 52, 0.92) 35%, rgba(8, 16, 27, 0.98) 100%);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 100px 0 120px;
+            overflow: hidden;
+        }
+
+        .hero-inju::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 30%), radial-gradient(circle at 75% 15%, rgba(34, 197, 94, 0.14), transparent 18%);
+            pointer-events: none;
+        }
+
+        .hero-inju::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.14), transparent 18%), radial-gradient(circle at 85% 45%, rgba(34, 197, 94, 0.1), transparent 15%), radial-gradient(circle at 50% 80%, rgba(56, 189, 248, 0.08), transparent 16%);
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0.9;
+            animation: floatBubbles 14s ease-in-out infinite;
+        }
+
+        @keyframes floatBubbles {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            color: #ffffff;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #c6f6d5;
+        }
+
+        .hero-inju h1 {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            margin-bottom: 1rem;
+            line-height: 1.02;
+            letter-spacing: -0.04em;
+            color: #f8fafc;
+        }
+
+        .hero-inju p {
+            font-size: 1.05rem;
+            max-width: 620px;
+            margin-bottom: 2rem;
+            color: rgba(241, 245, 249, 0.88);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f8fafc;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            padding: 0.95rem 2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .feature-grid,
+        .team-grid,
+        .gallery-grid,
+        .info-grid,
+        .contact-grid {
+            display: grid;
+            gap: 1.75rem;
+        }
+
+        .feature-grid {
+            grid-template-columns: repeat(4, minmax(200px, 1fr));
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(12px);
+            transition: transform 0.35s ease, border-color 0.35s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(34, 197, 94, 0.35);
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            color: #ffffff;
+            margin-bottom: 0.9rem;
+        }
+
+        .feature-card p {
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .info-grid {
+            grid-template-columns: 1.4fr 1fr;
+            align-items: flex-start;
+            gap: 2.5rem;
+        }
+
+        .info-grid h3 {
+            color: #ffffff;
+            font-size: 1.45rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-grid ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: #d1d5db;
+        }
+
+        .info-grid li {
+            margin-bottom: 0.9rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .info-grid li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+            color: #22c55e;
+            font-size: 1.2rem;
+        }
+
+        .info-quote {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2.4rem;
+            color: #cbd5e1;
+            line-height: 1.9;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+            backdrop-filter: blur(14px);
+        }
+
+        .section-light {
+            background: #08120a;
+        }
+
+        .team-grid,
+        .students-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .team-grid {
+            grid-template-columns: repeat(3, minmax(240px, 1fr));
+        }
+
+        .students-grid {
+            grid-template-columns: repeat(2, minmax(280px, 1fr));
+            margin-top: 2.5rem;
+            align-items: stretch;
+            justify-items: center;
+        }
+
+        .student-card {
+            background: rgba(10, 26, 46, 0.94);
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            border-radius: 26px;
+            padding: 2rem 1.8rem 1.8rem;
+            display: grid;
+            gap: 1.2rem;
+            box-shadow: 0 18px 32px rgba(0, 0, 0, 0.16);
+            transition: transform 0.35s ease, border-color 0.35s ease;
+            max-width: 320px;
+            width: 100%;
+            grid-template-rows: auto 1fr;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        .student-card.reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .student-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.45);
+        }
+
+        .student-card .team-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid rgba(96, 165, 250, 0.28);
+            background: radial-gradient(circle at top center, rgba(56, 189, 248, 0.20), rgba(9, 27, 40, 0.95));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .student-card .team-avatar::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+        }
+
+        .student-card .team-avatar span {
+            z-index: 1;
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgba(237, 242, 255, 0.95);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .student-card .team-avatar:hover {
+            transform: scale(1.04);
+        }
+
+        .student-card .team-details {
+            padding: 0 0.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .student-card .team-details h3 {
+            font-size: 1.5rem;
+            color: #f8fafc;
+            margin-bottom: 0.7rem;
+        }
+
+        .student-card .team-details p {
+            color: #d1d5db;
+            line-height: 1.8;
+            font-size: 0.98rem;
+            max-width: 360px;
+        }
+
+        .student-card .team-role {
+            letter-spacing: 0.18em;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            margin-bottom: 0.85rem;
+            color: #7dd3fc;
+        }
+
+        .hero-photo-placeholder {
+            margin: 2rem auto 0;
+            max-width: 380px;
+            min-height: 210px;
+            border-radius: 24px;
+            border: 1px dashed rgba(148, 163, 184, 0.22);
+            background: rgba(15, 23, 42, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(226, 232, 240, 0.78);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+        }
+
+        .hero-photo-placeholder.reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .hero-photo-placeholder.reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .student-card .team-details {
+            padding: 0 0.3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .student-card .team-details h3 {
+            font-size: clamp(1.7rem, 2vw, 2rem);
+            color: #f8fafc;
+            margin-bottom: 0.85rem;
+        }
+
+        .student-card .team-details p {
+            color: #cbd5e1;
+            line-height: 1.9;
+            font-size: 1rem;
+            max-width: 460px;
+        }
+
+        .student-card .team-role {
+            letter-spacing: 0.18em;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .contact-note {
+            margin-top: 1.5rem;
+            color: #9ca3af;
+            font-size: 0.98rem;
+        }
+
+        .team-card {
+            background: #08130e;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(34, 197, 94, 0.35);
+        }
+
+        .team-card.team-lead {
+            grid-column: span 1;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .team-image {
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            min-height: 280px;
+            transition: transform 0.4s ease;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-details {
+            padding: 2rem;
+        }
+
+        .team-role {
+            display: inline-block;
+            color: #22c55e;
+            font-weight: 700;
+            margin-bottom: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        .team-details h3 {
+            font-size: 1.7rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .team-details p {
+            color: #cbd5e1;
+            line-height: 1.85;
+        }
+
+        .gallery-grid {
+            grid-template-columns: repeat(3, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 32px;
+            min-height: 320px;
+            background: linear-gradient(180deg, rgba(7, 23, 43, 0.96), rgba(4, 13, 24, 0.98));
+            border: 1px solid rgba(96, 165, 250, 0.22);
+            box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 36px 95px rgba(0, 0, 0, 0.30);
+        }
+
+        .gallery-placeholder {
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 28px;
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.24), rgba(5, 12, 24, 0.98));
+            color: rgba(224, 242, 254, 0.95);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 2.25rem 1.75rem;
+            border: 1px dashed rgba(147, 197, 253, 0.38);
+            box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.4rem 1.25rem;
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.94));
+            color: #f8fafc;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            letter-spacing: 0.01em;
+        }
+
+        .contact-grid {
+            grid-template-columns: 1.4fr 0.9fr;
+            align-items: start;
+        }
+
+        .contact-details p {
+            color: #d1d5db;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+        }
+
+        .contact-card h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .contact-card p {
+            color: #cbd5e1;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            color: #d1d5db;
+        }
+
+        .contact-card li {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding-left: 1.2rem;
+            position: relative;
+            margin-bottom: 0.9rem;
+        }
+
+        .contact-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: 700;
+        }
+
+        .footer {
+            background: #040804;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-container {
+            grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+            padding: 2.5rem 2.5rem 3.5rem;
+        }
+
+        .footer-logo {
+            gap: 0.85rem;
+            font-size: 1.85rem;
+        }
+
+        .footer-brand p,
+        .footer-contact p,
+        .footer-bottom p {
+            color: #9ca3af;
+        }
+
+        @media (max-width: 1100px) {
+            .feature-grid,
+            .team-grid,
+            .gallery-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-card.team-lead {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-inju {
+                min-height: 520px;
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem 1.25rem;
+            }
+
+            .hero-inju {
+                padding: 70px 0;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 540px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-inju h1 {
+                font-size: 2.5rem;
+            }
+        }
+
         .lightbox-nav {
             position: absolute;
             top: 50%;
@@ -2013,21 +2654,6 @@
         }
         .lightbox-prev { left: 20px; }
         .lightbox-next { right: 20px; }
-
-        /* ============================================
-           LOADER CON CSS PURO (sin javascript)
-           ============================================ */
-        .page-loader {
-            animation: loaderAutoHide 0.6s ease 2s forwards;
-        }
-
-        @keyframes loaderAutoHide {
-            to {
-                opacity: 0;
-                visibility: hidden;
-                pointer-events: none;
-            }
-        }
 
         /* ============================================
            TARJETA LOGO EN CAROUSEL

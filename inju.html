@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Nacional de Jucuapa | Verfrut's y R&M</title>
+    <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="navOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998;" onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img width="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
+                <div class="nav-logo-text">
+                    <span class="nav-logo-title">Verfrut's y R&M</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="productos.html">Productos <span class="arrow">&#9662;</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="productos.html#hogar">Hogar</a></li>
+                        <li><a href="productos.html#frutas">Frutas</a></li>
+                        <li><a href="productos.html#especies">Especies</a></li>
+                        <li><a href="productos.html#verduras">Verduras</a></li>
+                        <li><a href="productos.html#embutidos">Embutidos</a></li>
+                        <li><a href="productos.html#canasta">Canasta Básica</a></li>
+                    </ul>
+                </li>
+                <li><a href="compras.html">Compras</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="ubicacion.html">Ubicación</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
+        </div>
+    </nav>
+
+    <section class="hero hero-inju">
+        <div class="hero-content container reveal reveal-delay-1">
+            <span class="hero-badge">Educación que transforma</span>
+            <h1>Instituto Nacional de Jucuapa</h1>
+            <p>Un centro educativo oficial con tradición, excelencia académica y un futuro sostenible en Usulután.</p>
+            <div class="hero-photo-placeholder reveal reveal-delay-2">
+                <span>Foto INJU disponible</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-section" id="info">
+        <div class="container">
+            <div class="section-header">
+                <h2>La historia del INJU</h2>
+                <p>Más de cinco décadas formando jóvenes comprometidos con la comunidad y el progreso social.</p>
+            </div>
+            <div class="feature-grid reveal reveal-delay-2">
+                <article class="feature-card">
+                    <h3>Fundado en 1966</h3>
+                    <p>Una institución con raíces profundas en Jucuapa y una amplia trayectoria académica.</p>
+                </article>
+                <article class="feature-card">
+                    <h3>5 especialidades clave</h3>
+                    <p>Ciencias naturales, sociales, humanas, idiomas y matemáticas para formar líderes completos.</p>
+                </article>
+                <article class="feature-card">
+                    <h3>40 docentes calificados</h3>
+                    <p>Profesores dedicados y comprometidos con el crecimiento de cada estudiante.</p>
+                </article>
+                <article class="feature-card">
+                    <h3>Jornada Matutina</h3>
+                    <p>Horario pensado para maximizar el aprendizaje y el desarrollo personal.</p>
+                </article>
+            </div>
+
+            <div class="info-grid reveal reveal-delay-2">
+                <div>
+                    <h3>Datos clave</h3>
+                    <ul>
+                        <li><strong>Nombre:</strong> Instituto Nacional de Jucuapa</li>
+                        <li><strong>Código:</strong> 12585</li>
+                        <li><strong>Tipo de sede:</strong> Centro educativo oficial</li>
+                        <li><strong>Tipo de calendario:</strong> Nacional</li>
+                        <li><strong>Jornada:</strong> Matutino</li>
+                        <li><strong>Teléfono:</strong> +503 2665-2154</li>
+                        <li><strong>Correo:</strong> institutodejucuapa@gmail.com</li>
+                        <li><strong>Dirección:</strong> Final Calle 2 de Abril, Barrio La Cruz, Jucuapa, Usulután</li>
+                    </ul>
+                </div>
+                <div class="info-quote">
+                    <p>En INJU creemos que la educación es la base para construir una comunidad más justa y próspera. Por eso, trabajamos cada día para brindar formación integral, innovación y valores sólidos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light" id="facilitador">
+        <div class="container">
+            <div class="section-header">
+                <h2>Facilitador</h2>
+                <p>La guía que impulsa el talento y la motivación de cada estudiante.</p>
+            </div>
+            <div class="team-card team-lead reveal reveal-delay-2">
+                <div class="team-avatar team-avatar-large">
+                    <span>Foto disponible</span>
+                </div>
+                <div class="team-details">
+                    <span class="team-role">Facilitador</span>
+                    <h3>Roberto Machado García</h3>
+                    <p>Un mentor con visión humana, compromiso académico y experiencia para acompañar el aprendizaje de los jóvenes del INJU.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-section" id="estudiantes">
+        <div class="container">
+            <div class="section-header">
+                <h2>Estudiantes destacados</h2>
+                <p>Presentamos cuatro perfiles de estudiantes con potencial académico y liderazgo.</p>
+            </div>
+            <div class="students-grid">
+                <article class="student-card reveal reveal-delay-1">
+                    <div class="team-avatar profile-avatar">
+                        <span>Foto</span>
+                    </div>
+                    <div class="team-details">
+                        <span class="team-role">Estudiante</span>
+                        <h3>Javier Martínez</h3>
+                        <p>Apasionado por las ciencias y el trabajo en equipo.</p>
+                    </div>
+                </article>
+                <article class="student-card reveal reveal-delay-2">
+                    <div class="team-avatar profile-avatar">
+                        <span>Foto</span>
+                    </div>
+                    <div class="team-details">
+                        <span class="team-role">Estudiante</span>
+                        <h3>Ana Rodríguez</h3>
+                        <p>Interesada en tecnología, innovación y aprendizaje continuo.</p>
+                    </div>
+                </article>
+                <article class="student-card reveal reveal-delay-3">
+                    <div class="team-avatar profile-avatar">
+                        <span>Foto</span>
+                    </div>
+                    <div class="team-details">
+                        <span class="team-role">Estudiante</span>
+                        <h3>Laura Gómez</h3>
+                        <p>Comprometida con la comunidad y la excelencia académica.</p>
+                    </div>
+                </article>
+                <article class="student-card reveal reveal-delay-1">
+                    <div class="team-avatar profile-avatar">
+                        <span>Foto</span>
+                    </div>
+                    <div class="team-details">
+                        <span class="team-role">Estudiante</span>
+                        <h3>Marco Cabrera</h3>
+                        <p>Creativo, responsable y listo para los retos del mañana.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light" id="galeria">
+        <div class="container">
+            <div class="section-header">
+                <h2>Galería del INJU</h2>
+                <p>Espacios de aprendizaje, convivencia y actividades que inspiran.</p>
+            </div>
+            <div class="gallery-grid reveal reveal-delay-3">
+                <article class="gallery-card">
+                    <div class="gallery-placeholder">
+                        <span>Imagen 1 disponible</span>
+                    </div>
+                    <div class="gallery-overlay">Instalaciones modernas y espacios verdes.</div>
+                </article>
+                <article class="gallery-card">
+                    <div class="gallery-placeholder">
+                        <span>Imagen 2 disponible</span>
+                    </div>
+                    <div class="gallery-overlay">Momentos de creatividad y trabajo en equipo.</div>
+                </article>
+                <article class="gallery-card">
+                    <div class="gallery-placeholder">
+                        <span>Imagen 3 disponible</span>
+                    </div>
+                    <div class="gallery-overlay">Actividades educativas y convivencia.</div>
+                </article>
+                <article class="gallery-card">
+                    <div class="gallery-placeholder">
+                        <span>Imagen 4 disponible</span>
+                    </div>
+                    <div class="gallery-overlay">La energía de una institución en movimiento.</div>
+                </article>
+                <article class="gallery-card">
+                    <div class="gallery-placeholder">
+                        <span>Imagen 5 disponible</span>
+                    </div>
+                    <div class="gallery-overlay">Proyectos escolares y trabajo comunitario.</div>
+                </article>
+                <article class="gallery-card">
+                    <div class="gallery-placeholder">
+                        <span>Imagen 6 disponible</span>
+                    </div>
+                    <div class="gallery-overlay">Bienestar estudiantil y actividades extracurriculares.</div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-section contact-section" id="contacto">
+        <div class="container contact-grid">
+            <div>
+                <div class="section-header">
+                    <h2>Contacto</h2>
+                    <p>Estamos listos para atender tus preguntas y solicitudes.</p>
+                </div>
+                <div class="contact-details">
+                    <p><strong>Dirección:</strong> Final Calle 2 de Abril, Barrio La Cruz, Jucuapa, Usulután</p>
+                    <p><strong>Teléfono:</strong> +503 2665-2154</p>
+                    <p><strong>Correo:</strong> institutodejucuapa@gmail.com</p>
+                    <p><strong>Horario:</strong> Lunes a Sábado 8:00 AM - 5:00 PM</p>
+                </div>
+                <p class="contact-note">Puedes dejar este espacio en blanco para agregar tu botón aquí cuando quieras.</p>
+            </div>
+            <div class="contact-card">
+                <h3>¿Quieres saber más?</h3>
+                <p>Solicita información sobre inscripciones, servicios académicos o eventos institucionales.</p>
+                <ul>
+                    <li>Atención personalizada</li>
+                    <li>Plan de estudios actualizado</li>
+                    <li>Ambiente seguro y colaborativo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img width="40" height="40" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
+                    Verfrut's y R&amp;M
+                </div>
+                <p>Tu tienda de referencia en Jucuapa, donde la frescura se encuentra con la excelencia.</p>
+                <div class="social-links">
+                    <a href="#" class="social-facebook" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-instagram" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/50326652154" class="social-whatsapp" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Negocio</h4>
+                <div class="footer-line"></div>
+                <ul>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="inju.html">Historia</a></li>
+                    <li><a href="compras.html">Compras</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Team</h4>
+                <div class="footer-line"></div>
+                <ul>
+                    <li><a href="inju.html">Historia</a></li>
+                    <li><a href="inju.html">Conoce al equipo detras del proyecto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h4>Contáctanos</h4>
+                <div class="footer-line"></div>
+                <p>Jucuapa, Usulután, El Salvador.</p>
+                <p>+503 6064-9103 | +503 6971-8315</p>
+                <p><span class="icon">&#9993;</span> verfrutsrm.shop@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. | <span style="font-style: italic;">This website was designed and created by:</span> <span style="font-weight: bold;">Either Design STR Team.</span></p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
