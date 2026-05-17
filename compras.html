@@ -4,23 +4,749 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1e3a2f">
-    <title>Compras | Verfrut's y R&M</title>
+    <title>Tienda | Verfrut's y R&M</title>
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ============================================
+           ESTILOS EXCLUSIVOS PARA LA PÁGINA DE TIENDA
+           ============================================ */
+        
+        /* Layout principal: catálogo + carrito */
+        .shop-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem;
+            position: relative;
+            align-items: flex-start;
+        }
+        
+        .catalog {
+            flex: 1;
+            min-width: 260px;
+        }
+        
+        /* Cada categoría */
+        .category-block {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1rem 0.95rem 1rem;
+            background: rgba(10, 16, 22, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 22px;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+            backdrop-filter: blur(6px);
+        }
+        .category-title {
+            font-size: clamp(1.35rem, 2vw, 1.85rem);
+            font-weight: 700;
+            color: #ddf9ee;
+            margin-bottom: 0.45rem;
+            border-left: 4px solid rgba(34, 197, 94, 0.7);
+            padding-left: 0.85rem;
+            letter-spacing: -0.25px;
+        }
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .category-subtitle {
+            margin: 0;
+            color: #d3dce1;
+            max-width: 72ch;
+            line-height: 1.5;
+        }
+        .slider-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .products-slider {
+            position: relative;
+            overflow: hidden;
+            padding: 0.25rem 0;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .slider-track {
+            display: flex;
+            gap: 0.95rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 0.6rem 0.8rem 0.75rem;
+            margin-bottom: 0;
+            touch-action: pan-x;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 111, 0, 0.45) rgba(255, 255, 255, 0.06);
+        }
+        .slider-track::-webkit-scrollbar {
+            height: 7px;
+        }
+        .slider-track::-webkit-scrollbar-thumb {
+            background: rgba(255, 111, 0, 0.55);
+            border-radius: 999px;
+        }
+        .slider-track::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+        }
+        .slider-card {
+            flex: 0 0 min(270px, 100%);
+            min-width: 240px;
+            max-width: 300px;
+            scroll-snap-align: start;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            background: rgba(23, 30, 39, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 22px;
+            overflow: hidden;
+        }
+        .slider-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(34, 197, 94, 0.38);
+            box-shadow: 0 16px 30px rgba(15, 23, 42, 0.16);
+        }
+        .slider-card .product-img {
+            min-height: 180px;
+        }
+        .slider-nav {
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+            box-shadow: 0 10px 16px rgba(0, 0, 0, 0.10);
+        }
+        .slider-nav:hover {
+            transform: scale(1.06);
+            background: rgba(255, 255, 255, 0.16);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+        }
+        @media (max-width: 1024px) {
+            .slider-card {
+                min-width: 220px;
+            }
+        }
+        @media (max-width: 820px) {
+            .category-header {
+                align-items: flex-start;
+            }
+            .slider-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .slider-nav {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        @media (max-width: 680px) {
+            .category-block {
+                padding: 1rem 0.85rem 1.1rem;
+            }
+            .products-slider {
+                padding: 0.1rem 0;
+            }
+            .slider-track {
+                padding: 0.55rem 0.75rem 0.75rem;
+                gap: 0.85rem;
+            }
+            .slider-card {
+                min-width: min(78vw, 280px);
+                max-width: none;
+            }
+            .category-title {
+                font-size: 1.45rem;
+            }
+            .category-subtitle {
+                max-width: 100%;
+            }
+        }
+        
+        /* Grid de productos más compacto: 5 columnas en escritorio */
+        .products-grid {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(5, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        @media (max-width: 1400px) {
+            .products-grid {
+                grid-template-columns: repeat(4, minmax(140px, 1fr));
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .products-grid {
+                grid-template-columns: repeat(3, minmax(140px, 1fr));
+            }
+        }
+        
+        .product-card {
+            min-height: 280px;
+        }
+        
+        .product-img {
+            height: 140px;
+        }
+        
+        .product-info {
+            padding: 0.85rem 0.95rem 1rem;
+        }
+        
+        .product-name {
+            font-size: 1.05rem;
+        }
+        .product-desc {
+            font-size: 0.78rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .product-footer {
+            gap: 0.6rem;
+        }
+        
+        .nav-cart-item {
+            position: relative;
+        }
+        .nav-cart-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(34,197,94,0.12);
+            color: #ffffff;
+            border-radius: 50%;
+            padding: 0;
+            position: relative;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.25s ease, transform 0.2s ease;
+        }
+        .nav-cart-button:hover {
+            background: rgba(34,197,94,0.22);
+            transform: translateY(-1px);
+        }
+        .nav-cart-button svg {
+            width: 18px;
+            height: 18px;
+        }
+        .nav-cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 6px;
+            border-radius: 999px;
+            background: #FF6F00;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, right 0.15s ease, top 0.15s ease;
+            z-index: 3;
+        }
+        .nav-cart-badge.pulse {
+            animation: badgePulse 0.32s ease;
+        }
+        
+        @keyframes badgePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Tarjeta de producto */
+        .product-card {
+            background: #141b24;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #2d3e3e;
+            transition: all 0.25s ease;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #22c55e;
+            box-shadow: 0 12px 24px rgba(34,197,94,0.15);
+        }
+        .product-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+            background: #0f1a0f;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.03);
+        }
+        .product-info {
+            padding: 1rem 1.2rem 1.2rem;
+        }
+        .product-category {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #22c55e;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f0f3f8;
+            margin-bottom: 0.4rem;
+        }
+        .product-desc {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.6rem;
+        }
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FF6F00;
+        }
+        .price-unit {
+            font-size: 0.7rem;
+            color: #9ca3af;
+            font-weight: normal;
+        }
+        .btn-add {
+            background: #22c55e;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-add:hover {
+            background: #16a34a;
+            transform: scale(1.05);
+            box-shadow: 0 0 8px #22c55e;
+        }
+        .btn-add.added {
+            animation: addButtonPulse 0.22s ease;
+        }
+        @keyframes addButtonPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.18); }
+            100% { transform: scale(1); }
+        }
+        
+        /* ===== CARRITO (SIDEBAR) ===== */
+        .cart-sidebar {
+            width: 340px;
+            background: #0f171f;
+            border-radius: 28px;
+            border: 1px solid #2c3a3a;
+            padding: 1.3rem;
+            height: fit-content;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+        }
+        .cart-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #f3f4f6;
+            border-bottom: 1px solid #2c3a3a;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .cart-items {
+            max-height: 420px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        .cart-item {
+            background: #0a1118;
+            border-radius: 16px;
+            padding: 0.7rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.1s;
+            border-left: 3px solid #22c55e;
+        }
+        .cart-item-info {
+            flex: 2;
+        }
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+        }
+        .cart-item-price {
+            font-size: 0.7rem;
+            color: #FF6F00;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .cart-qty-btn {
+            background: none;
+            border: none;
+            color: #adb7c2;
+            font-size: 1.1rem;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .cart-qty-btn:hover {
+            background: #22c55e20;
+            color: #22c55e;
+        }
+        .cart-qty {
+            background: #00000066;
+            padding: 0 6px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            min-width: 28px;
+            text-align: center;
+        }
+        .cart-remove {
+            color: #f87171;
+        }
+        .cart-remove:hover {
+            background: #f8717120;
+            color: #ef4444;
+        }
+        .cart-total {
+            border-top: 1px solid #2c3a3a;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #f3f4f6;
+        }
+        .btn-checkout {
+            width: 100%;
+            background: linear-gradient(95deg, #FF6F00, #FF8F00);
+            border: none;
+            padding: 12px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-checkout:hover {
+            transform: scale(1.01);
+            box-shadow: 0 4px 14px rgba(255,111,0,0.4);
+        }
+        .empty-cart {
+            text-align: center;
+            color: #8a9bb0;
+            padding: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        /* MODAL DE CONFIRMACIÓN */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            z-index: 10001;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-container {
+            background: #0f1a1f;
+            max-width: 720px;
+            width: min(720px, 95%);
+            border-radius: 32px;
+            border: 1px solid #22c55e50;
+            padding: 1.8rem;
+            animation: fadeUp 0.25s ease;
+            max-height: 90vh;
+            overflow: hidden;
+        }
+        .modal-items {
+            max-height: 50vh;
+        }
+        .modal-item {
+            padding: 0.85rem 1rem;
+        }
+        .modal-item-info {
+            min-width: 0;
+        }
+        .modal-buttons {
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .btn-secondary,
+        .btn-primary {
+            width: auto;
+            min-width: 140px;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-container h3 {
+            font-size: 1.5rem;
+            color: #22c55e;
+            margin-bottom: 1rem;
+            border-left: 4px solid #FF6F00;
+            padding-left: 1rem;
+        }
+        .modal-items {
+            max-height: 380px;
+            overflow-y: auto;
+            margin: 1rem 0;
+        }
+        .modal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0a1117;
+            border-radius: 20px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .modal-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .cart-qty-btn {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #e2e8f0;
+            font-size: 1rem;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cart-qty-btn:hover {
+            background: rgba(34,197,94,0.16);
+            transform: translateY(-1px);
+            color: #ffffff;
+        }
+        .modal-item-subtotal {
+            font-weight: 700;
+            color: #d9f99d;
+            min-width: 72px;
+            text-align: right;
+        }
+        .modal-item-remove {
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.2);
+            color: #f87171;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .modal-item-remove:hover {
+            background: rgba(248, 113, 113, 0.2);
+            transform: translateY(-1px);
+        }
+        .btn-clear {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #f8fafc;
+        }
+        .btn-clear:hover {
+            background: rgba(255,255,255,0.14);
+        }
+        .modal-item-qty {
+            padding: 0.2rem 0.8rem;
+            background: rgba(255,255,255,0.06);
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+        .modal-item-info {
+            min-width: 0;
+            flex: 1 1 160px;
+        }
+        .modal-item-controls {
+            flex: 0 1 auto;
+        }
+        .modal-item-name {
+            font-size: 0.95rem;
+        }
+        .modal-item-price {
+            font-size: 0.78rem;
+            color: #94a3b8;
+        }
+        .modal-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 0.85rem;
+        }
+        .btn-secondary,
+        .btn-primary {
+            width: auto;
+            min-width: 120px;
+        }
+        .btn-secondary {
+            padding: 10px 18px;
+        }
+        .btn-primary {
+            padding: 10px 20px;
+        }
+        .modal-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-top: 1px solid #2c3a3a;
+            padding-top: 1rem;
+            margin: 1rem 0;
+        }
+        .modal-total span:last-child {
+            color: #d9f99d;
+        }
+        .modal-form {
+            display: grid;
+            gap: 0.75rem;
+            margin-bottom: 1.2rem;
+            padding: 0 0.25rem 0.5rem;
+        }
+        .modal-form label {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        .modal-form input {
+            width: 100%;
+            min-height: 44px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.04);
+            color: #f8fafc;
+            padding: 0 14px;
+            font-size: 0.95rem;
+        }
+        .modal-form input:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34,197,94,0.12);
+        }
+        .modal-hint {
+            color: #94a3b8;
+            font-size: 0.82rem;
+            margin: 0;
+        }
+        .btn-primary:disabled {
+            background: rgba(34, 197, 94, 0.16) !important;
+            color: rgba(255, 255, 255, 0.65) !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+            box-shadow: none !important;
+            opacity: 0.72 !important;
+            cursor: not-allowed !important;
+            transform: none !important;
+        }
+        .btn-primary:disabled:hover {
+            background: rgba(34, 197, 94, 0.16) !important;
+        }
+        
+        @media (max-width: 880px) {
+            .shop-layout {
+                flex-direction: column;
+            }
+            .cart-sidebar {
+                width: 100%;
+                position: static;
+            }
+        }
+        @media (max-width: 640px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-   <div class="page-loader" id="pageLoader" style="background: linear-gradient(145deg, #0a1f0a 0%, #0d2815 50%, #051a05 100%);">
-    <div class="loader-wrapper">
-        <div class="loader-spinner"></div>
-        <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
+
+    <!-- LOADER (global) -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-wrapper">
+            <div class="loader-spinner"></div>
+            <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
+        </div>
+        <p class="loader-text">Verfrut's y R&M</p>
     </div>
-    <p class="loader-text">Verfrut's y R&M</p>
-</div>
 
-    <!-- Overlay para cerrar menú al tocar fuera -->
-
-    <div id="navOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998;" onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
-
+    <!-- NAVBAR (idéntico al resto) -->
+    <div id="navOverlay" onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -45,95 +771,611 @@
                 <li><a href="compras.html" class="active">Compras</a></li>
                 <li><a href="galeria.html">Galería</a></li>
                 <li><a href="ubicacion.html">Ubicación</a></li>
+                <li class="nav-cart-item"><button id="openCartBtn" class="nav-cart-button" type="button" aria-label="Abrir carrito">
+                    <span>🛒</span>
+                    <span id="navbarCartCount" class="nav-cart-badge">0</span>
+                </button></li>
             </ul>
             <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
         </div>
     </nav>
 
-    <!-- Content -->
-    <section class="section">
+    <!-- CONTENIDO PRINCIPAL: TIENDA -->
+    <section class="section" style="padding-top: 2rem;">
         <div class="container">
             <div class="section-header">
-                <h2>Realiza tu Pedido</h2>
-                <p>Completa tu pedido en nuestro formulario o contáctanos por WhatsApp</p>
+                <h2>Nuestra Tienda Online</h2>
+                <p>Productos frescos directamente de Jucuapa a tu mesa</p>
             </div>
-            <div class="map-wrapper" style="height: 600px;">
-                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vXXXXXX/pubhtml?widget=true&headers=false" title="Pedidos Verfruts"></iframe>
-            </div>
-            <div style="text-align: center; margin-top: 3rem;">
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">¿Prefieres pedir por WhatsApp?</p>
-                <a href="https://wa.me/50360649103" class="btn-primary">Escribir por WhatsApp</a>
+
+            <div class="shop-layout">
+                <div class="catalog" id="catalogContainer"></div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         FOOTER
-         ============================================ -->
+    <!-- MODAL DE CHECKOUT (CONFIRMACIÓN) -->
+    <div id="checkoutModal" class="modal-overlay">
+        <div class="modal-container">
+            <h3>🛒 Mi carrito</h3>
+            <div class="modal-form">
+                <label for="modalBuyerName">Nombre</label>
+                <input id="modalBuyerName" type="text" placeholder="Tu nombre" autocomplete="name">
+                <label for="modalBuyerLast">Apellido</label>
+                <input id="modalBuyerLast" type="text" placeholder="Tu apellido" autocomplete="family-name">
+                <p class="modal-hint">El nombre es obligatorio para que el vendedor sepa quién hizo el pedido.</p>
+            </div>
+            <div id="modalItemsList" class="modal-items"></div>
+            <div class="modal-total">
+                <span>Total a pagar</span>
+                <span id="modalTotal">$0.00</span>
+            </div>
+            <div class="modal-buttons">
+                <button id="closeModalBtn" class="btn-secondary">Seguir comprando</button>
+                <button id="clearCartBtn" class="btn-secondary">Limpiar carrito</button>
+                <button id="sendWhatsappBtn" class="btn-primary" disabled>Enviar por WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <div class="footer-logo">
-                    <img width="40" height="40" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
-                    Verfrut's y R&amp;M
-                </div>
+                <div class="footer-logo"><img width="40" height="40" src="img-navbar-and-icon/img-navbar.png" alt="Logo">Verfrut's y R&amp;M</div>
                 <p>Tu tienda de referencia en Jucuapa, donde la frescura se encuentra con la excelencia.</p>
                 <div class="social-links">
-                    <a href="#" class="social-facebook" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                        </svg>
-                    </a>
-                    <a href="#" class="social-instagram" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                        </svg>
-                    </a>
-                    <a href="#" class="social-whatsapp" aria-label="WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                        </svg>
-                    </a>
+                    <a href="#" class="social-facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="#" class="social-instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="#" class="social-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
                 </div>
             </div>
-            <div class="footer-col">
-                <h4>Negocio</h4>
-                <div class="footer-line"></div>
-                <ul>
-                    <li><a href="galeria.html">Galería</a></li>
-                    <li><a href="inju.html">Historia</a></li>
-                    <li><a href="compras.html" class="active">Compras</a></li>
-                    <li><a href="productos.html">Productos</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Team</h4>
-                <div class="footer-line"></div>
-                <ul>
-                    <li><a href="inju.html">Historia</a></li>
-                    <li><a href="inju.html">Conoce al equipo detras del proyecto</a></li>
-                </ul>
-            </div>
-            <div class="footer-col footer-contact">
-                <h4>Contáctanos</h4>
-                <div class="footer-line"></div>
-                <p>Jucuapa, Usulután, El Salvador.</p>
-                <p>+503 6064-9103 | +503 6971-8315</p>
-                <p><span class="icon">&#9993;</span> verfrutsrm.shop@gmail.com</p>
-            </div>
+            <div class="footer-col"><h4>Negocio</h4><div class="footer-line"></div><ul><li><a href="galeria.html">Galería</a></li><li><a href="inju.html">Historia</a></li><li><a href="compras.html">Compras</a></li><li><a href="productos.html">Productos</a></li></ul></div>
+            <div class="footer-col"><h4>Team</h4><div class="footer-line"></div><ul><li><a href="inju.html">Historia</a></li><li><a href="inju.html">Conoce al equipo detras del proyecto</a></li></ul></div>
+            <div class="footer-col footer-contact"><h4>Contáctanos</h4><div class="footer-line"></div><p>Jucuapa, Usulután, El Salvador.</p><p>+503 6064-9103 | +503 6971-8315</p><p><span class="icon">&#9993;</span> verfrutsrm.shop@gmail.com</p></div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
-                <span style="font-style: italic;">This website was designed and created by:</span> <span
-                    style="font-weight: bold;">Either Design STR Team.</span>
-            </p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. | <span class="footer-italic">This website was designed and created by:</span> <span class="footer-bold">Either Design STR Team.</span></p></div>
     </footer>
 
     <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
+
+    <!-- Script global del sitio (loader, menú, cursor, etc.) -->
     <script src="script.js"></script>
+
+    <!-- Script exclusivo para la funcionalidad de la tienda -->
+    <script>
+        (function() {
+            // ----- DATOS DEL CARRITO -----
+            let cart = [];
+            const WHATSAPP_NUMBER = '50360649103';  // número sin el +
+            
+            // Elementos DOM
+            const navbarCartCount = document.getElementById('navbarCartCount');
+            const openCartBtn = document.getElementById('openCartBtn');
+            const modal = document.getElementById('checkoutModal');
+            const modalItemsContainer = document.getElementById('modalItemsList');
+            const modalTotalSpan = document.getElementById('modalTotal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
+            const modalBuyerName = document.getElementById('modalBuyerName');
+            const modalBuyerLast = document.getElementById('modalBuyerLast');
+            
+            // Funciones auxiliares
+            function formatMoney(value) {
+                return `$${value.toFixed(2)}`;
+            }
+
+            function getCartQuantity() {
+                return cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
+
+            const catalogData = [
+                {
+                    id: 'frutas',
+                    title: '🍓 Frutas Frescas',
+                    subtitle: 'Selección de frutas de temporada, siempre maduras y jugosas.',
+                    products: [
+                        { id: 'manzana-roja', name: 'Manzana Roja', category: 'Frutas', desc: 'Fresca y jugosa, ideal para consumo diario', price: 1.00, unit: 'bolsa', img: 'img-fiveteen-Best-products-index/fresas2.jpg', tag: 'Oferta' },
+                        { id: 'manzana-verde', name: 'Manzana Verde', category: 'Frutas', desc: 'Seleccionada en su punto óptimo de maduración', price: 1.00, unit: 'bolsa', img: '', tag: 'Fresco' },
+                        { id: 'pera-verde', name: 'Pera Verde', category: 'Frutas', desc: 'Perfecta para jugos naturales y postres', price: 1.00, unit: 'bolsa', img: 'img/Frutas/pera.jpeg', tag: 'Popular' },
+                        { id: 'pina', name: 'Piña', category: 'Frutas', desc: 'Rica en vitaminas y antioxidantes', price: 2.50, unit: 'unidad', img: 'img/Frutas/piña.jpeg', tag: 'Fresco' },
+                        { id: 'uva-morada', name: 'Uva Morada', category: 'Frutas', desc: 'Directo del productor a tu mesa', price: 3.50, unit: 'bolsa', img: 'img/Frutas/uvamorada.jpeg', tag: 'Nuevo' },
+                        { id: 'uva-verde', name: 'Uva Verde', category: 'Frutas', desc: 'Sabor dulce y textura irresistible', price: 4.50, unit: 'bolsa', img: 'img/Frutas/uvaverde.jpeg', tag: 'Local' },
+                        { id: 'naranja', name: 'Naranja', category: 'Frutas', desc: 'Excelente para ensaladas de frutas', price: 1.00, unit: 'bolsa', img: 'img/Frutas/naranja.jpeg', tag: 'Oferta' },
+                        { id: 'granadillas', name: 'Granadillas', category: 'Frutas', desc: 'Calidad premium garantizada', price: 1.00, unit: 'bolsa', img: 'img/Frutas/granadas.jpeg', tag: 'Orgánico' },
+                        { id: 'papaya', name: 'Papaya', category: 'Frutas', desc: 'Cosechada en las mejores fincas', price: 2.00, unit: 'unidad', img: 'img/Frutas/papaya.jpeg', tag: 'Popular' },
+                        { id: 'sandia', name: 'Sandia', category: 'Frutas', desc: 'Frescura que se siente al primer mordisco', price: 2.00, unit: 'unidad', img: 'img/Frutas/sandia.jpeg', tag: 'Fresco' },
+                        { id: 'fresas', name: 'Fresas', category: 'Frutas', desc: 'Fresca y jugosa, ideal para consumo diario', price: 2.00, unit: 'bandeja', img: 'img/Frutas/fresas.jpeg', tag: 'Nuevo' },
+                        { id: 'melon', name: 'Melón', category: 'Frutas', desc: 'Seleccionada en su punto óptimo de maduración', price: 1.50, unit: 'unidad', img: '', tag: 'Local' },
+                    ]
+                },
+                {
+                    id: 'verduras',
+                    title: '🥬 Verduras Variadas',
+                    subtitle: 'Lo mejor de la huerta para tu mesa diaria.',
+                    products: [
+                        { id: 'pepino', name: 'Pepino', category: 'Verduras', desc: 'Cultivada sin químicos dañinos', price: 1.00, unit: 'bolsa', img: 'img/Verduras/pepino.jpeg', tag: 'Oferta' },
+                        { id: 'loroco', name: 'Loroco', category: 'Verduras', desc: 'Cosechada diariamente para ti', price: 1.00, unit: 'bolsa', img: 'img/Verduras/loroco.jpeg', tag: 'Fresco' },
+                        { id: 'brocoli', name: 'Brocoli', category: 'Verduras', desc: 'Perfecta para sopas y guisos', price: 1.50, unit: 'unidad', img: 'img/Verduras/brocoli.png', tag: 'Orgánico' },
+                        { id: 'tomate', name: 'Tomate', category: 'Verduras', desc: 'Ideal para ensaladas frescas', price: 1.00, unit: 'bolsa', img: 'img/Verduras/tomates.jpeg', tag: 'Popular' },
+                        { id: 'zanahoria', name: 'Zanahoria', category: 'Verduras', desc: 'Textura crujiente y sabor natural', price: 0.35, unit: 'unidad', img: 'img/Verduras/zanahoria.jpeg', tag: 'Fresco' },
+                        { id: 'ejote', name: 'Ejote', category: 'Verduras', desc: 'Cosechada diariamente para ti', price: 0.50, unit: 'bolsa', img: 'img/Verduras/ejotes.jpeg', tag: 'Nuevo' },
+                        { id: 'lechuga', name: 'Lechuga', category: 'Verduras', desc: 'Excelente fuente de nutrientes', price: 1.00, unit: 'unidad', img: 'img/Verduras/lechuga.jpeg', tag: 'Local' },
+                        { id: 'yuca', name: 'Yuca', category: 'Verduras', desc: 'Versátil para cualquier receta', price: 0.50, unit: 'unidad', img: '', tag: 'Oferta' },
+                        { id: 'cebollin', name: 'Cebollin', category: 'Verduras', desc: 'Frescura garantizada en cada pieza', price: 1.50, unit: 'manojo', img: 'img/Verduras/cebollin.jpeg', tag: 'Orgánico' },
+                        { id: 'cebolla-morada', name: 'Cebolla morada', category: 'Verduras', desc: 'Directo de la huerta a tu hogar', price: 1.00, unit: 'bolsa', img: 'img/Verduras/cebollamorada.jpeg', tag: 'Popular' },
+                        { id: 'cebolla-blanca', name: 'Cebolla blanca', category: 'Verduras', desc: 'Calidad que se nota al cocinar', price: 1.00, unit: 'bolsa', img: '', tag: 'Fresco' },
+                        { id: 'guisquil', name: 'Güisquil', category: 'Verduras', desc: 'Cultivada sin químicos dañinos', price: 0.50, unit: 'unidad', img: 'img/Verduras/guisquil.jpeg', tag: 'Nuevo' },
+                        { id: 'papas', name: 'Papas', category: 'Verduras', desc: 'Perfecta para sopas y guisos', price: 0.65, unit: 'bolsa', img: 'img/Verduras/papas.jpeg', tag: 'Local' },
+                        { id: 'elote-dulce', name: 'Elote dulce', category: 'Verduras', desc: 'Ideal para ensaladas frescas', price: 2.00, unit: 'bandeja', img: 'img/Verduras/elotedulce.jpeg', tag: 'Oferta' },
+                        { id: 'espinaca', name: 'Espinaca', category: 'Verduras', desc: 'Textura crujiente y sabor natural', price: 0.50, unit: 'manojo', img: 'img/Verduras/espinaca.jpeg', tag: 'Orgánico' }
+                    ]
+                },
+                {
+                    id: 'canasta',
+                    title: '🛒 Canasta Básica',
+                    subtitle: 'Productos esenciales para el hogar.',
+                    products: [
+                        { id: 'canasta-1', name: 'Producto 1', category: 'Canasta', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-2', name: 'Producto 2', category: 'Canasta', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-3', name: 'Producto 3', category: 'Canasta', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-4', name: 'Producto 4', category: 'Canasta', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-5', name: 'Producto 5', category: 'Canasta', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-6', name: 'Producto 6', category: 'Canasta', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-7', name: 'Producto 7', category: 'Canasta', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-8', name: 'Producto 8', category: 'Canasta', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-9', name: 'Producto 9', category: 'Canasta', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-10', name: 'Producto 10', category: 'Canasta', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-11', name: 'Producto 11', category: 'Canasta', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-12', name: 'Producto 12', category: 'Canasta', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-13', name: 'Producto 13', category: 'Canasta', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-14', name: 'Producto 14', category: 'Canasta', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'canasta-15', name: 'Producto 15', category: 'Canasta', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' }
+                    ]
+                },
+                {
+                    id: 'embutidos',
+                    title: '🧀 Embutidos & Lácteos',
+                    subtitle: 'Los mejores embutidos con calidad garantizada.',
+                    products: [
+                        { id: 'embutidos-1', name: 'Producto 1', category: 'Embutidos', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-2', name: 'Producto 2', category: 'Embutidos', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-3', name: 'Producto 3', category: 'Embutidos', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-4', name: 'Producto 4', category: 'Embutidos', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-5', name: 'Producto 5', category: 'Embutidos', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-6', name: 'Producto 6', category: 'Embutidos', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-7', name: 'Producto 7', category: 'Embutidos', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-8', name: 'Producto 8', category: 'Embutidos', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-9', name: 'Producto 9', category: 'Embutidos', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-10', name: 'Producto 10', category: 'Embutidos', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-11', name: 'Producto 11', category: 'Embutidos', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-12', name: 'Producto 12', category: 'Embutidos', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-13', name: 'Producto 13', category: 'Embutidos', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-14', name: 'Producto 14', category: 'Embutidos', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'embutidos-15', name: 'Producto 15', category: 'Embutidos', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' }
+                    ]
+                },
+                {
+                    id: 'especies',
+                    title: '🌿 Especies',
+                    subtitle: 'Variedad de especies para condimentar tus comidas.',
+                    products: [
+                        { id: 'especies-1', name: 'Producto 1', category: 'Especies', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-2', name: 'Producto 2', category: 'Especies', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-3', name: 'Producto 3', category: 'Especies', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-4', name: 'Producto 4', category: 'Especies', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-5', name: 'Producto 5', category: 'Especies', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-6', name: 'Producto 6', category: 'Especies', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-7', name: 'Producto 7', category: 'Especies', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-8', name: 'Producto 8', category: 'Especies', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-9', name: 'Producto 9', category: 'Especies', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-10', name: 'Producto 10', category: 'Especies', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-11', name: 'Producto 11', category: 'Especies', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-12', name: 'Producto 12', category: 'Especies', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-13', name: 'Producto 13', category: 'Especies', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-14', name: 'Producto 14', category: 'Especies', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-15', name: 'Producto 15', category: 'Especies', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' }
+                    ]
+                },
+                {
+                    id: 'hogar',
+                    title: '🏠 Hogar',
+                    subtitle: 'Todo lo que necesitas para tu hogar.',
+                    products: [
+                        { id: 'hogar-1', name: 'Producto 1', category: 'Hogar', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'hogar-2', name: 'Producto 2', category: 'Hogar', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'hogar-3', name: 'Producto 3', category: 'Hogar', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'hogar-4', name: 'Producto 4', category: 'Hogar', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'hogar-5', name: 'Producto 5', category: 'Hogar', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'hogar-6', name: 'Producto 6', category: 'Hogar', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'hogar-7', name: 'Producto 7', category: 'Hogar', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'hogar-8', name: 'Producto 8', category: 'Hogar', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'hogar-9', name: 'Producto 9', category: 'Hogar', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' }
+                    ]
+                }
+            ];
+
+            function renderCatalog() {
+                const container = document.getElementById('catalogContainer');
+                if (!container) return;
+                container.innerHTML = catalogData.map(category => `
+                    <div class="category-block">
+                        <div class="category-header">
+                            <div>
+                                <div class="category-title">${escapeHtml(category.title)}</div>
+                                <p class="category-subtitle">${escapeHtml(category.subtitle)}</p>
+                            </div>
+                            <div class="slider-actions">
+                                <button class="slider-nav left" data-target="${category.id}" type="button" aria-label="Deslizar izquierda">‹</button>
+                                <button class="slider-nav right" data-target="${category.id}" type="button" aria-label="Deslizar derecha">›</button>
+                            </div>
+                        </div>
+                        <div class="products-slider">
+                            <div class="slider-track" id="slider-${category.id}">
+                                ${category.products.map(createProductCard).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                attachSliderControls();
+            }
+
+            function createProductCard(product) {
+                return `
+                    <div class="slider-card product-card" data-id="${escapeHtml(product.id)}" data-name="${escapeHtml(product.name)}" data-price="${product.price}" data-unit="${escapeHtml(product.unit)}">
+                        ${product.img ? `<img class="product-img" src="${escapeHtml(product.img)}" alt="${escapeHtml(product.name)}" loading="lazy">` : `<div class="product-img" aria-label="${escapeHtml(product.name)}"></div>`}
+                        <div class="product-info">
+                            <div class="product-category">${escapeHtml(product.category)}</div>
+                            <div class="product-name">${escapeHtml(product.name)}</div>
+                            <div class="product-desc">${escapeHtml(product.desc)}</div>
+                            <div class="product-footer">
+                                <span class="product-price">${formatMoney(product.price)} <span class="price-unit">/ ${escapeHtml(product.unit)}</span></span>
+                                <button type="button" class="btn-add add-to-cart">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function attachSliderControls() {
+                document.querySelectorAll('.slider-nav').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const targetId = button.dataset.target;
+                        const track = document.getElementById('slider-' + targetId);
+                        if (!track) return;
+                        const scrollAmount = track.clientWidth - 40;
+                        track.scrollBy({ left: button.classList.contains('right') ? scrollAmount : -scrollAmount, behavior: 'smooth' });
+                    });
+                });
+            }
+
+            renderCatalog();
+
+            let __lastNavbarCount = 0;
+            function animateNavbarCount(newCount) {
+                if (!navbarCartCount) return;
+                const start = Number(__lastNavbarCount) || 0;
+                const end = Number(newCount) || 0;
+                if (start === end) {
+                    navbarCartCount.innerText = end;
+                    return;
+                }
+                const step = end > start ? 1 : -1;
+                const steps = Math.max(1, Math.abs(end - start));
+                const duration = 200;
+                const interval = Math.max(20, Math.floor(duration / steps));
+                let current = start;
+                navbarCartCount.classList.add('pulse');
+                const t = setInterval(() => {
+                    current += step;
+                    navbarCartCount.innerText = current;
+                    if (current === end) {
+                        clearInterval(t);
+                        setTimeout(() => navbarCartCount.classList.remove('pulse'), 200);
+                        __lastNavbarCount = end;
+                    }
+                }, interval);
+            }
+
+            function updateNavbarCartCount() {
+                if (!navbarCartCount) return;
+                const count = getCartQuantity();
+                animateNavbarCount(count);
+            }
+            
+            // Guardar/recuperar localStorage
+            function saveCart() {
+                // normalize before saving
+                const toSave = (Array.isArray(cart) ? cart : []).map(item => ({
+                    id: item.id,
+                    name: item.name || item.nombre || '',
+                    price: typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0,
+                    unit: item.unit || item.unidad || '',
+                    quantity: Number(item.quantity) || 0
+                })).filter(i => i.id && i.quantity > 0);
+                cart = toSave;
+                localStorage.setItem('verfruts_cart', JSON.stringify(toSave));
+            }
+            
+            function loadCart() {
+                const stored = localStorage.getItem('verfruts_cart');
+                if (stored) {
+                    try {
+                        const parsed = JSON.parse(stored);
+                        if (Array.isArray(parsed)) {
+                            // validate items
+                            cart = parsed.filter(item => item && item.id && (item.name || item.nombre) && (typeof item.price === 'number' || !isNaN(parseFloat(item.price))))
+                                .map(item => {
+                                    // normalize shape
+                                    const name = item.name || item.nombre || '';
+                                    const price = typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0;
+                                    const quantity = Number(item.quantity) || 0;
+                                    return { id: item.id, name: name, price: price, unit: item.unit || item.unidad || '', quantity: quantity };
+                                }).filter(i => i.quantity > 0);
+                            // if parsed had invalid entries, overwrite storage to keep clean state
+                            saveCart();
+                        } else {
+                            cart = [];
+                            saveCart();
+                        }
+                    } catch(e) { cart = []; saveCart(); }
+                } else {
+                    cart = [];
+                    saveCart();
+                }
+                renderCart();
+            }
+            
+            // Renderizar carrito (sidebar)
+            function renderCart() {
+                console.log('[cart] renderCart() items=', cart.length);
+                updateNavbarCartCount();
+                // small visual pulse on render (for feedback when modal closed)
+                try { navbarCartCount && navbarCartCount.classList.add('pulse'); setTimeout(()=> navbarCartCount && navbarCartCount.classList.remove('pulse'), 300); } catch(e){}
+                if (modal && modal.classList.contains('active')) {
+                    renderModal();
+                }
+            }
+            
+            function changeQuantity(id, delta) {
+                const index = cart.findIndex(i => i.id === id);
+                if (index !== -1) {
+                    const newQty = cart[index].quantity + delta;
+                    if (newQty <= 0) {
+                        cart.splice(index, 1);
+                    } else {
+                        cart[index].quantity = newQty;
+                    }
+                    renderCart();
+                    saveCart();
+                }
+            }
+            
+            function removeItem(id) {
+                cart = cart.filter(i => i.id !== id);
+                renderCart();
+                saveCart();
+            }
+            
+            function clearCart() {
+                if (cart.length === 0) return;
+                cart = [];
+                saveCart();
+                renderCart();
+                renderModal();
+            }
+            
+            function addProduct(id, name, price, unit) {
+                console.log('[cart] addProduct()', id, name, price);
+                const existing = cart.find(i => i.id === id);
+                if (existing) {
+                    existing.quantity += 1;
+                } else {
+                    cart.push({ id, name, price: parseFloat(price), unit: unit || '', quantity: 1 });
+                }
+                renderCart();
+                saveCart();
+                updateNavbarCartCount();
+                // quick navbar flash to indicate addition
+                animateNavbarFlash();
+                // Animación breve al agregar
+                const btn = document.querySelector(`.product-card[data-id="${id}"] .add-to-cart`);
+                if (btn) {
+                    btn.classList.add('added');
+                    setTimeout(() => { if (btn) btn.classList.remove('added'); }, 180);
+                }
+            }
+
+            function animateNavbarFlash() {
+                if (!openCartBtn) return;
+                // scale the cart button briefly
+                openCartBtn.style.transition = 'transform 0.18s ease';
+                openCartBtn.style.transform = 'scale(1.08)';
+                setTimeout(() => { openCartBtn.style.transform = ''; }, 180);
+            }
+            
+            // Vincular botones "Agregar" de cada producto
+            function bindAddButtons() {
+                // ensure buttons are type=button to prevent accidental submits
+                document.querySelectorAll('.add-to-cart').forEach(btn => { try { btn.setAttribute('type','button'); } catch(e){} });
+                // single delegated listener on body to handle all add-to-cart clicks (prevents duplicate handlers)
+                if (!document.body.__cartDelegationAdded) {
+                    document.body.addEventListener('click', function(e){
+                        const b = e.target.closest && e.target.closest('.add-to-cart');
+                        if (b) {
+                            productHandler.call(b, e);
+                        }
+                    });
+                    document.body.__cartDelegationAdded = true;
+                }
+            }
+            
+            function productHandler() {
+                const card = this.closest('.product-card');
+                if (!card) return;
+                const id = card.dataset.id;
+                const name = card.dataset.name;
+                const price = card.dataset.price;
+                const unit = card.dataset.unit;
+                console.log('[cart] button clicked for', id);
+                if (id && name && price) addProduct(id, name, price, unit);
+            }
+            
+            // Modal: mostrar resumen
+            function openModal() {
+                console.log('[cart] openModal()');
+                if (!modal) return;
+                renderModal();
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function renderModal() {
+                if (!modalItemsContainer) return;
+                const isEmpty = cart.length === 0;
+                let total = 0;
+                let itemsHtml = '';
+                if (isEmpty) {
+                    itemsHtml = '<div class="empty-cart">Tu carrito está vacío. Agrega productos para hacer un pedido.</div>';
+                } else {
+                    cart.forEach(item => {
+                        const subtotal = item.price * item.quantity;
+                        total += subtotal;
+                        itemsHtml += `
+                            <div class="modal-item" data-modal-id="${item.id}">
+                                <div class="modal-item-info">
+                                    <div class="modal-item-name">${escapeHtml(item.name || 'Producto')}</div>
+                                    <div class="modal-item-price">${formatMoney(typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0)} c/u · ${escapeHtml(item.unit || '')}</div>
+                                </div>
+                                <div class="modal-item-controls">
+                                    <button type="button" class="cart-qty-btn" data-id="${item.id}" data-action="decrease" aria-label="Disminuir cantidad">−</button>
+                                    <span class="modal-item-qty">${item.quantity}</span>
+                                    <button type="button" class="cart-qty-btn" data-id="${item.id}" data-action="increase" aria-label="Aumentar cantidad">+</button>
+                                    <span class="modal-item-subtotal">${formatMoney(subtotal)}</span>
+                                    <button type="button" class="modal-item-remove" data-id="${item.id}" aria-label="Eliminar producto">×</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+                modalItemsContainer.innerHTML = itemsHtml;
+                modalTotalSpan.innerText = formatMoney(total);
+                updateModalSendState();
+                document.querySelectorAll('.modal-item-remove').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.dataset.id;
+                        removeItem(id);
+                        renderModal();
+                        renderCart();
+                    });
+                });
+                document.querySelectorAll('.cart-qty-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.dataset.id;
+                        const action = btn.dataset.action;
+                        if (action === 'increase') {
+                            changeQuantity(id, 1);
+                        } else {
+                            changeQuantity(id, -1);
+                        }
+                        renderModal();
+                        renderCart();
+                    });
+                });
+            }
+
+            function updateModalSendState() {
+                if (!sendWhatsappBtn) return;
+                const hasName = modalBuyerName && modalBuyerName.value.trim().length > 0;
+                sendWhatsappBtn.disabled = !(cart.length > 0 && hasName);
+            }
+            
+            function closeModal() {
+                if (!modal) return;
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Generar mensaje para WhatsApp
+            function generateWhatsAppMessage() {
+                if (cart.length === 0) return '';
+                const buyerName = modalBuyerName ? (modalBuyerName.value || '').trim() : '';
+                const buyerLast = modalBuyerLast ? (modalBuyerLast.value || '').trim() : '';
+                if (!buyerName) return '';
+                const buyerFullName = `${buyerName}${buyerLast ? ' ' + buyerLast : ''}`;
+                const lines = [
+                    '🛍️ *Nuevo Pedido - Verfrut\'s y R&M*',
+                    '',
+                    `*Comprador:* ${buyerFullName}`,
+                    '',
+                    '*Resumen de productos:*'
+                ];
+                let total = 0;
+                cart.forEach(item => {
+                    const subtotal = item.price * item.quantity;
+                    total += subtotal;
+                    lines.push(`- ${item.name} x${item.quantity} (${item.unit}) → ${formatMoney(subtotal)}`);
+                });
+                lines.push('');
+                lines.push(`*Total estimado:* ${formatMoney(total)}`);
+                return encodeURIComponent(lines.join('\n'));
+            }
+            
+            function sendOrder() {
+                if (cart.length === 0) {
+                    alert('No hay productos para enviar.');
+                    return;
+                }
+                const text = generateWhatsAppMessage();
+                if (!text) {
+                    alert('Por favor ingresa tu nombre antes de enviar el pedido.');
+                    return;
+                }
+                const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+                window.open(url, '_blank');
+                cart = [];
+                saveCart();
+                renderCart();
+                closeModal();
+                setTimeout(() => alert('✅ Pedido enviado. Revisa WhatsApp para confirmar y completar el envío.'), 300);
+            }
+            
+            function escapeHtml(str) {
+                return String(str).replace(/[&<>]/g, function(m) {
+                    if (m === '&') return '&amp;';
+                    if (m === '<') return '&lt;';
+                    if (m === '>') return '&gt;';
+                    return m;
+                });
+            }
+            
+            // Event listeners
+            if (openCartBtn) openCartBtn.addEventListener('click', openModal);
+            if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+            if (sendWhatsappBtn) sendWhatsappBtn.addEventListener('click', sendOrder);
+            const clearCartBtn = document.getElementById('clearCartBtn');
+            if (clearCartBtn) clearCartBtn.addEventListener('click', clearCart);
+            if (modalBuyerName) modalBuyerName.addEventListener('input', updateModalSendState);
+            if (modalBuyerLast) modalBuyerLast.addEventListener('input', updateModalSendState);
+            if (modal) {
+                modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && modal.classList.contains('active')) {
+                        closeModal();
+                    }
+                });
+                // listen for storage events to update badge
+                window.addEventListener('storage', function(e){
+                    if (e.key === 'verfruts_cart') {
+                        try { loadCart(); } catch(ex){}
+                    }
+                });
+            }
+            
+            // Inicializar
+            loadCart();
+            bindAddButtons();
+        })();
+    </script>
 </body>
 </html>

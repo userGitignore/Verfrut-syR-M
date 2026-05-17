@@ -7,13 +7,17 @@
     <title>Ubicación | Verfrut's y R&M</title>
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png"> 
     <link rel="stylesheet" href="styles.css">
-<base target="_blank">
+
+    <!-- ============================================
+         ESTILOS ESPECÍFICOS PARA INFO CARDS DE UBICACIÓN
+         Centra los 4 cards con igual tamaño y ancho
+         ============================================ -->
 </head>
 <body>
     <!-- ============================================
          PANTALLA DE CARGA INICIAL
          ============================================ -->
-    <div class="page-loader" id="pageLoader" style="background: linear-gradient(145deg, #0a1f0a 0%, #0d2815 50%, #051a05 100%);">
+    <div class="page-loader" id="pageLoader" >
         <div class="loader-wrapper">
             <div class="loader-spinner"></div>
             <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
@@ -24,7 +28,7 @@
     <!-- ============================================
          BARRA DE NAVEGACION
          ============================================ -->
-    <div id="navOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998;" onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
+    <div id="navOverlay"  onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -159,8 +163,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
-                <span style="font-style: italic;">This website was designed and created by:</span> <span
-                    style="font-weight: bold;">Either Design STR Team.</span>
+                <span class="footer-italic">This website was designed and created by:</span> <span class="footer-bold">Either Design STR Team.</span>
             </p>
         </div>
     </footer>

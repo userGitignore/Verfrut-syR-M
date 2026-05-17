@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,7 @@
          PANTALLA DE CARGA INICIAL
          ============================================ -->
 
-    <div class="page-loader" id="pageLoader" style="background: linear-gradient(145deg, #0a1f0a 0%, #0d2815 50%, #051a05 100%);">
+    <div class="page-loader" id="pageLoader" >
         <div class="loader-wrapper">
             <div class="loader-spinner"></div>
             <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
@@ -27,7 +26,7 @@
          ============================================ -->
     <!-- Overlay para cerrar menú al tocar fuera -->
 
-    <div id="navOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998;" onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
+    <div id="navOverlay"  onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -65,7 +64,7 @@
     <section class="hero">
         <div class="slider-track" id="sliderTrack">
             <div class="slide">
-                <img src="img-slider-index/canastabasica.png" alt="Canasta Básica clon">
+                <img src="img-slider-index/canastabasica.jpg" alt="Canasta Básica clon">
                 <div class="slide-content">
                     <h2>Canasta Básica</h2>
                     <p>Productos básicos, frescos y de calidad.</p>
@@ -73,7 +72,7 @@
                 </div>
             </div>
             <div class="slide">
-                <img src="img-slider-index/frutas.png" alt="Frutas Frescas">
+                <img src="img-slider-index/frutas.jpg" alt="Frutas Frescas">
                 <div class="slide-content">
                     <h2>Frutas Frescas</h2>
                     <p>Siente el sabor único.</p>
@@ -81,7 +80,7 @@
                 </div>
             </div>
             <div class="slide">
-                <img src="img-slider-index/Verduras.png" alt="Verduras Variadas">
+                <img src="img-slider-index/Verduras.jpg" alt="Verduras Variadas">
                 <div class="slide-content">
                     <h2>Verduras Variadas</h2>
                     <p>Frescas y de la mejor calidad.</p>
@@ -89,7 +88,7 @@
                 </div>
             </div>
             <div class="slide">
-                <img src="img-slider-index/canastabasica.png" alt="Canasta Básica">
+                <img src="img-slider-index/canastabasica.jpg" alt="Canasta Básica">
                 <div class="slide-content">
                     <h2>Canasta Básica</h2>
                     <p>Productos básicos, frescos y de calidad.</p>
@@ -97,7 +96,7 @@
                 </div>
             </div>
             <div class="slide">
-                <img src="img-slider-index/frutas.png" alt="Frutas Frescas clon">
+                <img src="img-slider-index/frutas.jpg" alt="Frutas Frescas clon">
                 <div class="slide-content">
                     <h2>Frutas Frescas</h2>
                     <p>Siente el sabor único.</p>
@@ -128,7 +127,7 @@
                 <button class="carousel-btn prev" id="carouselPrev" aria-label="Anterior">&#10094;</button>
                 <div class="carousel-track" id="prodTrack">
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/fresas.png" alt="Fresas" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/fresas2.jpg" alt="Fresas" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Frutas</div>
                             <h3 class="product-name">Fresas</h3>
@@ -140,7 +139,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/quesoSeco.png" alt="Queso Seco" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/quesoSeco.jpg" alt="Queso Seco" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Lacteos</div>
                             <h3 class="product-name">Queso Seco</h3>
@@ -152,7 +151,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/azucarBlanca.png" alt="Azucar Blanca" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/azucarBlanca.jpg" alt="Azucar Blanca" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Canasta Básica</div>
                             <h3 class="product-name">Azucar Blanca</h3>
@@ -164,7 +163,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/loroco.png" alt="Loroco" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/loroco.jpg" alt="Loroco" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Especies</div>
                             <h3 class="product-name">Loroco</h3>
@@ -176,7 +175,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/tomates.png" alt="Tomates" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/tomates.jpg" alt="Tomates" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Verduras</div>
                             <h3 class="product-name">Tomates Frescos</h3>
@@ -188,10 +187,10 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/turrones.png" alt="Naranjas" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/Sardina.jpg" alt="Sardina" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">POR DEFINIR</div>
-                            <h3 class="product-name">Turrones</h3>
+                            <h3 class="product-name">Sardina</h3>
                             <p class="product-desc">Sin descripcion disponible.</p>
                             <div class="product-price">
                                 <span class="price">$0.00 <span class="price-unit">la libra</span></span>
@@ -200,7 +199,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/harina.png" alt="Harina" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/harina.jpg" alt="Harina" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Canasta Básica</div>
                             <h3 class="product-name">Harina de Trigo</h3>
@@ -212,7 +211,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/papas.png" alt="Papas" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/papas.jpg" alt="Papas" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Verduras</div>
                             <h3 class="product-name">Papas</h3>
@@ -224,7 +223,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/aceiteOrisol.png" alt="AceiteOrisol" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/aceiteOrisol.jpg" alt="AceiteOrisol" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Canasta Básica</div>
                             <h3 class="product-name">Aceite</h3>
@@ -236,7 +235,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/cafeMolido.png" alt="Cafe Molido" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/cafeMolido.jpg" alt="Cafe Molido" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Canasta Básica</div>
                             <h3 class="product-name">Café Molido</h3>
@@ -248,7 +247,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/Guisquiles.png" alt="Guisquiles" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/guisquil.jpg" alt="Guisquiles" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Verduras</div>
                             <h3 class="product-name">Guisquiles</h3>
@@ -260,7 +259,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/elotes.png" alt="Elotes" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/elote.jpg" alt="Elotes" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Verduras</div>
                             <h3 class="product-name">Elotes</h3>
@@ -272,7 +271,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/platanos.png" alt="Plátanos" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/platanos.jpg" alt="Plátanos" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Frutas</div>
                             <h3 class="product-name">Plátanos</h3>
@@ -284,7 +283,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/naranjas.png" alt="Naranjas" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/naranjas.jpg" alt="Naranjas" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Frutas</div>
                             <h3 class="product-name">Naranjas</h3>
@@ -296,7 +295,7 @@
                         </div>
                     </div>
                     <div class="product-card">
-                        <img class="product-image" src="img-fiveteen-Best-products-index/embutidos.png" alt="Embutidos" loading="lazy">
+                        <img class="product-image" src="img-fiveteen-Best-products-index/embutidos.jpg" alt="Embutidos" loading="lazy">
                         <div class="product-info">
                             <div class="product-category">Canasta Básica</div>
                             <h3 class="product-name">Embutidos</h3>
@@ -333,35 +332,35 @@
             </div>
             <div class="categories-grid">
                 <a href="productos.html#frutas" class="category-card">
-                    <img class="category-image" src="img-categories-index/frutas.png" alt="Frutas Frescas" loading="lazy">
+                    <img class="category-image" src="img-categories-index/frutas.jpg" alt="Frutas Frescas" loading="lazy">
                     <div class="category-content">
                         <h3>Frutas Frescas</h3>
                         <p>Selección de frutas de temporada, siempre maduras y jugosas.</p>
                     </div>
                 </a>
                 <a href="productos.html#verduras" class="category-card">
-                    <img class="category-image" src="img-categories-index/Verduras.png" alt="Verduras Variadas" loading="lazy">
+                    <img class="category-image" src="img-categories-index/Verduras.jpg" alt="Verduras Variadas" loading="lazy">
                     <div class="category-content">
                         <h3>Verduras Variadas</h3>
                         <p>Lo mejor de la huerta para tu mesa diaria, frescas cada mañana.</p>
                     </div>
                 </a>
                 <a href="productos.html#canasta" class="category-card">
-                    <img class="category-image" src="img-categories-index/canastabasica.png" alt="Canasta Básica" loading="lazy">
+                    <img class="category-image" src="img-categories-index/canastabasica.jpg" alt="Canasta Básica" loading="lazy">
                     <div class="category-content">
                         <h3>Canasta Básica</h3>
                         <p>Arroz, frijoles, aceite, azúcar y todo lo esencial para tu hogar.</p>
                     </div>
                 </a>
                 <a href="productos.html#hogar" class="category-card">
-                    <img class="category-image" src="img-categories-index/limpiezaYhogar.png" alt="Limpieza y Hogar" loading="lazy">
+                    <img class="category-image" src="img-categories-index/limpiezaYhogar.jpg" alt="Limpieza y Hogar" loading="lazy">
                     <div class="category-content">
                         <h3>Limpieza y Hogar</h3>
                         <p>Todo para mantener tu hogar limpio, fresco y ordenado.</p>
                     </div>
                 </a>
                 <a href="productos.html#embutidos" class="category-card">
-                    <img class="category-image" src="img-categories-index/especiesYembutidos.png" alt="Especies y Embutidos" loading="lazy">
+                    <img class="category-image" src="img-categories-index/especiesYembutidos.jpg" alt="Especies y Embutidos" loading="lazy">
                     <div class="category-content">
                         <h3>Embutidos y Especies</h3>
                         <p>Sazonadores, café, té y especias para dar sabor a tu cocina.</p>
@@ -489,8 +488,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
-                <span style="font-style: italic;">This website was designed and created by:</span> <span
-                    style="font-weight: bold;">Either Design STR Team.</span>
+                <span class="footer-italic">This website was designed and created by:</span> <span class="footer-bold">Either Design STR Team.</span>
             </p>
         </div>
     </footer>

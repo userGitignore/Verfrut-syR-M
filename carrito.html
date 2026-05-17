@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Carrito - Verfrut's y R&M</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+    :root{--bg:#071012;--card:#07151a;--muted:#9aa6af;--accent:#22c55e;--accent-2:#16a34a;--danger:#f87171}
+    body{background:var(--bg);color:#e6eef3;font-family:inherit;margin:0;padding:1.2rem}
+    .cart-shell{max-width:760px;margin:0 auto}
+    h2{color:var(--accent);margin:0 0 12px 0;font-size:1.6rem}
+    .card{background:linear-gradient(180deg,#07151a, #071a1d);border-radius:16px;padding:18px;border:1px solid rgba(34,197,94,0.08);box-shadow:0 12px 30px rgba(0,0,0,0.6)}
+    .cart-list{margin-top:12px}
+    .cart-row{display:flex;justify-content:space-between;align-items:center;padding:0.9rem;background:rgba(11,42,33,0.25);border-radius:12px;margin-bottom:10px}
+    .cart-row > div:first-child{max-width:60%}
+    .cart-actions{display:flex;gap:8px;align-items:center}
+    .qty-btn{background:#0b2a21;border:none;color:#fff;padding:6px 10px;border-radius:8px;cursor:pointer}
+    .qty-btn:hover{background:var(--accent-2)}
+    .remove-btn{background:transparent;border:none;color:var(--danger);cursor:pointer}
+    .total-row{display:flex;justify-content:space-between;font-weight:700;margin-top:14px;font-size:1.05rem}
+    .send-whatsapp{background:var(--accent);border:none;padding:10px 14px;border-radius:24px;color:#fff;margin-top:12px;cursor:pointer;box-shadow:0 6px 18px rgba(34,197,94,0.12)}
+    .send-whatsapp:disabled{opacity:0.6;cursor:not-allowed;background:rgba(34,197,94,0.45);box-shadow:none}
+    .empty{color:var(--muted);padding:2rem;text-align:center}
+    .close-btn{background:#2d3748;border:none;color:#fff;padding:8px 12px;border-radius:12px;cursor:pointer;margin-bottom:8px}
+    .buyer-row{display:flex;gap:10px;margin-top:12px}
+    .buyer-row input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#e6eef3}
+    .buyer-row label{display:block;font-size:0.85rem;color:var(--muted);margin-bottom:6px}
+    .small-note{font-size:0.85rem;color:var(--muted);margin-top:8px}
+    @media (max-width:520px){.buyer-row{flex-direction:column}}
+</style>
+</head>
+<body>
+        <div class="cart-shell">
+        <button id="closeBtn" class="close-btn">Cerrar</button>
+        <h2>🛒 Mi carrito</h2>
+        <div class="card">
+            <div id="cartList" class="cart-list"></div>
+            <div id="totalRow" class="total-row"></div>
+
+            <div style="margin-top:10px">
+                <label class="small-note">Introduce tu nombre y apellido (para que el vendedor te identifique)</label>
+                <div class="buyer-row">
+                    <input id="buyerName" placeholder="Nombre" aria-label="Nombre" />
+                    <input id="buyerLast" placeholder="Apellido" aria-label="Apellido" />
+                </div>
+            </div>
+
+            <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:12px">
+                <button id="clearCartBtn" class="close-btn" style="background:#213033">Vaciar carrito</button>
+                <button id="sendWhatsBtn" class="send-whatsapp">Enviar por WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+(function(){
+    const CART_KEY = 'verfruts_cart';
+    const WHATSAPP_NUMBER = '50360649103';
+    const cartList = document.getElementById('cartList');
+    const totalRow = document.getElementById('totalRow');
+    const sendBtn = document.getElementById('sendWhatsBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const buyerName = document.getElementById('buyerName');
+    const buyerLast = document.getElementById('buyerLast');
+    const clearCartBtn = document.getElementById('clearCartBtn');
+
+    function loadCart(){
+        const stored = localStorage.getItem(CART_KEY);
+        try{
+            return stored ? JSON.parse(stored) : [];
+        }catch(e){return []}
+    }
+
+    function saveCart(cart){
+        localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    function formatMoney(v){return '$'+Number(v).toFixed(2)}
+
+    function render(){
+        const cart = loadCart();
+        let html = '';
+        let total = 0;
+        if(!cart || cart.length === 0) {
+            cartList.innerHTML = '<div class="empty">Tu carrito está vacío.</div>';
+            totalRow.innerHTML = '';
+        } else {
+            cart.forEach(item=>{
+                const subtotal = item.price*item.quantity; total+=subtotal;
+                html += `<div class="cart-row" data-id="${item.id}">
+                    <div>
+                        <div style="font-weight:700">${escapeHtml(item.name)}</div>
+                        <div style="font-size:0.85rem;color:#9aa6af">${formatMoney(item.price)} · ${escapeHtml(item.unit||'')}</div>
+                    </div>
+                    <div class="cart-actions">
+                        <button class="qty-btn dec">-</button>
+                        <div style="min-width:28px;text-align:center">${item.quantity}</div>
+                        <button class="qty-btn inc">+</button>
+                        <button class="remove-btn">🗑️</button>
+                    </div>
+                </div>`;
+            });
+            cartList.innerHTML = html;
+            totalRow.innerHTML = `<div>Total</div><div>${formatMoney(total)}</div>`;
+
+            // bind actions
+            document.querySelectorAll('.cart-row').forEach(row=>{
+                const id = row.dataset.id;
+                row.querySelector('.inc').addEventListener('click',()=> changeQty(id,1));
+                row.querySelector('.dec').addEventListener('click',()=> changeQty(id,-1));
+                row.querySelector('.remove-btn').addEventListener('click', ()=> removeItem(id));
+            });
+        }
+        // Always update send state (button visible but enabled only when name + cart)
+        updateSendState();
+    }
+
+    function updateSendState(){
+        const cart = loadCart();
+        const hasName = (buyerName.value || '').trim().length>0;
+        sendBtn.disabled = !(cart.length>0 && hasName);
+    }
+
+    buyerName.addEventListener('input', updateSendState);
+    buyerLast.addEventListener('input', updateSendState);
+    clearCartBtn.addEventListener('click', ()=>{ localStorage.removeItem(CART_KEY); render(); try{ window.parent.postMessage({type:'cartCleared'}, '*'); }catch(e){} });
+
+    function changeQty(id,delta){
+        const cart = loadCart();
+        const idx = cart.findIndex(i=>i.id===id);
+        if(idx===-1) return;
+        cart[idx].quantity = Math.max(0, cart[idx].quantity + delta);
+        if(cart[idx].quantity===0) cart.splice(idx,1);
+        saveCart(cart);
+        render();
+        updateSendState();
+    }
+
+    function removeItem(id){
+        const cart = loadCart();
+        const next = cart.filter(i=>i.id!==id);
+        saveCart(next);
+        render();
+        updateSendState();
+    }
+
+    function generateWhats(){
+        const cart = loadCart(); if(cart.length===0) return '';
+        const buyer = ((buyerName.value||'').trim() + ' ' + (buyerLast.value||'').trim()).trim();
+        // require buyer name for message
+        if (!buyerName.value || !buyerName.value.trim()) return '';
+        let lines = ['🛍️ *Pedido - Verfrut\\'s y R&M*','', `*Comprador:* ${buyer}`, '', '*Productos:*']; let total=0;
+        cart.forEach(it=>{ const s=it.price*it.quantity; total+=s; lines.push(`- ${it.name} x${it.quantity} (${it.unit}) → $${s.toFixed(2)}`); });
+        lines.push('','*Total:* $'+total.toFixed(2),'','📍 Dirección: __________','📞 Teléfono: __________');
+        return encodeURIComponent(lines.join('\n'));
+    }
+
+    sendBtn.addEventListener('click', ()=>{
+        const text = generateWhats();
+        if(!text) {
+            if (!buyerName.value || !buyerName.value.trim()) return alert('Por favor ingresa tu nombre antes de enviar el pedido.');
+            return alert('No hay productos para enviar.');
+        }
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+        window.open(url, '_blank');
+    });
+
+    closeBtn.addEventListener('click', ()=>{
+        try{ window.parent.postMessage({type:'closeCart'}, '*'); }catch(e){}
+    });
+
+    window.addEventListener('storage', function(e){ if(e.key===CART_KEY){ render(); } });
+
+    function escapeHtml(str){ return String(str).replace(/[&<>]/g,function(m){ if(m==='&')return '&amp;'; if(m==='<' )return '&lt;'; if(m==='>')return '&gt;'; return m; }); }
+
+    render();
+})();
+</script>
+</body>
+</html>

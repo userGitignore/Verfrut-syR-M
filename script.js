@@ -538,3 +538,138 @@
             initHeroLoaded();
         });
     
+
+/* ============================================
+   JS EXTRACTED FROM INJU.HTML <script> BLOCK
+   ============================================
+   All JavaScript previously inside <script> in inju.html
+   has been moved here. No logic changes made.
+   ============================================ */
+
+// SCROLL REVEAL for inju.html
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealElements.forEach(el => revealObserver.observe(el));
+
+// TIMELINE AUTOMÁTICO SUAVE for inju.html
+const timelineScroll = document.getElementById('timelineScroll');
+const timelineNodes = document.querySelectorAll('.timeline-node');
+const timelineDots = document.querySelectorAll('.timeline-dot-btn');
+const prevBtn = document.getElementById('timelinePrev');
+const nextBtn = document.getElementById('timelineNext');
+let currentIndex = 0;
+let autoInterval;
+let isUserInteracting = false;
+const AUTO_DELAY = 4000;
+
+function goToTimeline(index, smooth) {
+    if (typeof smooth === 'undefined') smooth = true;
+    if (index < 0) index = timelineNodes.length - 1;
+    if (index >= timelineNodes.length) index = 0;
+    currentIndex = index;
+
+    var node = timelineNodes[index];
+    var scrollPos = node.offsetLeft - (timelineScroll.offsetWidth / 2) + (node.offsetWidth / 2);
+    timelineScroll.scrollTo({ left: scrollPos, behavior: smooth ? 'smooth' : 'auto' });
+
+    timelineDots.forEach(function(dot, i) {
+        dot.classList.toggle('active', i === index);
+    });
+}
+
+function startAuto() {
+    clearInterval(autoInterval);
+    autoInterval = setInterval(function() {
+        if (!isUserInteracting) {
+            goToTimeline(currentIndex + 1);
+        }
+    }, AUTO_DELAY);
+}
+
+function stopAuto() {
+    isUserInteracting = true;
+    clearInterval(autoInterval);
+    setTimeout(function() {
+        isUserInteracting = false;
+        startAuto();
+    }, 8000);
+}
+
+if (prevBtn) prevBtn.addEventListener('click', function() { stopAuto(); goToTimeline(currentIndex - 1); });
+if (nextBtn) nextBtn.addEventListener('click', function() { stopAuto(); goToTimeline(currentIndex + 1); });
+
+if (timelineDots.length > 0) {
+    timelineDots.forEach(function(dot, i) {
+        dot.addEventListener('click', function() { stopAuto(); goToTimeline(i); });
+    });
+}
+
+// Drag support
+var isDown = false;
+var startX;
+var scrollLeft;
+
+if (timelineScroll) {
+    timelineScroll.addEventListener('mousedown', function(e) {
+        isDown = true;
+        isUserInteracting = true;
+        timelineScroll.style.cursor = 'grabbing';
+        startX = e.pageX - timelineScroll.offsetLeft;
+        scrollLeft = timelineScroll.scrollLeft;
+    });
+    timelineScroll.addEventListener('mouseleave', function() {
+        isDown = false;
+        if (timelineScroll) timelineScroll.style.cursor = 'grab';
+    });
+    timelineScroll.addEventListener('mouseup', function() {
+        isDown = false;
+        if (timelineScroll) timelineScroll.style.cursor = 'grab';
+        var closest = 0;
+        var minDiff = Infinity;
+        timelineNodes.forEach(function(node, i) {
+            var nodeCenter = node.offsetLeft + node.offsetWidth / 2;
+            var containerCenter = timelineScroll.scrollLeft + timelineScroll.offsetWidth / 2;
+            var diff = Math.abs(nodeCenter - containerCenter);
+            if (diff < minDiff) { minDiff = diff; closest = i; }
+        });
+        goToTimeline(closest);
+        setTimeout(function() { isUserInteracting = false; startAuto(); }, 8000);
+    });
+    timelineScroll.addEventListener('mousemove', function(e) {
+        if (!isDown) return;
+        e.preventDefault();
+        var x = e.pageX - timelineScroll.offsetLeft;
+        var walk = (x - startX) * 1.5;
+        timelineScroll.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch support
+    var touchStartX = 0;
+    timelineScroll.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        isUserInteracting = true;
+    }, { passive: true });
+    timelineScroll.addEventListener('touchend', function(e) {
+        var touchEndX = e.changedTouches[0].clientX;
+        var diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) goToTimeline(currentIndex + 1);
+            else goToTimeline(currentIndex - 1);
+        }
+        setTimeout(function() { isUserInteracting = false; startAuto(); }, 8000);
+    });
+
+    // Hover pausa
+    timelineScroll.addEventListener('mouseenter', function() { isUserInteracting = true; });
+    timelineScroll.addEventListener('mouseleave', function() { isUserInteracting = false; });
+
+    goToTimeline(0, false);
+    startAuto();
+}

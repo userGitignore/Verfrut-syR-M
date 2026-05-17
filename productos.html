@@ -11,7 +11,7 @@
 
 <body>
     <!-- ===== LOADER ===== -->
-    <div class="page-loader" id="pageLoader" style="background: linear-gradient(145deg, #0a1f0a 0%, #0d2815 50%, #051a05 100%);">
+    <div class="page-loader" id="pageLoader" >
         <div class="loader-wrapper">
             <div class="loader-spinner"></div>
             <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
@@ -20,7 +20,7 @@
     </div>
 
     <!-- ===== NAV OVERLAY (móvil) ===== -->
-    <div id="navOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998;"
+    <div id="navOverlay" 
         onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
 
     <!-- ===== NAVBAR ===== -->
@@ -96,7 +96,7 @@
 
         <!-- Scroll indicator -->
         <a href="#frutas" class="scroll-indicator">
-            <span style="color: white;">Explorar</span>
+            <span class="scroll-indicator-text">Explorar</span>
             <svg viewBox="0 0 24 24">
                 <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
             </svg>
@@ -1750,8 +1750,7 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
-                <span style="font-style: italic;">This website was designed and created by:</span> <span
-                    style="font-weight: bold;">Either Design STR Team.</span>
+                <span class="footer-italic">This website was designed and created by:</span> <span class="footer-bold">Either Design STR Team.</span>
             </p>
         </div>
     </footer>

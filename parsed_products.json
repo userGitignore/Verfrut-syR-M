@@ -1,0 +1,731 @@
+[
+  {
+    "category": "Frutas",
+    "name": "Manzana Roja",
+    "desc": "Fresca y jugosa, ideal para consumo diario",
+    "price": "4 por $1.00",
+    "unit": "/ bolsa",
+    "img": "",
+    "tag": "Oferta"
+  },
+  {
+    "category": "Frutas",
+    "name": "Manzana Verde",
+    "desc": "Seleccionada en su punto óptimo de maduración",
+    "price": "3 por $1.00",
+    "unit": "/ bolsa",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Frutas",
+    "name": "Pera Verde",
+    "desc": "Perfecta para jugos naturales y postres",
+    "price": "2 por $1.00",
+    "unit": "/ bolsa",
+    "img": "img/Frutas/pera.jpeg",
+    "tag": "Popular"
+  },
+  {
+    "category": "Frutas",
+    "name": "Piña",
+    "desc": "Rica en vitaminas y antioxidantes",
+    "price": "$2.50",
+    "unit": "/ unidad",
+    "img": "img/Frutas/piña.jpeg",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Frutas",
+    "name": "Uva Morada",
+    "desc": "Directo del productor a tu mesa",
+    "price": "Libra $3.50",
+    "unit": "/ bolsa",
+    "img": "img/Frutas/uvamorada.jpeg",
+    "tag": "Nuevo"
+  },
+  {
+    "category": "Frutas",
+    "name": "Uva Verde",
+    "desc": "Sabor dulce y textura irresistible",
+    "price": "Libra $4.50",
+    "unit": "/ bolsa",
+    "img": "img/Frutas/uvaverde.jpeg",
+    "tag": "Local"
+  },
+  {
+    "category": "Frutas",
+    "name": "Naranja",
+    "desc": "Excelente para ensaladas de frutas",
+    "price": "5 por $1.00",
+    "unit": "/ bolsa",
+    "img": "img/Frutas/naranja.jpeg",
+    "tag": "Oferta"
+  },
+  {
+    "category": "Frutas",
+    "name": "Granadillas",
+    "desc": "Calidad premium garantizada",
+    "price": "2 por $1.00",
+    "unit": "/ bolsa",
+    "img": "img/Frutas/granadas.jpeg",
+    "tag": "Orgánico"
+  },
+  {
+    "category": "Frutas",
+    "name": "Papaya",
+    "desc": "Cosechada en las mejores fincas",
+    "price": "$2.00",
+    "unit": "/ unidad",
+    "img": "img/Frutas/papaya.jpeg",
+    "tag": "Popular"
+  },
+  {
+    "category": "Frutas",
+    "name": "Sandia",
+    "desc": "Frescura que se siente al primer mordisco",
+    "price": "$2.00",
+    "unit": "/ unidad",
+    "img": "img/Frutas/sandia.jpeg",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Frutas",
+    "name": "Fresas",
+    "desc": "Fresca y jugosa, ideal para consumo diario",
+    "price": "Bandeja $2.00",
+    "unit": "/\n                                                    bandeja",
+    "img": "img/Frutas/fresas.jpeg",
+    "tag": "Nuevo"
+  },
+  {
+    "category": "Frutas",
+    "name": "Melón",
+    "desc": "Seleccionada en su punto óptimo de maduración",
+    "price": "$1.50",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Local"
+  },
+  {
+    "category": "Verduras",
+    "name": "Pepino",
+    "desc": "Cultivada sin químicos dañinos",
+    "price": "3 por $1.00",
+    "unit": "/ bolsa",
+    "img": "img/Verduras/pepino.jpeg",
+    "tag": "Oferta"
+  },
+  {
+    "category": "Verduras",
+    "name": "Loroco",
+    "desc": "Cosechada diariamente para ti",
+    "price": "$",
+    "unit": "/ bolsa",
+    "img": "img/Verduras/loroco.jpeg",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Verduras",
+    "name": "Brocoli",
+    "desc": "Perfecta para sopas y guisos",
+    "price": "$1.50",
+    "unit": "/ unidad",
+    "img": "img/Verduras/brocoli.png",
+    "tag": "Orgánico"
+  },
+  {
+    "category": "Verduras",
+    "name": "Tomate",
+    "desc": "Ideal para ensaladas frescas",
+    "price": "12 por $1.00",
+    "unit": "/ bolsa",
+    "img": "img/Verduras/tomates.jpeg",
+    "tag": "Popular"
+  },
+  {
+    "category": "Verduras",
+    "name": "Zanahoria",
+    "desc": "Textura crujiente y sabor natural",
+    "price": "Grande $0.35",
+    "unit": "/ Pequeña\n                                            $0.25",
+    "img": "img/Verduras/",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Verduras",
+    "name": "Ejote",
+    "desc": "Cosechada diariamente para ti",
+    "price": "Bolsa $0.50",
+    "unit": "/ bolsa",
+    "img": "img/Verduras/ejotes.jpeg",
+    "tag": "Nuevo"
+  },
+  {
+    "category": "Verduras",
+    "name": "Lechuga",
+    "desc": "Excelente fuente de nutrientes",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "img/Verduras/lechuga.jpeg",
+    "tag": "Local"
+  },
+  {
+    "category": "Verduras",
+    "name": "Yuca",
+    "desc": "Versátil para cualquier receta",
+    "price": "$0.50",
+    "unit": "/ unidad",
+    "img": "img/Verduras/",
+    "tag": "Oferta"
+  },
+  {
+    "category": "Verduras",
+    "name": "Cebollin",
+    "desc": "Frescura garantizada en cada pieza",
+    "price": "Manojo $1.50",
+    "unit": "/ manojo",
+    "img": "img/Verduras/cebollin.jpeg",
+    "tag": "Orgánico"
+  },
+  {
+    "category": "Verduras",
+    "name": "Cebolla morada",
+    "desc": "Directo de la huerta a tu hogar",
+    "price": "4 por $1.00",
+    "unit": "/\n                                                    bolsa",
+    "img": "img/Verduras/cebollamorada.jpeg",
+    "tag": "Popular"
+  },
+  {
+    "category": "Verduras",
+    "name": "Cebolla blanca",
+    "desc": "Calidad que se nota al cocinar",
+    "price": "4 por $1.00",
+    "unit": "/\n                                                    bolsa",
+    "img": "img/Verduras/",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Verduras",
+    "name": "Güisquil",
+    "desc": "Cultivada sin químicos dañinos",
+    "price": "$0.50",
+    "unit": "/ unidad",
+    "img": "img/Verduras/guisquil.jpeg",
+    "tag": "Nuevo"
+  },
+  {
+    "category": "Verduras",
+    "name": "Papas",
+    "desc": "Perfecta para sopas y guisos",
+    "price": "Libra $0.65",
+    "unit": "/\n                                                        bolsa",
+    "img": "img/Verduras/papas.jpeg",
+    "tag": "Local"
+  },
+  {
+    "category": "Verduras",
+    "name": "Elote dulce",
+    "desc": "Ideal para ensaladas frescas",
+    "price": "$2.00",
+    "unit": "/\n                                                        bandeja",
+    "img": "img/Verduras/elotedulce.jpeg",
+    "tag": "Oferta"
+  },
+  {
+    "category": "Verduras",
+    "name": "Espinaca",
+    "desc": "Textura crujiente y sabor natural",
+    "price": "$0.",
+    "unit": "/ manojo",
+    "img": "img/Verduras/espinaca.jpeg",
+    "tag": "Orgánico"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 1",
+    "desc": "Descripción del producto 1",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 2",
+    "desc": "Descripción del producto 2",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 3",
+    "desc": "Descripción del producto 3",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 4",
+    "desc": "Descripción del producto 4",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 5",
+    "desc": "Descripción del producto 5",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 6",
+    "desc": "Descripción del producto 6",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 7",
+    "desc": "Descripción del producto 7",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 8",
+    "desc": "Descripción del producto 8",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 9",
+    "desc": "Descripción del producto 9",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 10",
+    "desc": "Descripción del producto 10",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 11",
+    "desc": "Descripción del producto 11",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 12",
+    "desc": "Descripción del producto 12",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 13",
+    "desc": "Descripción del producto 13",
+    "price": "$1.00",
+    "unit": "/\n                                                        unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 14",
+    "desc": "Descripción del producto 14",
+    "price": "$1.00",
+    "unit": "/\n                                                        unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Canasta",
+    "name": "Producto 15",
+    "desc": "Descripción del producto 15",
+    "price": "$1.00",
+    "unit": "/\n                                                        unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 1",
+    "desc": "Descripción del producto 1",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 2",
+    "desc": "Descripción del producto 2",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 3",
+    "desc": "Descripción del producto 3",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 4",
+    "desc": "Descripción del producto 4",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 5",
+    "desc": "Descripción del producto 5",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 6",
+    "desc": "Descripción del producto 6",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 7",
+    "desc": "Descripción del producto 7",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 8",
+    "desc": "Descripción del producto 8",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 9",
+    "desc": "Descripción del producto 9",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 10",
+    "desc": "Descripción del producto 10",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 11",
+    "desc": "Descripción del producto 11",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 12",
+    "desc": "Descripción del producto 12",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 13",
+    "desc": "Descripción del producto 13",
+    "price": "$1.00",
+    "unit": "/\n                                                        unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 14",
+    "desc": "Descripción del producto 14",
+    "price": "$1.00",
+    "unit": "/\n                                                        unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Embutidos",
+    "name": "Producto 15",
+    "desc": "Descripción del producto 15",
+    "price": "$1.00",
+    "unit": "/\n                                                        unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 1",
+    "desc": "Descripción del producto 1",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 2",
+    "desc": "Descripción del producto 2",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 3",
+    "desc": "Descripción del producto 3",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 4",
+    "desc": "Descripción del producto 4",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 5",
+    "desc": "Descripción del producto 5",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 6",
+    "desc": "Descripción del producto 6",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 7",
+    "desc": "Descripción del producto 7",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 8",
+    "desc": "Descripción del producto 8",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 9",
+    "desc": "Descripción del producto 9",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 10",
+    "desc": "Descripción del producto 10",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 11",
+    "desc": "Descripción del producto 11",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 12",
+    "desc": "Descripción del producto 12",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 13",
+    "desc": "Descripción del producto 13",
+    "price": "$1.00",
+    "unit": "/\n                                                        unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 14",
+    "desc": "Descripción del producto 14",
+    "price": "$1.00",
+    "unit": "/\n                                                        unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Especies",
+    "name": "Producto 15",
+    "desc": "Descripción del producto 15",
+    "price": "$1.00",
+    "unit": "/\n                                                        unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Hogar",
+    "name": "Producto 1",
+    "desc": "Descripción del producto 1",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Hogar",
+    "name": "Producto 2",
+    "desc": "Descripción del producto 2",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Hogar",
+    "name": "Producto 3",
+    "desc": "Descripción del producto 3",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Hogar",
+    "name": "Producto 4",
+    "desc": "Descripción del producto 4",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Hogar",
+    "name": "Producto 5",
+    "desc": "Descripción del producto 5",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Hogar",
+    "name": "Producto 6",
+    "desc": "Descripción del producto 6",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Hogar",
+    "name": "Producto 7",
+    "desc": "Descripción del producto 7",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Hogar",
+    "name": "Producto 8",
+    "desc": "Descripción del producto 8",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  },
+  {
+    "category": "Hogar",
+    "name": "Producto 9",
+    "desc": "Descripción del producto 9",
+    "price": "$1.00",
+    "unit": "/ unidad",
+    "img": "",
+    "tag": "Fresco"
+  }
+]

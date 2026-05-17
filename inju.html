@@ -1,1080 +1,1052 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0a1f0a">
-    <title>Instituto Nacional de Jucuapa | Excelencia y Tradición</title>
+    <title>Verfrut's y R&amp;M | DevTeam</title>
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
     <style>
         /* ============================================
-           ESTILOS ESPECIFICOS PARA INJU.HTML
-           Sin variables CSS - Todo en local
+           RESET Y BASE
            ============================================ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* --- HERO PRINCIPAL --- */
-        .hero-inju {
+        body {
+            background-color: #0a0f1a;
+            color: #e2e8f0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           HERO CON IMAGEN DE FONDO
+           ============================================ */
+        .inju-hero {
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
+            padding: 120px 20px 80px;
             overflow: hidden;
-            /* ESPACIO PARA IMAGEN DE FONDO - Reemplazar URL */
-            background-image: url('');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
-        .hero-inju::before {
-            content: '';
+        .inju-hero-bg {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.85) 0%, 
-                rgba(0, 0, 0, 0.70) 40%,
-                rgba(0, 0, 0, 0.85) 100%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.5;
+            filter: saturate(0.7) contrast(1.1);
+        }
+
+        .inju-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(180deg, rgba(10,15,26,0.3) 0%, rgba(10,15,26,0.7) 50%, rgba(10,15,26,0.98) 100%),
+                linear-gradient(135deg, rgba(34,197,94,0.03) 0%, transparent 50%);
             z-index: 1;
         }
 
-        .hero-inju::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(34, 197, 94, 0.15) 0%, transparent 25%),
-                radial-gradient(circle at 80% 70%, rgba(34, 197, 94, 0.10) 0%, transparent 20%),
-                radial-gradient(circle at 50% 50%, rgba(255, 111, 0, 0.05) 0%, transparent 30%);
-            z-index: 1;
-            animation: heroParticles 20s ease-in-out infinite;
-        }
-
-        @keyframes heroParticles {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-        }
-
-        .hero-inju-content {
+        .inju-hero-content {
             position: relative;
             z-index: 2;
             max-width: 900px;
-            padding: 2rem;
-            animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9) translateY(30px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .hero-inju-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #ffffff;
-            padding: 0.6rem 2rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 2rem;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4), 0 0 30px rgba(34, 197, 94, 0.2);
-            animation: badgePulse 3s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-inju-badge::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: badgeShine 3s ease-in-out infinite;
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4), 0 0 30px rgba(34, 197, 94, 0.2); }
-            50% { box-shadow: 0 4px 25px rgba(34, 197, 94, 0.6), 0 0 50px rgba(34, 197, 94, 0.3); }
-        }
-
-        @keyframes badgeShine {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
-        }
-
-        .hero-inju h1 {
-            font-family: Georgia, 'Times New Roman', serif;
+        .inju-hero h1 {
+            font-family: Georgia, serif;
             font-style: italic;
-            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-size: clamp(3.2rem, 9vw, 6.5rem);
             color: #ffffff;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5), 0 0 60px rgba(34, 197, 94, 0.2);
-            line-height: 1.1;
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-
-        .hero-inju-subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            animation: fadeInUp 1s ease 0.5s both;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-inju-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.7s both;
-        }
-
-        .btn-inju-primary {
-            background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
-            color: #ffffff;
-            padding: 15px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            font-size: 1rem;
-            letter-spacing: 0.7px;
-            box-shadow: 0 5px 15px rgba(255, 111, 0, 0.3);
+            margin-bottom: 24px;
+            line-height: 1;
+            text-shadow: 0 8px 60px rgba(0,0,0,0.7);
             position: relative;
-            overflow: hidden;
-        }
-
-        .btn-inju-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-inju-primary:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 10px 30px rgba(255, 111, 0, 0.4), 0 0 40px rgba(255, 143, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.8);
-        }
-
-        .btn-inju-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-inju-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 15px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
             display: inline-block;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(10px);
         }
 
-        .btn-inju-secondary:hover {
-            background: rgba(34, 197, 94, 0.2);
-            border-color: rgba(34, 197, 94, 0.5);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.2);
+        .inju-hero h1 .hero-title-main {
+            display: block;
+            font-size: clamp(4rem, 12vw, 9rem);
+            font-weight: 900;
+            letter-spacing: 6px;
+            font-style: normal;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #e2e8f0 0%, #22c55e 40%, #16a34a 70%, #15803d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            line-height: 0.95;
+            margin-bottom: 8px;
         }
 
-        .scroll-indicator-inju {
+        .inju-hero h1 .hero-title-name {
+            display: block;
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+            color: #f1f5f9;
+            margin-top: 14px;
+            line-height: 1.2;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+        }
+
+        .inju-hero h1 span {
+            color: #4ade80;
+            font-style: normal;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-weight: 400;
+            font-size: 0.38em;
+            display: block;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+
+        .inju-hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 55px;
+            line-height: 1.9;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.4);
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #22c55e, transparent);
+            margin: 0 auto 28px;
+            border-radius: 2px;
+        }
+
+.scroll-indicator {
             position: absolute;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            animation: bounce 2s infinite;
+            gap: 10px;
             cursor: pointer;
-            text-decoration: none;
+            color: #64748b;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            z-index: 2;
         }
 
-        .scroll-indicator-inju svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
+        .scroll-indicator:hover { color: #22c55e; }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        /* --- ESTADISTICAS --- */
-        .stats-section {
-            padding: 0 0 80px;
-            background: #0a0a0a;
+        .scroll-indicator .mouse {
+            width: 26px;
+            height: 44px;
+            border: 2px solid currentColor;
+            border-radius: 14px;
             position: relative;
+            opacity: 0.6;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: -80px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .stat-card {
-            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
-            padding: 2.5rem 1.5rem;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-bottom: 4px solid #22c55e;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .stat-card::before {
+        .scroll-indicator .mouse::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.06), transparent);
-            transition: left 0.7s ease;
-            z-index: -1;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: currentColor;
+            border-radius: 2px;
+            animation: scrollWheel 2s infinite;
         }
 
-        .stat-card:hover::before {
-            left: 100%;
+        @keyframes scrollWheel {
+            0% { top: 8px; opacity: 1; }
+            100% { top: 24px; opacity: 0; }
         }
 
-        .stat-card:hover {
-            transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2), 0 0 60px rgba(34, 197, 94, 0.08);
-            border-color: rgba(34, 197, 94, 0.3);
+        /* ============================================
+           SECCIONES GENERALES
+           ============================================ */
+        .inju-section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #ffffff;
-            display: block;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #22c55e 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .inju-section-header {
+            text-align: center;
+            margin-bottom: 65px;
         }
 
-        .stat-label {
-            color: #9ca3af;
+        .inju-section-header h2 {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            color: #f8fafc;
+            margin-bottom: 16px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .inju-section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #22c55e, transparent);
+        }
+
+        .inju-section-header p {
+            color: #475569;
             font-size: 0.85rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-top: 28px;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           INFO INSTITUTO
+           ============================================ */
+        .institute-card {
+            background: linear-gradient(160deg, rgba(12, 28, 50, 0.85) 0%, rgba(6, 12, 22, 0.98) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 28px;
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+
+        .institute-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #22c55e, #16a34a, #22c55e, transparent);
+        }
+
+        .institute-intro {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 55px;
+        }
+
+        .intro-card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 36px 28px;
+            text-align: center;
+            transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .intro-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 20px; right: 20px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .intro-card:hover {
+            background: rgba(34, 197, 94, 0.03);
+            border-color: rgba(34, 197, 94, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        }
+
+        .intro-card:hover::before {
+            opacity: 1;
+        }
+
+        .intro-card-icon {
+            font-size: 2.4rem;
+            margin-bottom: 18px;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(34,197,94,0.15));
+        }
+
+        .intro-card h3 {
+            color: #4ade80;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .intro-card p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.85;
+        }
+
+        .intro-card p strong {
+            color: #e2e8f0;
             font-weight: 600;
         }
 
-        .stat-icon {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 1rem;
-            background: rgba(34, 197, 94, 0.1);
-            border-radius: 50%;
+        .institute-details {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-top: 45px;
+            position: relative;
+        }
+
+        .institute-details::before {
+            content: '';
+            position: absolute;
+            top: -22px; left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.3), transparent);
+        }
+
+        .detail-item {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 20px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .detail-item:hover {
+            background: rgba(34, 197, 94, 0.04);
+            border-color: rgba(34, 197, 94, 0.18);
+            transform: translateY(-3px);
+        }
+
+        .detail-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: rgba(34, 197, 94, 0.08);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            border: 2px solid rgba(34, 197, 94, 0.3);
-            transition: all 0.3s ease;
+            color: #22c55e;
+            font-size: 1.15rem;
+            transition: all 0.35s ease;
+            border: 1px solid rgba(34,197,94,0.08);
         }
 
-        .stat-card:hover .stat-icon {
-            background: #22c55e;
-            transform: scale(1.15) rotate(5deg);
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+        .detail-item:hover .detail-icon {
+            background: rgba(34, 197, 94, 0.15);
+            border-color: rgba(34,197,94,0.2);
+            transform: scale(1.08) rotate(-3deg);
         }
 
-        /* --- TIMELINE --- */
+        .detail-text h4 {
+            color: #475569;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .detail-text p {
+            color: #cbd5e1;
+            font-size: 0.85rem;
+            font-weight: 500;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 1024px) {
+            .institute-intro { grid-template-columns: repeat(2, 1fr); }
+            .institute-details { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .institute-intro { grid-template-columns: 1fr; }
+            .institute-details { grid-template-columns: 1fr; }
+            .institute-card { padding: 40px 25px; }
+        }
+
+        /* ============================================
+           TIMELINE HORIZONTAL - SLIDER MANUAL
+           ============================================ */
         .timeline-section {
-            padding: 80px 0;
-            background: linear-gradient(180deg, #0a0a0a 0%, #0f1a0f 100%);
-            position: relative;
+            padding: 100px 0;
             overflow: hidden;
+            position: relative;
         }
 
         .timeline-section::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.03) 0%, transparent 50%);
-            pointer-events: none;
-            animation: pulseGlow 8s ease-in-out infinite;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 1; }
-        }
-
-        .history-timeline {
+        .timeline-wrapper {
             position: relative;
-            max-width: 900px;
-            margin: 4rem auto 0;
-            padding: 2rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
         }
 
-        .history-timeline::after {
+        .timeline-scroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 40px 0;
+            cursor: grab;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .timeline-scroll::-webkit-scrollbar { display: none; }
+
+        .timeline-track {
+            display: flex;
+            gap: 0;
+            width: max-content;
+            position: relative;
+        }
+
+        .timeline-track::before {
             content: '';
             position: absolute;
-            width: 3px;
-            background: linear-gradient(180deg, #22c55e, #FF6F00, #22c55e);
-            top: 0;
-            bottom: 0;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(34,197,94,0.05), rgba(34,197,94,0.25), rgba(34,197,94,0.05));
+            transform: translateY(-50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .timeline-node {
+            width: 300px;
+            flex-shrink: 0;
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-node::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(34,197,94,0.3), transparent);
+        }
+
+        .timeline-node:last-child::after { display: none; }
+
+        .timeline-node-inner {
+            background: linear-gradient(160deg, rgba(15, 31, 53, 0.95) 0%, rgba(7, 15, 26, 0.98) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 24px;
+            padding: 36px 28px 28px;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            height: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .timeline-node-inner:hover {
+            border-color: rgba(34, 197, 94, 0.25);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 30px rgba(34,197,94,0.08);
+        }
+
+        .timeline-node-inner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.6), transparent);
+            border-radius: 24px 24px 0 0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .timeline-node-inner:hover::before { opacity: 1; }
+
+        .timeline-number {
+            position: absolute;
+            top: -16px;
             left: 50%;
             transform: translateX(-50%);
-            border-radius: 3px;
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
-        }
-
-        .timeline-item {
-            padding: 1rem 3rem;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-        }
-
-        .timeline-item.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #22c55e;
+            width: 36px;
+            height: 36px;
+            background: #0f172a;
+            border: 2px solid rgba(34, 197, 94, 0.5);
             border-radius: 50%;
-            top: 24px;
-            z-index: 1;
-            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5), 0 0 30px rgba(34, 197, 94, 0.3);
-            border: 3px solid #0a0a0a;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #22c55e;
+            font-size: 0.85rem;
+            font-weight: 800;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: all 0.35s ease;
         }
 
-        .timeline-item:hover::after {
-            transform: scale(1.3);
-            box-shadow: 0 0 25px rgba(34, 197, 94, 0.8), 0 0 50px rgba(34, 197, 94, 0.4);
-        }
-
-        .timeline-left { left: 0; text-align: right; }
-        .timeline-left::after { right: -10px; }
-        .timeline-right { left: 50%; text-align: left; }
-        .timeline-right::after { left: -10px; }
-
-        .timeline-content {
-            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
-            padding: 1.8rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.05), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .timeline-content:hover::before {
-            left: 100%;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(34, 197, 94, 0.15);
-            border-color: rgba(34, 197, 94, 0.2);
+        .timeline-node-inner:hover .timeline-number {
+            background: #22c55e;
+            color: #0f172a;
+            border-color: #22c55e;
         }
 
         .timeline-year {
-            color: #22c55e;
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
             display: block;
-            text-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+            text-align: center;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #4ade80;
+            margin: 6px 0 18px;
+            padding: 5px 14px;
+            background: rgba(34, 197, 94, 0.06);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            border-radius: 20px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .timeline-content p {
-            color: #9ca3af;
-            font-size: 0.95rem;
-            line-height: 1.7;
+        .timeline-title {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: #f8fafc;
+            margin-bottom: 14px;
+            text-align: center;
         }
 
-        /* --- DOCENTE --- */
+        .timeline-text {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            line-height: 1.75;
+            text-align: center;
+        }
+
+        .timeline-arrows {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 45px;
+        }
+
+        .timeline-arrow {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 31, 53, 0.7);
+            color: #94a3b8;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-arrow:hover {
+            border-color: rgba(34, 197, 94, 0.4);
+            color: #22c55e;
+            transform: scale(1.1);
+        }
+
+        .timeline-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .timeline-dot-btn {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-dot-btn.active {
+            background: #22c55e;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+            transform: scale(1.3);
+        }
+
+        .timeline-dot-btn:hover:not(.active) {
+            background: rgba(34, 197, 94, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-wrapper { padding: 0 20px; }
+            .timeline-node { width: 260px; padding: 18px; }
+            .timeline-track::before { display: none; }
+        }
+
+        /* ============================================
+           SECCIÓN DOCENTE - MEJORADA
+           ============================================ */
         .teacher-section {
-            padding: 100px 0;
-            background: linear-gradient(180deg, #0f1a0f 0%, #0a0f0a 100%);
+            padding: 80px 20px;
             position: relative;
-            overflow: hidden;
         }
 
         .teacher-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 50%, rgba(255, 111, 0, 0.03) 0%, transparent 40%);
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
+        }
+
+        .teacher-card {
+            display: flex;
+            align-items: stretch;
+            background: linear-gradient(145deg, #0c1e35 0%, #060d18 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 28px;
+            overflow: hidden;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+            transition: box-shadow 0.5s ease;
+        }
+
+        .teacher-card:hover {
+            box-shadow: 0 40px 100px rgba(0,0,0,0.55);
+        }
+
+        .teacher-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #22c55e, #16a34a, transparent);
+        }
+
+        .teacher-card::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -15%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%);
             pointer-events: none;
         }
 
-        .teacher-card-premium {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
-            align-items: center;
-            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
-            padding: 3rem;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        .teacher-visual {
+            flex: 0 0 340px;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
+            background: linear-gradient(180deg, #0c1e33, #040a12);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
         }
 
-        .teacher-card-premium::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .teacher-visual img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.04), transparent);
-            transition: left 0.8s ease;
-        }
-
-        .teacher-card-premium:hover::before {
-            left: 100%;
-        }
-
-        .teacher-card-premium:hover {
-            box-shadow: 0 30px 70px rgba(34, 197, 94, 0.15), 0 0 80px rgba(34, 197, 94, 0.05);
-            border-color: rgba(34, 197, 94, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .teacher-img-wrapper {
-            position: relative;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-            border: 3px solid rgba(34, 197, 94, 0.3);
-            transition: all 0.4s ease;
-        }
-
-        .teacher-img-wrapper:hover {
-            transform: scale(1.02);
-            box-shadow: 0 35px 70px rgba(34, 197, 94, 0.2);
-            border-color: rgba(34, 197, 94, 0.6);
-        }
-
-        .teacher-img-wrapper img {
-            width: 100%;
-            height: 400px;
             object-fit: cover;
             display: block;
-            transition: transform 0.6s ease;
+            transition: transform 0.8s ease;
         }
 
-        .teacher-img-wrapper:hover img {
-            transform: scale(1.1);
+        .teacher-card:hover .teacher-visual img {
+            transform: scale(1.06);
         }
 
-        .teacher-img-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(145deg, #0d1f0d 0%, #141b24 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1rem;
-            text-align: center;
-            padding: 2rem;
-            border: 2px dashed rgba(34, 197, 94, 0.3);
-            border-radius: 25px;
+        .teacher-visual-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(6,15,26,0.92) 0%, transparent 55%);
+            z-index: 1;
         }
 
-        .teacher-info h2 {
-            font-family: Georgia, 'Times New Roman', serif;
+        .teacher-visual-name {
+            position: absolute;
+            bottom: 32px;
+            left: 32px;
+            right: 32px;
+            z-index: 2;
+            font-family: Georgia, serif;
             font-style: italic;
-            font-size: 2.8rem;
-            color: #ffffff;
-            margin: 1rem 0;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+        }
+
+        .teacher-visual-role {
+            position: absolute;
+            bottom: 14px;
+            left: 32px;
+            z-index: 2;
+            font-size: 0.7rem;
+            color: #4ade80;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .teacher-body {
+            flex: 1;
+            padding: 48px 55px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .teacher-name {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: #f8fafc;
+            margin-bottom: 8px;
+            line-height: 1.1;
         }
 
         .teacher-role {
             display: inline-block;
-            background: rgba(34, 197, 94, 0.15);
-            color: #22c55e;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
+            font-size: 0.75rem;
+            color: #4ade80;
             font-weight: 700;
-            border: 1px solid rgba(34, 197, 94, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 26px;
+            padding: 6px 16px;
+            background: rgba(34, 197, 94, 0.06);
+            border: 1px solid rgba(34, 197, 94, 0.12);
+            border-radius: 6px;
+            width: fit-content;
         }
 
-        .teacher-quote {
-            color: #9ca3af;
-            font-size: 1.1rem;
+        .teacher-desc {
+            color: #94a3b8;
+            font-size: 1.05rem;
             line-height: 1.9;
-            margin-bottom: 2rem;
-            font-style: italic;
-            border-left: 3px solid #22c55e;
-            padding-left: 1.5rem;
+            margin-bottom: 32px;
+            border-left: 2px solid rgba(34, 197, 94, 0.15);
+            padding-left: 20px;
         }
 
         .teacher-stats {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
         }
 
-        .teacher-stat {
-            background: rgba(34, 197, 94, 0.1);
-            padding: 1rem 1.5rem;
-            border-radius: 15px;
-            flex: 1;
-            min-width: 140px;
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .teacher-stat:hover {
-            background: rgba(34, 197, 94, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.15);
-        }
-
-        .teacher-stat h4 {
-            color: #22c55e;
-            font-size: 0.9rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .teacher-stat p {
-            color: #9ca3af;
-            font-size: 0.8rem;
-        }
-
-        /* --- ESTUDIANTES --- */
-        .students-section {
-            padding: 100px 0;
-            background: #0a0a0a;
+        .stat-box {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(34, 197, 94, 0.06);
+            border-radius: 14px;
+            padding: 18px 20px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(to bottom, #22c55e, #16a34a);
+            opacity: 0.4;
+            border-radius: 14px 0 0 14px;
+            transition: width 0.3s ease, opacity 0.3s ease;
+        }
+
+        .stat-box:hover {
+            background: rgba(34, 197, 94, 0.04);
+            border-color: rgba(34, 197, 94, 0.18);
+            transform: translateX(5px);
+        }
+
+        .stat-box:hover::before {
+            width: 4px;
+            opacity: 0.8;
+        }
+
+        .stat-box h4 {
+            color: #4ade80;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .stat-box p {
+            color: #cbd5e1;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+            .teacher-card { flex-direction: column; }
+            .teacher-visual { flex: none; width: 100%; height: 300px; }
+            .teacher-visual-name, .teacher-visual-role { display: none; }
+            .teacher-body { padding: 35px 30px; }
+            .teacher-stats { grid-template-columns: 1fr; }
+        }
+
+        /* ============================================
+           SECCIÓN ALUMNOS - 4 GRID HORIZONTAL
+           ============================================ */
+        .students-section {
+            padding: 80px 0 100px;
+            position: relative;
+        }
+
+        .students-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
         }
 
         .students-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .student-card {
-            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
-            border-radius: 25px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            border-radius: 22px;
+            overflow: hidden;
+            aspect-ratio: 3 / 4;
+            background: linear-gradient(180deg, #0f2d4a, #050f1a);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: default;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .student-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(34, 197, 94, 0.35);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+        }
+
+        .student-visual {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
             z-index: 1;
+        }
+
+        .student-visual img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .student-card:hover .student-visual img {
+            opacity: 0.15;
+            transform: scale(1.08);
+        }
+
+        .student-overlay {
+            position: absolute;
+            inset: auto 0 0 0;
+            background: linear-gradient(to top, rgba(5,10,20,0.98) 0%, rgba(10,22,40,0.8) 50%, transparent 100%);
+            padding: 50px 20px 22px;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+
+        .student-card:hover .student-overlay {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .student-name {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .student-role {
+            font-size: 0.68rem;
+            color: #4ade80;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .student-hover {
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 10, 20, 0.96);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.94);
+            transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 3;
+            border: 1px solid transparent;
+        }
+
+        .student-card:hover .student-hover {
+            opacity: 1;
+            transform: scale(1);
+            border-color: rgba(34, 197, 94, 0.18);
+        }
+
+        .student-hover h4 {
+            color: #4ade80;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            font-weight: 800;
+            transform: translateY(-6px);
+            opacity: 0;
+            transition: all 0.45s ease 0.08s;
+        }
+
+        .student-hover p {
+            color: #cbd5e1;
+            font-size: 0.84rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            transform: translateY(6px);
+            opacity: 0;
+            transition: all 0.45s ease 0.12s;
+        }
+
+        .student-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            transform: translateY(6px);
+            opacity: 0;
+            transition: all 0.45s ease 0.16s;
+        }
+
+        .student-tag {
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.18);
+            color: #4ade80;
+            font-size: 0.62rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .student-card:hover .student-hover h4,
+        .student-card:hover .student-hover p,
+        .student-card:hover .student-hover .student-tags {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .student-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.06), transparent);
-            transition: left 0.7s ease;
-            z-index: -1;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.7), transparent);
+            transform: scaleX(0);
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 4;
         }
 
         .student-card:hover::before {
-            left: 100%;
+            transform: scaleX(1);
         }
 
-        .student-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2), 0 0 60px rgba(34, 197, 94, 0.08);
-            border-color: rgba(34, 197, 94, 0.3);
-        }
-
-        .student-img-wrapper {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .student-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .student-card:hover .student-img-wrapper img {
-            transform: scale(1.15);
-        }
-
-        .student-img-placeholder {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(145deg, #0d1f0d 0%, #141b24 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.95rem;
-            text-align: center;
-            padding: 2rem;
-            border-bottom: 2px dashed rgba(34, 197, 94, 0.3);
-        }
-
-        .student-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem 1.5rem 1.5rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .student-card:hover .student-overlay {
-            opacity: 1;
-        }
-
-        .student-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .student-info h3 {
-            color: #ffffff;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .student-card:hover .student-info h3 {
-            color: #22c55e;
-        }
-
-        .student-role {
-            color: #22c55e;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-        }
-
-        /* --- GALERIA PREMIUM --- */
-        .gallery-premium-section {
-            padding: 100px 0;
-            background: linear-gradient(180deg, #0f1a0f 0%, #0a0a0a 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gallery-premium-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 30% 20%, rgba(34, 197, 94, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 70% 80%, rgba(255, 111, 0, 0.03) 0%, transparent 40%);
-            pointer-events: none;
-        }
-
-        .premium-gallery {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            grid-template-rows: 250px 250px;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .gallery-item-premium {
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .gallery-item-premium:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
-            border-color: rgba(34, 197, 94, 0.4);
-            z-index: 2;
-        }
-
-        .gallery-item-premium img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .gallery-item-premium:hover img {
-            transform: scale(1.15);
-        }
-
-        .gallery-item-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.95rem;
-            text-align: center;
-            padding: 2rem;
-            border: 2px dashed rgba(34, 197, 94, 0.3);
-        }
-
-        .gallery-item-main {
-            grid-row: span 2;
-        }
-
-        .gallery-overlay-premium {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
-            display: flex;
-            align-items: flex-end;
-            padding: 2rem;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .gallery-item-premium:hover .gallery-overlay-premium {
-            opacity: 1;
-        }
-
-        .gallery-overlay-premium h4 {
-            color: #ffffff;
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .gallery-overlay-premium p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.85rem;
-        }
-
-        .gallery-quote {
-            background: linear-gradient(145deg, #22c55e 0%, #16a34a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .gallery-quote h3 {
-            color: #ffffff;
-            font-family: Georgia, 'Times New Roman', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        /* --- INFO INSTITUCIONAL --- */
-        .info-section {
-            padding: 100px 0;
-            background: #0a0a0a;
-            position: relative;
-        }
-
-        .info-grid-inju {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .info-card-inju {
-            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
-            border-radius: 25px;
-            padding: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .info-card-inju::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.05), transparent);
-            transition: left 0.7s ease;
-        }
-
-        .info-card-inju:hover::before {
-            left: 100%;
-        }
-
-        .info-card-inju:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.15);
-            border-color: rgba(34, 197, 94, 0.2);
-        }
-
-        .info-card-inju h3 {
-            color: #22c55e;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .info-card-inju h3 span {
-            font-size: 1.8rem;
-        }
-
-        .info-card-inju ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .info-card-inju li {
-            color: #9ca3af;
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-            position: relative;
-            line-height: 1.7;
-            transition: color 0.3s ease;
-        }
-
-        .info-card-inju li:hover {
-            color: #d1d5db;
-        }
-
-        .info-card-inju li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #22c55e;
-            font-weight: bold;
-        }
-
-        .info-quote-card {
-            background: linear-gradient(145deg, #141b24 0%, #0d1f0d 100%);
-            border-radius: 25px;
-            padding: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .info-quote-card::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 6rem;
-            color: rgba(34, 197, 94, 0.1);
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-
-        .info-quote-card p {
-            color: #d1d5db;
-            font-size: 1.1rem;
-            line-height: 1.9;
-            font-style: italic;
-            position: relative;
-            z-index: 1;
-        }
-
-        .info-quote-card .quote-author {
-            color: #22c55e;
-            font-size: 0.9rem;
-            margin-top: 1.5rem;
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .stats-grid {
+            .students-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            .teacher-card-premium {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .premium-gallery {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto;
-            }
-            .gallery-item-main {
-                grid-row: span 1;
-            }
-            .info-grid-inju {
-                grid-template-columns: 1fr;
+                max-width: 700px;
             }
         }
 
-        @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-            .stat-card {
-                padding: 1.5rem 1rem;
-            }
-            .stat-number {
-                font-size: 2rem;
-            }
-            .timeline-item {
-                width: 100%;
-                text-align: left !important;
-                padding-left: 3rem;
-                padding-right: 1rem;
-            }
-            .timeline-item::after {
-                left: -10px !important;
-                right: auto !important;
-            }
-            .history-timeline::after {
-                left: 0;
-            }
-            .timeline-right {
-                left: 0;
-            }
-            .premium-gallery {
+        @media (max-width: 640px) {
+            .students-grid {
                 grid-template-columns: 1fr;
+                max-width: 360px;
             }
-            .teacher-card-premium {
-                padding: 1.5rem;
-            }
-            .teacher-info h2 {
-                font-size: 2rem;
-            }
-            .hero-inju-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn-inju-primary,
-            .btn-inju-secondary {
-                width: 100%;
-                max-width: 300px;
-                text-align: center;
-            }
+            .student-card { aspect-ratio: 4 / 5; }
         }
 
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-                margin-top: -40px;
-            }
-            .stat-card {
-                padding: 1.5rem;
-            }
-            .hero-inju-content {
-                padding: 1rem;
-            }
-            .timeline-content {
-                padding: 1.2rem;
-            }
-            .timeline-year {
-                font-size: 1.4rem;
-            }
+        /* ============================================
+           SCROLL REVEAL
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 
 <body>
-    <!-- ============================================
-         PANTALLA DE CARGA INICIAL
-         ============================================ -->
-    <div class="page-loader" id="pageLoader" style="background: linear-gradient(145deg, #0a1f0a 0%, #0d2815 50%, #051a05 100%);">
+    <!-- PANTALLA DE CARGA -->
+    <div class="page-loader" id="pageLoader"
+        style="background: linear-gradient(145deg, #0a1f0a 0%, #0d2815 50%, #051a05 100%);">
         <div class="loader-wrapper">
             <div class="loader-spinner"></div>
             <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
@@ -1082,10 +1054,9 @@
         <p class="loader-text">Verfrut's y R&amp;M</p>
     </div>
 
-    <!-- ============================================
-         BARRA DE NAVEGACION - IGUAL A INDEX.HTML
-         ============================================ -->
-    <div id="navOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998;" onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
+    <!-- NAVBAR -->
+    <div id="navOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998;"
+        onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -1112,350 +1083,296 @@
                 <li><a href="galeria.html">Galería</a></li>
                 <li><a href="ubicacion.html">Ubicación</a></li>
             </ul>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menú">&#9776;</button>
         </div>
     </nav>
 
-    <!-- ============================================
-         HERO PRINCIPAL - ESPACIO PARA IMAGEN DE FONDO
-         ============================================ -->
-    <section class="hero-inju" id="hero">
-        <div class="hero-inju-content">
-            <span class="hero-inju-badge">Fundado en 1966</span>
-            <h1>Instituto Nacional de Jucuapa</h1>
-            <p class="hero-inju-subtitle">Liderazgo, innovación y valores sólidos en el corazón de Usulután. Formando a los profesionales del mañana con excelencia académica y compromiso social.</p>
-            <div class="hero-inju-actions">
-                <a href="#historia" class="btn-inju-primary">Nuestra Historia</a>
-                <a href="#estudiantes" class="btn-inju-secondary">Conoce al Equipo</a>
-            </div>
+    <!-- HERO CON IMAGEN DE FONDO -->
+    <section class="inju-hero" id="hero">
+        <img class="inju-hero-bg" src="img-INJU-page/img-porton-INJU.jpg" alt="Fondo INJU">
+        
+        <div class="inju-hero-content">
+            
+            <h1><span class="hero-title-main">INJU</span><span class="hero-title-name">Instituto Nacional de Jucuapa</span><span>Desde 1966</span></h1>
+            <div class="hero-divider"></div><p>Formando el futuro de El Salvador con excelencia académica, valores sólidos y compromiso con la educación de calidad en el departamento de Usulután.</p>
         </div>
-        <a href="#estadisticas" class="scroll-indicator-inju">
-            <span>Explorar</span>
-            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-        </a>
-    </section>
-
-    <!-- ============================================
-         ESTADISTICAS
-         ============================================ -->
-    <section class="stats-section" id="estadisticas">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card reveal">
-                    <div class="stat-icon">&#127963;</div>
-                    <span class="stat-number">58+</span>
-                    <span class="stat-label">Años de Historia</span>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-icon">&#128104;&#8205;&#127979;</div>
-                    <span class="stat-number">40+</span>
-                    <span class="stat-label">Docentes Expertos</span>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-icon">&#128218;</div>
-                    <span class="stat-number">5</span>
-                    <span class="stat-label">Especialidades</span>
-                </div>
-                <div class="stat-card reveal">
-                    <div class="stat-icon">&#127891;</div>
-                    <span class="stat-number">1k+</span>
-                    <span class="stat-label">Alumnos Graduados</span>
-                </div>
-            </div>
+        <div class="scroll-indicator" onclick="document.querySelector('.institute-section').scrollIntoView({behavior: 'smooth'})">
+            <div class="mouse"></div>
+            <span>Desplázate</span>
         </div>
     </section>
 
-    <!-- ============================================
-         HISTORIA / TIMELINE
-         ============================================ -->
-    <section class="timeline-section" id="historia">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nuestra Trayectoria</h2>
-                <p>Un recorrido por los hitos que han marcado nuestra institución desde su fundación.</p>
-            </div>
-            <div class="history-timeline">
-                <div class="timeline-item timeline-left reveal">
-                    <div class="timeline-content">
-                        <span class="timeline-year">1966</span>
-                        <p>Fundación oficial del Instituto Nacional de Jucuapa como respuesta a la creciente necesidad educativa de la zona norte de Usulután. Primer centro de educación media en la región oriental.</p>
-                    </div>
+    <!-- INFORMACIÓN DEL INSTITUTO -->
+    <section class="inju-section institute-section reveal">
+        <div class="institute-card">
+            <div class="institute-intro">
+                <div class="intro-card reveal">
+                    <span class="intro-card-icon">🎓</span>
+                    <h3>Excelencia Académica</h3>
+                    <p>Fundado en <strong>1966</strong>, el <strong>Instituto Nacional de Jucuapa (INJU)</strong> es una institución educativa reconocida por su compromiso con la calidad en el departamento de Usulután.</p>
                 </div>
-                <div class="timeline-item timeline-right reveal">
-                    <div class="timeline-content">
-                        <span class="timeline-year">1985</span>
-                        <p>Ampliación significativa de instalaciones y apertura del bachillerato en Ciencias y Letras. Modernización de laboratorios y creación de nuevos espacios deportivos.</p>
-                    </div>
+                <div class="intro-card reveal">
+                    <span class="intro-card-icon">📚</span>
+                    <h3>Oferta Educativa</h3>
+                    <p>Especialidades en <strong>ciencias naturales, sociales, matemáticas, idiomas y humanidades</strong>. Fomentamos actividades extracurriculares y deportivas para el crecimiento integral.</p>
                 </div>
-                <div class="timeline-item timeline-left reveal">
-                    <div class="timeline-content">
-                        <span class="timeline-year">2005</span>
-                        <p>Modernización del laboratorio de ciencias con equipamiento de última generación. Implementación de aulas tecnológicas y programa de computación avanzada.</p>
-                    </div>
-                </div>
-                <div class="timeline-item timeline-right reveal">
-                    <div class="timeline-content">
-                        <span class="timeline-year">2020</span>
-                        <p>Adaptación a nuevas metodologías de enseñanza digital. Fortalecimiento del programa de Desarrollo de Software y nuevas especialidades técnicas.</p>
-                    </div>
-                </div>
-                <div class="timeline-item timeline-left reveal">
-                    <div class="timeline-content">
-                        <span class="timeline-year">Hoy</span>
-                        <p>Líderes en formación integral en la zona oriental. Compromiso continuo con la excelencia académica y el desarrollo de valores cívicos en cada generación.</p>
-                    </div>
+                <div class="intro-card reveal">
+                    <span class="intro-card-icon">🌟</span>
+                    <h3>Legado y Futuro</h3>
+                    <p>Gracias al compromiso de docentes y estudiantes, el INJU sigue siendo un <strong>pilar educativo</strong>, formando generaciones con valores sólidos y educación de calidad.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ============================================
-         DOCENTE DESTACADO
-         ============================================ -->
-    <section class="teacher-section" id="docente">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nuestro Guía</h2>
-                <p>Conoce al profesional que lidera la excelencia académica del INJU.</p>
-            </div>
-            <div class="teacher-card-premium reveal">
-                <div class="teacher-img-wrapper">
-                    <!-- ESPACIO PARA IMAGEN DEL DOCENTE - Reemplazar src -->
-                    <img src="img-teacher-alumnos/profeRoberto.jpeg" alt="Roberto Machado - Docente INJU" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="teacher-img-placeholder" style="display:none;">
-                        <span>&#128248;<br>Imagen del Docente<br><small>Reemplazar con foto local</small></span>
+            <div class="institute-details">
+                <div class="detail-item">
+                    <div class="detail-icon">🏫</div>
+                    <div class="detail-text">
+                        <h4>Nombre</h4>
+                        <p>Instituto Nacional de Jucuapa</p>
                     </div>
                 </div>
-                <div class="teacher-info">
-                    <span class="teacher-role">Docente Destacado</span>
-                    <h2>Roberto Machado García</h2>
-                    <p class="teacher-quote">"En el INJU, no solo enseñamos materias; cultivamos visiones. Mi compromiso es asegurar que cada joven encuentre su propósito y las herramientas para alcanzarlo. La educación transforma vidas y comunidades enteras."</p>
-                    <div class="teacher-stats">
-                        <div class="teacher-stat">
-                            <h4>Excelencia</h4>
-                            <p>Compromiso total con la calidad educativa</p>
-                        </div>
-                        <div class="teacher-stat">
-                            <h4>Visión</h4>
-                            <p>Preparados para los retos del futuro</p>
-                        </div>
-                        <div class="teacher-stat">
-                            <h4>Valores</h4>
-                            <p>Ética, respeto y responsabilidad</p>
-                        </div>
+                <div class="detail-item">
+                    <div class="detail-icon">#</div>
+                    <div class="detail-text">
+                        <h4>Código</h4>
+                        <p>12585</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">📍</div>
+                    <div class="detail-text">
+                        <h4>Tipo de Sede</h4>
+                        <p>Centro educativo oficial</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">📅</div>
+                    <div class="detail-text">
+                        <h4>Calendario</h4>
+                        <p>Nacional</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">☀️</div>
+                    <div class="detail-text">
+                        <h4>Jornada</h4>
+                        <p>Matutino</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">📞</div>
+                    <div class="detail-text">
+                        <h4>Teléfono</h4>
+                        <p>2665-2154</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">✉️</div>
+                    <div class="detail-text">
+                        <h4>Correo</h4>
+                        <p>institutodejucuapa@gmail.com</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">🗺️</div>
+                    <div class="detail-text">
+                        <h4>Dirección</h4>
+                        <p>Final Calle 2 de Abril, Barrio La Cruz, Jucuapa, Usulután</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         ESTUDIANTES DESTACADOS
-         ============================================ -->
-    <section class="students-section" id="estudiantes">
-        <div class="container">
-            <div class="section-header">
-                <h2>Talento INJU</h2>
-                <p>Nuestros estudiantes son el reflejo vivo de nuestra excelencia académica.</p>
+    <!-- TIMELINE HORIZONTAL MANUAL -->
+    <section class="timeline-section reveal">
+        <div class="inju-section-header">
+            <h2>Nuestra Trayectoria</h2>
+            <p>Una historia de excelencia académica</p>
+        </div>
+
+        <div class="timeline-wrapper">
+            <div class="timeline-scroll" id="timelineScroll">
+                <div class="timeline-track" id="timelineTrack">
+                    <div class="timeline-node" data-index="0">
+                        <div class="timeline-node-inner">
+                            <div class="timeline-number">1</div>
+                            <div class="timeline-year">1966</div>
+                            <h3 class="timeline-title">Fundación del INJU</h3>
+                            <p class="timeline-text">El Instituto Nacional de Jucuapa abre sus puertas con el compromiso firme de brindar excelencia académica en el departamento de Usulután.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node" data-index="1">
+                        <div class="timeline-node-inner">
+                            <div class="timeline-number">2</div>
+                            <div class="timeline-year">Docencia</div>
+                            <h3 class="timeline-title">Cuerpo Docente</h3>
+                            <p class="timeline-text">Actualmente contamos con una planta conformada por maestros altamente capacitados y comprometidos con el desarrollo integral.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node" data-index="2">
+                        <div class="timeline-node-inner">
+                            <div class="timeline-number">3</div>
+                            <div class="timeline-year">Especialidades</div>
+                            <h3 class="timeline-title">Oferta Académica</h3>
+                            <p class="timeline-text">Ofrecemos especialidades en ciencias naturales, ciencias sociales, matemáticas, idiomas y humanidades para preparar profesionales competentes.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node" data-index="3">
+                        <div class="timeline-node-inner">
+                            <div class="timeline-number">4</div>
+                            <div class="timeline-year">Crecimiento</div>
+                            <h3 class="timeline-title">Desarrollo Personal</h3>
+                            <p class="timeline-text">Fomentamos la participación activa en actividades extracurriculares y deportivas, descubriendo el talento de cada uno de nuestros jóvenes.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node" data-index="4">
+                        <div class="timeline-node-inner">
+                            <div class="timeline-number">5</div>
+                            <div class="timeline-year">Presente</div>
+                            <h3 class="timeline-title">Un Pilar Educativo</h3>
+                            <p class="timeline-text">El INJU continúa siendo un faro de educación, formando a las nuevas generaciones con valores sólidos y calidad inquebrantable.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="students-grid">
-                <div class="student-card reveal">
-                    <div class="student-img-wrapper">
-                        <!-- ESPACIO PARA IMAGEN ESTUDIANTE 1 - Reemplazar src -->
-                        <img src="" alt="Javier Martínez" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="student-img-placeholder" style="display:none;">
-                            <span>&#128248;<br>Estudiante 1<br><small>Reemplazar con foto local</small></span>
-                        </div>
-                        <div class="student-overlay">
-                            <h4 style="color:#fff; margin-bottom:0.3rem;">Javier Martínez</h4>
-                            <p style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Líder Estudiantil</p>
-                        </div>
-                    </div>
-                    <div class="student-info">
-                        <h3>Javier Martínez</h3>
-                        <span class="student-role">Líder Estudiantil</span>
-                    </div>
+
+            <div class="timeline-arrows">
+                <button class="timeline-arrow" id="timelinePrev" aria-label="Anterior">&#10094;</button>
+                <div class="timeline-dots" id="timelineDots">
+                    <button class="timeline-dot-btn active" data-index="0"></button>
+                    <button class="timeline-dot-btn" data-index="1"></button>
+                    <button class="timeline-dot-btn" data-index="2"></button>
+                    <button class="timeline-dot-btn" data-index="3"></button>
+                    <button class="timeline-dot-btn" data-index="4"></button>
                 </div>
-                <div class="student-card reveal">
-                    <div class="student-img-wrapper">
-                        <!-- ESPACIO PARA IMAGEN ESTUDIANTE 2 - Reemplazar src -->
-                        <img src="" alt="Ana Rodríguez" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="student-img-placeholder" style="display:none;">
-                            <span>&#128248;<br>Estudiante 2<br><small>Reemplazar con foto local</small></span>
-                        </div>
-                        <div class="student-overlay">
-                            <h4 style="color:#fff; margin-bottom:0.3rem;">Ana Rodríguez</h4>
-                            <p style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Innovación Digital</p>
-                        </div>
+                <button class="timeline-arrow" id="timelineNext" aria-label="Siguiente">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DOCENTE MEJORADA -->
+    <section class="teacher-section reveal">
+        <div class="inju-section-header">
+            <h2>Nuestro Guía</h2>
+            <p>Mentoría y dedicación académica</p>
+        </div>
+        <div class="teacher-card">
+            <div class="teacher-visual">
+                <img src="img-INJU-page/img-teacher-alumnos/profeRoberto.jpg" alt="Roberto Machado García">
+                <div class="teacher-visual-overlay"></div>
+                <div class="teacher-visual-name">Roberto Machado García</div>
+                <div class="teacher-visual-role">Facilitador Académico</div>
+            </div>
+            <div class="teacher-body">
+                <h3 class="teacher-name">Roberto Machado García</h3>
+                <div class="teacher-role">Facilitador Académico</div>
+                <p class="teacher-desc">El mentor encargado de guiar y pulir el talento de los estudiantes, fomentando la excelencia en el desarrollo de software e innovación tecnológica dentro del Instituto Nacional de Jucuapa.</p>
+                <div class="teacher-stats">
+                    <div class="stat-box">
+                        <h4>Especialidad</h4>
+                        <p>Desarrollo de Software & Programación Web Avanzada</p>
                     </div>
-                    <div class="student-info">
-                        <h3>Ana Rodríguez</h3>
-                        <span class="student-role">Innovación Digital</span>
+                    <div class="stat-box">
+                        <h4>Experiencia</h4>
+                        <p>Más de 15 años formando jóvenes programadores en El Salvador</p>
                     </div>
-                </div>
-                <div class="student-card reveal">
-                    <div class="student-img-wrapper">
-                        <!-- ESPACIO PARA IMAGEN ESTUDIANTE 3 - Reemplazar src -->
-                        <img src="" alt="Carlos Pérez" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="student-img-placeholder" style="display:none;">
-                            <span>&#128248;<br>Estudiante 3<br><small>Reemplazar con foto local</small></span>
-                        </div>
-                        <div class="student-overlay">
-                            <h4 style="color:#fff; margin-bottom:0.3rem;">Carlos Pérez</h4>
-                            <p style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Deportista Destacado</p>
-                        </div>
+                    <div class="stat-box">
+                        <h4>Enfoque</h4>
+                        <p>Metodologías ágiles, pensamiento lógico y resolución de problemas reales</p>
                     </div>
-                    <div class="student-info">
-                        <h3>Carlos Pérez</h3>
-                        <span class="student-role">Deportista Destacado</span>
-                    </div>
-                </div>
-                <div class="student-card reveal">
-                    <div class="student-img-wrapper">
-                        <!-- ESPACIO PARA IMAGEN ESTUDIANTE 4 - Reemplazar src -->
-                        <img src="" alt="María López" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="student-img-placeholder" style="display:none;">
-                            <span>&#128248;<br>Estudiante 4<br><small>Reemplazar con foto local</small></span>
-                        </div>
-                        <div class="student-overlay">
-                            <h4 style="color:#fff; margin-bottom:0.3rem;">María López</h4>
-                            <p style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Excelencia Académica</p>
-                        </div>
-                    </div>
-                    <div class="student-info">
-                        <h3>María López</h3>
-                        <span class="student-role">Excelencia Académica</span>
+                    <div class="stat-box">
+                        <h4>Misión</h4>
+                        <p>Transformar la educación técnica en oportunidades de empleo real</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         GALERIA PREMIUM
-         ============================================ -->
-    <section class="gallery-premium-section" id="galeria-inju">
-        <div class="container">
-            <div class="section-header">
-                <h2>Vida Institucional</h2>
-                <p>Capturando momentos que definen nuestra esencia y tradición.</p>
+    <!-- SECCIÓN ALUMNOS - 4 GRID HORIZONTAL -->
+    <section class="students-section reveal">
+        <div class="inju-section-header">
+            <h2>Talento INJU</h2>
+            <p>El equipo de desarrollo e innovación</p>
+        </div>
+        <div class="students-grid">
+            <div class="student-card">
+                <div class="student-visual">
+                    <img src="img-INJU-page/img-teacher-alumnos/Daniel-Galdámez.jpeg" alt="Daniel Galdámez">
+                </div>
+                <div class="student-overlay">
+                    <h3 class="student-name">Valverde</h3>
+                    <div class="student-role">Programador</div>
+                </div>
+                <div class="student-hover">
+                    <h4>Responsabilidades</h4>
+                    <p>Fue el encargado principal del desarrollo de la página de Productos, implementando el catálogo interactivo y el sistema de filtrado por categorías.</p>
+                    <div class="student-tags">
+                        <span class="student-tag">Productos</span>
+                        <span class="student-tag">JavaScript</span>
+                        <span class="student-tag">UI/UX</span>
+                    </div>
+                </div>
             </div>
-            <div class="premium-gallery">
-                <div class="gallery-item-premium gallery-item-main reveal">
-                    <!-- ESPACIO PARA IMAGEN GALERIA 1 - Reemplazar src -->
-                    <img src="" alt="Campus INJU" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-item-placeholder" style="display:none;">
-                        <span>&#128248; Campus INJU<br><small>Reemplazar con foto local</small></span>
-                    </div>
-                    <div class="gallery-overlay-premium">
-                        <div>
-                            <h4>Campus Jucuapa</h4>
-                            <p>Espacios diseñados para el aprendizaje integral</p>
-                        </div>
+            <div class="student-card">
+                <div class="student-visual">
+                    <img src="" alt="Jaime Guzman">
+                </div>
+                <div class="student-overlay">
+                    <h3 class="student-name">Jaime Guzman</h3>
+                    <div class="student-role">Programador</div>
+                </div>
+                <div class="student-hover">
+                    <h4>Responsabilidades</h4>
+                    <p>Lideró el diseño visual de la Galería y la página de Inicio, creando la identidad gráfica y los efectos de animación CSS del proyecto.</p>
+                    <div class="student-tags">
+                        <span class="student-tag">Galería</span>
+                        <span class="student-tag">CSS3</span>
+                        <span class="student-tag">Diseño</span>
                     </div>
                 </div>
-                <div class="gallery-item-premium reveal">
-                    <!-- ESPACIO PARA IMAGEN GALERIA 2 - Reemplazar src -->
-                    <img src="" alt="Instalaciones INJU" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-item-placeholder" style="display:none;">
-                        <span>&#128248; Instalaciones<br><small>Reemplazar con foto local</small></span>
-                    </div>
-                    <div class="gallery-overlay-premium">
-                        <div>
-                            <h4>Excelencia Académica</h4>
-                            <p>Compromiso con el saber</p>
-                        </div>
+            </div>
+            <div class="student-card">
+                <div class="student-visual">
+                    <img src="img-INJU-page/img-teacher-alumnos/Daniel-Galdámez.jpg" alt="Daniel Galdámez">
+                </div>
+                <div class="student-overlay">
+                    <h3 class="student-name">Daniel Galdámez</h3>
+                    <div class="student-role">Programador</div>
+                </div>
+                <div class="student-hover">
+                    <h4>Responsabilidades</h4>
+                    <p>Desarrolló el módulo de Compras y el sistema de Ubicación con mapa interactivo, incluyendo la lógica de carrito y geolocalización.</p>
+                    <div class="student-tags">
+                        <span class="student-tag">Compras</span>
+                        <span class="student-tag">Maps API</span>
+                        <span class="student-tag">Lógica</span>
                     </div>
                 </div>
-                <div class="gallery-item-premium gallery-quote reveal">
-                    <h3>"La educación es el arma más poderosa que puedes usar para cambiar el mundo."</h3>
+            </div>
+            <div class="student-card">
+                <div class="student-visual">
+                    <img src="" alt="Elena Torres">
                 </div>
-                <div class="gallery-item-premium reveal">
-                    <!-- ESPACIO PARA IMAGEN GALERIA 3 - Reemplazar src -->
-                    <img src="" alt="Actividades INJU" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-item-placeholder" style="display:none;">
-                        <span>&#128248; Actividades<br><small>Reemplazar con foto local</small></span>
-                    </div>
-                    <div class="gallery-overlay-premium">
-                        <div>
-                            <h4>Vida Estudiantil</h4>
-                            <p>Momentos inolvidables</p>
-                        </div>
-                    </div>
+                <div class="student-overlay">
+                    <h3 class="student-name">Elena Torres</h3>
+                    <div class="student-role">Programadora</div>
                 </div>
-                <div class="gallery-item-premium reveal">
-                    <!-- ESPACIO PARA IMAGEN GALERIA 4 - Reemplazar src -->
-                    <img src="" alt="Eventos INJU" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-item-placeholder" style="display:none;">
-                        <span>&#128248; Eventos<br><small>Reemplazar con foto local</small></span>
-                    </div>
-                    <div class="gallery-overlay-premium">
-                        <div>
-                            <h4>Eventos Especiales</h4>
-                            <p>Celebrando nuestra comunidad</p>
-                        </div>
+                <div class="student-hover">
+                    <h4>Responsabilidades</h4>
+                    <p>Se encargó de la arquitectura general, optimización de rendimiento, responsive design y la integración final de todos los módulos del sitio.</p>
+                    <div class="student-tags">
+                        <span class="student-tag">Arquitectura</span>
+                        <span class="student-tag">Responsive</span>
+                        <span class="student-tag">Deploy</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         INFORMACION INSTITUCIONAL
-         ============================================ -->
-    <section class="info-section" id="info">
-        <div class="container">
-            <div class="section-header">
-                <h2>Información Institucional</h2>
-                <p>Datos importantes sobre el Instituto Nacional de Jucuapa.</p>
-            </div>
-            <div class="info-grid-inju">
-                <div class="info-card-inju reveal">
-                    <h3><span>&#128203;</span> Datos Generales</h3>
-                    <ul>
-                        <li><strong>Nombre:</strong> Instituto Nacional de Jucuapa</li>
-                        <li><strong>Código:</strong> 12585</li>
-                        <li><strong>Tipo:</strong> Centro educativo oficial</li>
-                        <li><strong>Calendario:</strong> Nacional</li>
-                        <li><strong>Jornada:</strong> Matutina</li>
-                        <li><strong>Dirección:</strong> Final Calle 2 de Abril, Barrio La Cruz, Jucuapa, Usulután</li>
-                        <li><strong>Teléfono:</strong> 2665-2154</li>
-                        <li><strong>Correo:</strong> institutodejucuapa@gmail.com</li>
-                    </ul>
-                </div>
-                <div class="info-card-inju reveal">
-                    <h3><span>&#127919;</span> Especialidades</h3>
-                    <ul>
-                        <li>Ciencias Naturales</li>
-                        <li>Ciencias Sociales</li>
-                        <li>Matemáticas</li>
-                        <li>Idiomas y Humanidades</li>
-                        <li>Desarrollo de Software (BTV)</li>
-                        <li>Actividades extracurriculares y deportivas</li>
-                    </ul>
-                </div>
-                <div class="info-quote-card reveal">
-                    <p>El INJU ha sido desde sus inicios una institución educativa reconocida por su compromiso con la excelencia académica. Formamos jóvenes con valores sólidos y una educación de calidad que trasciende generaciones.</p>
-                    <p class="quote-author">— Comunidad Educativa INJU</p>
-                </div>
-                <div class="info-card-inju reveal">
-                    <h3><span>&#127942;</span> Logros Destacados</h3>
-                    <ul>
-                        <li>Primer centro de educación media en la zona oriental</li>
-                        <li>Reconocimiento nacional por excelencia académica</li>
-                        <li>Programas de extensión comunitaria activos</li>
-                        <li>Formación integral de más de 1,000 graduados</li>
-                        <li>Modernas instalaciones y laboratorios equipados</li>
-                        <li>Docentes altamente calificados y comprometidos</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         FOOTER - IGUAL A INDEX.HTML
-         ============================================ -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
@@ -1510,58 +1427,141 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
-                <span style="font-style: italic;">This website was designed and created by:</span> <span
-                    style="font-weight: bold;">Either Design STR Team.</span>
+                <span style="font-style: italic;">This website was designed and created by:</span> <span style="font-weight: bold;">Either Design STR Team.</span>
             </p>
         </div>
     </footer>
 
     <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
-
-    <!-- ============================================
-         JAVASCRIPT GLOBAL
-         ============================================ -->
     <script src="script.js"></script>
+
     <script>
-        /* ============================================
-           INJU - SCRIPTS ESPECIFICOS
-           ============================================ */
+        // ==========================================
+        // SCROLL REVEAL
+        // ==========================================
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
 
-        // Timeline Intersection Observer
-        function initTimelineAnimations() {
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+        // ==========================================
+        // TIMELINE AUTOMÁTICO SUAVE
+        // ==========================================
+        const timelineScroll = document.getElementById('timelineScroll');
+        const timelineNodes = document.querySelectorAll('.timeline-node');
+        const timelineDots = document.querySelectorAll('.timeline-dot-btn');
+        const prevBtn = document.getElementById('timelinePrev');
+        const nextBtn = document.getElementById('timelineNext');
+        let currentIndex = 0;
+        let autoInterval;
+        let isUserInteracting = false;
+        const AUTO_DELAY = 4000;
 
-            timelineItems.forEach(function(item) {
-                observer.observe(item);
+        function goToTimeline(index, smooth = true) {
+            if (index < 0) index = timelineNodes.length - 1;
+            if (index >= timelineNodes.length) index = 0;
+            currentIndex = index;
+
+            const node = timelineNodes[index];
+            const scrollPos = node.offsetLeft - (timelineScroll.offsetWidth / 2) + (node.offsetWidth / 2);
+            timelineScroll.scrollTo({ left: scrollPos, behavior: smooth ? 'smooth' : 'auto' });
+
+            timelineDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
             });
         }
 
-        // Smooth scroll para anclas internas
-        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    const target = document.querySelector(href);
-                    if (target) {
-                        e.preventDefault();
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+        function startAuto() {
+            clearInterval(autoInterval);
+            autoInterval = setInterval(() => {
+                if (!isUserInteracting) {
+                    goToTimeline(currentIndex + 1);
                 }
-            });
+            }, AUTO_DELAY);
+        }
+
+        function stopAuto() {
+            isUserInteracting = true;
+            clearInterval(autoInterval);
+            setTimeout(() => {
+                isUserInteracting = false;
+                startAuto();
+            }, 8000);
+        }
+
+        prevBtn.addEventListener('click', () => { stopAuto(); goToTimeline(currentIndex - 1); });
+        nextBtn.addEventListener('click', () => { stopAuto(); goToTimeline(currentIndex + 1); });
+
+        timelineDots.forEach((dot, i) => {
+            dot.addEventListener('click', () => { stopAuto(); goToTimeline(i); });
         });
 
-        // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function() {
-            initTimelineAnimations();
+        // Drag support
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        timelineScroll.addEventListener('mousedown', (e) => {
+            isDown = true;
+            isUserInteracting = true;
+            timelineScroll.style.cursor = 'grabbing';
+            startX = e.pageX - timelineScroll.offsetLeft;
+            scrollLeft = timelineScroll.scrollLeft;
         });
+        timelineScroll.addEventListener('mouseleave', () => {
+            isDown = false;
+            timelineScroll.style.cursor = 'grab';
+        });
+        timelineScroll.addEventListener('mouseup', () => {
+            isDown = false;
+            timelineScroll.style.cursor = 'grab';
+            let closest = 0;
+            let minDiff = Infinity;
+            timelineNodes.forEach((node, i) => {
+                const nodeCenter = node.offsetLeft + node.offsetWidth / 2;
+                const containerCenter = timelineScroll.scrollLeft + timelineScroll.offsetWidth / 2;
+                const diff = Math.abs(nodeCenter - containerCenter);
+                if (diff < minDiff) { minDiff = diff; closest = i; }
+            });
+            goToTimeline(closest);
+            setTimeout(() => { isUserInteracting = false; startAuto(); }, 8000);
+        });
+        timelineScroll.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - timelineScroll.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            timelineScroll.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch support
+        let touchStartX = 0;
+        timelineScroll.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            isUserInteracting = true;
+        }, { passive: true });
+        timelineScroll.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) goToTimeline(currentIndex + 1);
+                else goToTimeline(currentIndex - 1);
+            }
+            setTimeout(() => { isUserInteracting = false; startAuto(); }, 8000);
+        });
+
+        // Hover pausa
+        timelineScroll.addEventListener('mouseenter', () => { isUserInteracting = true; });
+        timelineScroll.addEventListener('mouseleave', () => { isUserInteracting = false; });
+
+        goToTimeline(0, false);
+        startAuto();
     </script>
 </body>
-
 </html>
