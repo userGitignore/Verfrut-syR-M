@@ -7,6 +7,125 @@
     <title>Productos | Verfrut's y R&amp;M</title>
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ===== CARRITO STYLES ===== */
+        .nav-cart-item { position: relative; }
+        .nav-cart-button {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 48px; height: 48px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(34,197,94,0.12);
+            color: #ffffff; border-radius: 50%; padding: 0;
+            position: relative; cursor: pointer; font-weight: 700;
+            transition: background 0.25s ease, transform 0.2s ease;
+        }
+        .nav-cart-button:hover { background: rgba(34,197,94,0.22); transform: translateY(-1px); }
+        .nav-cart-badge {
+            position: absolute; top: -6px; right: -6px;
+            display: inline-flex; align-items: center; justify-content: center;
+            min-width: 22px; height: 22px; padding: 0 6px;
+            border-radius: 999px; background: #FF6F00; color: #ffffff;
+            font-size: 0.72rem; font-weight: 700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            transition: transform 0.25s ease;
+            z-index: 3;
+        }
+        .nav-cart-badge.pulse { animation: badgePulse 0.32s ease; }
+        @keyframes badgePulse { 0%{transform:scale(1)} 50%{transform:scale(1.25)} 100%{transform:scale(1)} }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px); z-index: 10001;
+            align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-container {
+            background: #0f1a1f; max-width: 720px;
+            width: min(720px, 95%); border-radius: 32px;
+            border: 1px solid rgba(34,197,94,0.3); padding: 1.8rem;
+            animation: fadeUp 0.25s ease; max-height: 90vh;
+            overflow: hidden;
+        }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        .modal-container h3 {
+            font-size: 1.5rem; color: #22c55e; margin-bottom: 1rem;
+            border-left: 4px solid #FF6F00; padding-left: 1rem;
+        }
+        .modal-items { max-height: 50vh; overflow-y: auto; margin: 1rem 0; }
+        .modal-item {
+            display: flex; justify-content: space-between; align-items: center;
+            background: #0a1117; border-radius: 20px; padding: 0.85rem 1rem;
+            margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .modal-item-info { min-width: 0; flex: 1 1 160px; }
+        .modal-item-name { font-size: 0.95rem; color: #e2e8f0; }
+        .modal-item-price { font-size: 0.78rem; color: #94a3b8; }
+        .modal-item-controls {
+            display: flex; align-items: center; gap: 0.55rem;
+            flex-wrap: wrap; justify-content: flex-end; flex: 0 1 auto;
+        }
+        .cart-qty-btn {
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+            color: #e2e8f0; font-size: 1rem; width: 34px; height: 34px;
+            border-radius: 50%; cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .cart-qty-btn:hover { background: rgba(34,197,94,0.16); transform: translateY(-1px); color: #ffffff; }
+        .modal-item-qty {
+            padding: 0.2rem 0.8rem; background: rgba(255,255,255,0.06);
+            border-radius: 999px; font-size: 0.85rem; font-weight: 700; color: #f8fafc;
+        }
+        .modal-item-subtotal { font-weight: 700; color: #d9f99d; min-width: 72px; text-align: right; }
+        .modal-item-remove {
+            background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.2);
+            color: #f87171; font-size: 1rem; cursor: pointer;
+            width: 34px; height: 34px; border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .modal-item-remove:hover { background: rgba(248,113,113,0.2); transform: translateY(-1px); }
+        .modal-total {
+            display: flex; justify-content: space-between; font-size: 1.1rem;
+            font-weight: bold; border-top: 1px solid #2c3a3a;
+            padding-top: 1rem; margin: 1rem 0;
+        }
+        .modal-total span:last-child { color: #d9f99d; }
+        .modal-form {
+            display: grid; gap: 0.75rem; margin-bottom: 1.2rem; padding: 0 0.25rem 0.5rem;
+        }
+        .modal-form label { color: #9ca3af; font-size: 0.9rem; }
+        .modal-form input {
+            width: 100%; min-height: 44px; border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.04); color: #f8fafc;
+            padding: 0 14px; font-size: 0.95rem;
+        }
+        .modal-form input:focus {
+            outline: none; border-color: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34,197,94,0.12);
+        }
+        .modal-hint { color: #94a3b8; font-size: 0.82rem; margin: 0; }
+        .modal-buttons {
+            display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.85rem;
+        }
+        .btn-secondary, .btn-primary { width: auto; min-width: 120px; }
+        .btn-secondary { padding: 10px 18px; }
+        .btn-primary { padding: 10px 20px; }
+        .btn-primary:disabled {
+            background: rgba(34,197,94,0.16) !important; color: rgba(255,255,255,0.65) !important;
+            border-color: rgba(255,255,255,0.08) !important; box-shadow: none !important;
+            opacity: 0.72 !important; cursor: not-allowed !important; transform: none !important;
+        }
+        .btn-primary:disabled:hover { background: rgba(34,197,94,0.16) !important; }
+        .empty-cart { text-align: center; color: #8a9bb0; padding: 1.5rem 0; font-size: 0.9rem; }
+        @media (max-width: 640px) {
+            .modal-item { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
 <base target="_blank">
 </head>
 
@@ -48,6 +167,10 @@
                 <li><a href="compras.html">Compras</a></li>
                 <li><a href="galeria.html">Galería</a></li>
                 <li><a href="ubicacion.html">Ubicación</a></li>
+                <li class="nav-cart-item"><button id="openCartBtn" class="nav-cart-button" type="button" aria-label="Abrir carrito">
+                    <span>🛒</span>
+                    <span id="navbarCartCount" class="nav-cart-badge">0</span>
+                </button></li>
             </ul>
             <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
         </div>
@@ -116,7 +239,7 @@
                             <p class="product-desc">Fresca y jugosa, ideal para consumo diario</p>
                             <div class="product-price">
                                 <span class="price">4 por $1.00 <span class="price-unit">/ bolsa</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -132,7 +255,7 @@
                             <p class="product-desc">Seleccionada en su punto óptimo de maduración</p>
                             <div class="product-price">
                                 <span class="price">3 por $1.00 <span class="price-unit">/ bolsa</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -148,7 +271,7 @@
                             <p class="product-desc">Perfecta para jugos naturales y postres</p>
                             <div class="product-price">
                                 <span class="price">2 por $1.00 <span class="price-unit">/ bolsa</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -170,7 +293,7 @@
                                 <p class="product-desc">Rica en vitaminas y antioxidantes</p>
                                 <div class="product-price">
                                     <span class="price">$2.50 <span class="price-unit">/ unidad</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +309,7 @@
                                 <p class="product-desc">Directo del productor a tu mesa</p>
                                 <div class="product-price">
                                     <span class="price">Libra $3.50 <span class="price-unit">/ bolsa</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +325,7 @@
                                 <p class="product-desc">Sabor dulce y textura irresistible</p>
                                 <div class="product-price">
                                     <span class="price">Libra $4.50 <span class="price-unit">/ bolsa</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -224,7 +347,7 @@
                                     <p class="product-desc">Excelente para ensaladas de frutas</p>
                                     <div class="product-price">
                                         <span class="price">5 por $1.00 <span class="price-unit">/ bolsa</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -240,7 +363,7 @@
                                     <p class="product-desc">Calidad premium garantizada</p>
                                     <div class="product-price">
                                         <span class="price">2 por $1.00 <span class="price-unit">/ bolsa</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +379,7 @@
                                     <p class="product-desc">Cosechada en las mejores fincas</p>
                                     <div class="product-price">
                                         <span class="price">$2.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -278,7 +401,7 @@
                                         <p class="product-desc">Frescura que se siente al primer mordisco</p>
                                         <div class="product-price">
                                             <span class="price">$2.00 <span class="price-unit">/ unidad</span></span>
-                                            <a href="compras.html" class="add-to-cart">+</a>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -295,7 +418,7 @@
                                         <div class="product-price">
                                             <span class="price">Bandeja $2.00 <span class="price-unit">/
                                                     bandeja</span></span
-                                            <a href="compras.html" class="add-to-cart">+</a>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -311,7 +434,7 @@
                                         <p class="product-desc">Seleccionada en su punto óptimo de maduración</p>
                                         <div class="product-price">
                                             <span class="price">$1.50 <span class="price-unit">unidad</span></span>
-                                            <a href="compras.html" class="add-to-cart">+</a>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -349,7 +472,7 @@
                             <p class="product-desc">Cultivada sin químicos dañinos</p>
                             <div class="product-price">
                                 <span class="price">3 por $1.00 <span class="price-unit">/ bolsa</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -365,7 +488,7 @@
                             <p class="product-desc">Cosechada diariamente para ti</p>
                             <div class="product-price">
                                 <span class="price">$ <span class="price-unit">/ bolsa</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -381,7 +504,7 @@
                             <p class="product-desc">Perfecta para sopas y guisos</p>
                             <div class="product-price">
                                 <span class="price">$1.50 <span class="price-unit">/ unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -403,7 +526,7 @@
                                 <p class="product-desc">Ideal para ensaladas frescas</p>
                                 <div class="product-price">
                                     <span class="price">12 por $1.00 <span class="price-unit">/ bolsa</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -420,7 +543,7 @@
                                 <div class="product-price">
                                     <span class="price">Grande $0.35 <span class="price-unit">/ Pequeña
                                             $0.25</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -436,7 +559,7 @@
                                 <p class="product-desc">Cosechada diariamente para ti</p>
                                 <div class="product-price">
                                     <span class="price">Bolsa $0.50 <span class="price-unit">/ bolsa</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -458,7 +581,7 @@
                                     <p class="product-desc">Excelente fuente de nutrientes</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -474,7 +597,7 @@
                                     <p class="product-desc">Versátil para cualquier receta</p>
                                     <div class="product-price">
                                         <span class="price">$0.50 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -490,7 +613,7 @@
                                     <p class="product-desc">Frescura garantizada en cada pieza</p>
                                     <div class="product-price">
                                         <span class="price">Manojo $1.50 <span class="price-unit">/ manojo</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -513,7 +636,7 @@
                                         <div class="product-price">
                                             <span class="price">4 por $1.00 <span class="price-unit">/
                                                     bolsa</span></span>
-                                            <a href="compras.html" class="add-to-cart">+</a>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -530,7 +653,7 @@
                                         <div class="product-price">
                                             <span class="price">4 por $1.00 <span class="price-unit">/
                                                     bolsa</span></span>
-                                            <a href="compras.html" class="add-to-cart">+</a>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -546,7 +669,7 @@
                                         <p class="product-desc">Cultivada sin químicos dañinos</p>
                                         <div class="product-price">
                                             <span class="price">$0.50 <span class="price-unit">/ unidad</span></span>
-                                            <a href="compras.html" class="add-to-cart">+</a>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -569,7 +692,7 @@
                                             <div class="product-price">
                                                 <span class="price">Libra $0.65 <span class="price-unit">/
                                                         bolsa</span></span>
-                                                <a href="compras.html" class="add-to-cart">+</a>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
                                             </div>
                                         </div>
                                     </div>
@@ -586,7 +709,7 @@
                                             <div class="product-price">
                                                 <span class="price">$2.00 <span class="price-unit">/
                                                         bandeja</span></span>
-                                                <a href="compras.html" class="add-to-cart">+</a>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
                                             </div>
                                         </div>
                                     </div>
@@ -602,7 +725,7 @@
                                             <p class="product-desc">Textura crujiente y sabor natural</p>
                                             <div class="product-price">
                                                 <span class="price">$0. <span class="price-unit">/ manojo</span></span>
-                                                <a href="compras.html" class="add-to-cart">+</a>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
                                             </div>
                                         </div>
                                     </div>
@@ -642,7 +765,7 @@
                             <p class="product-desc">Descripción del producto 1</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -658,7 +781,7 @@
                             <p class="product-desc">Descripción del producto 2</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -674,7 +797,7 @@
                             <p class="product-desc">Descripción del producto 3</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -696,7 +819,7 @@
                                 <p class="product-desc">Descripción del producto 4</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -712,7 +835,7 @@
                                 <p class="product-desc">Descripción del producto 5</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -728,7 +851,7 @@
                                 <p class="product-desc">Descripción del producto 6</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -750,7 +873,7 @@
                                     <p class="product-desc">Descripción del producto 7</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -766,7 +889,7 @@
                                     <p class="product-desc">Descripción del producto 8</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -782,7 +905,7 @@
                                     <p class="product-desc">Descripción del producto 9</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -804,7 +927,7 @@
                                         <p class="product-desc">Descripción del producto 10</p>
                                         <div class="product-price">
                                             <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                            <a href="compras.html" class="add-to-cart">+</a>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -820,7 +943,7 @@
                                         <p class="product-desc">Descripción del producto 11</p>
                                         <div class="product-price">
                                             <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                            <a href="compras.html" class="add-to-cart">+</a>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -836,7 +959,7 @@
                                         <p class="product-desc">Descripción del producto 12</p>
                                         <div class="product-price">
                                             <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                            <a href="compras.html" class="add-to-cart">+</a>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -859,7 +982,7 @@
                                             <div class="product-price">
                                                 <span class="price">$1.00 <span class="price-unit">/
                                                         unidad</span></span>
-                                                <a href="compras.html" class="add-to-cart">+</a>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
                                             </div>
                                         </div>
                                     </div>
@@ -876,7 +999,7 @@
                                             <div class="product-price">
                                                 <span class="price">$1.00 <span class="price-unit">/
                                                         unidad</span></span>
-                                                <a href="compras.html" class="add-to-cart">+</a>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
                                             </div>
                                         </div>
                                     </div>
@@ -893,7 +1016,7 @@
                                             <div class="product-price">
                                                 <span class="price">$1.00 <span class="price-unit">/
                                                         unidad</span></span>
-                                                <a href="compras.html" class="add-to-cart">+</a>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
                                             </div>
                                         </div>
                                     </div>
@@ -933,7 +1056,7 @@
                             <p class="product-desc">Descripción del producto 1</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -949,7 +1072,7 @@
                             <p class="product-desc">Descripción del producto 2</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -965,7 +1088,7 @@
                             <p class="product-desc">Descripción del producto 3</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -987,7 +1110,7 @@
                                 <p class="product-desc">Descripción del producto 4</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -1003,7 +1126,7 @@
                                 <p class="product-desc">Descripción del producto 5</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -1019,7 +1142,7 @@
                                 <p class="product-desc">Descripción del producto 6</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -1041,7 +1164,7 @@
                                     <p class="product-desc">Descripción del producto 7</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -1057,7 +1180,7 @@
                                     <p class="product-desc">Descripción del producto 8</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -1073,7 +1196,7 @@
                                     <p class="product-desc">Descripción del producto 9</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -1110,7 +1233,7 @@
                             <p class="product-desc">Descripción del producto 1</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -1126,7 +1249,7 @@
                             <p class="product-desc">Descripción del producto 2</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -1142,7 +1265,7 @@
                             <p class="product-desc">Descripción del producto 3</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                <a href="compras.html" class="add-to-cart">+</a>
+                                <button type="button" class="btn-add add-to-cart">+</button>
                             </div>
                         </div>
                     </div>
@@ -1165,7 +1288,7 @@
                                 <p class="product-desc">Descripción del producto 4</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -1181,7 +1304,7 @@
                                 <p class="product-desc">Descripción del producto 5</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -1197,7 +1320,7 @@
                                 <p class="product-desc">Descripción del producto 6</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                    <a href="compras.html" class="add-to-cart">+</a>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
                                 </div>
                             </div>
                         </div>
@@ -1219,7 +1342,7 @@
                                     <p class="product-desc">Descripción del producto 7</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -1235,7 +1358,7 @@
                                     <p class="product-desc">Descripción del producto 8</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -1251,7 +1374,7 @@
                                     <p class="product-desc">Descripción del producto 9</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
-                                        <a href="compras.html" class="add-to-cart">+</a>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -1263,6 +1386,31 @@
             </div>
         </div>
     </section>
+
+
+    <!-- MODAL DE CHECKOUT (CONFIRMACIÓN) -->
+    <div id="checkoutModal" class="modal-overlay">
+        <div class="modal-container">
+            <h3>🛒 Mi carrito</h3>
+            <div class="modal-form">
+                <label for="modalBuyerName">Nombre</label>
+                <input id="modalBuyerName" type="text" placeholder="Tu nombre" autocomplete="name">
+                <label for="modalBuyerLast">Apellido</label>
+                <input id="modalBuyerLast" type="text" placeholder="Tu apellido" autocomplete="family-name">
+                <p class="modal-hint">El nombre es obligatorio para que el vendedor sepa quién hizo el pedido.</p>
+            </div>
+            <div id="modalItemsList" class="modal-items"></div>
+            <div class="modal-total">
+                <span>Total a pagar</span>
+                <span id="modalTotal">$0.00</span>
+            </div>
+            <div class="modal-buttons">
+                <button id="closeModalBtn" class="btn-secondary">Seguir comprando</button>
+                <button id="clearCartBtn" class="btn-secondary">Limpiar carrito</button>
+                <button id="sendWhatsappBtn" class="btn-primary" disabled>Enviar por WhatsApp</button>
+            </div>
+        </div>
+    </div>
 
    <!-- ============================================
          FOOTER
@@ -1334,6 +1482,373 @@
 
     
     <script src="script.js"></script>
+
+    <!-- CARRITO SCRIPT -->
+    <script>
+    (function() {
+        const CART_KEY = 'verfruts_cart';
+        const WHATSAPP_NUMBER = '50360649103';
+
+        let cart = [];
+
+        // DOM elements
+        const navbarCartCount = document.getElementById('navbarCartCount');
+        const openCartBtn = document.getElementById('openCartBtn');
+        const modal = document.getElementById('checkoutModal');
+        const modalItemsContainer = document.getElementById('modalItemsList');
+        const modalTotalSpan = document.getElementById('modalTotal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
+        const modalBuyerName = document.getElementById('modalBuyerName');
+        const modalBuyerLast = document.getElementById('modalBuyerLast');
+        const clearCartBtn = document.getElementById('clearCartBtn');
+
+        // Initialize product cards with data attributes
+        function initProductCards() {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, index) => {
+                const nameEl = card.querySelector('.product-name');
+                const priceEl = card.querySelector('.price');
+                const unitEl = card.querySelector('.price-unit');
+                const descEl = card.querySelector('.product-desc');
+                const catEl = card.querySelector('.product-category');
+
+                if (nameEl && priceEl) {
+                    const name = nameEl.textContent.trim();
+                    // Extract price - handle formats like "4 por $1.00", "Libra $3.50", "$2.50"
+                    const priceText = priceEl.textContent.trim();
+                    // Find the last dollar amount in the string
+                    const priceMatches = priceText.match(/\$([0-9]+\.?[0-9]*)/g);
+                    let price = 0;
+                    if (priceMatches && priceMatches.length > 0) {
+                        // Take the last match (usually the unit price)
+                        const lastMatch = priceMatches[priceMatches.length - 1];
+                        const numMatch = lastMatch.match(/\$([0-9]+\.?[0-9]*)/);
+                        price = numMatch ? parseFloat(numMatch[1]) : 0;
+                    }
+                    const unit = unitEl ? unitEl.textContent.trim() : '';
+                    const desc = descEl ? descEl.textContent.trim() : '';
+                    const category = catEl ? catEl.textContent.trim() : '';
+
+                    // Generate ID from name + index to ensure uniqueness
+                    const id = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') + '-' + index;
+
+                    card.setAttribute('data-id', id);
+                    card.setAttribute('data-name', name);
+                    card.setAttribute('data-price', price);
+                    card.setAttribute('data-unit', unit);
+                    card.setAttribute('data-desc', desc);
+                    card.setAttribute('data-category', category);
+                }
+            });
+        }
+
+        // Format money
+        function formatMoney(value) {
+            return '$' + Number(value).toFixed(2);
+        }
+
+        // Get cart quantity
+        function getCartQuantity() {
+            return cart.reduce((sum, item) => sum + item.quantity, 0);
+        }
+
+        // Save cart to localStorage
+        function saveCart() {
+            const toSave = cart.filter(i => i.id && i.quantity > 0).map(item => ({
+                id: item.id, name: item.name || '', price: typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0,
+                unit: item.unit || '', quantity: Number(item.quantity) || 0
+            }));
+            cart = toSave;
+            localStorage.setItem(CART_KEY, JSON.stringify(toSave));
+        }
+
+        // Load cart from localStorage
+        function loadCart() {
+            const stored = localStorage.getItem(CART_KEY);
+            if (stored) {
+                try {
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed)) {
+                        cart = parsed.filter(item => item && item.id && item.name && !isNaN(parseFloat(item.price)))
+                            .map(item => ({
+                                id: item.id, name: item.name || '', 
+                                price: typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0,
+                                unit: item.unit || '', quantity: Number(item.quantity) || 0
+                            })).filter(i => i.quantity > 0);
+                        saveCart();
+                    }
+                } catch(e) { cart = []; saveCart(); }
+            }
+            renderCart();
+        }
+
+        // Update navbar cart count
+        let __lastNavbarCount = 0;
+        function animateNavbarCount(newCount) {
+            if (!navbarCartCount) return;
+            const start = Number(__lastNavbarCount) || 0;
+            const end = Number(newCount) || 0;
+            if (start === end) { navbarCartCount.innerText = end; return; }
+            const step = end > start ? 1 : -1;
+            const steps = Math.max(1, Math.abs(end - start));
+            const duration = 200;
+            const interval = Math.max(20, Math.floor(duration / steps));
+            let current = start;
+            navbarCartCount.classList.add('pulse');
+            const t = setInterval(() => {
+                current += step;
+                navbarCartCount.innerText = current;
+                if (current === end) {
+                    clearInterval(t);
+                    setTimeout(() => navbarCartCount.classList.remove('pulse'), 200);
+                    __lastNavbarCount = end;
+                }
+            }, interval);
+        }
+
+        function updateNavbarCartCount() {
+            if (!navbarCartCount) return;
+            animateNavbarCount(getCartQuantity());
+        }
+
+        // Render cart (just updates badge)
+        function renderCart() {
+            updateNavbarCartCount();
+            try { 
+                navbarCartCount && navbarCartCount.classList.add('pulse'); 
+                setTimeout(() => navbarCartCount && navbarCartCount.classList.remove('pulse'), 300); 
+            } catch(e){}
+            if (modal && modal.classList.contains('active')) renderModal();
+        }
+
+        // Add product to cart
+        function addProduct(id, name, price, unit) {
+            const existing = cart.find(i => i.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ id, name, price: parseFloat(price), unit: unit || '', quantity: 1 });
+            }
+            saveCart();
+            renderCart();
+            updateNavbarCartCount();
+
+            // Animate button
+            const btn = document.querySelector(`.product-card[data-id="${id}"] .add-to-cart, .slider-card[data-id="${id}"] .add-to-cart`);
+            if (btn) {
+                btn.style.transform = 'scale(1.25)';
+                btn.style.background = '#16a34a';
+                setTimeout(() => { 
+                    btn.style.transform = ''; 
+                    btn.style.background = ''; 
+                }, 200);
+            }
+
+            // Flash cart button
+            if (openCartBtn) {
+                openCartBtn.style.transition = 'transform 0.18s ease';
+                openCartBtn.style.transform = 'scale(1.12)';
+                setTimeout(() => { openCartBtn.style.transform = ''; }, 200);
+            }
+        }
+
+        // Change quantity
+        function changeQuantity(id, delta) {
+            const index = cart.findIndex(i => i.id === id);
+            if (index !== -1) {
+                const newQty = cart[index].quantity + delta;
+                if (newQty <= 0) cart.splice(index, 1);
+                else cart[index].quantity = newQty;
+                saveCart();
+                renderCart();
+                if (modal && modal.classList.contains('active')) renderModal();
+            }
+        }
+
+        // Remove item
+        function removeItem(id) {
+            cart = cart.filter(i => i.id !== id);
+            saveCart();
+            renderCart();
+            if (modal && modal.classList.contains('active')) renderModal();
+        }
+
+        // Clear cart
+        function clearCart() {
+            if (cart.length === 0) return;
+            cart = [];
+            saveCart();
+            renderCart();
+            renderModal();
+        }
+
+        // Render modal
+        function renderModal() {
+            if (!modalItemsContainer) return;
+            const isEmpty = cart.length === 0;
+            let total = 0;
+            let itemsHtml = '';
+            if (isEmpty) {
+                itemsHtml = '<div class="empty-cart">Tu carrito está vacío. Agrega productos para hacer un pedido.</div>';
+            } else {
+                cart.forEach(item => {
+                    const subtotal = item.price * item.quantity;
+                    total += subtotal;
+                    itemsHtml += `
+                        <div class="modal-item" data-modal-id="${item.id}">
+                            <div class="modal-item-info">
+                                <div class="modal-item-name">${escapeHtml(item.name || 'Producto')}</div>
+                                <div class="modal-item-price">${formatMoney(typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0)} c/u · ${escapeHtml(item.unit || '')}</div>
+                            </div>
+                            <div class="modal-item-controls">
+                                <button type="button" class="cart-qty-btn" data-id="${item.id}" data-action="decrease" aria-label="Disminuir cantidad">−</button>
+                                <span class="modal-item-qty">${item.quantity}</span>
+                                <button type="button" class="cart-qty-btn" data-id="${item.id}" data-action="increase" aria-label="Aumentar cantidad">+</button>
+                                <span class="modal-item-subtotal">${formatMoney(subtotal)}</span>
+                                <button type="button" class="modal-item-remove" data-id="${item.id}" aria-label="Eliminar producto">×</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            modalItemsContainer.innerHTML = itemsHtml;
+            modalTotalSpan.innerText = formatMoney(total);
+            updateModalSendState();
+
+            // Bind modal item events
+            document.querySelectorAll('.modal-item-remove').forEach(btn => {
+                btn.addEventListener('click', () => { removeItem(btn.dataset.id); renderModal(); });
+            });
+            document.querySelectorAll('.cart-qty-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    changeQuantity(btn.dataset.id, btn.dataset.action === 'increase' ? 1 : -1);
+                    renderModal();
+                });
+            });
+        }
+
+        function updateModalSendState() {
+            if (!sendWhatsappBtn) return;
+            const hasName = modalBuyerName && modalBuyerName.value.trim().length > 0;
+            sendWhatsappBtn.disabled = !(cart.length > 0 && hasName);
+        }
+
+        function openModal() {
+            if (!modal) return;
+            renderModal();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            if (!modal) return;
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function generateWhatsAppMessage() {
+            if (cart.length === 0) return '';
+            const buyerName = modalBuyerName ? (modalBuyerName.value || '').trim() : '';
+            const buyerLast = modalBuyerLast ? (modalBuyerLast.value || '').trim() : '';
+            if (!buyerName) return '';
+            const buyerFullName = `${buyerName}${buyerLast ? ' ' + buyerLast : ''}`;
+            const lines = [
+                '🛍️ *Nuevo Pedido - Verfrut\'s y R&M*', '',
+                `*Comprador:* ${buyerFullName}`, '', '*Resumen de productos:*'
+            ];
+            let total = 0;
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                lines.push(`- ${item.name} x${item.quantity} (${item.unit}) → ${formatMoney(subtotal)}`);
+            });
+            lines.push('', `*Total estimado:* ${formatMoney(total)}`);
+            return encodeURIComponent(lines.join('\n'));
+        }
+
+        function sendOrder() {
+            if (cart.length === 0) { alert('No hay productos para enviar.'); return; }
+            const text = generateWhatsAppMessage();
+            if (!text) { alert('Por favor ingresa tu nombre antes de enviar el pedido.'); return; }
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+            window.open(url, '_blank');
+            cart = [];
+            saveCart();
+            renderCart();
+            closeModal();
+            setTimeout(() => alert('✅ Pedido enviado. Revisa WhatsApp para confirmar y completar el envío.'), 300);
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m;
+            });
+        }
+
+        // Event listeners
+        if (openCartBtn) openCartBtn.addEventListener('click', openModal);
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+        if (sendWhatsappBtn) sendWhatsappBtn.addEventListener('click', sendOrder);
+        if (clearCartBtn) clearCartBtn.addEventListener('click', clearCart);
+        if (modalBuyerName) modalBuyerName.addEventListener('input', updateModalSendState);
+        if (modalBuyerLast) modalBuyerLast.addEventListener('input', updateModalSendState);
+        if (modal) {
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+            });
+        }
+
+        // Add to cart delegation
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.add-to-cart');
+            if (!btn) return;
+            e.preventDefault();
+            const card = btn.closest('.product-card');
+            if (!card) return;
+
+            // Get data from card attributes or extract from DOM
+            let id = card.dataset.id;
+            let name = card.dataset.name;
+            let price = card.dataset.price;
+            let unit = card.dataset.unit;
+
+            // If no data attributes, try to extract from DOM
+            if (!id) {
+                const nameEl = card.querySelector('.product-name');
+                const priceEl = card.querySelector('.price');
+                const unitEl = card.querySelector('.price-unit');
+                if (nameEl) name = nameEl.textContent.trim();
+                if (priceEl) {
+                    const priceText = priceEl.textContent.trim();
+                    const priceMatches = priceText.match(/\$([0-9]+\.?[0-9]*)/g);
+                    if (priceMatches && priceMatches.length > 0) {
+                        const lastMatch = priceMatches[priceMatches.length - 1];
+                        const numMatch = lastMatch.match(/\$([0-9]+\.?[0-9]*)/);
+                        price = numMatch ? parseFloat(numMatch[1]) : 0;
+                    }
+                }
+                if (unitEl) unit = unitEl.textContent.trim();
+                id = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+            }
+
+            if (id && name && price !== undefined) {
+                addProduct(id, name, price, unit);
+            }
+        });
+
+        // Listen for storage events (sync across tabs/pages)
+        window.addEventListener('storage', function(e) {
+            if (e.key === CART_KEY) { try { loadCart(); } catch(ex) {} }
+        });
+
+        // Initialize
+        initProductCards();
+        loadCart();
+    })();
+    </script>
+
 </body>
 
 </html>
