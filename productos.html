@@ -150,6 +150,181 @@
             cursor: pointer; white-space: nowrap; pointer-events: auto;
         }
         .cart-toast .toast-action:hover { text-decoration: underline; }
+
+
+        /* ===== CARRITO OVERLAY REFINADO ===== */
+        .nav-cart-button svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        .modal-overlay {
+            background: rgba(2, 8, 12, 0.84);
+            backdrop-filter: blur(14px);
+            padding: 20px;
+        }
+        .modal-container {
+            width: min(760px, calc(100vw - 32px));
+            max-width: 760px;
+            border-radius: 24px;
+            padding: 0;
+            background: linear-gradient(145deg, #0b1516 0%, #101b22 58%, #07100c 100%);
+            border: 1px solid rgba(74, 222, 128, 0.24);
+            box-shadow: 0 28px 90px rgba(0, 0, 0, 0.62), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+        }
+        .modal-container h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+            padding: 22px 24px;
+            border-left: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: #f8fafc;
+            background: linear-gradient(90deg, rgba(34, 197, 94, 0.14), rgba(255, 255, 255, 0.02));
+            font-size: 1.25rem;
+            letter-spacing: 0;
+        }
+        .cart-title-icon,
+        .toast-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+        .cart-title-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            color: #05210f;
+            background: #22c55e;
+            box-shadow: 0 12px 28px rgba(34, 197, 94, 0.24);
+        }
+        .cart-title-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        .modal-items {
+            max-height: min(46vh, 430px);
+            margin: 0;
+            padding: 18px 20px 0;
+            scrollbar-color: #22c55e #0b1418;
+            scrollbar-width: thin;
+        }
+        .modal-item {
+            border-radius: 16px;
+            padding: 0.95rem 1rem;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+        }
+        .modal-item-name {
+            color: #f8fafc;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+        .modal-item-price {
+            color: #9fb0bf;
+        }
+        .cart-qty-btn,
+        .modal-item-remove {
+            border-radius: 12px;
+        }
+        .modal-item-qty {
+            min-width: 38px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.045);
+        }
+        .modal-total {
+            margin: 0 20px;
+            padding: 16px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.09);
+            color: #dbe7ef;
+        }
+        .modal-total span:last-child {
+            color: #4ade80;
+            font-size: 1.22rem;
+        }
+        .modal-form {
+            margin: 0 20px 18px;
+            padding: 16px;
+            gap: 10px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .modal-form > div {
+            flex-wrap: wrap;
+        }
+        .modal-form input {
+            border-radius: 12px;
+            background: rgba(5, 12, 18, 0.74);
+        }
+        .modal-buttons {
+            padding: 18px 20px 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(3, 10, 14, 0.42);
+        }
+        .modal-buttons .btn-secondary,
+        .modal-buttons .btn-primary {
+            min-height: 44px;
+            border-radius: 999px;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+        .modal-buttons .btn-secondary {
+            color: #dbe7ef;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.035);
+        }
+        .modal-buttons .btn-secondary:hover {
+            border-color: rgba(74, 222, 128, 0.36);
+            color: #ffffff;
+            background: rgba(34, 197, 94, 0.08);
+        }
+        .modal-buttons .btn-primary {
+            background: #22c55e;
+            color: #05140a;
+            box-shadow: 0 14px 30px rgba(34, 197, 94, 0.25);
+        }
+        .empty-cart {
+            padding: 2.2rem 1rem;
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.025);
+        }
+        .cart-toast {
+            border-radius: 14px;
+            background: rgba(8, 18, 20, 0.96);
+            border-color: rgba(74, 222, 128, 0.28);
+            border-left-color: #22c55e;
+        }
+        .cart-toast .toast-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #22c55e;
+            color: #05210f;
+        }
+        .cart-toast .toast-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+        @media (max-width: 640px) {
+            .modal-overlay { padding: 10px; align-items: flex-end; }
+            .modal-container { width: 100%; max-height: 94vh; border-radius: 22px 22px 0 0; }
+            .modal-container h3 { padding: 18px; }
+            .modal-items { padding: 14px 14px 0; }
+            .modal-total { margin: 0 14px; }
+            .modal-form { margin: 0 14px 14px; }
+            .modal-buttons { padding: 14px; justify-content: stretch; }
+            .modal-buttons .btn-secondary,
+            .modal-buttons .btn-primary { flex: 1 1 100%; }
+        }
+
     </style>
 
 </head>
@@ -165,7 +340,7 @@
     </div>
 
     <!-- ===== NAV OVERLAY (móvil) ===== -->
-    <div id="navOverlay" 
+    <div id="navOverlay"
         onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
 
     <!-- ===== NAVBAR ===== -->
@@ -193,7 +368,7 @@
                 <li><a href="galeria.html">Galería</a></li>
                 <li><a href="ubicacion.html">Ubicación</a></li>
                 <li class="nav-cart-item"><button id="openCartBtn" class="nav-cart-button" type="button" aria-label="Abrir carrito">
-                    <span>🛒</span>
+                    <span class="nav-cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span>
                     <span id="navbarCartCount" class="nav-cart-badge">0</span>
                 </button></li>
             </ul>
@@ -234,9 +409,9 @@
 
     <!-- ===== CATÁLOGO DE PRODUCTOS =====
          Estructura escalable: para agregar más productos a cualquier categoría,
-         simplemente añade más <div class="product-card">...</div> dentro del 
+         simplemente añade más <div class="product-card">...</div> dentro del
          grupo correspondiente. Cada grupo muestra 3 productos.
-         
+
          Para agregar un nuevo grupo de 3 productos:
          1. Crea un nuevo <input type="checkbox" id="CATEGORIA-cbN" class="show-more-cb">
          2. Crea un nuevo <div class="more-content"> con un <div class="products-grid">
@@ -248,7 +423,7 @@
     <section id="frutas" class="section">
         <div class="container">
             <div class="section-header">
-                <h2>FRUTAS.</h2>   
+                <h2>FRUTAS.</h2>
             </div>
             <div class="category-wrapper">
                 <!-- Grupo 1: Siempre visible -->
@@ -270,7 +445,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                     
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/Frutas/MANZANAVERDE.jpg" alt="Pera Verde" loading="lazy">
                         </div>
@@ -286,7 +461,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                      
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/Frutas/peras.jpg" alt="Peras" loading="lazy">
                         </div>
@@ -308,7 +483,7 @@
                     <div class="products-grid">
                         <div class="product-card">
                             <div class="product-image">
-                       
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/Frutas/piña.jpg" alt="Piña" loading="lazy">
                             </div>
@@ -324,7 +499,7 @@
                         </div>
                         <div class="product-card">
                             <div class="product-image">
-                         
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/Frutas/uvasmora.jpg" alt="Uva Morada" loading="lazy">
                             </div>
@@ -340,7 +515,7 @@
                         </div>
                         <div class="product-card">
                             <div class="product-image">
-                              
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/Frutas/uvas.jpg" alt="Uva Verde" loading="lazy">
                             </div>
@@ -362,7 +537,7 @@
                         <div class="products-grid">
                             <div class="product-card">
                                 <div class="product-image">
-                         
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/Frutas/naranjas.jpg" alt="Naranja" loading="lazy">
                                 </div>
@@ -378,7 +553,7 @@
                             </div>
                             <div class="product-card">
                                 <div class="product-image">
-                            
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/Frutas/granadillas.jpg" alt="Granadillas" loading="lazy">
                                 </div>
@@ -394,7 +569,7 @@
                             </div>
                             <div class="product-card">
                                 <div class="product-image">
-                           
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/Frutas/papaya.jpg" alt="Papaya" loading="lazy">
                                 </div>
@@ -416,7 +591,7 @@
                             <div class="products-grid">
                                 <div class="product-card">
                                     <div class="product-image">
-                             
+
                                         <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                         <img src="imgs-for-products-page/Frutas/Sandia.jpg" alt="Sandia" loading="lazy">
                                     </div>
@@ -432,7 +607,7 @@
                                 </div>
                                 <div class="product-card">
                                     <div class="product-image">
-                                   
+
                                         <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                         <img src="imgs-for-products-page/Frutas/fresas2.jpg" alt="Fresas" loading="lazy">
                                     </div>
@@ -449,7 +624,7 @@
                                 </div>
                                 <div class="product-card">
                                     <div class="product-image">
-                                   
+
                                         <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                         <img src="imgs-for-products-page/Frutas/MELON.jpg" alt="Melón" loading="lazy">
                                     </div>
@@ -487,7 +662,7 @@
                 <div class="products-grid">
                     <div class="product-card">
                         <div class="product-image">
-                    
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/Verduras/pepino.jpg" alt="Pepino" loading="lazy">
                         </div>
@@ -503,7 +678,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                     
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/Verduras/loroco.jpg" alt="Pepino" loading="lazy">
                         </div>
@@ -519,7 +694,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                  
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/Verduras/brocoli.jpg" alt="Brocoli" loading="lazy">
                         </div>
@@ -541,7 +716,7 @@
                     <div class="products-grid">
                         <div class="product-card">
                             <div class="product-image">
-                              
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/Verduras/tomates.jpg" alt="Tomate" loading="lazy">
                             </div>
@@ -557,7 +732,7 @@
                         </div>
                         <div class="product-card">
                             <div class="product-image">
-                         
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/Verduras/zanahoriASSS.jpg" alt="Zanahoria" loading="lazy">
                             </div>
@@ -574,7 +749,7 @@
                         </div>
                         <div class="product-card">
                             <div class="product-image">
-                              
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/Verduras/EloteNacional.jpg" alt="Ejote" loading="lazy">
                             </div>
@@ -596,7 +771,7 @@
                         <div class="products-grid">
                             <div class="product-card">
                                 <div class="product-image">
-                               
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/Verduras/lechuga.jpg" alt="Lechuga" loading="lazy">
                                 </div>
@@ -612,7 +787,7 @@
                             </div>
                             <div class="product-card">
                                 <div class="product-image">
-                             
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/Verduras/YUCA.jpg" alt="Yuca" loading="lazy">
                                 </div>
@@ -628,7 +803,7 @@
                             </div>
                             <div class="product-card">
                                 <div class="product-image">
-                                 
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/Verduras/cebollin.jpg" alt="Cebollin" loading="lazy">
                                 </div>
@@ -650,7 +825,7 @@
                             <div class="products-grid">
                                 <div class="product-card">
                                     <div class="product-image">
-                      
+
                                         <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                         <img src="imgs-for-products-page/Verduras/CEBOLLAmOADA.jpg" alt="Cebolla morada" loading="lazy">
                                     </div>
@@ -667,7 +842,7 @@
                                 </div>
                                 <div class="product-card">
                                     <div class="product-image">
-                               
+
                                         <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                         <img src="imgs-for-products-page/Verduras/BLANCACEBOLLA.jpg" alt="Cebolla blanca" loading="lazy">
                                     </div>
@@ -684,7 +859,7 @@
                                 </div>
                                 <div class="product-card">
                                     <div class="product-image">
-                            
+
                                         <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                         <img src="imgs-for-products-page/Verduras/GUISQUIEL.jpg" alt="Güisquil" loading="lazy">
                                     </div>
@@ -706,7 +881,7 @@
                                 <div class="products-grid">
                                     <div class="product-card">
                                         <div class="product-image">
-                                   
+
                                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                             <img src="imgs-for-products-page/Verduras/papas.jpg" alt="Papas" loading="lazy">
                                         </div>
@@ -723,7 +898,7 @@
                                     </div>
                                     <div class="product-card">
                                         <div class="product-image">
-                                    
+
                                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                             <img src="imgs-for-products-page/Verduras/elotedulce.jpg" alt="Elote dulce" loading="lazy">
                                         </div>
@@ -740,7 +915,7 @@
                                     </div>
                                     <div class="product-card">
                                         <div class="product-image">
-                                 
+
                                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                             <img src="imgs-for-products-page/Verduras/espinaca.jpg" alt="Espinaca" loading="lazy">
                                         </div>
@@ -780,7 +955,7 @@
                 <div class="products-grid">
                     <div class="product-card">
                         <div class="product-image">
-                         
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/RealCanastaBasica/AceiteOrisolAmarillo.jpg" alt="Producto 1 de canasta" loading="lazy">
                         </div>
@@ -796,7 +971,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                        
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/RealCanastaBasica/aceiteOrisolVerde.jpg" alt="Producto 2 de canasta" loading="lazy">
                         </div>
@@ -812,7 +987,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                     
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/RealCanastaBasica/AvenaQaker.jpg" alt="Producto 3 de canasta" loading="lazy">
                         </div>
@@ -834,7 +1009,7 @@
                     <div class="products-grid">
                         <div class="product-card">
                             <div class="product-image">
-                               
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/RealCanastaBasica/cafeMolidoenBolsa.jpg" alt="Producto 4 de canasta" loading="lazy">
                             </div>
@@ -850,7 +1025,7 @@
                         </div>
                         <div class="product-card">
                             <div class="product-image">
-                               
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/RealCanastaBasica/consomes.jpg" alt="Producto 5 de canasta" loading="lazy">
                             </div>
@@ -866,7 +1041,7 @@
                         </div>
                         <div class="product-card">
                             <div class="product-image">
-                           
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/RealCanastaBasica/platanos.jpg" alt="Producto 6 de canasta" loading="lazy">
                             </div>
@@ -888,7 +1063,7 @@
                         <div class="products-grid">
                             <div class="product-card">
                                 <div class="product-image">
-                        
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/RealCanastaBasica/panLido.jpg" alt="Producto 7 de canasta" loading="lazy">
                                 </div>
@@ -904,7 +1079,7 @@
                             </div>
                             <div class="product-card">
                                 <div class="product-image">
-                                  
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/RealCanastaBasica/Lechepinito.jpg" alt="Producto 8 de canasta" loading="lazy">
                                 </div>
@@ -920,7 +1095,7 @@
                             </div>
                             <div class="product-card">
                                 <div class="product-image">
-                                
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/RealCanastaBasica/CafeNescafeListo.jpg" alt="Producto 9 de canasta" loading="lazy">
                                 </div>
@@ -942,7 +1117,7 @@
                             <div class="products-grid">
                                 <div class="product-card">
                                     <div class="product-image">
-                                    
+
                                         <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                         <img src="imgs-for-products-page/RealCanastaBasica/quesoSeco.jpg" alt="Producto 10 de canasta" loading="lazy">
                                     </div>
@@ -958,7 +1133,7 @@
                                 </div>
                                 <div class="product-card">
                                     <div class="product-image">
-                                      
+
                                         <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                         <img src="imgs-for-products-page/RealCanastaBasica/maizena.jpg" alt="Producto 11 de canasta" loading="lazy">
                                     </div>
@@ -974,7 +1149,7 @@
                                 </div>
                                 <div class="product-card">
                                     <div class="product-image">
-                                       
+
                                         <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                         <img src="imgs-for-products-page/RealCanastaBasica/harinaDonaBlanca.jpg" alt="Producto 12 de canasta" loading="lazy">
                                     </div>
@@ -996,7 +1171,7 @@
                                 <div class="products-grid">
                                     <div class="product-card">
                                         <div class="product-image">
-                                       
+
                                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                             <img src="imgs-for-products-page/RealCanastaBasica/CafeCoscafe.jpg" alt="Producto 13 de canasta" loading="lazy">
                                         </div>
@@ -1013,7 +1188,7 @@
                                     </div>
                                     <div class="product-card">
                                         <div class="product-image">
-                                     
+
                                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                             <img src="imgs-for-products-page/RealCanastaBasica/cafeRIKO50.jpg" alt="Producto 14 de canasta" loading="lazy">
                                         </div>
@@ -1030,7 +1205,7 @@
                                     </div>
                                     <div class="product-card">
                                         <div class="product-image">
-                                    
+
                                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                             <img src="imgs-for-products-page/RealCanastaBasica/azucares.jpg" alt="Producto 15 de canasta" loading="lazy">
                                         </div>
@@ -1071,7 +1246,7 @@
                 <div class="products-grid">
                     <div class="product-card">
                         <div class="product-image">
-                      
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/Embutidos/Franks.jpg" alt="Producto 1 de embutidos" loading="lazy">
                         </div>
@@ -1087,7 +1262,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                   
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/Embutidos/franksNormie.jpg" alt="Producto 2 de embutidos" loading="lazy">
                         </div>
@@ -1103,7 +1278,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                     
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/Embutidos/ToledoJamon.jpg" alt="Producto 3 de embutidos" loading="lazy">
                         </div>
@@ -1125,7 +1300,7 @@
                     <div class="products-grid">
                         <div class="product-card">
                             <div class="product-image">
-                        
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/Embutidos/ToledoSalchicha.jpg" alt="Producto 4 de embutidos" loading="lazy">
                             </div>
@@ -1141,7 +1316,7 @@
                         </div>
                         <div class="product-card">
                             <div class="product-image">
-                      
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/Embutidos/salchichasToledo.jpg" alt="Producto 5 de embutidos" loading="lazy">
                             </div>
@@ -1157,7 +1332,7 @@
                         </div>
                         <div class="product-card">
                             <div class="product-image">
-                      
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/Embutidos/alitasPicantesPolloIndio.jpg" alt="Producto 6 de embutidos" loading="lazy">
                             </div>
@@ -1179,7 +1354,7 @@
                         <div class="products-grid">
                             <div class="product-card">
                                 <div class="product-image">
-                           
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/Embutidos/pechucguitasPolloIndio.jpg" alt="Producto 7 de embutidos" loading="lazy">
                                 </div>
@@ -1195,7 +1370,7 @@
                             </div>
                             <div class="product-card">
                                 <div class="product-image">
-                               
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/Embutidos/medallonesPolloIndio.jpg" alt="Producto 8 de embutidos" loading="lazy">
                                 </div>
@@ -1211,7 +1386,7 @@
                             </div>
                             <div class="product-card">
                                 <div class="product-image">
-                              
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/Embutidos/alitasCryspiPolloIndio.jpg" alt="Producto 9 de embutidos" loading="lazy">
                                 </div>
@@ -1264,7 +1439,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                        
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/LimpiezaYhogar/Jabon liquido.jpg" alt="Producto 2 de Hogar" loading="lazy">
                         </div>
@@ -1280,7 +1455,7 @@
                     </div>
                     <div class="product-card">
                         <div class="product-image">
-                     
+
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                             <img src="imgs-for-products-page/LimpiezaYhogar/Saba.jpg" alt="Producto 3 de Hogar" loading="lazy">
                         </div>
@@ -1302,8 +1477,8 @@
                     <div class="products-grid">
                         <div class="product-card">
                             <div class="product-image">
-                             
-                                
+
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/LimpiezaYhogar/lariansa.jpg" alt="Producto 4 de Hogar" loading="lazy">
                             </div>
@@ -1319,7 +1494,7 @@
                         </div>
                         <div class="product-card">
                             <div class="product-image">
-                          
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/LimpiezaYhogar/Protex.jpg" alt="Producto 5 de Hogar" loading="lazy">
                             </div>
@@ -1335,7 +1510,7 @@
                         </div>
                         <div class="product-card">
                             <div class="product-image">
-                           
+
                                 <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                 <img src="imgs-for-products-page/LimpiezaYhogar/Sapolio.jpg" alt="Producto 6 de Hogar" loading="lazy">
                             </div>
@@ -1357,7 +1532,7 @@
                         <div class="products-grid">
                             <div class="product-card">
                                 <div class="product-image">
-                                
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/LimpiezaYhogar/CentellaJabon.jpg" alt="Producto 7 de Hogar" loading="lazy">
                                 </div>
@@ -1373,7 +1548,7 @@
                             </div>
                             <div class="product-card">
                                 <div class="product-image">
-                                 
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/LimpiezaYhogar/MaxxiEspumaRinso.jpg" alt="Producto 8 de Hogar" loading="lazy">
                                 </div>
@@ -1389,7 +1564,7 @@
                             </div>
                             <div class="product-card">
                                 <div class="product-image">
-                               
+
                                     <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
                                     <img src="imgs-for-products-page/LimpiezaYhogar/Shampoo.jpg" alt="Producto 9 de Hogar" loading="lazy">
                                 </div>
@@ -1415,7 +1590,7 @@
 
     <!-- TOAST NOTIFICACION -->
     <div id="cartToast" class="cart-toast">
-        <span class="toast-icon">✓</span>
+        <span class="toast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.2 16.6-4.1-4.1-1.4 1.4 5.5 5.5L21 7.6l-1.4-1.4L9.2 16.6Z"/></svg></span>
         <span class="toast-text" id="cartToastText">Producto agregado</span>
         <span class="toast-action" id="cartToastAction">Ver carrito</span>
     </div>
@@ -1423,7 +1598,7 @@
     <!-- MODAL DE CHECKOUT (CONFIRMACIÓN) -->
     <div id="checkoutModal" class="modal-overlay">
         <div class="modal-container">
-            <h3>🛒 Mi carrito</h3>
+            <h3><span class="cart-title-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span><span>Mi carrito</span></h3>
             <div id="modalItemsList" class="modal-items"></div>
             <div class="modal-total">
                 <span>Total a pagar</span>
@@ -1512,7 +1687,7 @@
 
     <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
 
-    
+
     <script src="script.js"></script>
 
     <!-- CARRITO SCRIPT -->
@@ -1604,7 +1779,7 @@
                     if (Array.isArray(parsed)) {
                         cart = parsed.filter(item => item && item.id && item.name && !isNaN(parseFloat(item.price)))
                             .map(item => ({
-                                id: item.id, name: item.name || '', 
+                                id: item.id, name: item.name || '',
                                 price: typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0,
                                 unit: item.unit || '', quantity: Number(item.quantity) || 0
                             })).filter(i => i.quantity > 0);
@@ -1647,9 +1822,9 @@
         // Render cart (just updates badge)
         function renderCart() {
             updateNavbarCartCount();
-            try { 
-                navbarCartCount && navbarCartCount.classList.add('pulse'); 
-                setTimeout(() => navbarCartCount && navbarCartCount.classList.remove('pulse'), 300); 
+            try {
+                navbarCartCount && navbarCartCount.classList.add('pulse');
+                setTimeout(() => navbarCartCount && navbarCartCount.classList.remove('pulse'), 300);
             } catch(e){}
             if (modal && modal.classList.contains('active')) renderModal();
         }
@@ -1672,9 +1847,9 @@
             if (btn) {
                 btn.style.transform = 'scale(1.25)';
                 btn.style.background = '#16a34a';
-                setTimeout(() => { 
-                    btn.style.transform = ''; 
-                    btn.style.background = ''; 
+                setTimeout(() => {
+                    btn.style.transform = '';
+                    btn.style.background = '';
                 }, 200);
             }
 

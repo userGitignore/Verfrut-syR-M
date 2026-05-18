@@ -104,20 +104,20 @@
             const nav = document.getElementById('navLinks');
             if (!toggle || !nav) return;
             toggle.addEventListener('click', function () { nav.classList.toggle('active'); });
-            
+
             nav.querySelectorAll('a').forEach(function (a) {
                 a.addEventListener('click', function (e) {
                     var parentLi = a.closest('li');
-                    
+
                     if (parentLi && parentLi.classList.contains('dropdown')) {
                         return;
                     }
-                    
+
                     if (a.closest('.dropdown-menu')) {
                         nav.classList.remove('active');
                         return;
                     }
-                    
+
                     nav.classList.remove('active');
                 });
             });
@@ -246,38 +246,70 @@
         }
 
         /* ============================================
-           8. LIGHTBOX - SOLO PRODUCTOS DESTACADOS
+           8. LIGHTBOX - PRODUCTOS
            ============================================ */
         function initLightbox() {
             const overlay = document.createElement('div');
             overlay.className = 'lightbox-overlay';
-            overlay.innerHTML = '<span class="lightbox-close">&times;</span><img class="lightbox-img" src="" alt="Vista ampliada">';
+            overlay.setAttribute('aria-hidden', 'true');
+            overlay.innerHTML = '\
+                <button class="lightbox-close" type="button" aria-label="Cerrar visor">\
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.7 5.3 12 10.6l5.3-5.3 1.4 1.4-5.3 5.3 5.3 5.3-1.4 1.4-5.3-5.3-5.3 5.3-1.4-1.4 5.3-5.3-5.3-5.3 1.4-1.4Z"/></svg>\
+                </button>\
+                <figure class="lightbox-frame">\
+                    <img class="lightbox-img" src="" alt="Vista ampliada">\
+                    <figcaption class="lightbox-caption"></figcaption>\
+                </figure>';
             document.body.appendChild(overlay);
 
             const img = overlay.querySelector('.lightbox-img');
             const closeBtn = overlay.querySelector('.lightbox-close');
+            const caption = overlay.querySelector('.lightbox-caption');
 
-            function open(src) {
+            function getProductImage(target) {
+                const imageHost = target.closest('.product-image');
+                if (!imageHost) return null;
+                if (imageHost.matches('img')) return imageHost;
+                return imageHost.querySelector('img');
+            }
+
+            function open(imageEl) {
+                if (!imageEl) return;
+                const src = imageEl.currentSrc || imageEl.getAttribute('src') || imageEl.src;
+                if (!src || src === '#') return;
                 img.src = src;
+                img.alt = imageEl.alt || 'Vista ampliada del producto';
+                caption.textContent = imageEl.alt || '';
                 overlay.classList.add('active');
+                overlay.setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = 'hidden';
             }
 
             function close() {
                 overlay.classList.remove('active');
+                overlay.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
+                setTimeout(function() {
+                    if (!overlay.classList.contains('active')) img.removeAttribute('src');
+                }, 180);
             }
 
-            document.querySelectorAll('.product-image').forEach(function (el) {
-                el.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    open(el.src);
-                });
+            document.addEventListener('click', function(e) {
+                const imageEl = getProductImage(e.target);
+                if (!imageEl) return;
+                e.preventDefault();
+                e.stopPropagation();
+                open(imageEl);
             });
 
-            overlay.addEventListener('click', close);
-            closeBtn.addEventListener('click', close);
-            
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) close();
+            });
+            closeBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                close();
+            });
+
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && overlay.classList.contains('active')) {
                     close();
@@ -509,7 +541,7 @@
         function initNavbarScroll() {
             const navbar = document.getElementById('navbar');
             if (!navbar) return;
-            
+
             window.addEventListener('scroll', function () {
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
@@ -537,7 +569,7 @@
             initRevealAnimations();
             initHeroLoaded();
         });
-    
+
 
 /* ============================================
    JS EXTRACTED FROM INJU.HTML <script> BLOCK
@@ -567,10 +599,11 @@ const nextBtn = document.getElementById('timelineNext');
 let currentIndex = 0;
 let autoInterval;
 let isUserInteracting = false;
-const AUTO_DELAY = 4000;
+const AUTO_DELAY = 8000;
 
 function goToTimeline(index, smooth) {
     if (typeof smooth === 'undefined') smooth = true;
+    if (!timelineScroll || timelineNodes.length === 0) return;
     if (index < 0) index = timelineNodes.length - 1;
     if (index >= timelineNodes.length) index = 0;
     currentIndex = index;
