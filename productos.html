@@ -47,13 +47,15 @@
             border: 1px solid rgba(34,197,94,0.3); padding: 1.8rem;
             animation: fadeUp 0.25s ease; max-height: 90vh;
             overflow: hidden;
+            display: flex; flex-direction: column;
         }
         @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
         .modal-container h3 {
             font-size: 1.5rem; color: #22c55e; margin-bottom: 1rem;
             border-left: 4px solid #FF6F00; padding-left: 1rem;
         }
-        .modal-items { max-height: 50vh; overflow-y: auto; margin: 1rem 0; }
+        .modal-items { max-height: 48vh; overflow-y: auto; margin: 0.5rem 0; flex-shrink: 1; flex-grow: 1; }
+        .modal-form { flex-shrink: 0; padding: 0; margin-bottom: 0; gap: 0; }
         .modal-item {
             display: flex; justify-content: space-between; align-items: center;
             background: #0a1117; border-radius: 20px; padding: 0.85rem 1rem;
@@ -91,11 +93,11 @@
         .modal-total {
             display: flex; justify-content: space-between; font-size: 1.1rem;
             font-weight: bold; border-top: 1px solid #2c3a3a;
-            padding-top: 1rem; margin: 1rem 0;
+            padding-top: 0.6rem; margin: 0.5rem 0 0.4rem;
         }
         .modal-total span:last-child { color: #d9f99d; }
         .modal-form {
-            display: grid; gap: 0.75rem; margin-bottom: 1.2rem; padding: 0 0.25rem 0.5rem;
+            display: grid; gap: 0.4rem; margin-bottom: 0.6rem; padding: 0 0.25rem 0;
         }
         .modal-form label { color: #9ca3af; font-size: 0.9rem; }
         .modal-form input {
@@ -125,8 +127,31 @@
         @media (max-width: 640px) {
             .modal-item { flex-direction: column; align-items: flex-start; }
         }
+
+        /* ===== TOAST NOTIFICACION CARRITO ===== */
+        .cart-toast {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            background: #0f1a1f; border: 1px solid rgba(34,197,94,0.35);
+            border-left: 4px solid #22c55e;
+            color: #e2e8f0; padding: 0.85rem 1.2rem;
+            border-radius: 16px; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 0.7rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.55);
+            z-index: 99999;
+            transform: translateY(120%); opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
+            pointer-events: none; max-width: 300px;
+        }
+        .cart-toast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .cart-toast .toast-icon { font-size: 1.1rem; flex-shrink: 0; }
+        .cart-toast .toast-text { flex: 1; }
+        .cart-toast .toast-action {
+            font-size: 0.8rem; color: #22c55e; font-weight: 600;
+            cursor: pointer; white-space: nowrap; pointer-events: auto;
+        }
+        .cart-toast .toast-action:hover { text-decoration: underline; }
     </style>
-<base target="_blank">
+
 </head>
 
 <body>
@@ -1388,21 +1413,28 @@
     </section>
 
 
+    <!-- TOAST NOTIFICACION -->
+    <div id="cartToast" class="cart-toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-text" id="cartToastText">Producto agregado</span>
+        <span class="toast-action" id="cartToastAction">Ver carrito</span>
+    </div>
+
     <!-- MODAL DE CHECKOUT (CONFIRMACIÓN) -->
     <div id="checkoutModal" class="modal-overlay">
         <div class="modal-container">
             <h3>🛒 Mi carrito</h3>
-            <div class="modal-form">
-                <label for="modalBuyerName">Nombre</label>
-                <input id="modalBuyerName" type="text" placeholder="Tu nombre" autocomplete="name">
-                <label for="modalBuyerLast">Apellido</label>
-                <input id="modalBuyerLast" type="text" placeholder="Tu apellido" autocomplete="family-name">
-                <p class="modal-hint">El nombre es obligatorio para que el vendedor sepa quién hizo el pedido.</p>
-            </div>
             <div id="modalItemsList" class="modal-items"></div>
             <div class="modal-total">
                 <span>Total a pagar</span>
                 <span id="modalTotal">$0.00</span>
+            </div>
+            <div class="modal-form">
+                <p class="modal-hint">Ingresa tu nombre para que el vendedor te identifique.</p>
+                <div style="display:flex;gap:0.6rem;margin-top:0.4rem">
+                    <input id="modalBuyerName" type="text" placeholder="Nombre" autocomplete="name" style="flex:1">
+                    <input id="modalBuyerLast" type="text" placeholder="Apellido" autocomplete="family-name" style="flex:1">
+                </div>
             </div>
             <div class="modal-buttons">
                 <button id="closeModalBtn" class="btn-secondary">Seguir comprando</button>
@@ -1633,6 +1665,7 @@
             saveCart();
             renderCart();
             updateNavbarCartCount();
+            showCartToast(name);
 
             // Animate button
             const btn = document.querySelector(`.product-card[data-id="${id}"] .add-to-cart, .slider-card[data-id="${id}"] .add-to-cart`);
@@ -1783,6 +1816,25 @@
         function escapeHtml(str) {
             return String(str).replace(/[&<>]/g, function(m) {
                 if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m;
+            });
+        }
+
+        // Toast notification
+        const cartToast = document.getElementById('cartToast');
+        const cartToastText = document.getElementById('cartToastText');
+        const cartToastAction = document.getElementById('cartToastAction');
+        let _toastTimeout = null;
+        function showCartToast(productName) {
+            if (!cartToast) return;
+            cartToastText.textContent = `"${productName}" al carrito`;
+            cartToast.classList.add('show');
+            if (_toastTimeout) clearTimeout(_toastTimeout);
+            _toastTimeout = setTimeout(() => cartToast.classList.remove('show'), 3000);
+        }
+        if (cartToastAction) {
+            cartToastAction.addEventListener('click', () => {
+                cartToast.classList.remove('show');
+                openModal();
             });
         }
 

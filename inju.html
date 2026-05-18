@@ -3,1050 +3,938 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verfrut's y R&amp;M | DevTeam</title>
+    <title>Verfrut's y R&M | DevTeam — INJU</title>
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* ============================================
-           RESET Y BASE
-           ============================================ */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ============================================================
+           TOKENS
+           ============================================================ */
+        :root {
+            --g: #22c55e;
+            --g2: #16a34a;
+            --g3: #4ade80;
+            --dark: #050c12;
+            --dark2: #070f18;
+            --dark3: #0c1a28;
+            --text: #e2e8f0;
+            --muted: #64748b;
+            --muted2: #94a3b8;
+            --border: rgba(255,255,255,0.05);
+            --border-g: rgba(34,197,94,0.15);
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
         body {
-            background-color: #0a0f1a;
-            color: #e2e8f0;
+            background: var(--dark);
+            color: var(--text);
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* ============================================
-           HERO CON IMAGEN DE FONDO
-           ============================================ */
+        /* ============================================================
+           HERO
+           ============================================================ */
         .inju-hero {
             position: relative;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             text-align: center;
-            padding: 120px 20px 80px;
+            padding: 120px 20px 100px;
             overflow: hidden;
         }
 
         .inju-hero-bg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            opacity: 0.5;
-            filter: saturate(0.7) contrast(1.1);
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; z-index: 0;
+            opacity: 0.35;
+            filter: saturate(0.6) contrast(1.1);
+            transition: transform 8s ease;
+        }
+        .inju-hero:hover .inju-hero-bg { transform: scale(1.04); }
+
+        .hero-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            background:
+                linear-gradient(180deg, rgba(5,12,18,0.4) 0%, rgba(5,12,18,0.65) 40%, rgba(5,12,18,0.98) 100%),
+                radial-gradient(ellipse at 30% 60%, rgba(34,197,94,0.06) 0%, transparent 60%);
         }
 
-        .inju-hero-overlay {
+        /* Floating particles */
+        .particles { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+        .p {
             position: absolute;
-            inset: 0;
-            background: 
-                linear-gradient(180deg, rgba(10,15,26,0.3) 0%, rgba(10,15,26,0.7) 50%, rgba(10,15,26,0.98) 100%),
-                linear-gradient(135deg, rgba(34,197,94,0.03) 0%, transparent 50%);
-            z-index: 1;
+            border-radius: 50%;
+            background: var(--g);
+            opacity: 0;
+            animation: floatUp var(--d,12s) var(--delay,0s) infinite ease-in-out;
+        }
+        @keyframes floatUp {
+            0%   { opacity:0; transform: translateY(0) scale(0); }
+            10%  { opacity: var(--op, 0.25); transform: translateY(-10px) scale(1); }
+            90%  { opacity: var(--op, 0.25); transform: translateY(var(--dist,-200px)) scale(0.6); }
+            100% { opacity:0; transform: translateY(var(--dist,-220px)) scale(0); }
         }
 
-        .inju-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
+        .inju-hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 4px;
+            text-transform: uppercase; color: var(--g3);
+            padding: 8px 20px; margin-bottom: 30px;
+            border: 1px solid var(--border-g);
+            background: rgba(34,197,94,0.05);
+            border-radius: 40px;
+            animation: fadeDown 0.8s ease both;
         }
+        .hero-eyebrow::before {
+            content: ''; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--g); animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5)} 50%{box-shadow:0 0 0 6px rgba(34,197,94,0)} }
 
         .inju-hero h1 {
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-size: clamp(3.2rem, 9vw, 6.5rem);
-            color: #ffffff;
-            margin-bottom: 24px;
-            line-height: 1;
-            text-shadow: 0 8px 60px rgba(0,0,0,0.7);
-            position: relative;
-            display: inline-block;
-        }
-
-        .inju-hero h1 .hero-title-main {
-            display: block;
-            font-size: clamp(4rem, 12vw, 9rem);
-            font-weight: 900;
-            letter-spacing: 6px;
-            font-style: normal;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #e2e8f0 0%, #22c55e 40%, #16a34a 70%, #15803d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: clamp(4rem, 13vw, 10rem);
+            font-weight: 900; letter-spacing: 8px; line-height: 0.9;
+            background: linear-gradient(135deg, #f8fafc 0%, #22c55e 45%, #15803d 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: none;
-            line-height: 0.95;
-            margin-bottom: 8px;
+            margin-bottom: 16px;
+            animation: fadeUp 0.9s 0.1s ease both;
         }
 
-        .inju-hero h1 .hero-title-name {
+        .hero-subtitle-italic {
             display: block;
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-size: clamp(1.4rem, 3.5vw, 2.4rem);
-            color: #f1f5f9;
-            margin-top: 14px;
-            line-height: 1.2;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.5);
-            letter-spacing: 1px;
+            font-family: Georgia, serif; font-style: italic;
+            font-size: clamp(1.1rem, 3vw, 1.8rem);
+            color: #cbd5e1; letter-spacing: 1px;
+            margin-bottom: 20px;
+            animation: fadeUp 0.9s 0.2s ease both;
+            -webkit-text-fill-color: #cbd5e1;
         }
 
-        .inju-hero h1 span {
-            color: #4ade80;
-            font-style: normal;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            font-weight: 400;
-            font-size: 0.38em;
-            display: block;
-            letter-spacing: 12px;
-            text-transform: uppercase;
-            margin-top: 20px;
-            opacity: 0.7;
+        .hero-since {
+            display: inline-block;
+            font-size: 0.65rem; letter-spacing: 6px; text-transform: uppercase;
+            color: var(--g3); opacity: 0.6; margin-bottom: 32px;
+            animation: fadeUp 0.9s 0.3s ease both;
         }
 
         .inju-hero p {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto 55px;
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            color: var(--muted2); max-width: 580px; margin: 0 auto 48px;
             line-height: 1.9;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.4);
+            animation: fadeUp 0.9s 0.4s ease both;
         }
 
         .hero-divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #22c55e, transparent);
-            margin: 0 auto 28px;
-            border-radius: 2px;
+            width: 50px; height: 2px; margin: 0 auto 28px;
+            background: linear-gradient(90deg, transparent, var(--g), transparent);
+            animation: fadeUp 0.9s 0.35s ease both;
         }
 
-.scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            color: #64748b;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-            z-index: 2;
+        .scroll-cue {
+            position: absolute; bottom: 42px; left: 50%;
+            transform: translateX(-50%); z-index: 2;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: var(--muted); font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
+            cursor: pointer; transition: color 0.3s ease;
+            animation: fadeUp 1s 0.8s ease both;
         }
-
-        .scroll-indicator:hover { color: #22c55e; }
-
-        .scroll-indicator .mouse {
-            width: 26px;
-            height: 44px;
-            border: 2px solid currentColor;
-            border-radius: 14px;
-            position: relative;
-            opacity: 0.6;
+        .scroll-cue:hover { color: var(--g); }
+        .scroll-cue .mouse {
+            width: 24px; height: 40px;
+            border: 1.5px solid currentColor; border-radius: 12px;
+            position: relative; opacity: 0.5;
         }
-
-        .scroll-indicator .mouse::before {
-            content: '';
-            position: absolute;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 8px;
-            background: currentColor;
-            border-radius: 2px;
-            animation: scrollWheel 2s infinite;
+        .scroll-cue .mouse::after {
+            content: ''; position: absolute;
+            top: 7px; left: 50%; transform: translateX(-50%);
+            width: 3px; height: 7px;
+            background: currentColor; border-radius: 2px;
+            animation: wheel 2s infinite;
         }
+        @keyframes wheel { 0%{top:7px;opacity:1} 100%{top:22px;opacity:0} }
 
-        @keyframes scrollWheel {
-            0% { top: 8px; opacity: 1; }
-            100% { top: 24px; opacity: 0; }
+        /* ============================================================
+           STATS BAR
+           ============================================================ */
+        .stats-bar {
+            background: linear-gradient(90deg, var(--dark2), var(--dark3), var(--dark2));
+            border-top: 1px solid var(--border-g);
+            border-bottom: 1px solid var(--border-g);
+            padding: 50px 20px;
         }
-
-        /* ============================================
-           SECCIONES GENERALES
-           ============================================ */
-        .inju-section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .inju-section-header {
-            text-align: center;
-            margin-bottom: 65px;
-        }
-
-        .inju-section-header h2 {
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-size: clamp(2rem, 4.5vw, 3rem);
-            color: #f8fafc;
-            margin-bottom: 16px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .inju-section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -14px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #22c55e, transparent);
-        }
-
-        .inju-section-header p {
-            color: #475569;
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-top: 28px;
-            font-weight: 500;
-        }
-
-        /* ============================================
-           INFO INSTITUTO
-           ============================================ */
-        .institute-card {
-            background: linear-gradient(160deg, rgba(12, 28, 50, 0.85) 0%, rgba(6, 12, 22, 0.98) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 28px;
-            padding: 60px 50px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.03);
-        }
-
-        .institute-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #22c55e, #16a34a, #22c55e, transparent);
-        }
-
-        .institute-intro {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-            margin-bottom: 55px;
-        }
-
-        .intro-card {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 20px;
-            padding: 36px 28px;
-            text-align: center;
-            transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-        }
-
-        .intro-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 20px; right: 20px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.4), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .intro-card:hover {
-            background: rgba(34, 197, 94, 0.03);
-            border-color: rgba(34, 197, 94, 0.15);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-        }
-
-        .intro-card:hover::before {
-            opacity: 1;
-        }
-
-        .intro-card-icon {
-            font-size: 2.4rem;
-            margin-bottom: 18px;
-            display: block;
-            filter: drop-shadow(0 4px 8px rgba(34,197,94,0.15));
-        }
-
-        .intro-card h3 {
-            color: #4ade80;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 14px;
-            font-weight: 700;
-        }
-
-        .intro-card p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            line-height: 1.85;
-        }
-
-        .intro-card p strong {
-            color: #e2e8f0;
-            font-weight: 600;
-        }
-
-        .institute-details {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            margin-top: 45px;
+            gap: 0;
+            max-width: 1100px; margin: 0 auto;
+        }
+        .stat-item {
+            text-align: center; padding: 10px 20px;
+            border-right: 1px solid var(--border);
             position: relative;
         }
-
-        .institute-details::before {
-            content: '';
-            position: absolute;
-            top: -22px; left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.3), transparent);
+        .stat-item:last-child { border-right: none; }
+        .stat-num {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 900; letter-spacing: -2px; line-height: 1;
+            background: linear-gradient(135deg, #f8fafc, var(--g));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 6px;
         }
-
-        .detail-item {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            padding: 20px 16px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-        }
-
-        .detail-item:hover {
-            background: rgba(34, 197, 94, 0.04);
-            border-color: rgba(34, 197, 94, 0.18);
-            transform: translateY(-3px);
-        }
-
-        .detail-icon {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            background: rgba(34, 197, 94, 0.08);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #22c55e;
-            font-size: 1.15rem;
-            transition: all 0.35s ease;
-            border: 1px solid rgba(34,197,94,0.08);
-        }
-
-        .detail-item:hover .detail-icon {
-            background: rgba(34, 197, 94, 0.15);
-            border-color: rgba(34,197,94,0.2);
-            transform: scale(1.08) rotate(-3deg);
-        }
-
-        .detail-text h4 {
-            color: #475569;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .detail-text p {
-            color: #cbd5e1;
-            font-size: 0.85rem;
-            font-weight: 500;
-            line-height: 1.35;
-        }
-
-        @media (max-width: 1024px) {
-            .institute-intro { grid-template-columns: repeat(2, 1fr); }
-            .institute-details { grid-template-columns: repeat(2, 1fr); }
+        .stat-suffix { color: var(--g3); }
+        .stat-label {
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px;
+            color: var(--muted); font-weight: 600;
         }
         @media (max-width: 640px) {
-            .institute-intro { grid-template-columns: 1fr; }
-            .institute-details { grid-template-columns: 1fr; }
-            .institute-card { padding: 40px 25px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat-item:nth-child(2) { border-right: none; }
+            .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+            .stat-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
         }
 
-        /* ============================================
-           TIMELINE HORIZONTAL - SLIDER MANUAL
-           ============================================ */
-        .timeline-section {
-            padding: 100px 0;
-            overflow: hidden;
-            position: relative;
+        /* ============================================================
+           SECTIONS BASE
+           ============================================================ */
+        .inju-sec {
+            padding: 100px 20px;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .sec-label {
+            font-size: 0.65rem; font-weight: 800; letter-spacing: 5px;
+            text-transform: uppercase; color: var(--g3);
+            margin-bottom: 14px; display: block;
+        }
+        .sec-title {
+            font-family: Georgia, serif; font-style: italic;
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            color: #f8fafc; line-height: 1.15; margin-bottom: 20px;
+        }
+        .sec-desc {
+            color: var(--muted2); font-size: 1.05rem;
+            max-width: 560px; line-height: 1.85;
+        }
+        .section-sep {
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-g), transparent);
         }
 
-        .timeline-section::before {
+        /* ============================================================
+           INSTITUTO — MEJORADO
+           ============================================================ */
+        .institute-wrap {
+            padding: 90px 20px 80px;
+            position: relative; overflow: hidden;
+        }
+        .institute-wrap::before {
             content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
-        }
-
-        .timeline-wrapper {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 60px;
-        }
-
-        .timeline-scroll {
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            padding: 40px 0;
-            cursor: grab;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .timeline-scroll::-webkit-scrollbar { display: none; }
-
-        .timeline-track {
-            display: flex;
-            gap: 0;
-            width: max-content;
-            position: relative;
-        }
-
-        .timeline-track::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(34,197,94,0.05), rgba(34,197,94,0.25), rgba(34,197,94,0.05));
-            transform: translateY(-50%);
-            z-index: 0;
+            position: absolute; top: 0; right: -10%; width: 50%; height: 100%;
+            background: radial-gradient(ellipse at 80% 50%, rgba(34,197,94,0.04) 0%, transparent 65%);
             pointer-events: none;
         }
 
-        .timeline-node {
-            width: 300px;
-            flex-shrink: 0;
-            padding: 25px;
-            position: relative;
-            z-index: 1;
+        .institute-header {
+            max-width: 1200px; margin: 0 auto 70px;
+            display: flex; align-items: flex-end;
+            justify-content: space-between; gap: 40px;
+            flex-wrap: wrap;
         }
 
-        .timeline-node::after {
+        .institute-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px; margin: 0 auto 50px;
+        }
+
+        .info-pillar {
+            background: linear-gradient(160deg, rgba(12,28,45,0.9), rgba(5,10,18,0.98));
+            border: 1px solid var(--border);
+            border-radius: 24px; padding: 40px 32px;
+            position: relative; overflow: hidden;
+            transition: all 0.45s cubic-bezier(0.165,0.84,0.44,1);
+        }
+        .info-pillar::before {
             content: '';
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            width: 30px;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(34,197,94,0.3), transparent);
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.5), transparent);
+            transform: scaleX(0); transition: transform 0.5s ease;
         }
-
-        .timeline-node:last-child::after { display: none; }
-
-        .timeline-node-inner {
-            background: linear-gradient(160deg, rgba(15, 31, 53, 0.95) 0%, rgba(7, 15, 26, 0.98) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 24px;
-            padding: 36px 28px 28px;
-            position: relative;
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            height: 100%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        .info-pillar:hover { border-color: var(--border-g); transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+        .info-pillar:hover::before { transform: scaleX(1); }
+        .pillar-icon {
+            font-size: 2rem; margin-bottom: 20px; display: block;
+            filter: drop-shadow(0 4px 12px rgba(34,197,94,0.2));
         }
-
-        .timeline-node-inner:hover {
-            border-color: rgba(34, 197, 94, 0.25);
-            transform: translateY(-10px);
-            box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 30px rgba(34,197,94,0.08);
+        .pillar-tag {
+            font-size: 0.6rem; font-weight: 800; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--g3);
+            margin-bottom: 12px; display: block;
         }
-
-        .timeline-node-inner::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.6), transparent);
-            border-radius: 24px 24px 0 0;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+        .info-pillar h3 {
+            font-size: 1.1rem; color: #f8fafc; margin-bottom: 12px; font-weight: 700;
         }
+        .info-pillar p { color: var(--muted2); font-size: 0.9rem; line-height: 1.8; }
+        .info-pillar p strong { color: #e2e8f0; font-weight: 600; }
 
-        .timeline-node-inner:hover::before { opacity: 1; }
-
-        .timeline-number {
-            position: absolute;
-            top: -16px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 36px;
-            height: 36px;
-            background: #0f172a;
-            border: 2px solid rgba(34, 197, 94, 0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #22c55e;
-            font-size: 0.85rem;
-            font-weight: 800;
-            z-index: 10;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        /* Details grid */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .detail-chip {
+            background: rgba(255,255,255,0.015);
+            border: 1px solid var(--border);
+            border-radius: 14px; padding: 18px 16px;
+            display: flex; align-items: center; gap: 14px;
             transition: all 0.35s ease;
         }
-
-        .timeline-node-inner:hover .timeline-number {
-            background: #22c55e;
-            color: #0f172a;
-            border-color: #22c55e;
+        .detail-chip:hover {
+            background: rgba(34,197,94,0.04);
+            border-color: var(--border-g);
+            transform: translateY(-3px);
         }
-
-        .timeline-year {
-            display: block;
-            text-align: center;
-            font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #4ade80;
-            margin: 6px 0 18px;
-            padding: 5px 14px;
-            background: rgba(34, 197, 94, 0.06);
-            border: 1px solid rgba(34, 197, 94, 0.1);
-            border-radius: 20px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .timeline-title {
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-size: 1.25rem;
-            color: #f8fafc;
-            margin-bottom: 14px;
-            text-align: center;
-        }
-
-        .timeline-text {
-            color: #94a3b8;
-            font-size: 0.88rem;
-            line-height: 1.75;
-            text-align: center;
-        }
-
-        .timeline-arrows {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin-top: 45px;
-        }
-
-        .timeline-arrow {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(15, 31, 53, 0.7);
-            color: #94a3b8;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .timeline-arrow:hover {
-            border-color: rgba(34, 197, 94, 0.4);
-            color: #22c55e;
-            transform: scale(1.1);
-        }
-
-        .timeline-dots {
-            display: flex;
-            gap: 10px;
-        }
-
-        .timeline-dot-btn {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(255,255,255,0.1);
-            cursor: pointer;
+        .chip-ico {
+            width: 40px; height: 40px; min-width: 40px;
+            background: rgba(34,197,94,0.07);
+            border: 1px solid rgba(34,197,94,0.1);
+            border-radius: 12px; display: flex; align-items: center;
+            justify-content: center; font-size: 1rem;
             transition: all 0.3s ease;
         }
+        .detail-chip:hover .chip-ico { background: rgba(34,197,94,0.14); transform: scale(1.1) rotate(-5deg); }
+        .chip-txt h4 {
+            font-size: 0.58rem; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--muted); font-weight: 700; margin-bottom: 4px;
+        }
+        .chip-txt p { color: #cbd5e1; font-size: 0.82rem; font-weight: 500; line-height: 1.3; }
 
-        .timeline-dot-btn.active {
-            background: #22c55e;
-            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
-            transform: scale(1.3);
+        @media (max-width: 1024px) {
+            .institute-cards { grid-template-columns: repeat(2, 1fr); }
+            .detail-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .institute-cards { grid-template-columns: 1fr; }
+            .detail-grid { grid-template-columns: 1fr; }
         }
 
-        .timeline-dot-btn:hover:not(.active) {
-            background: rgba(34, 197, 94, 0.3);
+        /* ============================================================
+           EL PROYECTO — NUEVA SECCIÓN
+           ============================================================ */
+        .project-section {
+            padding: 100px 20px;
+            position: relative; overflow: hidden;
+            background: linear-gradient(180deg, transparent, rgba(7,15,24,0.6), transparent);
         }
-
-        @media (max-width: 768px) {
-            .timeline-wrapper { padding: 0 20px; }
-            .timeline-node { width: 260px; padding: 18px; }
-            .timeline-track::before { display: none; }
-        }
-
-        /* ============================================
-           SECCIÓN DOCENTE - MEJORADA
-           ============================================ */
-        .teacher-section {
-            padding: 80px 20px;
-            position: relative;
-        }
-
-        .teacher-section::before {
+        .project-section::before {
             content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 0% 50%, rgba(34,197,94,0.05) 0%, transparent 55%),
+                radial-gradient(ellipse at 100% 50%, rgba(34,197,94,0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .project-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 80px; align-items: center;
+        }
+        .project-left { position: relative; }
+        .project-img-wrap {
+            position: relative; border-radius: 28px; overflow: hidden;
+            aspect-ratio: 4/3;
+            border: 1px solid var(--border-g);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+        }
+        .project-img-wrap img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .project-img-wrap:hover img { transform: scale(1.05); }
+        .project-img-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(5,12,18,0.7) 0%, transparent 50%);
+        }
+        .project-img-badge {
+            position: absolute; bottom: 24px; left: 24px;
+            background: rgba(5,12,18,0.9); border: 1px solid var(--border-g);
+            border-radius: 16px; padding: 14px 20px; backdrop-filter: blur(10px);
+        }
+        .project-img-badge .badge-num {
+            font-size: 1.8rem; font-weight: 900; color: var(--g);
+            line-height: 1; margin-bottom: 4px;
+        }
+        .project-img-badge .badge-txt {
+            font-size: 0.65rem; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--muted2);
+        }
+        .project-float-tag {
+            position: absolute; top: -18px; right: 24px;
+            background: var(--g); color: #050c12;
+            font-size: 0.65rem; font-weight: 800;
+            letter-spacing: 2px; text-transform: uppercase;
+            padding: 8px 18px; border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(34,197,94,0.35);
+        }
+
+        .project-right .sec-desc { margin-bottom: 28px; max-width: 100%; }
+        .project-story {
+            color: var(--muted2); font-size: 0.95rem; line-height: 1.9;
+            margin-bottom: 16px;
+        }
+        .project-story:last-of-type { margin-bottom: 32px; }
+
+        .project-pillars {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+            margin-top: 32px;
+        }
+        .proj-pill {
+            background: rgba(255,255,255,0.015);
+            border: 1px solid var(--border);
+            border-radius: 14px; padding: 18px 20px;
+            display: flex; align-items: flex-start; gap: 12px;
+            transition: all 0.35s ease;
+        }
+        .proj-pill:hover { border-color: var(--border-g); background: rgba(34,197,94,0.03); }
+        .proj-pill-ico { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+        .proj-pill h4 { font-size: 0.78rem; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; }
+        .proj-pill p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+        @media (max-width: 900px) {
+            .project-inner { grid-template-columns: 1fr; gap: 48px; }
+        }
+
+        /* ============================================================
+           TIMELINE — REDISEÑADO
+           ============================================================ */
+        .timeline-section {
+            padding: 100px 0;
+            position: relative; overflow: hidden;
+        }
+        .timeline-section::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
         }
 
-        .teacher-card {
-            display: flex;
-            align-items: stretch;
-            background: linear-gradient(145deg, #0c1e35 0%, #060d18 100%);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 28px;
-            overflow: hidden;
-            max-width: 1100px;
-            margin: 0 auto;
+        .tl-header {
+            text-align: center; padding: 0 20px; margin-bottom: 70px;
+        }
+
+        .tl-track-wrap {
             position: relative;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+            max-width: 1200px; margin: 0 auto; padding: 0 60px;
+        }
+
+        /* Vertical center line */
+        .tl-track-wrap::before {
+            content: '';
+            position: absolute; left: 50%; top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, rgba(34,197,94,0.3) 20%, rgba(34,197,94,0.3) 80%, transparent);
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .tl-list { display: flex; flex-direction: column; gap: 50px; }
+
+        .tl-item {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center; gap: 30px;
+            position: relative;
+        }
+
+        .tl-item:nth-child(even) .tl-card { order: 3; }
+        .tl-item:nth-child(even) .tl-spacer { order: 2; }
+        .tl-item:nth-child(even) .tl-empty { order: 1; }
+
+        .tl-card {
+            background: linear-gradient(160deg, rgba(12,28,48,0.95), rgba(5,10,20,0.98));
+            border: 1px solid var(--border);
+            border-radius: 24px; padding: 36px 32px;
+            position: relative; overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.165,0.84,0.44,1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .tl-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.6), transparent);
+            transform: scaleX(0); transition: transform 0.5s ease;
+        }
+        .tl-card:hover { border-color: var(--border-g); transform: translateY(-6px); box-shadow: 0 28px 70px rgba(0,0,0,0.5); }
+        .tl-card:hover::before { transform: scaleX(1); }
+
+        .tl-card-year {
+            display: inline-flex; align-items: center;
+            font-size: 0.62rem; font-weight: 800; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--g3);
+            padding: 5px 14px; margin-bottom: 16px;
+            background: rgba(34,197,94,0.06);
+            border: 1px solid rgba(34,197,94,0.12);
+            border-radius: 20px;
+        }
+        .tl-card h3 {
+            font-family: Georgia, serif; font-style: italic;
+            font-size: 1.3rem; color: #f8fafc; margin-bottom: 12px;
+        }
+        .tl-card p { color: var(--muted2); font-size: 0.88rem; line-height: 1.8; }
+        .tl-card-icon {
+            font-size: 1.5rem; margin-bottom: 14px; display: block;
+            filter: drop-shadow(0 4px 8px rgba(34,197,94,0.15));
+        }
+
+        .tl-spacer {
+            display: flex; align-items: center; justify-content: center;
+            width: 54px; height: 54px; flex-shrink: 0;
+        }
+        .tl-dot {
+            width: 54px; height: 54px;
+            background: var(--dark2);
+            border: 2px solid rgba(34,197,94,0.45);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--g); font-size: 0.9rem; font-weight: 900;
+            box-shadow: 0 0 0 6px rgba(34,197,94,0.06);
+            transition: all 0.35s ease; z-index: 2; position: relative;
+        }
+        .tl-card:hover ~ .tl-spacer .tl-dot,
+        .tl-item:hover .tl-dot {
+            background: var(--g); color: var(--dark);
+            box-shadow: 0 0 0 10px rgba(34,197,94,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .tl-track-wrap { padding: 0 20px; }
+            .tl-track-wrap::before { left: 27px; transform: none; }
+            .tl-item {
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto;
+            }
+            .tl-item .tl-card { order: 2 !important; }
+            .tl-item .tl-spacer { order: 1 !important; align-self: flex-start; margin-top: 36px; }
+            .tl-item .tl-empty { display: none !important; }
+            .tl-spacer { width: 36px; height: 36px; }
+            .tl-dot { width: 36px; height: 36px; font-size: 0.75rem; }
+        }
+
+        /* Timeline nav */
+        .tl-nav {
+            display: flex; justify-content: center;
+            align-items: center; gap: 16px; margin-top: 60px;
+        }
+        .tl-nav-btn {
+            width: 48px; height: 48px; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(12,26,40,0.7);
+            color: var(--muted2); font-size: 1.1rem; cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .tl-nav-btn:hover { border-color: var(--border-g); color: var(--g); transform: scale(1.1); }
+        .tl-dots { display: flex; gap: 8px; }
+        .tl-dot-btn {
+            width: 8px; height: 8px; border-radius: 50%;
+            border: none; background: rgba(255,255,255,0.12);
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .tl-dot-btn.active {
+            background: var(--g); width: 24px; border-radius: 4px;
+            box-shadow: 0 0 12px rgba(34,197,94,0.4);
+        }
+
+        /* ============================================================
+           DOCENTE — MEJORADO
+           ============================================================ */
+        .teacher-section {
+            padding: 90px 20px;
+            position: relative;
+        }
+        .teacher-section::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.18), transparent);
+        }
+
+        .teacher-card {
+            display: grid; grid-template-columns: 380px 1fr;
+            max-width: 1100px; margin: 0 auto;
+            background: linear-gradient(145deg, #0c1e35 0%, #060d18 100%);
+            border: 1px solid var(--border);
+            border-radius: 30px; overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            position: relative;
             transition: box-shadow 0.5s ease;
         }
-
-        .teacher-card:hover {
-            box-shadow: 0 40px 100px rgba(0,0,0,0.55);
-        }
-
+        .teacher-card:hover { box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
         .teacher-card::before {
             content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #22c55e, #16a34a, transparent);
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--g), var(--g2), transparent);
         }
-
         .teacher-card::after {
             content: '';
-            position: absolute;
-            top: -40%;
-            right: -15%;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%);
+            position: absolute; top: -30%; right: -10%;
+            width: 380px; height: 380px;
+            background: radial-gradient(circle, rgba(34,197,94,0.05) 0%, transparent 65%);
             pointer-events: none;
         }
 
         .teacher-visual {
-            flex: 0 0 340px;
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
             background: linear-gradient(180deg, #0c1e33, #040a12);
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
         }
-
         .teacher-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            width: 100%; height: 100%; object-fit: cover; display: block;
             transition: transform 0.8s ease;
         }
-
-        .teacher-card:hover .teacher-visual img {
-            transform: scale(1.06);
+        .teacher-card:hover .teacher-visual img { transform: scale(1.06); }
+        .teacher-vis-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(6,13,24,0.95) 0%, transparent 55%);
         }
-
-        .teacher-visual-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(6,15,26,0.92) 0%, transparent 55%);
-            z-index: 1;
+        .teacher-vis-name {
+            position: absolute; bottom: 32px; left: 32px; right: 32px;
+            font-family: Georgia, serif; font-style: italic;
+            font-size: 1.5rem; color: #fff;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.6); z-index: 2;
         }
-
-        .teacher-visual-name {
-            position: absolute;
-            bottom: 32px;
-            left: 32px;
-            right: 32px;
-            z-index: 2;
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-size: 1.5rem;
-            color: #fff;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-        }
-
-        .teacher-visual-role {
-            position: absolute;
-            bottom: 14px;
-            left: 32px;
-            z-index: 2;
-            font-size: 0.7rem;
-            color: #4ade80;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+        .teacher-vis-role {
+            position: absolute; bottom: 14px; left: 32px;
+            font-size: 0.65rem; color: var(--g3); font-weight: 700;
+            text-transform: uppercase; letter-spacing: 3px; z-index: 2;
         }
 
         .teacher-body {
-            flex: 1;
-            padding: 48px 55px;
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 52px 56px; position: relative; z-index: 2;
+            display: flex; flex-direction: column; justify-content: center;
         }
-
         .teacher-name {
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
-            color: #f8fafc;
-            margin-bottom: 8px;
-            line-height: 1.1;
+            font-family: Georgia, serif; font-style: italic;
+            font-size: clamp(1.8rem, 3vw, 2.5rem); color: #f8fafc;
+            margin-bottom: 8px; line-height: 1.1;
         }
-
-        .teacher-role {
-            display: inline-block;
-            font-size: 0.75rem;
-            color: #4ade80;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 26px;
-            padding: 6px 16px;
-            background: rgba(34, 197, 94, 0.06);
-            border: 1px solid rgba(34, 197, 94, 0.12);
-            border-radius: 6px;
+        .teacher-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.7rem; color: var(--g3); font-weight: 700;
+            text-transform: uppercase; letter-spacing: 3px;
+            padding: 6px 16px; margin-bottom: 28px;
+            background: rgba(34,197,94,0.06);
+            border: 1px solid rgba(34,197,94,0.12); border-radius: 6px;
             width: fit-content;
         }
-
-        .teacher-desc {
-            color: #94a3b8;
-            font-size: 1.05rem;
-            line-height: 1.9;
-            margin-bottom: 32px;
-            border-left: 2px solid rgba(34, 197, 94, 0.15);
+        .teacher-quote {
+            color: var(--muted2); font-size: 1rem; line-height: 1.9;
+            margin-bottom: 32px; font-style: italic;
+            border-left: 2px solid rgba(34,197,94,0.2);
             padding-left: 20px;
         }
-
         .teacher-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
         }
-
-        .stat-box {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(34, 197, 94, 0.06);
-            border-radius: 14px;
-            padding: 18px 20px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
+        .t-stat {
+            background: rgba(255,255,255,0.015);
+            border: 1px solid rgba(34,197,94,0.06);
+            border-radius: 14px; padding: 16px 18px;
+            position: relative; overflow: hidden;
+            transition: all 0.35s ease;
         }
-
-        .stat-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 3px; height: 100%;
-            background: linear-gradient(to bottom, #22c55e, #16a34a);
-            opacity: 0.4;
-            border-radius: 14px 0 0 14px;
-            transition: width 0.3s ease, opacity 0.3s ease;
+        .t-stat::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--g), var(--g2));
+            opacity: 0.4; transition: opacity 0.3s ease;
         }
-
-        .stat-box:hover {
-            background: rgba(34, 197, 94, 0.04);
-            border-color: rgba(34, 197, 94, 0.18);
-            transform: translateX(5px);
-        }
-
-        .stat-box:hover::before {
-            width: 4px;
-            opacity: 0.8;
-        }
-
-        .stat-box h4 {
-            color: #4ade80;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            margin-bottom: 8px;
-            font-weight: 800;
-        }
-
-        .stat-box p {
-            color: #cbd5e1;
-            font-size: 0.88rem;
-            line-height: 1.5;
-        }
+        .t-stat:hover { border-color: var(--border-g); transform: translateX(4px); }
+        .t-stat:hover::before { opacity: 0.8; }
+        .t-stat h4 { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 2.5px; color: var(--g3); font-weight: 800; margin-bottom: 6px; }
+        .t-stat p { color: #cbd5e1; font-size: 0.85rem; line-height: 1.45; }
 
         @media (max-width: 900px) {
-            .teacher-card { flex-direction: column; }
-            .teacher-visual { flex: none; width: 100%; height: 300px; }
-            .teacher-visual-name, .teacher-visual-role { display: none; }
-            .teacher-body { padding: 35px 30px; }
+            .teacher-card { grid-template-columns: 1fr; }
+            .teacher-visual { height: 280px; }
+            .teacher-vis-name, .teacher-vis-role { display: none; }
+            .teacher-body { padding: 36px 30px; }
             .teacher-stats { grid-template-columns: 1fr; }
         }
 
-        /* ============================================
-           SECCIÓN ALUMNOS - 4 GRID HORIZONTAL
-           ============================================ */
+        /* ============================================================
+           ALUMNOS — MEJORADO
+           ============================================================ */
         .students-section {
-            padding: 80px 0 100px;
+            padding: 90px 20px 100px;
             position: relative;
         }
-
         .students-section::before {
             content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
+            position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.18), transparent);
         }
 
         .students-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 22px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
+            gap: 20px; max-width: 1400px; margin: 0 auto;
         }
 
         .student-card {
-            position: relative;
-            border-radius: 22px;
-            overflow: hidden;
-            aspect-ratio: 3 / 4;
-            background: linear-gradient(180deg, #0f2d4a, #050f1a);
-            border: 1px solid rgba(34, 197, 94, 0.1);
-            transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
-            cursor: default;
+            position: relative; border-radius: 24px; overflow: hidden;
+            aspect-ratio: 3/4;
+            border: 1px solid rgba(34,197,94,0.1);
+            transition: all 0.55s cubic-bezier(0.165,0.84,0.44,1);
             box-shadow: 0 8px 30px rgba(0,0,0,0.3);
         }
-
         .student-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(34, 197, 94, 0.35);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+            transform: translateY(-10px);
+            border-color: rgba(34,197,94,0.35);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5);
         }
+
+        /* Gradient background for cards with no image */
+        .student-bg {
+            position: absolute; inset: 0; z-index: 0;
+        }
+        .student-bg-1 { background: linear-gradient(145deg, #0d2a3e, #041420); }
+        .student-bg-2 { background: linear-gradient(145deg, #0a2010, #051208); }
+        .student-bg-3 { background: linear-gradient(145deg, #1a1a2e, #0a0a18); }
+        .student-bg-4 { background: linear-gradient(145deg, #2a1a0a, #180e04); }
 
         .student-visual {
-            position: absolute;
-            inset: 0;
-            width: 100%; height: 100%;
-            z-index: 1;
+            position: absolute; inset: 0; z-index: 1;
         }
-
         .student-visual img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: all 0.6s cubic-bezier(0.165,0.84,0.44,1);
+        }
+        .student-card:hover .student-visual img { opacity: 0.12; transform: scale(1.08); }
+
+        /* Avatar placeholder for missing photos */
+        .student-avatar {
+            position: absolute; inset: 0; z-index: 1;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 8px;
+        }
+        .student-avatar .av-icon {
+            width: 90px; height: 90px; border-radius: 50%;
+            border: 2px solid rgba(34,197,94,0.25);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.8rem;
+            background: rgba(34,197,94,0.06);
+            transition: all 0.5s ease;
+        }
+        .student-card:hover .student-avatar .av-icon {
+            opacity: 0; transform: scale(0.8);
         }
 
-        .student-card:hover .student-visual img {
-            opacity: 0.15;
-            transform: scale(1.08);
-        }
-
-        .student-overlay {
-            position: absolute;
-            inset: auto 0 0 0;
-            background: linear-gradient(to top, rgba(5,10,20,0.98) 0%, rgba(10,22,40,0.8) 50%, transparent 100%);
-            padding: 50px 20px 22px;
-            z-index: 2;
+        .student-bottom {
+            position: absolute; inset: auto 0 0 0; z-index: 2;
+            background: linear-gradient(to top, rgba(5,10,20,0.98) 0%, rgba(5,10,20,0.5) 60%, transparent 100%);
+            padding: 60px 20px 22px;
             transition: all 0.4s ease;
         }
-
-        .student-card:hover .student-overlay {
-            opacity: 0;
-            transform: translateY(15px);
-        }
-
+        .student-card:hover .student-bottom { opacity: 0; transform: translateY(10px); }
         .student-name {
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 6px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            font-family: Georgia, serif; font-style: italic;
+            font-size: 1.2rem; color: #fff; margin-bottom: 5px;
         }
-
         .student-role {
-            font-size: 0.68rem;
-            color: #4ade80;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 0.62rem; color: var(--g3); font-weight: 800;
+            text-transform: uppercase; letter-spacing: 2px;
         }
 
+        /* Hover reveal */
         .student-hover {
-            position: absolute;
-            inset: 0;
-            background: rgba(5, 10, 20, 0.96);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 25px;
-            text-align: center;
-            opacity: 0;
-            transform: scale(0.94);
-            transition: all 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
-            z-index: 3;
-            border: 1px solid transparent;
+            position: absolute; inset: 0; z-index: 3;
+            background: rgba(5,10,20,0.96);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 28px; text-align: center;
+            opacity: 0; transform: scale(0.94);
+            transition: all 0.5s cubic-bezier(0.165,0.84,0.44,1);
         }
+        .student-card:hover .student-hover { opacity: 1; transform: scale(1); }
 
-        .student-card:hover .student-hover {
-            opacity: 1;
-            transform: scale(1);
-            border-color: rgba(34, 197, 94, 0.18);
+        .student-hover-name {
+            font-family: Georgia, serif; font-style: italic;
+            font-size: 1.25rem; color: #f8fafc; margin-bottom: 4px;
         }
-
+        .student-hover-role {
+            font-size: 0.6rem; color: var(--g3); font-weight: 800;
+            text-transform: uppercase; letter-spacing: 3px; margin-bottom: 18px;
+        }
+        .student-hover-divider {
+            width: 30px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--g), transparent);
+            margin: 0 auto 18px;
+        }
         .student-hover h4 {
-            color: #4ade80;
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 12px;
-            font-weight: 800;
-            transform: translateY(-6px);
-            opacity: 0;
-            transition: all 0.45s ease 0.08s;
+            font-size: 0.62rem; text-transform: uppercase; letter-spacing: 3px;
+            color: var(--g3); margin-bottom: 10px; font-weight: 800;
+            opacity: 0; transform: translateY(-5px);
+            transition: all 0.4s ease 0.05s;
         }
-
         .student-hover p {
-            color: #cbd5e1;
-            font-size: 0.84rem;
-            line-height: 1.7;
-            margin-bottom: 16px;
-            transform: translateY(6px);
-            opacity: 0;
-            transition: all 0.45s ease 0.12s;
+            color: #cbd5e1; font-size: 0.82rem; line-height: 1.7;
+            margin-bottom: 14px;
+            opacity: 0; transform: translateY(5px);
+            transition: all 0.4s ease 0.1s;
         }
-
         .student-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            justify-content: center;
-            transform: translateY(6px);
-            opacity: 0;
-            transition: all 0.45s ease 0.16s;
+            display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+            opacity: 0; transform: translateY(5px);
+            transition: all 0.4s ease 0.15s;
         }
-
-        .student-tag {
-            background: rgba(34, 197, 94, 0.08);
-            border: 1px solid rgba(34, 197, 94, 0.18);
-            color: #4ade80;
-            font-size: 0.62rem;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
         .student-card:hover .student-hover h4,
         .student-card:hover .student-hover p,
-        .student-card:hover .student-hover .student-tags {
-            opacity: 1;
-            transform: translateY(0);
+        .student-card:hover .student-tags { opacity: 1; transform: translateY(0); }
+
+        .s-tag {
+            background: rgba(34,197,94,0.08);
+            border: 1px solid rgba(34,197,94,0.18);
+            color: var(--g3); font-size: 0.6rem;
+            padding: 4px 11px; border-radius: 20px; font-weight: 600;
         }
 
-        .student-card::before {
+        .student-card::after {
             content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.7), transparent);
-            transform: scaleX(0);
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-            z-index: 4;
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.8), transparent);
+            transform: scaleX(0); transition: transform 0.6s ease; z-index: 5;
         }
+        .student-card:hover::after { transform: scaleX(1); }
 
-        .student-card:hover::before {
-            transform: scaleX(1);
+        @media (max-width: 1024px) { .students-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 540px)  { .students-grid { grid-template-columns: 1fr; } }
+
+        /* ============================================================
+           TECNOLOGÍAS — NUEVA SECCIÓN
+           ============================================================ */
+        .tech-section {
+            padding: 90px 20px 100px;
+            position: relative; overflow: hidden;
         }
-
-        @media (max-width: 1024px) {
-            .students-grid {
-                grid-template-columns: repeat(2, 1fr);
-                max-width: 700px;
-            }
+        .tech-section::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.18), transparent);
         }
-
-        @media (max-width: 640px) {
-            .students-grid {
-                grid-template-columns: 1fr;
-                max-width: 360px;
-            }
-            .student-card { aspect-ratio: 4 / 5; }
+        .tech-section::after {
+            content: '';
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 70%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.1), transparent);
         }
+        .tech-inner { max-width: 1100px; margin: 0 auto; }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 14px; margin-top: 60px;
+        }
+        .tech-badge {
+            background: rgba(255,255,255,0.015);
+            border: 1px solid var(--border);
+            border-radius: 18px; padding: 28px 16px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
+            position: relative; overflow: hidden;
+        }
+        .tech-badge::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 50% 100%, rgba(34,197,94,0.08) 0%, transparent 70%);
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .tech-badge:hover {
+            border-color: var(--border-g);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+        .tech-badge:hover::before { opacity: 1; }
+        .tech-ico { font-size: 2.2rem; margin-bottom: 12px; display: block; }
+        .tech-name {
+            font-size: 0.72rem; font-weight: 700; color: #cbd5e1;
+            text-transform: uppercase; letter-spacing: 1.5px;
+        }
+        .tech-badge:hover .tech-name { color: var(--g3); }
 
-        /* ============================================
-           SCROLL REVEAL
-           ============================================ */
+        @media (max-width: 900px) { .tech-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 500px) { .tech-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        /* ============================================================
+           CTA CIERRE
+           ============================================================ */
+        .cta-section {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, transparent, rgba(34,197,94,0.03), transparent);
+            position: relative;
+        }
+        .cta-glow {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 300px;
+            background: radial-gradient(ellipse, rgba(34,197,94,0.08) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .cta-inner .sec-title { text-align: center; }
+        .cta-inner .sec-desc { margin: 0 auto 40px; text-align: center; }
+        .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .cta-btn-primary {
+            padding: 14px 32px; border-radius: 50px;
+            background: var(--g); color: #050c12;
+            font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(34,197,94,0.3);
+        }
+        .cta-btn-primary:hover { background: var(--g3); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(34,197,94,0.4); }
+        .cta-btn-secondary {
+            padding: 14px 32px; border-radius: 50px;
+            background: transparent; color: var(--text);
+            font-weight: 700; font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.12); cursor: pointer;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .cta-btn-secondary:hover { border-color: var(--border-g); color: var(--g3); transform: translateY(-2px); }
+
+        /* ============================================================
+           REVEAL
+           ============================================================ */
         .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.165,0.84,0.44,1);
         }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-l { opacity: 0; transform: translateX(-28px); transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.165,0.84,0.44,1); }
+        .reveal-l.active { opacity: 1; transform: translateX(0); }
+        .reveal-r { opacity: 0; transform: translateX(28px); transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.165,0.84,0.44,1); }
+        .reveal-r.active { opacity: 1; transform: translateX(0); }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* ============================================================
+           ANIMATIONS
+           ============================================================ */
+        @keyframes fadeUp   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
     </style>
-<base target="_blank">
-<base target="_blank">
 </head>
 
 <body>
-    <!-- PANTALLA DE CARGA -->
-    <div class="page-loader" id="pageLoader"
-        style="background: linear-gradient(145deg, #0a1f0a 0%, #0d2815 50%, #051a05 100%);">
+    <!-- ============================================ LOADER -->
+    <div class="page-loader" id="pageLoader" style="background: linear-gradient(145deg,#071207,#0d2815,#051a05);">
         <div class="loader-wrapper">
             <div class="loader-spinner"></div>
             <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
@@ -1054,17 +942,15 @@
         <p class="loader-text">Verfrut's y R&amp;M</p>
     </div>
 
-    <!-- NAVBAR -->
-    <div id="navOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998;"
-        onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
+    <!-- ============================================ NAVBAR -->
+    <div id="navOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:998;"
+        onclick="document.getElementById('navLinks').classList.remove('active');this.style.display='none';"></div>
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
                 <img width="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
-                <div class="nav-logo-text">
-                    <span class="nav-logo-title">Verfrut's y R&amp;M</span>
-                </div>
+                <div class="nav-logo-text"><span class="nav-logo-title">Verfrut's y R&amp;M</span></div>
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Inicio</a></li>
@@ -1086,292 +972,447 @@
         </div>
     </nav>
 
-    <!-- HERO CON IMAGEN DE FONDO -->
+    <!-- ============================================ HERO -->
     <section class="inju-hero" id="hero">
-        <img class="inju-hero-bg" src="img-INJU-page/img-porton-INJU.jpg" alt="Fondo INJU">
-        
+        <img class="inju-hero-bg" src="img-INJU-page/img-porton-INJU.jpg" alt="Fondo INJU" loading="eager">
+        <div class="hero-overlay"></div>
+
+        <!-- Floating particles -->
+        <div class="particles" id="particles"></div>
+
         <div class="inju-hero-content">
-            
-            <h1><span class="hero-title-main">INJU</span><span class="hero-title-name">Instituto Nacional de Jucuapa</span><span>Desde 1966</span></h1>
-            <div class="hero-divider"></div><p>Formando el futuro de El Salvador con excelencia académica, valores sólidos y compromiso con la educación de calidad en el departamento de Usulután.</p>
+            <div class="hero-eyebrow">Instituto Nacional de Jucuapa</div>
+            <h1>INJU</h1>
+            <span class="hero-subtitle-italic">Formando el futuro de El Salvador</span>
+            <span class="hero-since">Desde 1966 · Jucuapa, Usulután</span>
+            <div class="hero-divider"></div>
+            <p>Excelencia académica, valores sólidos y compromiso con la educación de calidad. Cuna de los desarrolladores detrás del proyecto Verfrut's y R&amp;M.</p>
         </div>
-        <div class="scroll-indicator" onclick="document.querySelector('.institute-section').scrollIntoView({behavior: 'smooth'})">
+
+        <div class="scroll-cue" onclick="document.querySelector('.stats-bar').scrollIntoView({behavior:'smooth'})">
             <div class="mouse"></div>
-            <span>Desplázate</span>
+            <span>Explorar</span>
         </div>
     </section>
 
-    <!-- INFORMACIÓN DEL INSTITUTO -->
-    <section class="inju-section institute-section reveal">
-        <div class="institute-card">
-            <div class="institute-intro">
-                <div class="intro-card reveal">
-                    <span class="intro-card-icon">🎓</span>
-                    <h3>Excelencia Académica</h3>
-                    <p>Fundado en <strong>1966</strong>, el <strong>Instituto Nacional de Jucuapa (INJU)</strong> es una institución educativa reconocida por su compromiso con la calidad en el departamento de Usulután.</p>
-                </div>
-                <div class="intro-card reveal">
-                    <span class="intro-card-icon">📚</span>
-                    <h3>Oferta Educativa</h3>
-                    <p>Especialidades en <strong>ciencias naturales, sociales, matemáticas, idiomas y humanidades</strong>. Fomentamos actividades extracurriculares y deportivas para el crecimiento integral.</p>
-                </div>
-                <div class="intro-card reveal">
-                    <span class="intro-card-icon">🌟</span>
-                    <h3>Legado y Futuro</h3>
-                    <p>Gracias al compromiso de docentes y estudiantes, el INJU sigue siendo un <strong>pilar educativo</strong>, formando generaciones con valores sólidos y educación de calidad.</p>
-                </div>
+    <!-- ============================================ STATS BAR -->
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item reveal">
+                <div class="stat-num"><span class="counter" data-target="58">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-label">Años de Historia</div>
             </div>
-
-            <div class="institute-details">
-                <div class="detail-item">
-                    <div class="detail-icon">🏫</div>
-                    <div class="detail-text">
-                        <h4>Nombre</h4>
-                        <p>Instituto Nacional de Jucuapa</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-icon">#</div>
-                    <div class="detail-text">
-                        <h4>Código</h4>
-                        <p>12585</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-icon">📍</div>
-                    <div class="detail-text">
-                        <h4>Tipo de Sede</h4>
-                        <p>Centro educativo oficial</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-icon">📅</div>
-                    <div class="detail-text">
-                        <h4>Calendario</h4>
-                        <p>Nacional</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-icon">☀️</div>
-                    <div class="detail-text">
-                        <h4>Jornada</h4>
-                        <p>Matutino</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-icon">📞</div>
-                    <div class="detail-text">
-                        <h4>Teléfono</h4>
-                        <p>2665-2154</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-icon">✉️</div>
-                    <div class="detail-text">
-                        <h4>Correo</h4>
-                        <p>institutodejucuapa@gmail.com</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-icon">🗺️</div>
-                    <div class="detail-text">
-                        <h4>Dirección</h4>
-                        <p>Final Calle 2 de Abril, Barrio La Cruz, Jucuapa, Usulután</p>
-                    </div>
-                </div>
+            <div class="stat-item reveal">
+                <div class="stat-num"><span class="counter" data-target="4">0</span></div>
+                <div class="stat-label">Desarrolladores</div>
+            </div>
+            <div class="stat-item reveal">
+                <div class="stat-num"><span class="counter" data-target="200">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-label">Productos en Catálogo</div>
+            </div>
+            <div class="stat-item reveal">
+                <div class="stat-num">2026</div>
+                <div class="stat-label">Año del Proyecto</div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- TIMELINE HORIZONTAL MANUAL -->
-    <section class="timeline-section reveal">
-        <div class="inju-section-header">
-            <h2>Nuestra Trayectoria</h2>
-            <p>Una historia de excelencia académica</p>
+    <!-- ============================================ INFORMACIÓN DEL INSTITUTO -->
+    <div class="section-sep"></div>
+    <div class="institute-wrap">
+        <div class="institute-header reveal">
+            <div>
+                <span class="sec-label">Sobre la Institución</span>
+                <h2 class="sec-title">El Instituto Nacional<br>de Jucuapa</h2>
+            </div>
+            <p class="sec-desc">Fundado en 1966, el INJU es una institución educativa de referencia en el departamento de Usulután, reconocida por su compromiso con la calidad académica y el desarrollo integral de sus estudiantes.</p>
         </div>
 
-        <div class="timeline-wrapper">
-            <div class="timeline-scroll" id="timelineScroll">
-                <div class="timeline-track" id="timelineTrack">
-                    <div class="timeline-node" data-index="0">
-                        <div class="timeline-node-inner">
-                            <div class="timeline-number">1</div>
-                            <div class="timeline-year">1966</div>
-                            <h3 class="timeline-title">Fundación del INJU</h3>
-                            <p class="timeline-text">El Instituto Nacional de Jucuapa abre sus puertas con el compromiso firme de brindar excelencia académica en el departamento de Usulután.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-node" data-index="1">
-                        <div class="timeline-node-inner">
-                            <div class="timeline-number">2</div>
-                            <div class="timeline-year">Docencia</div>
-                            <h3 class="timeline-title">Cuerpo Docente</h3>
-                            <p class="timeline-text">Actualmente contamos con una planta conformada por maestros altamente capacitados y comprometidos con el desarrollo integral.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-node" data-index="2">
-                        <div class="timeline-node-inner">
-                            <div class="timeline-number">3</div>
-                            <div class="timeline-year">Especialidades</div>
-                            <h3 class="timeline-title">Oferta Académica</h3>
-                            <p class="timeline-text">Ofrecemos especialidades en ciencias naturales, ciencias sociales, matemáticas, idiomas y humanidades para preparar profesionales competentes.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-node" data-index="3">
-                        <div class="timeline-node-inner">
-                            <div class="timeline-number">4</div>
-                            <div class="timeline-year">Crecimiento</div>
-                            <h3 class="timeline-title">Desarrollo Personal</h3>
-                            <p class="timeline-text">Fomentamos la participación activa en actividades extracurriculares y deportivas, descubriendo el talento de cada uno de nuestros jóvenes.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-node" data-index="4">
-                        <div class="timeline-node-inner">
-                            <div class="timeline-number">5</div>
-                            <div class="timeline-year">Presente</div>
-                            <h3 class="timeline-title">Un Pilar Educativo</h3>
-                            <p class="timeline-text">El INJU continúa siendo un faro de educación, formando a las nuevas generaciones con valores sólidos y calidad inquebrantable.</p>
-                        </div>
+        <div class="institute-cards">
+            <div class="info-pillar reveal">
+                <span class="pillar-icon">🎓</span>
+                <span class="pillar-tag">Excelencia</span>
+                <h3>Tradición Académica</h3>
+                <p>Con más de <strong>cinco décadas de trayectoria</strong>, el INJU ha formado miles de profesionales comprometidos con el desarrollo de El Salvador, manteniendo altos estándares de calidad.</p>
+            </div>
+            <div class="info-pillar reveal">
+                <span class="pillar-icon">📚</span>
+                <span class="pillar-tag">Oferta Educativa</span>
+                <h3>Especialidades Amplias</h3>
+                <p>Especialidades en <strong>ciencias naturales, sociales, matemáticas, idiomas, humanidades y desarrollo de software</strong>. Actividades extracurriculares para el crecimiento integral.</p>
+            </div>
+            <div class="info-pillar reveal">
+                <span class="pillar-icon">💻</span>
+                <span class="pillar-tag">Innovación</span>
+                <h3>Tecnología y Futuro</h3>
+                <p>La especialidad en <strong>Desarrollo de Software</strong> prepara a los jóvenes para los desafíos del mundo digital, fomentando el pensamiento lógico y la resolución de problemas reales.</p>
+            </div>
+        </div>
+
+        <div class="detail-grid reveal">
+            <div class="detail-chip">
+                <div class="chip-ico">🏫</div>
+                <div class="chip-txt"><h4>Nombre</h4><p>Instituto Nacional de Jucuapa</p></div>
+            </div>
+            <div class="detail-chip">
+                <div class="chip-ico">#</div>
+                <div class="chip-txt"><h4>Código</h4><p>12585</p></div>
+            </div>
+            <div class="detail-chip">
+                <div class="chip-ico">📍</div>
+                <div class="chip-txt"><h4>Tipo de Sede</h4><p>Centro educativo oficial</p></div>
+            </div>
+            <div class="detail-chip">
+                <div class="chip-ico">☀️</div>
+                <div class="chip-txt"><h4>Jornada</h4><p>Matutino</p></div>
+            </div>
+            <div class="detail-chip">
+                <div class="chip-ico">📞</div>
+                <div class="chip-txt"><h4>Teléfono</h4><p>2665-2154</p></div>
+            </div>
+            <div class="detail-chip">
+                <div class="chip-ico">✉️</div>
+                <div class="chip-txt"><h4>Correo</h4><p>institutodejucuapa@gmail.com</p></div>
+            </div>
+            <div class="detail-chip">
+                <div class="chip-ico">📅</div>
+                <div class="chip-txt"><h4>Calendario</h4><p>Nacional</p></div>
+            </div>
+            <div class="detail-chip">
+                <div class="chip-ico">🗺️</div>
+                <div class="chip-txt"><h4>Dirección</h4><p>Final Calle 2 de Abril, Barrio La Cruz, Jucuapa</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ EL PROYECTO -->
+    <div class="section-sep"></div>
+    <section class="project-section">
+        <div class="project-inner">
+            <div class="project-left reveal-l">
+                <div class="project-float-tag">3° Año · Dev Software</div>
+                <div class="project-img-wrap">
+                    <img src="img-start-galeria-mixtas/Tienda11.jpg" alt="Verfrut's y R&M">
+                    <div class="project-img-overlay"></div>
+                    <div class="project-img-badge">
+                        <div class="badge-num">2026</div>
+                        <div class="badge-txt">Año de lanzamiento</div>
                     </div>
                 </div>
             </div>
+            <div class="project-right reveal-r">
+                <span class="sec-label">El Proyecto</span>
+                <h2 class="sec-title">Cómo nació<br>Verfrut's y R&M</h2>
+                <p class="project-story">En el marco de la especialidad de <strong style="color:#e2e8f0">Desarrollo de Software</strong> del tercer año del INJU, cuatro estudiantes recibieron el desafío de construir un sitio web real para un negocio local: la tienda de frutas, verduras y productos del hogar <strong style="color:#e2e8f0">Verfrut's y R&M</strong>.</p>
+                <p class="project-story">El objetivo era claro: crear una solución funcional que permitiera a la tienda mostrar su catálogo, recibir pedidos por WhatsApp, y conectar con sus clientes de Jucuapa de forma digital. Un proyecto real, para un cliente real, desarrollado con tecnologías reales.</p>
+                <p class="project-story">Bajo la guía del profesor <strong style="color:#e2e8f0">Roberto Machado García</strong>, el equipo trabajó durante semanas diseñando, programando y refinando cada página — desde el catálogo hasta el sistema de carrito y el mapa de ubicación.</p>
 
-            <div class="timeline-arrows">
-                <button class="timeline-arrow" id="timelinePrev" aria-label="Anterior">&#10094;</button>
-                <div class="timeline-dots" id="timelineDots">
-                    <button class="timeline-dot-btn active" data-index="0"></button>
-                    <button class="timeline-dot-btn" data-index="1"></button>
-                    <button class="timeline-dot-btn" data-index="2"></button>
-                    <button class="timeline-dot-btn" data-index="3"></button>
-                    <button class="timeline-dot-btn" data-index="4"></button>
+                <div class="project-pillars">
+                    <div class="proj-pill">
+                        <span class="proj-pill-ico">🎯</span>
+                        <div>
+                            <h4>Cliente Real</h4>
+                            <p>Negocio local de Jucuapa como caso de estudio práctico</p>
+                        </div>
+                    </div>
+                    <div class="proj-pill">
+                        <span class="proj-pill-ico">⚡</span>
+                        <div>
+                            <h4>Sin Frameworks</h4>
+                            <p>HTML, CSS y JavaScript puro — habilidades fundamentales</p>
+                        </div>
+                    </div>
+                    <div class="proj-pill">
+                        <span class="proj-pill-ico">📱</span>
+                        <div>
+                            <h4>Responsive Design</h4>
+                            <p>Diseñado para funcionar en cualquier dispositivo</p>
+                        </div>
+                    </div>
+                    <div class="proj-pill">
+                        <span class="proj-pill-ico">🛒</span>
+                        <div>
+                            <h4>E-commerce Real</h4>
+                            <p>Catálogo, carrito y pedidos por WhatsApp integrados</p>
+                        </div>
+                    </div>
                 </div>
-                <button class="timeline-arrow" id="timelineNext" aria-label="Siguiente">&#10095;</button>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DOCENTE MEJORADA -->
+    <!-- ============================================ TIMELINE VERTICAL -->
+    <div class="section-sep"></div>
+    <section class="timeline-section">
+        <div class="tl-header reveal">
+            <span class="sec-label">Nuestra Trayectoria</span>
+            <h2 class="sec-title">Una historia de<br>excelencia académica</h2>
+        </div>
+
+        <div class="tl-track-wrap">
+            <div class="tl-list" id="tlList">
+
+                <div class="tl-item reveal">
+                    <div class="tl-card">
+                        <span class="tl-card-icon">🏫</span>
+                        <div class="tl-card-year">1966</div>
+                        <h3>Fundación del INJU</h3>
+                        <p>El Instituto Nacional de Jucuapa abre sus puertas con el firme compromiso de brindar educación de calidad al departamento de Usulután, convirtiéndose desde sus inicios en un referente académico regional.</p>
+                    </div>
+                    <div class="tl-spacer"><div class="tl-dot">1</div></div>
+                    <div class="tl-empty"></div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-empty"></div>
+                    <div class="tl-spacer"><div class="tl-dot">2</div></div>
+                    <div class="tl-card">
+                        <span class="tl-card-icon">👨‍🏫</span>
+                        <div class="tl-card-year">Cuerpo Docente</div>
+                        <h3>Maestros Comprometidos</h3>
+                        <p>Docentes altamente capacitados y en constante formación continua conforman el motor del INJU. Su dedicación va más allá del aula: son mentores que inspiran vocaciones y transforman vidas.</p>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-card">
+                        <span class="tl-card-icon">📖</span>
+                        <div class="tl-card-year">Especialidades</div>
+                        <h3>Oferta Académica Diversa</h3>
+                        <p>Ciencias naturales, sociales, matemáticas, idiomas, humanidades y desarrollo de software. Una oferta pensada para que cada estudiante encuentre su camino y se prepare para los desafíos del mundo moderno.</p>
+                    </div>
+                    <div class="tl-spacer"><div class="tl-dot">3</div></div>
+                    <div class="tl-empty"></div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-empty"></div>
+                    <div class="tl-spacer"><div class="tl-dot">4</div></div>
+                    <div class="tl-card">
+                        <span class="tl-card-icon">🏆</span>
+                        <div class="tl-card-year">Desarrollo Integral</div>
+                        <h3>Más Allá del Aula</h3>
+                        <p>Deportes, cultura, arte y actividades extracurriculares completan la formación de los estudiantes. El INJU cree en el desarrollo completo del ser humano: mente, cuerpo y espíritu.</p>
+                    </div>
+                </div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-card">
+                        <span class="tl-card-icon">💡</span>
+                        <div class="tl-card-year">Presente · 2026</div>
+                        <h3>Pilar de la Comunidad</h3>
+                        <p>Hoy el INJU sigue siendo un faro educativo en Jucuapa. Sus egresados se destacan en universidades, empresas y proyectos de innovación — como este sitio web — que demuestran que la educación pública de calidad transforma comunidades enteras.</p>
+                    </div>
+                    <div class="tl-spacer"><div class="tl-dot">5</div></div>
+                    <div class="tl-empty"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ DOCENTE -->
+    <div class="section-sep"></div>
     <section class="teacher-section reveal">
-        <div class="inju-section-header">
-            <h2>Nuestro Guía</h2>
-            <p>Mentoría y dedicación académica</p>
+        <div style="text-align:center;margin-bottom:60px;padding:0 20px">
+            <span class="sec-label">Nuestro Guía</span>
+            <h2 class="sec-title">El mentor detrás del equipo</h2>
         </div>
         <div class="teacher-card">
             <div class="teacher-visual">
                 <img src="img-INJU-page/img-teacher-alumnos/profeRoberto.jpg" alt="Roberto Machado García">
-                <div class="teacher-visual-overlay"></div>
-                <div class="teacher-visual-name">Roberto Machado García</div>
-                <div class="teacher-visual-role">Facilitador Académico</div>
+                <div class="teacher-vis-overlay"></div>
+                <div class="teacher-vis-name">Roberto Machado García</div>
+                <div class="teacher-vis-role">Facilitador Académico</div>
             </div>
             <div class="teacher-body">
                 <h3 class="teacher-name">Roberto Machado García</h3>
-                <div class="teacher-role">Facilitador Académico</div>
-                <p class="teacher-desc">El mentor encargado de guiar y pulir el talento de los estudiantes, fomentando la excelencia en el desarrollo de software e innovación tecnológica dentro del Instituto Nacional de Jucuapa.</p>
+                <div class="teacher-badge">✦ Facilitador Académico</div>
+                <p class="teacher-quote">"El mejor código que un estudiante puede escribir es aquel que resuelve un problema real de su comunidad. Eso es exactamente lo que lograron con este proyecto."</p>
                 <div class="teacher-stats">
-                    <div class="stat-box">
+                    <div class="t-stat">
                         <h4>Especialidad</h4>
                         <p>Desarrollo de Software & Programación Web Avanzada</p>
                     </div>
-                    <div class="stat-box">
+                    <div class="t-stat">
                         <h4>Experiencia</h4>
-                        <p>Más de 15 años formando jóvenes programadores en El Salvador</p>
+                        <p>Más de 15 años formando programadores en El Salvador</p>
                     </div>
-                    <div class="stat-box">
-                        <h4>Enfoque</h4>
-                        <p>Metodologías ágiles, pensamiento lógico y resolución de problemas reales</p>
+                    <div class="t-stat">
+                        <h4>Metodología</h4>
+                        <p>Proyectos reales, pensamiento lógico y trabajo en equipo</p>
                     </div>
-                    <div class="stat-box">
+                    <div class="t-stat">
                         <h4>Misión</h4>
-                        <p>Transformar la educación técnica en oportunidades de empleo real</p>
+                        <p>Convertir la educación técnica en oportunidades de vida real</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN ALUMNOS - 4 GRID HORIZONTAL -->
-    <section class="students-section reveal">
-        <div class="inju-section-header">
-            <h2>Talento INJU</h2>
-            <p>El equipo de desarrollo e innovación</p>
+    <!-- ============================================ ALUMNOS -->
+    <div class="section-sep"></div>
+    <section class="students-section">
+        <div style="text-align:center;margin-bottom:60px;padding:0 20px" class="reveal">
+            <span class="sec-label">El Equipo Desarrollador</span>
+            <h2 class="sec-title">Talento INJU 2026</h2>
+            <p class="sec-desc" style="margin:0 auto;text-align:center">Los cuatro estudiantes de 3° año que construyeron Verfrut's y R&M desde cero — diseño, código, y lanzamiento.</p>
         </div>
         <div class="students-grid">
-            <div class="student-card">
+
+            <!-- Estudiante 1 -->
+            <div class="student-card reveal">
+                <div class="student-bg student-bg-1"></div>
                 <div class="student-visual">
-                    <img src="img-INJU-page/img-teacher-alumnos/Daniel-Galdámez.jpeg" alt="Daniel Galdámez">
+                    <img src="img-INJU-page/img-teacher-alumnos/Daniel-Galdámez.jpeg" alt="Valverde">
                 </div>
-                <div class="student-overlay">
+                <div class="student-bottom">
                     <h3 class="student-name">Valverde</h3>
                     <div class="student-role">Programador</div>
                 </div>
                 <div class="student-hover">
+                    <div class="student-hover-name">Valverde</div>
+                    <div class="student-hover-role">Programador</div>
+                    <div class="student-hover-divider"></div>
                     <h4>Responsabilidades</h4>
-                    <p>Fue el encargado principal del desarrollo de la página de Productos, implementando el catálogo interactivo y el sistema de filtrado por categorías.</p>
+                    <p>Desarrolló la página de Productos — catálogo interactivo, filtrado por categorías y el sistema de precios dinámico.</p>
                     <div class="student-tags">
-                        <span class="student-tag">Productos</span>
-                        <span class="student-tag">JavaScript</span>
-                        <span class="student-tag">UI/UX</span>
+                        <span class="s-tag">Productos</span>
+                        <span class="s-tag">JavaScript</span>
+                        <span class="s-tag">UI/UX</span>
                     </div>
                 </div>
             </div>
-            <div class="student-card">
-                <div class="student-visual">
-                    <img src="" alt="Jaime Guzman">
+
+            <!-- Estudiante 2 — sin foto: avatar CSS -->
+            <div class="student-card reveal">
+                <div class="student-bg student-bg-2"></div>
+                <div class="student-avatar">
+                    <div class="av-icon">🧑‍💻</div>
                 </div>
-                <div class="student-overlay">
-                    <h3 class="student-name">Jaime Guzman</h3>
+                <div class="student-bottom">
+                    <h3 class="student-name">Jaime Guzmán</h3>
                     <div class="student-role">Programador</div>
                 </div>
                 <div class="student-hover">
+                    <div class="student-hover-name">Jaime Guzmán</div>
+                    <div class="student-hover-role">Programador</div>
+                    <div class="student-hover-divider"></div>
                     <h4>Responsabilidades</h4>
-                    <p>Lideró el diseño visual de la Galería y la página de Inicio, creando la identidad gráfica y los efectos de animación CSS del proyecto.</p>
+                    <p>Diseñó la Galería y la identidad visual del sitio — animaciones CSS, efectos de hover y la paleta de colores.</p>
                     <div class="student-tags">
-                        <span class="student-tag">Galería</span>
-                        <span class="student-tag">CSS3</span>
-                        <span class="student-tag">Diseño</span>
+                        <span class="s-tag">Galería</span>
+                        <span class="s-tag">CSS3</span>
+                        <span class="s-tag">Diseño</span>
                     </div>
                 </div>
             </div>
-            <div class="student-card">
+
+            <!-- Estudiante 3 -->
+            <div class="student-card reveal">
+                <div class="student-bg student-bg-3"></div>
                 <div class="student-visual">
                     <img src="img-INJU-page/img-teacher-alumnos/Daniel-Galdámez.jpg" alt="Daniel Galdámez">
                 </div>
-                <div class="student-overlay">
+                <div class="student-bottom">
                     <h3 class="student-name">Daniel Galdámez</h3>
                     <div class="student-role">Programador</div>
                 </div>
                 <div class="student-hover">
+                    <div class="student-hover-name">Daniel Galdámez</div>
+                    <div class="student-hover-role">Programador</div>
+                    <div class="student-hover-divider"></div>
                     <h4>Responsabilidades</h4>
-                    <p>Desarrolló el módulo de Compras y el sistema de Ubicación con mapa interactivo, incluyendo la lógica de carrito y geolocalización.</p>
+                    <p>Implementó el módulo de Compras, el carrito de pedidos y el sistema de ubicación con mapa interactivo.</p>
                     <div class="student-tags">
-                        <span class="student-tag">Compras</span>
-                        <span class="student-tag">Maps API</span>
-                        <span class="student-tag">Lógica</span>
+                        <span class="s-tag">Compras</span>
+                        <span class="s-tag">Maps API</span>
+                        <span class="s-tag">Lógica</span>
                     </div>
                 </div>
             </div>
-            <div class="student-card">
-                <div class="student-visual">
-                    <img src="" alt="Elena Torres">
+
+            <!-- Estudiante 4 — sin foto: avatar CSS -->
+            <div class="student-card reveal">
+                <div class="student-bg student-bg-4"></div>
+                <div class="student-avatar">
+                    <div class="av-icon">👩‍💻</div>
                 </div>
-                <div class="student-overlay">
+                <div class="student-bottom">
                     <h3 class="student-name">Elena Torres</h3>
                     <div class="student-role">Programadora</div>
                 </div>
                 <div class="student-hover">
+                    <div class="student-hover-name">Elena Torres</div>
+                    <div class="student-hover-role">Programadora</div>
+                    <div class="student-hover-divider"></div>
                     <h4>Responsabilidades</h4>
-                    <p>Se encargó de la arquitectura general, optimización de rendimiento, responsive design y la integración final de todos los módulos del sitio.</p>
+                    <p>Arquitectura general, responsive design, optimización de rendimiento e integración final de todos los módulos.</p>
                     <div class="student-tags">
-                        <span class="student-tag">Arquitectura</span>
-                        <span class="student-tag">Responsive</span>
-                        <span class="student-tag">Deploy</span>
+                        <span class="s-tag">Arquitectura</span>
+                        <span class="s-tag">Responsive</span>
+                        <span class="s-tag">Deploy</span>
                     </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================ TECNOLOGÍAS -->
+    <div class="section-sep"></div>
+    <section class="tech-section">
+        <div class="tech-inner">
+            <div style="text-align:center" class="reveal">
+                <span class="sec-label">Stack Tecnológico</span>
+                <h2 class="sec-title">Construido con fundamentos</h2>
+                <p class="sec-desc" style="margin:16px auto 0;text-align:center">Sin frameworks externos. Solo las herramientas base de la web — porque dominar los fundamentos es lo que hace a un gran desarrollador.</p>
+            </div>
+            <div class="tech-grid reveal">
+                <div class="tech-badge">
+                    <span class="tech-ico">🌐</span>
+                    <div class="tech-name">HTML5</div>
+                </div>
+                <div class="tech-badge">
+                    <span class="tech-ico">🎨</span>
+                    <div class="tech-name">CSS3</div>
+                </div>
+                <div class="tech-badge">
+                    <span class="tech-ico">⚡</span>
+                    <div class="tech-name">JavaScript</div>
+                </div>
+                <div class="tech-badge">
+                    <span class="tech-ico">🗺️</span>
+                    <div class="tech-name">Google Maps</div>
+                </div>
+                <div class="tech-badge">
+                    <span class="tech-ico">💾</span>
+                    <div class="tech-name">LocalStorage</div>
+                </div>
+                <div class="tech-badge">
+                    <span class="tech-ico">💬</span>
+                    <div class="tech-name">WhatsApp API</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ============================================ CTA CIERRE -->
+    <section class="cta-section reveal">
+        <div class="cta-glow"></div>
+        <div class="cta-inner">
+            <span class="sec-label" style="display:block;text-align:center;margin-bottom:14px">¿Listo para comprar?</span>
+            <h2 class="sec-title">Visita nuestra tienda<br>digital</h2>
+            <p class="sec-desc">Explora el catálogo completo de Verfrut's y R&M, agrega productos al carrito y realiza tu pedido directo por WhatsApp.</p>
+            <div class="cta-btns">
+                <a href="productos.html" class="cta-btn-primary">🛒 Ver Productos</a>
+                <a href="index.html" class="cta-btn-secondary">← Inicio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ FOOTER -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
@@ -1382,19 +1423,13 @@
                 <p>Tu tienda de referencia en Jucuapa, donde la frescura se encuentra con la excelencia.</p>
                 <div class="social-links">
                     <a href="#" class="social-facebook" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
                     <a href="#" class="social-instagram" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                     </a>
                     <a href="#" class="social-whatsapp" aria-label="WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     </a>
                 </div>
             </div>
@@ -1426,141 +1461,139 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
-                <span style="font-style: italic;">This website was designed and created by:</span> <span style="font-weight: bold;">Either Design STR Team.</span>
+                <span class="footer-italic">This website was designed and created by:</span>
+                <span class="footer-bold">Either Design STR Team.</span>
             </p>
         </div>
     </footer>
 
     <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
+
     <script src="script.js"></script>
-
     <script>
-        // ==========================================
-        // SCROLL REVEAL
-        // ==========================================
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // ==========================================
-        // TIMELINE AUTOMÁTICO SUAVE
-        // ==========================================
-        const timelineScroll = document.getElementById('timelineScroll');
-        const timelineNodes = document.querySelectorAll('.timeline-node');
-        const timelineDots = document.querySelectorAll('.timeline-dot-btn');
-        const prevBtn = document.getElementById('timelinePrev');
-        const nextBtn = document.getElementById('timelineNext');
-        let currentIndex = 0;
-        let autoInterval;
-        let isUserInteracting = false;
-        const AUTO_DELAY = 4000;
-
-        function goToTimeline(index, smooth = true) {
-            if (index < 0) index = timelineNodes.length - 1;
-            if (index >= timelineNodes.length) index = 0;
-            currentIndex = index;
-
-            const node = timelineNodes[index];
-            const scrollPos = node.offsetLeft - (timelineScroll.offsetWidth / 2) + (node.offsetWidth / 2);
-            timelineScroll.scrollTo({ left: scrollPos, behavior: smooth ? 'smooth' : 'auto' });
-
-            timelineDots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-        }
-
-        function startAuto() {
-            clearInterval(autoInterval);
-            autoInterval = setInterval(() => {
-                if (!isUserInteracting) {
-                    goToTimeline(currentIndex + 1);
-                }
-            }, AUTO_DELAY);
-        }
-
-        function stopAuto() {
-            isUserInteracting = true;
-            clearInterval(autoInterval);
-            setTimeout(() => {
-                isUserInteracting = false;
-                startAuto();
-            }, 8000);
-        }
-
-        prevBtn.addEventListener('click', () => { stopAuto(); goToTimeline(currentIndex - 1); });
-        nextBtn.addEventListener('click', () => { stopAuto(); goToTimeline(currentIndex + 1); });
-
-        timelineDots.forEach((dot, i) => {
-            dot.addEventListener('click', () => { stopAuto(); goToTimeline(i); });
-        });
-
-        // Drag support
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        timelineScroll.addEventListener('mousedown', (e) => {
-            isDown = true;
-            isUserInteracting = true;
-            timelineScroll.style.cursor = 'grabbing';
-            startX = e.pageX - timelineScroll.offsetLeft;
-            scrollLeft = timelineScroll.scrollLeft;
-        });
-        timelineScroll.addEventListener('mouseleave', () => {
-            isDown = false;
-            timelineScroll.style.cursor = 'grab';
-        });
-        timelineScroll.addEventListener('mouseup', () => {
-            isDown = false;
-            timelineScroll.style.cursor = 'grab';
-            let closest = 0;
-            let minDiff = Infinity;
-            timelineNodes.forEach((node, i) => {
-                const nodeCenter = node.offsetLeft + node.offsetWidth / 2;
-                const containerCenter = timelineScroll.scrollLeft + timelineScroll.offsetWidth / 2;
-                const diff = Math.abs(nodeCenter - containerCenter);
-                if (diff < minDiff) { minDiff = diff; closest = i; }
-            });
-            goToTimeline(closest);
-            setTimeout(() => { isUserInteracting = false; startAuto(); }, 8000);
-        });
-        timelineScroll.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - timelineScroll.offsetLeft;
-            const walk = (x - startX) * 1.5;
-            timelineScroll.scrollLeft = scrollLeft - walk;
-        });
-
-        // Touch support
-        let touchStartX = 0;
-        timelineScroll.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            isUserInteracting = true;
-        }, { passive: true });
-        timelineScroll.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].clientX;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) goToTimeline(currentIndex + 1);
-                else goToTimeline(currentIndex - 1);
+    (function() {
+        // ── PARTICLES ──────────────────────────────────────────────
+        const container = document.getElementById('particles');
+        if (container) {
+            for (let i = 0; i < 22; i++) {
+                const p = document.createElement('div');
+                p.className = 'p';
+                const size = Math.random() * 4 + 2;
+                p.style.cssText = `
+                    left: ${Math.random()*100}%;
+                    bottom: ${Math.random()*30}%;
+                    width: ${size}px; height: ${size}px;
+                    --d: ${Math.random()*10+8}s;
+                    --delay: ${Math.random()*8}s;
+                    --dist: -${Math.random()*300+150}px;
+                    --op: ${Math.random()*0.2+0.05};
+                `;
+                container.appendChild(p);
             }
-            setTimeout(() => { isUserInteracting = false; startAuto(); }, 8000);
+        }
+
+        // ── SCROLL REVEAL ─────────────────────────────────────────
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('active');
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => obs.observe(el));
+
+        // ── ANIMATED COUNTERS ─────────────────────────────────────
+        const counterObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    animateCounter(e.target);
+                    counterObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+        function animateCounter(el) {
+            const target = parseInt(el.dataset.target);
+            const duration = 1800;
+            const start = performance.now();
+            function step(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(eased * target);
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = target;
+            }
+            requestAnimationFrame(step);
+        }
+
+        // ── NAVBAR SCROLL ─────────────────────────────────────────
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
+
+        // ── SCROLL TOP ────────────────────────────────────────────
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+        if (scrollTopBtn) scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ── LOADER ────────────────────────────────────────────────
+        const loader = document.getElementById('pageLoader');
+        if (loader) {
+            window.addEventListener('load', () => setTimeout(() => loader.classList.add('hidden'), 400));
+            if (document.readyState === 'complete') setTimeout(() => loader.classList.add('hidden'), 400);
+        }
+
+        // ── MOBILE MENU ───────────────────────────────────────────
+        const toggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        if (toggle && navLinks) {
+            toggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+            navLinks.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    if (!a.closest('.dropdown') || a.closest('.dropdown-menu')) navLinks.classList.remove('active');
+                });
+            });
+        }
+
+        // ── DROPDOWN MOBILE ───────────────────────────────────────
+        document.querySelectorAll('.dropdown > a').forEach(link => {
+            link.addEventListener('click', e => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault(); e.stopPropagation();
+                    link.parentElement.classList.toggle('active');
+                }
+            });
         });
 
-        // Hover pausa
-        timelineScroll.addEventListener('mouseenter', () => { isUserInteracting = true; });
-        timelineScroll.addEventListener('mouseleave', () => { isUserInteracting = false; });
+        // ── HERO LOADED ───────────────────────────────────────────
+        setTimeout(() => { const h = document.getElementById('hero'); if (h) h.classList.add('loaded'); }, 100);
 
-        goToTimeline(0, false);
-        startAuto();
+        // ── CURSOR ────────────────────────────────────────────────
+        if (!window.matchMedia('(pointer: coarse)').matches) {
+            let dot = document.querySelector('.cursor-dot') || (() => { const d = document.createElement('div'); d.className = 'cursor-dot'; document.body.appendChild(d); return d; })();
+            let ring = document.querySelector('.cursor-ring') || (() => { const r = document.createElement('div'); r.className = 'cursor-ring'; document.body.appendChild(r); return r; })();
+            let mx=0,my=0,dx=0,dy=0,rx=0,ry=0;
+            document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.opacity='1'; ring.style.opacity='1'; });
+            (function animate() {
+                dx+=(mx-dx)*0.25; dy+=(my-dy)*0.25;
+                rx+=(mx-rx)*0.15; ry+=(my-ry)*0.15;
+                dot.style.left=`${dx}px`; dot.style.top=`${dy}px`;
+                ring.style.left=`${rx}px`; ring.style.top=`${ry}px`;
+                requestAnimationFrame(animate);
+            })();
+            document.addEventListener('mouseover', e => { if (e.target.closest('a,button,.tech-badge,.student-card,.teacher-card,.info-pillar,.proj-pill,.tl-card,.detail-chip')) document.body.classList.add('hover-link'); });
+            document.addEventListener('mouseout',  e => { if (e.target.closest('a,button,.tech-badge,.student-card,.teacher-card,.info-pillar,.proj-pill,.tl-card,.detail-chip')) document.body.classList.remove('hover-link'); });
+            document.addEventListener('mouseleave', () => { dot.style.opacity='0'; ring.style.opacity='0'; });
+        }
+    })();
     </script>
 </body>
 </html>
