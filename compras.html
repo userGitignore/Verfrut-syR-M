@@ -733,6 +733,7 @@
             }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -765,6 +766,7 @@
                         <li><a href="productos.html#verduras">Verduras</a></li>
                         <li><a href="productos.html#embutidos">Embutidos</a></li>
                         <li><a href="productos.html#canasta">Canasta Básica</a></li>
+
                     </ul>
                 </li>
                 <li><a href="compras.html" class="active">Compras</a></li>
@@ -871,125 +873,173 @@
             const catalogData = [
                 {
                     id: 'frutas',
-                    title: '🍓 Frutas Frescas',
+                    title: 'Frutas Frescas',
                     subtitle: 'Selección de frutas de temporada, siempre maduras y jugosas.',
                     products: [
-                        { id: 'manzana-roja', name: 'Manzana Roja', category: 'Frutas', desc: 'Fresca y jugosa, ideal para consumo diario', price: 1.00, unit: 'bolsa', img: 'img-fiveteen-Best-products-index/fresas2.jpg', tag: 'Oferta' },
-                        { id: 'manzana-verde', name: 'Manzana Verde', category: 'Frutas', desc: 'Seleccionada en su punto óptimo de maduración', price: 1.00, unit: 'bolsa', img: '', tag: 'Fresco' },
-                        { id: 'pera-verde', name: 'Pera Verde', category: 'Frutas', desc: 'Perfecta para jugos naturales y postres', price: 1.00, unit: 'bolsa', img: 'img/Frutas/pera.jpeg', tag: 'Popular' },
-                        { id: 'pina', name: 'Piña', category: 'Frutas', desc: 'Rica en vitaminas y antioxidantes', price: 2.50, unit: 'unidad', img: 'img/Frutas/piña.jpeg', tag: 'Fresco' },
-                        { id: 'uva-morada', name: 'Uva Morada', category: 'Frutas', desc: 'Directo del productor a tu mesa', price: 3.50, unit: 'bolsa', img: 'img/Frutas/uvamorada.jpeg', tag: 'Nuevo' },
-                        { id: 'uva-verde', name: 'Uva Verde', category: 'Frutas', desc: 'Sabor dulce y textura irresistible', price: 4.50, unit: 'bolsa', img: 'img/Frutas/uvaverde.jpeg', tag: 'Local' },
-                        { id: 'naranja', name: 'Naranja', category: 'Frutas', desc: 'Excelente para ensaladas de frutas', price: 1.00, unit: 'bolsa', img: 'img/Frutas/naranja.jpeg', tag: 'Oferta' },
-                        { id: 'granadillas', name: 'Granadillas', category: 'Frutas', desc: 'Calidad premium garantizada', price: 1.00, unit: 'bolsa', img: 'img/Frutas/granadas.jpeg', tag: 'Orgánico' },
-                        { id: 'papaya', name: 'Papaya', category: 'Frutas', desc: 'Cosechada en las mejores fincas', price: 2.00, unit: 'unidad', img: 'img/Frutas/papaya.jpeg', tag: 'Popular' },
-                        { id: 'sandia', name: 'Sandia', category: 'Frutas', desc: 'Frescura que se siente al primer mordisco', price: 2.00, unit: 'unidad', img: 'img/Frutas/sandia.jpeg', tag: 'Fresco' },
-                        { id: 'fresas', name: 'Fresas', category: 'Frutas', desc: 'Fresca y jugosa, ideal para consumo diario', price: 2.00, unit: 'bandeja', img: 'img/Frutas/fresas.jpeg', tag: 'Nuevo' },
-                        { id: 'melon', name: 'Melón', category: 'Frutas', desc: 'Seleccionada en su punto óptimo de maduración', price: 1.50, unit: 'unidad', img: '', tag: 'Local' },
+                        { id: 'manzana-roja', name: 'Manzana Roja', category: 'Frutas', desc: 'Fresca y jugosa, ideal para consumo diario', price: 1.00, unit: 'bolsa', img: 'imgs-for-products-page/Frutas/ManzanaR.jpg', tag: 'Oferta' },
+                        { id: 'manzana-verde', name: 'Manzana Verde', category: 'Frutas', desc: 'Seleccionada en su punto óptimo de maduración', price: 1.00, unit: 'bolsa', img: 'imgs-for-products-page/Frutas/ManzanaV.jpg', tag: 'Fresco' },
+                        { id: 'pera-verde', name: 'Pera Verde', category: 'Frutas', desc: 'Perfecta para jugos naturales y postres', price: 1.00, unit: 'bolsa', img: 'imgs-for-products-page/Frutas/peras.jpg', tag: 'Popular' },
+                        { id: 'pina', name: 'Piña', category: 'Frutas', desc: 'Rica en vitaminas y antioxidantes', price: 2.50, unit: 'unidad', img: 'imgs-for-products-page/Frutas/piña.jpg', tag: 'Fresco' },
+                        { id: 'uva-morada', name: 'Uva Morada', category: 'Frutas', desc: 'Directo del productor a tu mesa', price: 3.50, unit: 'bolsa', img: 'imgs-for-products-page/Frutas/uvasmora.jpg', tag: 'Nuevo' },
+                        { id: 'uva-verde', name: 'Uva Verde', category: 'Frutas', desc: 'Sabor dulce y textura irresistible', price: 4.50, unit: 'bolsa', img: 'imgs-for-products-page/Frutas/uvas.jpg', tag: 'Local' },
+                        { id: 'naranja', name: 'Naranja', category: 'Frutas', desc: 'Excelente para ensaladas de frutas', price: 1.00, unit: 'bolsa', img: 'imgs-for-products-page/Frutas/naranjas.jpg', tag: 'Oferta' },
+                        { id: 'granadillas', name: 'Granadillas', category: 'Frutas', desc: 'Calidad premium garantizada', price: 1.00, unit: 'bolsa', img: 'imgs-for-products-page/Frutas/granadillas.jpg', tag: 'Orgánico' },
+                        { id: 'papaya', name: 'Papaya', category: 'Frutas', desc: 'Cosechada en las mejores fincas', price: 2.00, unit: 'unidad', img: 'imgs-for-products-page/Frutas/papaya.jpg', tag: 'Popular' },
+                        { id: 'sandia', name: 'Sandia', category: 'Frutas', desc: 'Frescura que se siente al primer mordisco', price: 2.00, unit: 'unidad', img: 'imgs-for-products-page/Frutas/Sandia.jpg', tag: 'Fresco' },
+                        { id: 'fresas', name: 'Fresas', category: 'Frutas', desc: 'Fresca y jugosa, ideal para consumo diario', price: 2.00, unit: 'bandeja', img: 'imgs-for-products-page/Frutas/fresas2.jpg', tag: 'Nuevo' },
+                        { id: 'melon', name: 'Melón', category: 'Frutas', desc: 'Seleccionada en su punto óptimo de maduración', price: 1.50, unit: 'unidad', img: 'imgs-for-products-page/Frutas/MELON.jpg', tag: 'Local' },
                     ]
                 },
                 {
                     id: 'verduras',
-                    title: '🥬 Verduras Variadas',
+                    title: 'Verduras Variadas',
                     subtitle: 'Lo mejor de la huerta para tu mesa diaria.',
                     products: [
-                        { id: 'pepino', name: 'Pepino', category: 'Verduras', desc: 'Cultivada sin químicos dañinos', price: 1.00, unit: 'bolsa', img: 'img/Verduras/pepino.jpeg', tag: 'Oferta' },
-                        { id: 'loroco', name: 'Loroco', category: 'Verduras', desc: 'Cosechada diariamente para ti', price: 1.00, unit: 'bolsa', img: 'img/Verduras/loroco.jpeg', tag: 'Fresco' },
-                        { id: 'brocoli', name: 'Brocoli', category: 'Verduras', desc: 'Perfecta para sopas y guisos', price: 1.50, unit: 'unidad', img: 'img/Verduras/brocoli.png', tag: 'Orgánico' },
-                        { id: 'tomate', name: 'Tomate', category: 'Verduras', desc: 'Ideal para ensaladas frescas', price: 1.00, unit: 'bolsa', img: 'img/Verduras/tomates.jpeg', tag: 'Popular' },
-                        { id: 'zanahoria', name: 'Zanahoria', category: 'Verduras', desc: 'Textura crujiente y sabor natural', price: 0.35, unit: 'unidad', img: 'img/Verduras/zanahoria.jpeg', tag: 'Fresco' },
-                        { id: 'ejote', name: 'Ejote', category: 'Verduras', desc: 'Cosechada diariamente para ti', price: 0.50, unit: 'bolsa', img: 'img/Verduras/ejotes.jpeg', tag: 'Nuevo' },
-                        { id: 'lechuga', name: 'Lechuga', category: 'Verduras', desc: 'Excelente fuente de nutrientes', price: 1.00, unit: 'unidad', img: 'img/Verduras/lechuga.jpeg', tag: 'Local' },
-                        { id: 'yuca', name: 'Yuca', category: 'Verduras', desc: 'Versátil para cualquier receta', price: 0.50, unit: 'unidad', img: '', tag: 'Oferta' },
-                        { id: 'cebollin', name: 'Cebollin', category: 'Verduras', desc: 'Frescura garantizada en cada pieza', price: 1.50, unit: 'manojo', img: 'img/Verduras/cebollin.jpeg', tag: 'Orgánico' },
-                        { id: 'cebolla-morada', name: 'Cebolla morada', category: 'Verduras', desc: 'Directo de la huerta a tu hogar', price: 1.00, unit: 'bolsa', img: 'img/Verduras/cebollamorada.jpeg', tag: 'Popular' },
-                        { id: 'cebolla-blanca', name: 'Cebolla blanca', category: 'Verduras', desc: 'Calidad que se nota al cocinar', price: 1.00, unit: 'bolsa', img: '', tag: 'Fresco' },
-                        { id: 'guisquil', name: 'Güisquil', category: 'Verduras', desc: 'Cultivada sin químicos dañinos', price: 0.50, unit: 'unidad', img: 'img/Verduras/guisquil.jpeg', tag: 'Nuevo' },
-                        { id: 'papas', name: 'Papas', category: 'Verduras', desc: 'Perfecta para sopas y guisos', price: 0.65, unit: 'bolsa', img: 'img/Verduras/papas.jpeg', tag: 'Local' },
-                        { id: 'elote-dulce', name: 'Elote dulce', category: 'Verduras', desc: 'Ideal para ensaladas frescas', price: 2.00, unit: 'bandeja', img: 'img/Verduras/elotedulce.jpeg', tag: 'Oferta' },
-                        { id: 'espinaca', name: 'Espinaca', category: 'Verduras', desc: 'Textura crujiente y sabor natural', price: 0.50, unit: 'manojo', img: 'img/Verduras/espinaca.jpeg', tag: 'Orgánico' }
+                        { id: 'pepino', name: 'Pepino', category: 'Verduras', desc: 'Cultivada sin químicos dañinos', price: 1.00, unit: 'bolsa', img: 'imgs-for-products-page/Verduras/pepino.jpg', tag: 'Oferta' },
+                        { id: 'loroco', name: 'Loroco', category: 'Verduras', desc: 'Cosechada diariamente para ti', price: 1.00, unit: 'bolsa', img: 'imgs-for-products-page/Verduras/loroco.jpg', tag: 'Fresco' },
+                        { id: 'brocoli', name: 'Brocoli', category: 'Verduras', desc: 'Perfecta para sopas y guisos', price: 1.50, unit: 'unidad', img: 'imgs-for-products-page/Verduras/brocoli.jpg', tag: 'Orgánico' },
+                        { id: 'tomate', name: 'Tomate', category: 'Verduras', desc: 'Ideal para ensaladas frescas', price: 1.00, unit: 'bolsa', img: 'imgs-for-products-page/Verduras/tomates.jpg', tag: 'Popular' },
+                        { id: 'zanahoria', name: 'Zanahoria', category: 'Verduras', desc: 'Textura crujiente y sabor natural', price: 0.35, unit: 'unidad', img: 'imgs-for-products-page/Verduras/zanahoriASSS.jpg', tag: 'Fresco' },
+                        { id: 'ejote', name: 'Ejote', category: 'Verduras', desc: 'Cosechada diariamente para ti', price: 0.50, unit: 'bolsa', img: 'imgs-for-products-page/Verduras/ejotes.jpg', tag: 'Nuevo' },
+                        { id: 'lechuga', name: 'Lechuga', category: 'Verduras', desc: 'Excelente fuente de nutrientes', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Verduras/lechuga.jpg', tag: 'Local' },
+                        { id: 'yuca', name: 'Yuca', category: 'Verduras', desc: 'Versátil para cualquier receta', price: 0.50, unit: 'unidad', img: 'imgs-for-products-page/Verduras/YUCA.jpg', tag: 'Oferta' },
+                        { id: 'cebollin', name: 'Cebollin', category: 'Verduras', desc: 'Frescura garantizada en cada pieza', price: 1.50, unit: 'manojo', img: 'imgs-for-products-page/Verduras/cebollin.jpg', tag: 'Orgánico' },
+                        { id: 'cebolla-morada', name: 'Cebolla morada', category: 'Verduras', desc: 'Directo de la huerta a tu hogar', price: 1.00, unit: 'bolsa', img: 'imgs-for-products-page/Verduras/CEBOLLAmOADA.jpg', tag: 'Popular' },
+                        { id: 'cebolla-blanca', name: 'Cebolla blanca', category: 'Verduras', desc: 'Calidad que se nota al cocinar', price: 1.00, unit: 'bolsa', img: 'imgs-for-products-page/Verduras/cebolla.jpg', tag: 'Fresco' },
+                        { id: 'guisquil', name: 'Güisquil', category: 'Verduras', desc: 'Cultivada sin químicos dañinos', price: 0.50, unit: 'unidad', img: 'imgs-for-products-page/Verduras/guisquil.jpg', tag: 'Nuevo' },
+                        { id: 'papas', name: 'Papas', category: 'Verduras', desc: 'Perfecta para sopas y guisos', price: 0.65, unit: 'bolsa', img: 'imgs-for-products-page/Verduras/papas.jpg', tag: 'Local' },
+                        { id: 'elote-dulce', name: 'Elote dulce', category: 'Verduras', desc: 'Ideal para ensaladas frescas', price: 2.00, unit: 'bandeja', img: 'imgs-for-products-page/Verduras/elotedulce.jpg', tag: 'Oferta' },
+                        { id: 'espinaca', name: 'Espinaca', category: 'Verduras', desc: 'Textura crujiente y sabor natural', price: 0.50, unit: 'manojo', img: 'imgs-for-products-page/Verduras/espinaca.jpg', tag: 'Orgánico' }
                     ]
                 },
                 {
                     id: 'canasta',
-                    title: '🛒 Canasta Básica',
+                    title: 'Canasta Básica',
                     subtitle: 'Productos esenciales para el hogar.',
                     products: [
-                        { id: 'canasta-1', name: 'Producto 1', category: 'Canasta', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-2', name: 'Producto 2', category: 'Canasta', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-3', name: 'Producto 3', category: 'Canasta', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-4', name: 'Producto 4', category: 'Canasta', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-5', name: 'Producto 5', category: 'Canasta', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-6', name: 'Producto 6', category: 'Canasta', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-7', name: 'Producto 7', category: 'Canasta', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-8', name: 'Producto 8', category: 'Canasta', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-9', name: 'Producto 9', category: 'Canasta', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-10', name: 'Producto 10', category: 'Canasta', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-11', name: 'Producto 11', category: 'Canasta', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-12', name: 'Producto 12', category: 'Canasta', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-13', name: 'Producto 13', category: 'Canasta', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-14', name: 'Producto 14', category: 'Canasta', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'canasta-15', name: 'Producto 15', category: 'Canasta', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' }
+                        { id: 'canasta-1', name: 'Aceite Orisol Clasico', category: 'Canasta', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/AceiteOrisolAmarillo.jpg', tag: 'Fresco' },
+                        { id: 'canasta-2', name: 'Aceite Orisol Oliva', category: 'Canasta', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/aceiteOrisolVerde.jpg', tag: 'Fresco' },
+                        { id: 'canasta-3', name: 'Avena Quaker', category: 'Canasta', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/AvenaQaker.jpg', tag: 'Fresco' },
+                        { id: 'canasta-4', name: 'Azúcar', category: 'Canasta', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/azucares.jpg', tag: 'Fresco' },
+                        { id: 'canasta-5', name: 'Café Molido en Bolsa', category: 'Canasta', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/cafeMolidoenBolsa.jpg', tag: 'Fresco' },
+                        { id: 'canasta-6', name: 'Café Nescafé Listo', category: 'Canasta', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/CafeNescafelisto.jpg', tag: 'Fresco' },
+                        { id: 'canasta-7', name: 'Salsa Naturas', category: 'Canasta', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/SalsaNaturas.jpg', tag: 'Fresco' },
+                        { id: 'canasta-8', name: 'Frijoles', category: 'Canasta', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/Frijoles.jpg', tag: 'Fresco' },
+                        { id: 'canasta-9', name: 'Harina Doña Blanca', category: 'Canasta', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/harinaDonaBlanca.jpg', tag: 'Fresco' },
+                        { id: 'canasta-10', name: 'Leche', category: 'Canasta', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/Leche2.jpg', tag: 'Fresco' },
+                        { id: 'canasta-11', name: 'Leche Pinito', category: 'Canasta', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/Lechepinito.jpg', tag: 'Fresco' },
+                        { id: 'canasta-12', name: 'Sal', category: 'Canasta', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/sal.jpg', tag: 'Fresco' },
+                        { id: 'canasta-13', name: 'Maruchan', category: 'Canasta', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/Maruchan.jpg', tag: 'Fresco' },
+                        { id: 'canasta-14', name: 'Arroz Precocido', category: 'Canasta', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/arrozprecodcido.jpg', tag: 'Fresco' },
+                        { id: 'canasta-15', name: 'Arroz Blanco', category: 'Canasta', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/RealCanastaBasica/arrozBlanco.jpg', tag: 'Fresco' }
                     ]
                 },
                 {
                     id: 'embutidos',
-                    title: '🧀 Embutidos & Lácteos',
+                    title: 'Embutidos',
                     subtitle: 'Los mejores embutidos con calidad garantizada.',
                     products: [
-                        { id: 'embutidos-1', name: 'Producto 1', category: 'Embutidos', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-2', name: 'Producto 2', category: 'Embutidos', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-3', name: 'Producto 3', category: 'Embutidos', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-4', name: 'Producto 4', category: 'Embutidos', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-5', name: 'Producto 5', category: 'Embutidos', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-6', name: 'Producto 6', category: 'Embutidos', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-7', name: 'Producto 7', category: 'Embutidos', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-8', name: 'Producto 8', category: 'Embutidos', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-9', name: 'Producto 9', category: 'Embutidos', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-10', name: 'Producto 10', category: 'Embutidos', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-11', name: 'Producto 11', category: 'Embutidos', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-12', name: 'Producto 12', category: 'Embutidos', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-13', name: 'Producto 13', category: 'Embutidos', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-14', name: 'Producto 14', category: 'Embutidos', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'embutidos-15', name: 'Producto 15', category: 'Embutidos', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' }
+                        { id: 'embutidos-1', name: 'Franks', category: 'Embutidos', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/Franks.jpg', tag: 'Fresco' },
+                        { id: 'embutidos-2', name: 'Franks Normales', category: 'Embutidos', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/franksnormie.jpg', tag: 'Fresco' },
+                        { id: 'embutidos-3', name: 'Jamón Toledo', category: 'Embutidos', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/ToledoJamon.jpg', tag: 'Fresco' },
+                        { id: 'embutidos-4', name: 'Chorizo Toledo', category: 'Embutidos', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/ToledoChorizo.jpg', tag: 'Fresco' },
+                        { id: 'embutidos-5', name: 'Salchichas Toledo', category: 'Embutidos', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/salchichasToledo.jpg', tag: 'Fresco' },
+                        { id: 'embutidos-6', name: 'Alitas Picantes Pollo Indio', category: 'Embutidos', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/alitasPicantesPolloIndio.jpg', tag: 'Fresco' },
+                        { id: 'embutidos-7', name: 'Pechuguitas Pollo Indio', category: 'Embutidos', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/pechucguitasPolloIndio.jpg', tag: 'Fresco' },
+                        { id: 'embutidos-8', name: 'Medallones Pollo Indio', category: 'Embutidos', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/medallonesPolloIndio.jpg', tag: 'Fresco' },
+                        { id: 'embutidos-9', name: 'Alitas Crispy Pollo Indio', category: 'Embutidos', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/alitasCryspiPolloIndio.jpg', tag: 'Fresco' },
+                        { id: 'embutidos-10', name: 'Embutido 10', category: 'Embutidos', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/', tag: 'Fresco' },
+                        { id: 'embutidos-11', name: 'Embutido 11', category: 'Embutidos', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/', tag: 'Fresco' },
+                        { id: 'embutidos-12', name: 'Embutido 12', category: 'Embutidos', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/', tag: 'Fresco' },
+                        { id: 'embutidos-13', name: 'Embutido 13', category: 'Embutidos', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/', tag: 'Fresco' },
+                        { id: 'embutidos-14', name: 'Embutido 14', category: 'Embutidos', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/', tag: 'Fresco' },
+                        { id: 'embutidos-15', name: 'Embutido 15', category: 'Embutidos', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Embutidos/', tag: 'Fresco' }
                     ]
                 },
                 {
                     id: 'especies',
-                    title: '🌿 Especies',
+                    title: 'Especies',
                     subtitle: 'Variedad de especies para condimentar tus comidas.',
                     products: [
-                        { id: 'especies-1', name: 'Producto 1', category: 'Especies', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-2', name: 'Producto 2', category: 'Especies', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-3', name: 'Producto 3', category: 'Especies', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-4', name: 'Producto 4', category: 'Especies', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-5', name: 'Producto 5', category: 'Especies', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-6', name: 'Producto 6', category: 'Especies', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-7', name: 'Producto 7', category: 'Especies', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-8', name: 'Producto 8', category: 'Especies', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-9', name: 'Producto 9', category: 'Especies', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-10', name: 'Producto 10', category: 'Especies', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-11', name: 'Producto 11', category: 'Especies', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-12', name: 'Producto 12', category: 'Especies', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-13', name: 'Producto 13', category: 'Especies', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-14', name: 'Producto 14', category: 'Especies', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'especies-15', name: 'Producto 15', category: 'Especies', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' }
+                        { id: 'especies-1', name: 'Achiote Molido', category: 'Especies', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Especies/Achiote.jpg', tag: 'Fresco' },
+                        { id: 'especies-2', name: 'Romero', category: 'Especies', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Especies/Romero.jpg', tag: 'Fresco' },
+                        { id: 'especies-3', name: 'Culantro', category: 'Especies', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Especies/Culantro.jpg', tag: 'Fresco' },
+                        { id: 'especies-4', name: 'Canela', category: 'Especies', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Especies/Canela.jpg', tag: 'Fresco' },
+                        { id: 'especies-5', name: 'Chile Ciruela', category: 'Especies', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Especies/Chileseco.jpg', tag: 'Fresco' },
+                        { id: 'especies-6', name: 'Chile Guajillo', category: 'Especies', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Especies/ChilesecoRojo.jpg', tag: 'Fresco' },
+                        { id: 'especies-7', name: 'Mostaza', category: 'Especies', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Especies/Mostaza.jpg', tag: 'Fresco' },
+                        { id: 'especies-8', name: 'Cubitos Maggi', category: 'Especies', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-9', name: 'Eucalipto', category: 'Especies', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-10', name: 'Manzanilla', category: 'Especies', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-11', name: 'Linaza', category: 'Especies', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-12', name: 'Comino', category: 'Especies', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-13', name: 'Chia', category: 'Especies', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-14', name: 'Especie 14', category: 'Especies', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
+                        { id: 'especies-15', name: 'Especie 15', category: 'Especies', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' }
                     ]
                 },
                 {
                     id: 'hogar',
-                    title: '🏠 Hogar',
+                    title: 'Limpieza e higiene',
                     subtitle: 'Todo lo que necesitas para tu hogar.',
                     products: [
-                        { id: 'hogar-1', name: 'Producto 1', category: 'Hogar', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'hogar-2', name: 'Producto 2', category: 'Hogar', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'hogar-3', name: 'Producto 3', category: 'Hogar', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'hogar-4', name: 'Producto 4', category: 'Hogar', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'hogar-5', name: 'Producto 5', category: 'Hogar', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'hogar-6', name: 'Producto 6', category: 'Hogar', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'hogar-7', name: 'Producto 7', category: 'Hogar', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'hogar-8', name: 'Producto 8', category: 'Hogar', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' },
-                        { id: 'hogar-9', name: 'Producto 9', category: 'Hogar', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: '', tag: 'Fresco' }
+                        { id: 'hogar-1', name: 'Shampoo', category: 'Hogar', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/LimpiezaYhogar/Shampoo.jpg', tag: 'Fresco' },
+                        { id: 'hogar-2', name: 'Shampoo Calypso', category: 'Hogar', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/LimpiezaYhogar/Shampoo2.jpg', tag: 'Fresco' },
+                        { id: 'hogar-3', name: 'Shampoo Acondicionador', category: 'Hogar', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/LimpiezaYhogar/Shampooacondicionar.jpg', tag: 'Fresco' },
+                        { id: 'hogar-4', name: 'Palmolive', category: 'Hogar', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/LimpiezaYhogar/palmolive.jpg', tag: 'Fresco' },
+                        { id: 'hogar-5', name: 'Limpiavidrios', category: 'Hogar', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/LimpiezaYhogar/Limpiavidrios.jpg', tag: 'Fresco' },
+                        { id: 'hogar-6', name: 'Protex', category: 'Hogar', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/LimpiezaYhogar/Protex.jpg', tag: 'Fresco' },
+                        { id: 'hogar-7', name: 'Limpiador de Suelo', category: 'Hogar', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/LimpiezaYhogar/limpiadorsuelo.jpg', tag: 'Fresco' },
+                        { id: 'hogar-8', name: 'Lariansa', category: 'Hogar', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/LimpiezaYhogar/lariansa.jpg', tag: 'Fresco' },
+                        { id: 'hogar-9', name: 'Maxxi Espuma Rinso', category: 'Hogar', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/LimpiezaYhogar/MaxxiEspumaRinso.jpg', tag: 'Fresco' }
+                    ]
+                },
+                {
+                    id: 'bebidas',
+                    title: 'Bebidas',
+                    subtitle: 'Refrescantes bebidas para toda ocasión.',
+                    products: [
+                        { id: 'bebida-1', name: 'Bebida 1', category: 'Bebidas', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida1.jpg', tag: 'Fresco' },
+                        { id: 'bebida-2', name: 'Bebida 2', category: 'Bebidas', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida2.jpg', tag: 'Fresco' },
+                        { id: 'bebida-3', name: 'Bebida 3', category: 'Bebidas', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida3.jpg', tag: 'Fresco' },
+                        { id: 'bebida-4', name: 'Bebida 4', category: 'Bebidas', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida4.jpg', tag: 'Fresco' },
+                        { id: 'bebida-5', name: 'Bebida 5', category: 'Bebidas', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida5.jpg', tag: 'Fresco' },
+                        { id: 'bebida-6', name: 'Bebida 6', category: 'Bebidas', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida6.jpg', tag: 'Fresco' },
+                        { id: 'bebida-7', name: 'Bebida 7', category: 'Bebidas', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida7.jpg', tag: 'Fresco' },
+                        { id: 'bebida-8', name: 'Bebida 8', category: 'Bebidas', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida8.jpg', tag: 'Fresco' },
+                        { id: 'bebida-9', name: 'Bebida 9', category: 'Bebidas', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida9.jpg', tag: 'Fresco' },
+                        { id: 'bebida-10', name: 'Bebida 10', category: 'Bebidas', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida10.jpg', tag: 'Fresco' },
+                        { id: 'bebida-11', name: 'Bebida 11', category: 'Bebidas', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida11.jpg', tag: 'Fresco' },
+                        { id: 'bebida-12', name: 'Bebida 12', category: 'Bebidas', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida12.jpg', tag: 'Fresco' },
+                        { id: 'bebida-13', name: 'Bebida 13', category: 'Bebidas', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida13.jpg', tag: 'Fresco' },
+                        { id: 'bebida-14', name: 'Bebida 14', category: 'Bebidas', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida14.jpg', tag: 'Fresco' },
+                        { id: 'bebida-15', name: 'Bebida 15', category: 'Bebidas', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida15.jpg', tag: 'Fresco' },
+                        { id: 'bebida-16', name: 'Bebida 16', category: 'Bebidas', desc: 'Descripción del producto 16', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida16.jpg', tag: 'Fresco' },
+                        { id: 'bebida-17', name: 'Bebida 17', category: 'Bebidas', desc: 'Descripción del producto 17', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Bebidas/bebida17.jpg', tag: 'Fresco' }
+                    ]
+                },
+                {
+                    id: 'variedades',
+                    title: 'Variedades',
+                    subtitle: 'Productos variados para todas tus necesidades.',
+                    products: [
+                        { id: 'variedad-1', name: 'Variedad 1', category: 'Variedades', desc: 'Descripción del producto 1', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad1.jpg', tag: 'Fresco' },
+                        { id: 'variedad-2', name: 'Variedad 2', category: 'Variedades', desc: 'Descripción del producto 2', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad2.jpg', tag: 'Fresco' },
+                        { id: 'variedad-3', name: 'Variedad 3', category: 'Variedades', desc: 'Descripción del producto 3', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad3.jpg', tag: 'Fresco' },
+                        { id: 'variedad-4', name: 'Variedad 4', category: 'Variedades', desc: 'Descripción del producto 4', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad4.jpg', tag: 'Fresco' },
+                        { id: 'variedad-5', name: 'Variedad 5', category: 'Variedades', desc: 'Descripción del producto 5', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad5.jpg', tag: 'Fresco' },
+                        { id: 'variedad-6', name: 'Variedad 6', category: 'Variedades', desc: 'Descripción del producto 6', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad6.jpg', tag: 'Fresco' },
+                        { id: 'variedad-7', name: 'Variedad 7', category: 'Variedades', desc: 'Descripción del producto 7', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad7.jpg', tag: 'Fresco' },
+                        { id: 'variedad-8', name: 'Variedad 8', category: 'Variedades', desc: 'Descripción del producto 8', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad8.jpg', tag: 'Fresco' },
+                        { id: 'variedad-9', name: 'Variedad 9', category: 'Variedades', desc: 'Descripción del producto 9', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad9.jpg', tag: 'Fresco' },
+                        { id: 'variedad-10', name: 'Variedad 10', category: 'Variedades', desc: 'Descripción del producto 10', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad10.jpg', tag: 'Fresco' },
+                        { id: 'variedad-11', name: 'Variedad 11', category: 'Variedades', desc: 'Descripción del producto 11', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad11.jpg', tag: 'Fresco' },
+                        { id: 'variedad-12', name: 'Variedad 12', category: 'Variedades', desc: 'Descripción del producto 12', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad12.jpg', tag: 'Fresco' },
+                        { id: 'variedad-13', name: 'Variedad 13', category: 'Variedades', desc: 'Descripción del producto 13', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad13.jpg', tag: 'Fresco' },
+                        { id: 'variedad-14', name: 'Variedad 14', category: 'Variedades', desc: 'Descripción del producto 14', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad14.jpg', tag: 'Fresco' },
+                        { id: 'variedad-15', name: 'Variedad 15', category: 'Variedades', desc: 'Descripción del producto 15', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad15.jpg', tag: 'Fresco' },
+                        { id: 'variedad-16', name: 'Variedad 16', category: 'Variedades', desc: 'Descripción del producto 16', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad16.jpg', tag: 'Fresco' },
+                        { id: 'variedad-17', name: 'Variedad 17', category: 'Variedades', desc: 'Descripción del producto 17', price: 1.00, unit: 'unidad', img: 'imgs-for-products-page/Variedades/variedad17.jpg', tag: 'Fresco' }
                     ]
                 }
             ];

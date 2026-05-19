@@ -7,326 +7,6 @@
     <title>Productos | Verfrut's y R&amp;M</title>
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* ===== CARRITO STYLES ===== */
-        .nav-cart-item { position: relative; }
-        .nav-cart-button {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 48px; height: 48px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(34,197,94,0.12);
-            color: #ffffff; border-radius: 50%; padding: 0;
-            position: relative; cursor: pointer; font-weight: 700;
-            transition: background 0.25s ease, transform 0.2s ease;
-        }
-        .nav-cart-button:hover { background: rgba(34,197,94,0.22); transform: translateY(-1px); }
-        .nav-cart-badge {
-            position: absolute; top: -6px; right: -6px;
-            display: inline-flex; align-items: center; justify-content: center;
-            min-width: 22px; height: 22px; padding: 0 6px;
-            border-radius: 999px; background: #FF6F00; color: #ffffff;
-            font-size: 0.72rem; font-weight: 700;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
-            transition: transform 0.25s ease;
-            z-index: 3;
-        }
-        .nav-cart-badge.pulse { animation: badgePulse 0.32s ease; }
-        @keyframes badgePulse { 0%{transform:scale(1)} 50%{transform:scale(1.25)} 100%{transform:scale(1)} }
-
-        /* MODAL */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%; background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px); z-index: 10001;
-            align-items: center; justify-content: center;
-        }
-        .modal-overlay.active { display: flex; }
-        .modal-container {
-            background: #0f1a1f; max-width: 720px;
-            width: min(720px, 95%); border-radius: 32px;
-            border: 1px solid rgba(34,197,94,0.3); padding: 1.8rem;
-            animation: fadeUp 0.25s ease; max-height: 90vh;
-            overflow: hidden;
-            display: flex; flex-direction: column;
-        }
-        @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-        .modal-container h3 {
-            font-size: 1.5rem; color: #22c55e; margin-bottom: 1rem;
-            border-left: 4px solid #FF6F00; padding-left: 1rem;
-        }
-        .modal-items { max-height: 48vh; overflow-y: auto; margin: 0.5rem 0; flex-shrink: 1; flex-grow: 1; }
-        .modal-form { flex-shrink: 0; padding: 0; margin-bottom: 0; gap: 0; }
-        .modal-item {
-            display: flex; justify-content: space-between; align-items: center;
-            background: #0a1117; border-radius: 20px; padding: 0.85rem 1rem;
-            margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.75rem;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .modal-item-info { min-width: 0; flex: 1 1 160px; }
-        .modal-item-name { font-size: 0.95rem; color: #e2e8f0; }
-        .modal-item-price { font-size: 0.78rem; color: #94a3b8; }
-        .modal-item-controls {
-            display: flex; align-items: center; gap: 0.55rem;
-            flex-wrap: wrap; justify-content: flex-end; flex: 0 1 auto;
-        }
-        .cart-qty-btn {
-            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-            color: #e2e8f0; font-size: 1rem; width: 34px; height: 34px;
-            border-radius: 50%; cursor: pointer;
-            transition: background 0.2s ease, transform 0.2s ease;
-            display: inline-flex; align-items: center; justify-content: center;
-        }
-        .cart-qty-btn:hover { background: rgba(34,197,94,0.16); transform: translateY(-1px); color: #ffffff; }
-        .modal-item-qty {
-            padding: 0.2rem 0.8rem; background: rgba(255,255,255,0.06);
-            border-radius: 999px; font-size: 0.85rem; font-weight: 700; color: #f8fafc;
-        }
-        .modal-item-subtotal { font-weight: 700; color: #d9f99d; min-width: 72px; text-align: right; }
-        .modal-item-remove {
-            background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.2);
-            color: #f87171; font-size: 1rem; cursor: pointer;
-            width: 34px; height: 34px; border-radius: 50%;
-            display: inline-flex; align-items: center; justify-content: center;
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
-        .modal-item-remove:hover { background: rgba(248,113,113,0.2); transform: translateY(-1px); }
-        .modal-total {
-            display: flex; justify-content: space-between; font-size: 1.1rem;
-            font-weight: bold; border-top: 1px solid #2c3a3a;
-            padding-top: 0.6rem; margin: 0.5rem 0 0.4rem;
-        }
-        .modal-total span:last-child { color: #d9f99d; }
-        .modal-form {
-            display: grid; gap: 0.4rem; margin-bottom: 0.6rem; padding: 0 0.25rem 0;
-        }
-        .modal-form label { color: #9ca3af; font-size: 0.9rem; }
-        .modal-form input {
-            width: 100%; min-height: 44px; border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.04); color: #f8fafc;
-            padding: 0 14px; font-size: 0.95rem;
-        }
-        .modal-form input:focus {
-            outline: none; border-color: #22c55e;
-            box-shadow: 0 0 0 4px rgba(34,197,94,0.12);
-        }
-        .modal-hint { color: #94a3b8; font-size: 0.82rem; margin: 0; }
-        .modal-buttons {
-            display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.85rem;
-        }
-        .btn-secondary, .btn-primary { width: auto; min-width: 120px; }
-        .btn-secondary { padding: 10px 18px; }
-        .btn-primary { padding: 10px 20px; }
-        .btn-primary:disabled {
-            background: rgba(34,197,94,0.16) !important; color: rgba(255,255,255,0.65) !important;
-            border-color: rgba(255,255,255,0.08) !important; box-shadow: none !important;
-            opacity: 0.72 !important; cursor: not-allowed !important; transform: none !important;
-        }
-        .btn-primary:disabled:hover { background: rgba(34,197,94,0.16) !important; }
-        .empty-cart { text-align: center; color: #8a9bb0; padding: 1.5rem 0; font-size: 0.9rem; }
-        @media (max-width: 640px) {
-            .modal-item { flex-direction: column; align-items: flex-start; }
-        }
-
-        /* ===== TOAST NOTIFICACION CARRITO ===== */
-        .cart-toast {
-            position: fixed; bottom: 1.5rem; right: 1.5rem;
-            background: #0f1a1f; border: 1px solid rgba(34,197,94,0.35);
-            border-left: 4px solid #22c55e;
-            color: #e2e8f0; padding: 0.85rem 1.2rem;
-            border-radius: 16px; font-size: 0.9rem;
-            display: flex; align-items: center; gap: 0.7rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.55);
-            z-index: 99999;
-            transform: translateY(120%); opacity: 0;
-            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
-            pointer-events: none; max-width: 300px;
-        }
-        .cart-toast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
-        .cart-toast .toast-icon { font-size: 1.1rem; flex-shrink: 0; }
-        .cart-toast .toast-text { flex: 1; }
-        .cart-toast .toast-action {
-            font-size: 0.8rem; color: #22c55e; font-weight: 600;
-            cursor: pointer; white-space: nowrap; pointer-events: auto;
-        }
-        .cart-toast .toast-action:hover { text-decoration: underline; }
-
-
-        /* ===== CARRITO OVERLAY REFINADO ===== */
-        .nav-cart-button svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-        .modal-overlay {
-            background: rgba(2, 8, 12, 0.84);
-            backdrop-filter: blur(14px);
-            padding: 20px;
-        }
-        .modal-container {
-            width: min(760px, calc(100vw - 32px));
-            max-width: 760px;
-            border-radius: 24px;
-            padding: 0;
-            background: linear-gradient(145deg, #0b1516 0%, #101b22 58%, #07100c 100%);
-            border: 1px solid rgba(74, 222, 128, 0.24);
-            box-shadow: 0 28px 90px rgba(0, 0, 0, 0.62), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-        }
-        .modal-container h3 {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 0;
-            padding: 22px 24px;
-            border-left: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            color: #f8fafc;
-            background: linear-gradient(90deg, rgba(34, 197, 94, 0.14), rgba(255, 255, 255, 0.02));
-            font-size: 1.25rem;
-            letter-spacing: 0;
-        }
-        .cart-title-icon,
-        .toast-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex: 0 0 auto;
-        }
-        .cart-title-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
-            color: #05210f;
-            background: #22c55e;
-            box-shadow: 0 12px 28px rgba(34, 197, 94, 0.24);
-        }
-        .cart-title-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-        .modal-items {
-            max-height: min(46vh, 430px);
-            margin: 0;
-            padding: 18px 20px 0;
-            scrollbar-color: #22c55e #0b1418;
-            scrollbar-width: thin;
-        }
-        .modal-item {
-            border-radius: 16px;
-            padding: 0.95rem 1rem;
-            background: rgba(255, 255, 255, 0.035);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-        }
-        .modal-item-name {
-            color: #f8fafc;
-            font-weight: 700;
-            letter-spacing: 0;
-        }
-        .modal-item-price {
-            color: #9fb0bf;
-        }
-        .cart-qty-btn,
-        .modal-item-remove {
-            border-radius: 12px;
-        }
-        .modal-item-qty {
-            min-width: 38px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.045);
-        }
-        .modal-total {
-            margin: 0 20px;
-            padding: 16px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.09);
-            color: #dbe7ef;
-        }
-        .modal-total span:last-child {
-            color: #4ade80;
-            font-size: 1.22rem;
-        }
-        .modal-form {
-            margin: 0 20px 18px;
-            padding: 16px;
-            gap: 10px;
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.035);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .modal-form > div {
-            flex-wrap: wrap;
-        }
-        .modal-form input {
-            border-radius: 12px;
-            background: rgba(5, 12, 18, 0.74);
-        }
-        .modal-buttons {
-            padding: 18px 20px 22px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(3, 10, 14, 0.42);
-        }
-        .modal-buttons .btn-secondary,
-        .modal-buttons .btn-primary {
-            min-height: 44px;
-            border-radius: 999px;
-            font-weight: 800;
-            letter-spacing: 0;
-        }
-        .modal-buttons .btn-secondary {
-            color: #dbe7ef;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.035);
-        }
-        .modal-buttons .btn-secondary:hover {
-            border-color: rgba(74, 222, 128, 0.36);
-            color: #ffffff;
-            background: rgba(34, 197, 94, 0.08);
-        }
-        .modal-buttons .btn-primary {
-            background: #22c55e;
-            color: #05140a;
-            box-shadow: 0 14px 30px rgba(34, 197, 94, 0.25);
-        }
-        .empty-cart {
-            padding: 2.2rem 1rem;
-            border: 1px dashed rgba(255, 255, 255, 0.12);
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.025);
-        }
-        .cart-toast {
-            border-radius: 14px;
-            background: rgba(8, 18, 20, 0.96);
-            border-color: rgba(74, 222, 128, 0.28);
-            border-left-color: #22c55e;
-        }
-        .cart-toast .toast-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: #22c55e;
-            color: #05210f;
-        }
-        .cart-toast .toast-icon svg {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-        }
-        @media (max-width: 640px) {
-            .modal-overlay { padding: 10px; align-items: flex-end; }
-            .modal-container { width: 100%; max-height: 94vh; border-radius: 22px 22px 0 0; }
-            .modal-container h3 { padding: 18px; }
-            .modal-items { padding: 14px 14px 0; }
-            .modal-total { margin: 0 14px; }
-            .modal-form { margin: 0 14px 14px; }
-            .modal-buttons { padding: 14px; justify-content: stretch; }
-            .modal-buttons .btn-secondary,
-            .modal-buttons .btn-primary { flex: 1 1 100%; }
-        }
-
-    </style>
-
 </head>
 
 <body>
@@ -340,41 +20,47 @@
     </div>
 
     <!-- ===== NAV OVERLAY (móvil) ===== -->
-    <div id="navOverlay"
-        onclick="document.getElementById('navLinks').classList.remove('active'); this.style.display='none';"></div>
+   <div id="navOverlay" class="nav-overlay"></div>
 
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <img width="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
-                <div class="nav-logo-text">
-                    <span class="nav-logo-title">Verfrut's y R&amp;M</span>
-                </div>
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Inicio</a></li>
-                <li class="dropdown">
-                    <a href="productos.html" class="active">Productos <span class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="productos.html#hogar">Hogar</a></li>
-                        <li><a href="productos.html#frutas">Frutas</a></li>
-                        <li><a href="productos.html#verduras">Verduras</a></li>
-                        <li><a href="productos.html#embutidos">Embutidos</a></li>
-                        <li><a href="productos.html#canasta">Canasta Básica</a></li>
-                    </ul>
-                </li>
-                <li><a href="compras.html">Compras</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="ubicacion.html">Ubicación</a></li>
-                <li class="nav-cart-item"><button id="openCartBtn" class="nav-cart-button" type="button" aria-label="Abrir carrito">
+<div id="navOverlay" class="nav-overlay"></div>
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img width="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
+            <div class="nav-logo-text"><span class="nav-logo-title">Verfrut's y R&amp;M</span></div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="productos.html">Productos <span class="arrow">&#9662;</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="productos.html#hogar">Hogar</a></li>
+                    <li><a href="productos.html#frutas">Frutas</a></li>
+                    <li><a href="productos.html#verduras">Bebidas</a></li>
+                    <li><a href="productos.html#verduras">Verduras</a></li>
+                    <li><a href="productos.html#embutidos">Embutidos</a></li>
+                    <li><a href="productos.html#verduras">Variedades</a></li>
+                    <li><a href="productos.html#canasta">Canasta Básica</a></li>
+                </ul>
+            </li>
+            <li><a href="compras.html">Compras</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="ubicacion.html">Ubicación</a></li>
+            <li class="nav-cart-item">
+                <button id="openCartBtn" class="nav-cart-button" type="button" aria-label="Abrir carrito">
                     <span class="nav-cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span>
                     <span id="navbarCartCount" class="nav-cart-badge">0</span>
-                </button></li>
-            </ul>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
-        </div>
-    </nav>
+                </button>
+            </li>
+        </ul>
+        <button id="openCartMobileBtn" class="nav-cart-button nav-cart-mobile" type="button" aria-label="Abrir carrito">
+            <span class="nav-cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span>
+            <span id="navbarCartCountMobile" class="nav-cart-badge">0</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menú">&#9776;</button>
+    </div>
+</nav>
+<!-- Fin navbar compartido -->
 
     <section class="products-hero">
 
@@ -400,6 +86,14 @@
                     </a>
                     <a href="#hogar" class="hero-btn">
                         Hogar
+                    </a>
+                </div>
+                <div class="hero-row">
+                    <a href="#bebidas" class="hero-btn">
+                        Bebidas
+                    </a>
+                    <a href="#variedades" class="hero-btn">
+                        Variedades
                     </a>
                 </div>
             </div>
@@ -431,7 +125,7 @@
                     <div class="product-card">
                         <div class="product-image">
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
-                            <img src="imgs-for-products-page/Frutas/MANZANASROJAS.jpg" alt="Manzana Roja" loading="lazy">
+                            <img src="imgs-for-products-page/Frutas/ManzanaR.jpg" alt="Manzana Roja" loading="lazy">
                         </div>
                         <div class="product-info">
                             <div class="product-category">Frutas</div>
@@ -447,7 +141,7 @@
                         <div class="product-image">
 
                             <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
-                            <img src="imgs-for-products-page/Frutas/MANZANAVERDE.jpg" alt="Pera Verde" loading="lazy">
+                            <img src="imgs-for-products-page/Frutas/ManzanaV.jpg" alt="Pera Verde" loading="lazy">
                         </div>
                         <div class="product-info">
                             <div class="product-category">Frutas</div>
@@ -844,7 +538,7 @@
                                     <div class="product-image">
 
                                         <!-- Imagen: reemplaza el src con la ruta de tu imagen -->
-                                        <img src="imgs-for-products-page/Verduras/BLANCACEBOLLA.jpg" alt="Cebolla blanca" loading="lazy">
+                                        <img src="imgs-for-products-page/Verduras/cebolla.jpg" alt="Cebolla blanca" loading="lazy">
                                     </div>
                                     <div class="product-info">
                                         <div class="product-category">Verduras</div>
@@ -961,8 +655,8 @@
                         </div>
                         <div class="product-info">
                             <div class="product-category">Canasta</div>
-                            <h3 class="product-name">Producto 1</h3>
-                            <p class="product-desc">Descripción del producto 1</p>
+                            <h3 class="product-name">Aceite Orisol Amarillo</h3>
+                            <p class="product-desc">Aceite vegetal de alta calidad para cocinar</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                 <button type="button" class="btn-add add-to-cart">+</button>
@@ -977,8 +671,8 @@
                         </div>
                         <div class="product-info">
                             <div class="product-category">Canasta</div>
-                            <h3 class="product-name">Producto 2</h3>
-                            <p class="product-desc">Descripción del producto 2</p>
+                            <h3 class="product-name">Aceite Orisol Verde</h3>
+                            <p class="product-desc">Aceite vegetal puro para tus preparaciones</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                 <button type="button" class="btn-add add-to-cart">+</button>
@@ -993,8 +687,8 @@
                         </div>
                         <div class="product-info">
                             <div class="product-category">Canasta</div>
-                            <h3 class="product-name">Producto 3</h3>
-                            <p class="product-desc">Descripción del producto 3</p>
+                            <h3 class="product-name">Avena Quaker</h3>
+                            <p class="product-desc">Avena en hojuelas, nutritiva y saludable</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                 <button type="button" class="btn-add add-to-cart">+</button>
@@ -1015,8 +709,8 @@
                             </div>
                             <div class="product-info">
                                 <div class="product-category">Canasta</div>
-                                <h3 class="product-name">Producto 4</h3>
-                                <p class="product-desc">Descripción del producto 4</p>
+                                <h3 class="product-name">Café Molido en Bolsa</h3>
+                                <p class="product-desc">Café molido fresco para tu desayuno</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                     <button type="button" class="btn-add add-to-cart">+</button>
@@ -1031,8 +725,8 @@
                             </div>
                             <div class="product-info">
                                 <div class="product-category">Canasta</div>
-                                <h3 class="product-name">Producto 5</h3>
-                                <p class="product-desc">Descripción del producto 5</p>
+                                <h3 class="product-name">Consomés</h3>
+                                <p class="product-desc">Consomés variados para dar sabor a tus sopas</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                     <button type="button" class="btn-add add-to-cart">+</button>
@@ -1047,8 +741,8 @@
                             </div>
                             <div class="product-info">
                                 <div class="product-category">Canasta</div>
-                                <h3 class="product-name">Producto 6</h3>
-                                <p class="product-desc">Descripción del producto 6</p>
+                                <h3 class="product-name">Plátanos</h3>
+                                <p class="product-desc">Plátanos frescos y maduros</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                     <button type="button" class="btn-add add-to-cart">+</button>
@@ -1069,8 +763,8 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-category">Canasta</div>
-                                    <h3 class="product-name">Producto 7</h3>
-                                    <p class="product-desc">Descripción del producto 7</p>
+                                    <h3 class="product-name">Pan Lido</h3>
+                                    <p class="product-desc">Pan fresco para el desayuno</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                         <button type="button" class="btn-add add-to-cart">+</button>
@@ -1085,8 +779,8 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-category">Canasta</div>
-                                    <h3 class="product-name">Producto 8</h3>
-                                    <p class="product-desc">Descripción del producto 8</p>
+                                    <h3 class="product-name">Leche Pinito</h3>
+                                    <p class="product-desc">Leche en polvo nutritiva</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                         <button type="button" class="btn-add add-to-cart">+</button>
@@ -1101,8 +795,8 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-category">Canasta</div>
-                                    <h3 class="product-name">Producto 9</h3>
-                                    <p class="product-desc">Descripción del producto 9</p>
+                                    <h3 class="product-name">Café Nescafé Listo</h3>
+                                    <p class="product-desc">Café soluble de calidad premium</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                         <button type="button" class="btn-add add-to-cart">+</button>
@@ -1123,8 +817,8 @@
                                     </div>
                                     <div class="product-info">
                                         <div class="product-category">Canasta</div>
-                                        <h3 class="product-name">Producto 10</h3>
-                                        <p class="product-desc">Descripción del producto 10</p>
+                                        <h3 class="product-name">Queso Seco</h3>
+                                        <p class="product-desc">Queso seco tradicional salvadoreño</p>
                                         <div class="product-price">
                                             <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                             <button type="button" class="btn-add add-to-cart">+</button>
@@ -1139,8 +833,8 @@
                                     </div>
                                     <div class="product-info">
                                         <div class="product-category">Canasta</div>
-                                        <h3 class="product-name">Producto 11</h3>
-                                        <p class="product-desc">Descripción del producto 11</p>
+                                        <h3 class="product-name">Maizena</h3>
+                                        <p class="product-desc">Fécula de maíz para espesar y cocinar</p>
                                         <div class="product-price">
                                             <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                             <button type="button" class="btn-add add-to-cart">+</button>
@@ -1155,8 +849,8 @@
                                     </div>
                                     <div class="product-info">
                                         <div class="product-category">Canasta</div>
-                                        <h3 class="product-name">Producto 12</h3>
-                                        <p class="product-desc">Descripción del producto 12</p>
+                                        <h3 class="product-name">Harina Doña Blanca</h3>
+                                        <p class="product-desc">Harina de trigo para repostería</p>
                                         <div class="product-price">
                                             <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                             <button type="button" class="btn-add add-to-cart">+</button>
@@ -1177,8 +871,8 @@
                                         </div>
                                         <div class="product-info">
                                             <div class="product-category">Canasta</div>
-                                            <h3 class="product-name">Producto 13</h3>
-                                            <p class="product-desc">Descripción del producto 13</p>
+                                            <h3 class="product-name">Café Coscafé 40 Sobres</h3>
+                                            <p class="product-desc">Café instantáneo en sobres individuales</p>
                                             <div class="product-price">
                                                 <span class="price">$1.00 <span class="price-unit">/
                                                         unidad</span></span>
@@ -1194,8 +888,8 @@
                                         </div>
                                         <div class="product-info">
                                             <div class="product-category">Canasta</div>
-                                            <h3 class="product-name">Producto 14</h3>
-                                            <p class="product-desc">Descripción del producto 14</p>
+                                            <h3 class="product-name">Café Riko 50 Sobres</h3>
+                                            <p class="product-desc">Café tradicional salvadoreño en sobres</p>
                                             <div class="product-price">
                                                 <span class="price">$1.00 <span class="price-unit">/
                                                         unidad</span></span>
@@ -1211,8 +905,8 @@
                                         </div>
                                         <div class="product-info">
                                             <div class="product-category">Canasta</div>
-                                            <h3 class="product-name">Producto 15</h3>
-                                            <p class="product-desc">Descripción del producto 15</p>
+                                            <h3 class="product-name">Azúcar</h3>
+                                            <p class="product-desc">Azúcar blanca refinada</p>
                                             <div class="product-price">
                                                 <span class="price">$1.00 <span class="price-unit">/
                                                         unidad</span></span>
@@ -1252,8 +946,8 @@
                         </div>
                         <div class="product-info">
                             <div class="product-category">Embutidos</div>
-                            <h3 class="product-name">Producto 1</h3>
-                            <p class="product-desc">Descripción del producto 1</p>
+                            <h3 class="product-name">Franks</h3>
+                            <p class="product-desc">Salchichas Frank's de calidad premium</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                 <button type="button" class="btn-add add-to-cart">+</button>
@@ -1268,8 +962,8 @@
                         </div>
                         <div class="product-info">
                             <div class="product-category">Embutidos</div>
-                            <h3 class="product-name">Producto 2</h3>
-                            <p class="product-desc">Descripción del producto 2</p>
+                            <h3 class="product-name">Franks Normales</h3>
+                            <p class="product-desc">Salchichas clásicas para toda la familia</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                 <button type="button" class="btn-add add-to-cart">+</button>
@@ -1284,8 +978,8 @@
                         </div>
                         <div class="product-info">
                             <div class="product-category">Embutidos</div>
-                            <h3 class="product-name">Producto 3</h3>
-                            <p class="product-desc">Descripción del producto 3</p>
+                            <h3 class="product-name">Jamón Toledo</h3>
+                            <p class="product-desc">Jamón de cerdo de la marca Toledo</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                 <button type="button" class="btn-add add-to-cart">+</button>
@@ -1306,8 +1000,8 @@
                             </div>
                             <div class="product-info">
                                 <div class="product-category">Embutidos</div>
-                                <h3 class="product-name">Producto 4</h3>
-                                <p class="product-desc">Descripción del producto 4</p>
+                                <h3 class="product-name">Salchicha Toledo</h3>
+                                <p class="product-desc">Salchichas Toledo tradicionales</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                     <button type="button" class="btn-add add-to-cart">+</button>
@@ -1322,8 +1016,8 @@
                             </div>
                             <div class="product-info">
                                 <div class="product-category">Embutidos</div>
-                                <h3 class="product-name">Producto 5</h3>
-                                <p class="product-desc">Descripción del producto 5</p>
+                                <h3 class="product-name">Salchichas Toledo</h3>
+                                <p class="product-desc">Paquete de salchichas Toledo</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                     <button type="button" class="btn-add add-to-cart">+</button>
@@ -1338,8 +1032,8 @@
                             </div>
                             <div class="product-info">
                                 <div class="product-category">Embutidos</div>
-                                <h3 class="product-name">Producto 6</h3>
-                                <p class="product-desc">Descripción del producto 6</p>
+                                <h3 class="product-name">Alitas Picantes Pollo Indio</h3>
+                                <p class="product-desc">Alitas de pollo picantes congeladas</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                     <button type="button" class="btn-add add-to-cart">+</button>
@@ -1360,8 +1054,8 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-category">Embutidos</div>
-                                    <h3 class="product-name">Producto 7</h3>
-                                    <p class="product-desc">Descripción del producto 7</p>
+                                    <h3 class="product-name">Pechuguitas Pollo Indio</h3>
+                                    <p class="product-desc">Pechuguitas de pollo empanizadas</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                         <button type="button" class="btn-add add-to-cart">+</button>
@@ -1376,8 +1070,8 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-category">Embutidos</div>
-                                    <h3 class="product-name">Producto 8</h3>
-                                    <p class="product-desc">Descripción del producto 8</p>
+                                    <h3 class="product-name">Medallones Pollo Indio</h3>
+                                    <p class="product-desc">Medallones de pollo empanizados</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                         <button type="button" class="btn-add add-to-cart">+</button>
@@ -1392,8 +1086,8 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-category">Embutidos</div>
-                                    <h3 class="product-name">Producto 9</h3>
-                                    <p class="product-desc">Descripción del producto 9</p>
+                                    <h3 class="product-name">Alitas Crispy Pollo Indio</h3>
+                                    <p class="product-desc">Alitas de pollo crispy congeladas</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                         <button type="button" class="btn-add add-to-cart">+</button>
@@ -1429,8 +1123,8 @@
                         </div>
                         <div class="product-info">
                             <div class="product-category">Hogar</div>
-                            <h3 class="product-name">Producto 1</h3>
-                            <p class="product-desc">Descripción del producto 1</p>
+                            <h3 class="product-name">Palmolive</h3>
+                            <p class="product-desc">Jabón líquido para manos Palmolive</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                 <button type="button" class="btn-add add-to-cart">+</button>
@@ -1445,8 +1139,8 @@
                         </div>
                         <div class="product-info">
                             <div class="product-category">Hogar</div>
-                            <h3 class="product-name">Producto 2</h3>
-                            <p class="product-desc">Descripción del producto 2</p>
+                            <h3 class="product-name">Jabón Líquido</h3>
+                            <p class="product-desc">Jabón líquido multiusos</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                 <button type="button" class="btn-add add-to-cart">+</button>
@@ -1461,8 +1155,8 @@
                         </div>
                         <div class="product-info">
                             <div class="product-category">Hogar</div>
-                            <h3 class="product-name">Producto 3</h3>
-                            <p class="product-desc">Descripción del producto 3</p>
+                            <h3 class="product-name">Saba</h3>
+                            <p class="product-desc">Producto de limpieza Saba</p>
                             <div class="product-price">
                                 <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                 <button type="button" class="btn-add add-to-cart">+</button>
@@ -1484,8 +1178,8 @@
                             </div>
                             <div class="product-info">
                                 <div class="product-category">Hogar</div>
-                                <h3 class="product-name">Producto 4</h3>
-                                <p class="product-desc">Descripción del producto 4</p>
+                                <h3 class="product-name">Lariansa</h3>
+                                <p class="product-desc">Producto de limpieza Lariansa</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                     <button type="button" class="btn-add add-to-cart">+</button>
@@ -1500,8 +1194,8 @@
                             </div>
                             <div class="product-info">
                                 <div class="product-category">Hogar</div>
-                                <h3 class="product-name">Producto 5</h3>
-                                <p class="product-desc">Descripción del producto 5</p>
+                                <h3 class="product-name">Protex</h3>
+                                <p class="product-desc">Jabón antibacterial Protex</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                     <button type="button" class="btn-add add-to-cart">+</button>
@@ -1516,8 +1210,8 @@
                             </div>
                             <div class="product-info">
                                 <div class="product-category">Hogar</div>
-                                <h3 class="product-name">Producto 6</h3>
-                                <p class="product-desc">Descripción del producto 6</p>
+                                <h3 class="product-name">Sapolio</h3>
+                                <p class="product-desc">Limpiador multiusos Sapolio</p>
                                 <div class="product-price">
                                     <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                     <button type="button" class="btn-add add-to-cart">+</button>
@@ -1538,8 +1232,8 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-category">Hogar</div>
-                                    <h3 class="product-name">Producto 7</h3>
-                                    <p class="product-desc">Descripción del producto 7</p>
+                                    <h3 class="product-name">Jabón Centella</h3>
+                                    <p class="product-desc">Jabón de tocador Centella</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                         <button type="button" class="btn-add add-to-cart">+</button>
@@ -1554,8 +1248,8 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-category">Hogar</div>
-                                    <h3 class="product-name">Producto 8</h3>
-                                    <p class="product-desc">Descripción del producto 8</p>
+                                    <h3 class="product-name">Maxxi Espuma Rinso</h3>
+                                    <p class="product-desc">Detergente en espuma Rinso</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                         <button type="button" class="btn-add add-to-cart">+</button>
@@ -1570,8 +1264,8 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-category">Hogar</div>
-                                    <h3 class="product-name">Producto 9</h3>
-                                    <p class="product-desc">Descripción del producto 9</p>
+                                    <h3 class="product-name">Shampoo</h3>
+                                    <p class="product-desc">Shampoo para el cuidado capilar</p>
                                     <div class="product-price">
                                         <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
                                         <button type="button" class="btn-add add-to-cart">+</button>
@@ -1619,7 +1313,595 @@
         </div>
     </div>
 
-   <!-- ============================================
+       <!-- ===== CATEGORÍA: BEBIDAS ===== -->
+    <section id="bebidas" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bebidas</h2>
+                <p>Refrescantes bebidas para toda ocasión.</p>
+            </div>
+
+            <div class="category-wrapper">
+                <!-- Grupo 1: Siempre visible -->
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="imgs-for-products-page/Bebidas/bebida1.jpg" alt="Bebida 1" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Bebidas</div>
+                            <h3 class="product-name">Bebida 1</h3>
+                            <p class="product-desc">Descripción del producto 1</p>
+                            <div class="product-price">
+                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                <button type="button" class="btn-add add-to-cart">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="imgs-for-products-page/Bebidas/bebida2.jpg" alt="Bebida 2" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Bebidas</div>
+                            <h3 class="product-name">Bebida 2</h3>
+                            <p class="product-desc">Descripción del producto 2</p>
+                            <div class="product-price">
+                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                <button type="button" class="btn-add add-to-cart">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="imgs-for-products-page/Bebidas/bebida3.jpg" alt="Bebida 3" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Bebidas</div>
+                            <h3 class="product-name">Bebida 3</h3>
+                            <p class="product-desc">Descripción del producto 3</p>
+                            <div class="product-price">
+                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                <button type="button" class="btn-add add-to-cart">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grupo 2 -->
+                <input type="checkbox" id="bebidas-cb1" class="show-more-cb">
+                <div class="more-content">
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs-for-products-page/Bebidas/bebida4.jpg" alt="Bebida 4" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Bebidas</div>
+                                <h3 class="product-name">Bebida 4</h3>
+                                <p class="product-desc">Descripción del producto 4</p>
+                                <div class="product-price">
+                                    <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs-for-products-page/Bebidas/bebida5.jpg" alt="Bebida 5" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Bebidas</div>
+                                <h3 class="product-name">Bebida 5</h3>
+                                <p class="product-desc">Descripción del producto 5</p>
+                                <div class="product-price">
+                                    <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs-for-products-page/Bebidas/bebida6.jpg" alt="Bebida 6" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Bebidas</div>
+                                <h3 class="product-name">Bebida 6</h3>
+                                <p class="product-desc">Descripción del producto 6</p>
+                                <div class="product-price">
+                                    <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grupo 3 -->
+                    <input type="checkbox" id="bebidas-cb2" class="show-more-cb">
+                    <div class="more-content">
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="imgs-for-products-page/Bebidas/bebida7.jpg" alt="Bebida 7" loading="lazy">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-category">Bebidas</div>
+                                    <h3 class="product-name">Bebida 7</h3>
+                                    <p class="product-desc">Descripción del producto 7</p>
+                                    <div class="product-price">
+                                        <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="imgs-for-products-page/Bebidas/bebida8.jpg" alt="Bebida 8" loading="lazy">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-category">Bebidas</div>
+                                    <h3 class="product-name">Bebida 8</h3>
+                                    <p class="product-desc">Descripción del producto 8</p>
+                                    <div class="product-price">
+                                        <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="imgs-for-products-page/Bebidas/bebida9.jpg" alt="Bebida 9" loading="lazy">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-category">Bebidas</div>
+                                    <h3 class="product-name">Bebida 9</h3>
+                                    <p class="product-desc">Descripción del producto 9</p>
+                                    <div class="product-price">
+                                        <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grupo 4 -->
+                        <input type="checkbox" id="bebidas-cb3" class="show-more-cb">
+                        <div class="more-content">
+                            <div class="products-grid">
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="imgs-for-products-page/Bebidas/bebida10.jpg" alt="Bebida 10" loading="lazy">
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-category">Bebidas</div>
+                                        <h3 class="product-name">Bebida 10</h3>
+                                        <p class="product-desc">Descripción del producto 10</p>
+                                        <div class="product-price">
+                                            <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="imgs-for-products-page/Bebidas/bebida11.jpg" alt="Bebida 11" loading="lazy">
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-category">Bebidas</div>
+                                        <h3 class="product-name">Bebida 11</h3>
+                                        <p class="product-desc">Descripción del producto 11</p>
+                                        <div class="product-price">
+                                            <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="imgs-for-products-page/Bebidas/bebida12.jpg" alt="Bebida 12" loading="lazy">
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-category">Bebidas</div>
+                                        <h3 class="product-name">Bebida 12</h3>
+                                        <p class="product-desc">Descripción del producto 12</p>
+                                        <div class="product-price">
+                                            <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Grupo 5 -->
+                            <input type="checkbox" id="bebidas-cb4" class="show-more-cb">
+                            <div class="more-content">
+                                <div class="products-grid">
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img src="imgs-for-products-page/Bebidas/bebida13.jpg" alt="Bebida 13" loading="lazy">
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-category">Bebidas</div>
+                                            <h3 class="product-name">Bebida 13</h3>
+                                            <p class="product-desc">Descripción del producto 13</p>
+                                            <div class="product-price">
+                                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img src="imgs-for-products-page/Bebidas/bebida14.jpg" alt="Bebida 14" loading="lazy">
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-category">Bebidas</div>
+                                            <h3 class="product-name">Bebida 14</h3>
+                                            <p class="product-desc">Descripción del producto 14</p>
+                                            <div class="product-price">
+                                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img src="imgs-for-products-page/Bebidas/bebida15.jpg" alt="Bebida 15" loading="lazy">
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-category">Bebidas</div>
+                                            <h3 class="product-name">Bebida 15</h3>
+                                            <p class="product-desc">Descripción del producto 15</p>
+                                            <div class="product-price">
+                                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Grupo 6 (productos 16-17) -->
+                                <input type="checkbox" id="bebidas-cb5" class="show-more-cb">
+                                <div class="more-content">
+                                    <div class="products-grid">
+                                        <div class="product-card">
+                                            <div class="product-image">
+                                                <img src="imgs-for-products-page/Bebidas/bebida16.jpg" alt="Bebida 16" loading="lazy">
+                                            </div>
+                                            <div class="product-info">
+                                                <div class="product-category">Bebidas</div>
+                                                <h3 class="product-name">Bebida 16</h3>
+                                                <p class="product-desc">Descripción del producto 16</p>
+                                                <div class="product-price">
+                                                    <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                                    <button type="button" class="btn-add add-to-cart">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-card">
+                                            <div class="product-image">
+                                                <img src="imgs-for-products-page/Bebidas/bebida17.jpg" alt="Bebida 17" loading="lazy">
+                                            </div>
+                                            <div class="product-info">
+                                                <div class="product-category">Bebidas</div>
+                                                <h3 class="product-name">Bebida 17</h3>
+                                                <p class="product-desc">Descripción del producto 17</p>
+                                                <div class="product-price">
+                                                    <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                                    <button type="button" class="btn-add add-to-cart">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label for="bebidas-cb5" class="show-more-btn">Ver más</label>
+                            </div>
+                            <label for="bebidas-cb4" class="show-more-btn">Ver más</label>
+                        </div>
+                        <label for="bebidas-cb3" class="show-more-btn">Ver más</label>
+                    </div>
+                    <label for="bebidas-cb2" class="show-more-btn">Ver más</label>
+                </div>
+                <label for="bebidas-cb1" class="show-more-btn">Ver más</label>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORÍA: VARIEDADES ===== -->
+    <section id="variedades" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Variedades</h2>
+                <p>Productos variados para todas tus necesidades.</p>
+            </div>
+
+            <div class="category-wrapper">
+                <!-- Grupo 1: Siempre visible -->
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="imgs-for-products-page/Variedades/variedad1.jpg" alt="Variedad 1" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Variedades</div>
+                            <h3 class="product-name">Variedad 1</h3>
+                            <p class="product-desc">Descripción del producto 1</p>
+                            <div class="product-price">
+                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                <button type="button" class="btn-add add-to-cart">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="imgs-for-products-page/Variedades/variedad2.jpg" alt="Variedad 2" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Variedades</div>
+                            <h3 class="product-name">Variedad 2</h3>
+                            <p class="product-desc">Descripción del producto 2</p>
+                            <div class="product-price">
+                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                <button type="button" class="btn-add add-to-cart">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="imgs-for-products-page/Variedades/variedad3.jpg" alt="Variedad 3" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Variedades</div>
+                            <h3 class="product-name">Variedad 3</h3>
+                            <p class="product-desc">Descripción del producto 3</p>
+                            <div class="product-price">
+                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                <button type="button" class="btn-add add-to-cart">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grupo 2 -->
+                <input type="checkbox" id="variedades-cb1" class="show-more-cb">
+                <div class="more-content">
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs-for-products-page/Variedades/variedad4.jpg" alt="Variedad 4" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Variedades</div>
+                                <h3 class="product-name">Variedad 4</h3>
+                                <p class="product-desc">Descripción del producto 4</p>
+                                <div class="product-price">
+                                    <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs-for-products-page/Variedades/variedad5.jpg" alt="Variedad 5" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Variedades</div>
+                                <h3 class="product-name">Variedad 5</h3>
+                                <p class="product-desc">Descripción del producto 5</p>
+                                <div class="product-price">
+                                    <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="imgs-for-products-page/Variedades/variedad6.jpg" alt="Variedad 6" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Variedades</div>
+                                <h3 class="product-name">Variedad 6</h3>
+                                <p class="product-desc">Descripción del producto 6</p>
+                                <div class="product-price">
+                                    <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                    <button type="button" class="btn-add add-to-cart">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grupo 3 -->
+                    <input type="checkbox" id="variedades-cb2" class="show-more-cb">
+                    <div class="more-content">
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="imgs-for-products-page/Variedades/variedad7.jpg" alt="Variedad 7" loading="lazy">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-category">Variedades</div>
+                                    <h3 class="product-name">Variedad 7</h3>
+                                    <p class="product-desc">Descripción del producto 7</p>
+                                    <div class="product-price">
+                                        <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="imgs-for-products-page/Variedades/variedad8.jpg" alt="Variedad 8" loading="lazy">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-category">Variedades</div>
+                                    <h3 class="product-name">Variedad 8</h3>
+                                    <p class="product-desc">Descripción del producto 8</p>
+                                    <div class="product-price">
+                                        <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="imgs-for-products-page/Variedades/variedad9.jpg" alt="Variedad 9" loading="lazy">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-category">Variedades</div>
+                                    <h3 class="product-name">Variedad 9</h3>
+                                    <p class="product-desc">Descripción del producto 9</p>
+                                    <div class="product-price">
+                                        <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                        <button type="button" class="btn-add add-to-cart">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grupo 4 -->
+                        <input type="checkbox" id="variedades-cb3" class="show-more-cb">
+                        <div class="more-content">
+                            <div class="products-grid">
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="imgs-for-products-page/Variedades/variedad10.jpg" alt="Variedad 10" loading="lazy">
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-category">Variedades</div>
+                                        <h3 class="product-name">Variedad 10</h3>
+                                        <p class="product-desc">Descripción del producto 10</p>
+                                        <div class="product-price">
+                                            <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="imgs-for-products-page/Variedades/variedad11.jpg" alt="Variedad 11" loading="lazy">
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-category">Variedades</div>
+                                        <h3 class="product-name">Variedad 11</h3>
+                                        <p class="product-desc">Descripción del producto 11</p>
+                                        <div class="product-price">
+                                            <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="imgs-for-products-page/Variedades/variedad12.jpg" alt="Variedad 12" loading="lazy">
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-category">Variedades</div>
+                                        <h3 class="product-name">Variedad 12</h3>
+                                        <p class="product-desc">Descripción del producto 12</p>
+                                        <div class="product-price">
+                                            <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                            <button type="button" class="btn-add add-to-cart">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Grupo 5 -->
+                            <input type="checkbox" id="variedades-cb4" class="show-more-cb">
+                            <div class="more-content">
+                                <div class="products-grid">
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img src="imgs-for-products-page/Variedades/variedad13.jpg" alt="Variedad 13" loading="lazy">
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-category">Variedades</div>
+                                            <h3 class="product-name">Variedad 13</h3>
+                                            <p class="product-desc">Descripción del producto 13</p>
+                                            <div class="product-price">
+                                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img src="imgs-for-products-page/Variedades/variedad14.jpg" alt="Variedad 14" loading="lazy">
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-category">Variedades</div>
+                                            <h3 class="product-name">Variedad 14</h3>
+                                            <p class="product-desc">Descripción del producto 14</p>
+                                            <div class="product-price">
+                                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img src="imgs-for-products-page/Variedades/variedad15.jpg" alt="Variedad 15" loading="lazy">
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-category">Variedades</div>
+                                            <h3 class="product-name">Variedad 15</h3>
+                                            <p class="product-desc">Descripción del producto 15</p>
+                                            <div class="product-price">
+                                                <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                                <button type="button" class="btn-add add-to-cart">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Grupo 6 (productos 16-17) -->
+                                <input type="checkbox" id="variedades-cb5" class="show-more-cb">
+                                <div class="more-content">
+                                    <div class="products-grid">
+                                        <div class="product-card">
+                                            <div class="product-image">
+                                                <img src="imgs-for-products-page/Variedades/variedad16.jpg" alt="Variedad 16" loading="lazy">
+                                            </div>
+                                            <div class="product-info">
+                                                <div class="product-category">Variedades</div>
+                                                <h3 class="product-name">Variedad 16</h3>
+                                                <p class="product-desc">Descripción del producto 16</p>
+                                                <div class="product-price">
+                                                    <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                                    <button type="button" class="btn-add add-to-cart">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-card">
+                                            <div class="product-image">
+                                                <img src="imgs-for-products-page/Variedades/variedad17.jpg" alt="Variedad 17" loading="lazy">
+                                            </div>
+                                            <div class="product-info">
+                                                <div class="product-category">Variedades</div>
+                                                <h3 class="product-name">Variedad 17</h3>
+                                                <p class="product-desc">Descripción del producto 17</p>
+                                                <div class="product-price">
+                                                    <span class="price">$1.00 <span class="price-unit">/ unidad</span></span>
+                                                    <button type="button" class="btn-add add-to-cart">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label for="variedades-cb5" class="show-more-btn">Ver más</label>
+                            </div>
+                            <label for="variedades-cb4" class="show-more-btn">Ver más</label>
+                        </div>
+                        <label for="variedades-cb3" class="show-more-btn">Ver más</label>
+                    </div>
+                    <label for="variedades-cb2" class="show-more-btn">Ver más</label>
+                </div>
+                <label for="variedades-cb1" class="show-more-btn">Ver más</label>
+            </div>
+        </div>
+    </section>
+
+<!-- ============================================
          FOOTER
          ============================================ -->
     <footer class="footer">
