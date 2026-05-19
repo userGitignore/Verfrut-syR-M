@@ -7,11 +7,15 @@
     <title>Productos | Verfrut's y R&amp;M</title>
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
+<base target="_blank">
 </head>
 
 <body>
-    <!-- ===== LOADER ===== -->
-    <div class="page-loader" id="pageLoader" >
+<!-- ============================================
+         PANTALLA DE CARGA INICIAL
+         ============================================ -->
+
+    <div class="page-loader inju-loader" id="pageLoader">
         <div class="loader-wrapper">
             <div class="loader-spinner"></div>
             <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
@@ -19,9 +23,9 @@
         <p class="loader-text">Verfrut's y R&amp;M</p>
     </div>
 
-    <!-- ===== NAV OVERLAY (móvil) ===== -->
-   <div id="navOverlay" class="nav-overlay"></div>
+    
 
+<!-- Inicio navbar compartido -->
 <div id="navOverlay" class="nav-overlay"></div>
 <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -34,12 +38,12 @@
             <li class="dropdown">
                 <a href="productos.html">Productos <span class="arrow">&#9662;</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="productos.html#hogar">Hogar</a></li>
                     <li><a href="productos.html#frutas">Frutas</a></li>
-                    <li><a href="productos.html#verduras">Bebidas</a></li>
+                    <li><a href="productos.html#bebidas">Bebidas</a></li>
                     <li><a href="productos.html#verduras">Verduras</a></li>
                     <li><a href="productos.html#embutidos">Embutidos</a></li>
-                    <li><a href="productos.html#verduras">Variedades</a></li>
+                    <li><a href="productos.html#variedades">Variedades</a></li>
+                    <li><a href="productos.html#hogar">Aseo y Hogar</a></li>
                     <li><a href="productos.html#canasta">Canasta Básica</a></li>
                 </ul>
             </li>
@@ -62,7 +66,7 @@
 </nav>
 <!-- Fin navbar compartido -->
 
-    <section class="products-hero">
+<section class="products-hero">
 
         <div class="page-hero-content">
             <span class="page-hero-label">Catálogo Completo.</span>  <hr>
@@ -1282,38 +1286,7 @@
     </section>
 
 
-    <!-- TOAST NOTIFICACION -->
-    <div id="cartToast" class="cart-toast">
-        <span class="toast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.2 16.6-4.1-4.1-1.4 1.4 5.5 5.5L21 7.6l-1.4-1.4L9.2 16.6Z"/></svg></span>
-        <span class="toast-text" id="cartToastText">Producto agregado</span>
-        <span class="toast-action" id="cartToastAction">Ver carrito</span>
-    </div>
-
-    <!-- MODAL DE CHECKOUT (CONFIRMACIÓN) -->
-    <div id="checkoutModal" class="modal-overlay">
-        <div class="modal-container">
-            <h3><span class="cart-title-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span><span>Mi carrito</span></h3>
-            <div id="modalItemsList" class="modal-items"></div>
-            <div class="modal-total">
-                <span>Total a pagar</span>
-                <span id="modalTotal">$0.00</span>
-            </div>
-            <div class="modal-form">
-                <p class="modal-hint">Ingresa tu nombre para que el vendedor te identifique.</p>
-                <div style="display:flex;gap:0.6rem;margin-top:0.4rem">
-                    <input id="modalBuyerName" type="text" placeholder="Nombre" autocomplete="name" style="flex:1">
-                    <input id="modalBuyerLast" type="text" placeholder="Apellido" autocomplete="family-name" style="flex:1">
-                </div>
-            </div>
-            <div class="modal-buttons">
-                <button id="closeModalBtn" class="btn-secondary">Seguir comprando</button>
-                <button id="clearCartBtn" class="btn-secondary">Limpiar carrito</button>
-                <button id="sendWhatsappBtn" class="btn-primary" disabled>Enviar por WhatsApp</button>
-            </div>
-        </div>
-    </div>
-
-       <!-- ===== CATEGORÍA: BEBIDAS ===== -->
+    <!-- ===== CATEGORÍA: BEBIDAS ===== -->
     <section id="bebidas" class="section">
         <div class="container">
             <div class="section-header">
@@ -1904,460 +1877,98 @@
 <!-- ============================================
          FOOTER
          ============================================ -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <img width="40" height="40" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
-                    Verfrut's y R&amp;M
-                </div>
-                <p>Tu tienda de referencia en Jucuapa, donde la frescura se encuentra con la excelencia.</p>
-                <div class="social-links">
-                    <a href="#" class="social-facebook" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                        </svg>
-                    </a>
-                    <a href="#" class="social-instagram" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                        </svg>
-                    </a>
-                    <a href="#" class="social-whatsapp" aria-label="WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Negocio</h4>
-                <div class="footer-line"></div>
-                <ul>
-                    <li><a href="galeria.html">Galería</a></li>
-                    <li><a href="inju.html">Historia</a></li>
-                    <li><a href="compras.html">Compras</a></li>
-                    <li><a href="productos.html">Productos</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Team</h4>
-                <div class="footer-line"></div>
-                <ul>
-                    <li><a href="inju.html">Historia</a></li>
-                    <li><a href="inju.html">Conoce al equipo detras del proyecto</a></li>
-                </ul>
-            </div>
-            <div class="footer-col footer-contact">
-                <h4>Contáctanos</h4>
-                <div class="footer-line"></div>
-                <p>Jucuapa, Usulután, El Salvador.</p>
-                <p>+503 6064-9103 | +503 6971-8315</p>
-                <p><span class="icon">&#9993;</span> verfrutsrm.shop@gmail.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
-                <span class="footer-italic">This website was designed and created by:</span> <span class="footer-bold">Either Design STR Team.</span>
-            </p>
-        </div>
-    </footer>
 
+<!-- Inicio carrito compartido -->
+<div id="cartToast" class="cart-toast" aria-live="polite">
+    <span class="toast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.2 16.6-4.1-4.1-1.4 1.4 5.5 5.5L21 7.6l-1.4-1.4L9.2 16.6Z"/></svg></span>
+    <span class="toast-text" id="cartToastText">Producto agregado</span>
+    <button class="toast-action" id="cartToastAction" type="button">Ver carrito</button>
+</div>
+
+<div id="checkoutModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="cartModalTitle">
+        <div class="modal-header">
+            <h3 id="cartModalTitle"><span class="cart-title-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span><span>Mi carrito</span></h3>
+            <button id="closeModalXBtn" class="modal-close-btn" type="button" aria-label="Cerrar carrito">&times;</button>
+        </div>
+        <div id="modalItemsList" class="modal-items"></div>
+        <div class="modal-total">
+            <span>Total a pagar</span>
+            <span id="modalTotal">$0.00</span>
+        </div>
+        <div class="modal-form">
+            <p class="modal-hint">Ingresa tu nombre para que el vendedor te identifique.</p>
+            <div class="modal-name-grid">
+                <input id="modalBuyerName" type="text" placeholder="Nombre" autocomplete="name">
+                <input id="modalBuyerLast" type="text" placeholder="Apellido" autocomplete="family-name">
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button id="closeModalBtn" class="btn-secondary" type="button">Seguir comprando</button>
+            <button id="clearCartBtn" class="btn-secondary" type="button">Limpiar carrito</button>
+            <button id="sendWhatsappBtn" class="btn-primary" type="button" disabled>Enviar por WhatsApp</button>
+        </div>
+    </div>
+</div>
+<!-- Fin carrito compartido -->
+
+<!-- Inicio footer compartido -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <img width="40" height="40" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
+                Verfrut's y R&amp;M
+            </div>
+            <p>Tu tienda de referencia en Jucuapa, donde la frescura se encuentra con la excelencia.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/" class="social-facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                <a href="https://www.instagram.com/" class="social-instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg></a>
+                <a href="https://wa.me/50360649103" class="social-whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Negocio</h4>
+            <div class="footer-line"></div>
+            <ul>
+                <li><a href="historiaempresa.html">Historia de la empresa</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="compras.html">Compras</a></li>
+                <li><a href="productos.html">Productos</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Team</h4>
+            <div class="footer-line"></div>
+            <ul>
+                <li><a href="inju.html">Historia INJU</a></li>
+                <li><a href="inju.html#equipo">Conoce al equipo detrás del proyecto</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-contact">
+            <h4>Contacto e Información</h4>
+            <div class="footer-line"></div>
+            <p>Jucuapa, Usulután, El Salvador.</p>
+            <p>+503 6064-9103 | +503 6971-8315</p>
+            <p class="footer-email"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 3.2V17h14V8.2l-7 5-7-5Zm1.5-1.2 5.5 3.9L17.5 7h-11Z"/></svg><span>verfrutsrm.shop@gmail.com</span></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
+            <span class="footer-italic">This website was designed and created by:</span>
+            <span class="footer-bold">Either Design STR Team.</span>
+        </p>
+    </div>
+</footer>
+<!-- Fin footer compartido -->
 
     <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
 
 
-    <script src="script.js"></script>
 
-    <!-- CARRITO SCRIPT -->
-    <script>
-    (function() {
-        const CART_KEY = 'verfruts_cart';
-        const WHATSAPP_NUMBER = '50360649103';
-
-        let cart = [];
-
-        // DOM elements
-        const navbarCartCount = document.getElementById('navbarCartCount');
-        const openCartBtn = document.getElementById('openCartBtn');
-        const modal = document.getElementById('checkoutModal');
-        const modalItemsContainer = document.getElementById('modalItemsList');
-        const modalTotalSpan = document.getElementById('modalTotal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
-        const modalBuyerName = document.getElementById('modalBuyerName');
-        const modalBuyerLast = document.getElementById('modalBuyerLast');
-        const clearCartBtn = document.getElementById('clearCartBtn');
-
-        // Initialize product cards with data attributes
-        function initProductCards() {
-            const cards = document.querySelectorAll('.product-card');
-            cards.forEach((card, index) => {
-                const nameEl = card.querySelector('.product-name');
-                const priceEl = card.querySelector('.price');
-                const unitEl = card.querySelector('.price-unit');
-                const descEl = card.querySelector('.product-desc');
-                const catEl = card.querySelector('.product-category');
-
-                if (nameEl && priceEl) {
-                    const name = nameEl.textContent.trim();
-                    // Extract price - handle formats like "4 por $1.00", "Libra $3.50", "$2.50"
-                    const priceText = priceEl.textContent.trim();
-                    // Find the last dollar amount in the string
-                    const priceMatches = priceText.match(/\$([0-9]+\.?[0-9]*)/g);
-                    let price = 0;
-                    if (priceMatches && priceMatches.length > 0) {
-                        // Take the last match (usually the unit price)
-                        const lastMatch = priceMatches[priceMatches.length - 1];
-                        const numMatch = lastMatch.match(/\$([0-9]+\.?[0-9]*)/);
-                        price = numMatch ? parseFloat(numMatch[1]) : 0;
-                    }
-                    const unit = unitEl ? unitEl.textContent.trim() : '';
-                    const desc = descEl ? descEl.textContent.trim() : '';
-                    const category = catEl ? catEl.textContent.trim() : '';
-
-                    // Generate ID from name + index to ensure uniqueness
-                    const id = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') + '-' + index;
-
-                    card.setAttribute('data-id', id);
-                    card.setAttribute('data-name', name);
-                    card.setAttribute('data-price', price);
-                    card.setAttribute('data-unit', unit);
-                    card.setAttribute('data-desc', desc);
-                    card.setAttribute('data-category', category);
-                }
-            });
-        }
-
-        // Format money
-        function formatMoney(value) {
-            return '$' + Number(value).toFixed(2);
-        }
-
-        // Get cart quantity
-        function getCartQuantity() {
-            return cart.reduce((sum, item) => sum + item.quantity, 0);
-        }
-
-        // Save cart to localStorage
-        function saveCart() {
-            const toSave = cart.filter(i => i.id && i.quantity > 0).map(item => ({
-                id: item.id, name: item.name || '', price: typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0,
-                unit: item.unit || '', quantity: Number(item.quantity) || 0
-            }));
-            cart = toSave;
-            localStorage.setItem(CART_KEY, JSON.stringify(toSave));
-        }
-
-        // Load cart from localStorage
-        function loadCart() {
-            const stored = localStorage.getItem(CART_KEY);
-            if (stored) {
-                try {
-                    const parsed = JSON.parse(stored);
-                    if (Array.isArray(parsed)) {
-                        cart = parsed.filter(item => item && item.id && item.name && !isNaN(parseFloat(item.price)))
-                            .map(item => ({
-                                id: item.id, name: item.name || '',
-                                price: typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0,
-                                unit: item.unit || '', quantity: Number(item.quantity) || 0
-                            })).filter(i => i.quantity > 0);
-                        saveCart();
-                    }
-                } catch(e) { cart = []; saveCart(); }
-            }
-            renderCart();
-        }
-
-        // Update navbar cart count
-        let __lastNavbarCount = 0;
-        function animateNavbarCount(newCount) {
-            if (!navbarCartCount) return;
-            const start = Number(__lastNavbarCount) || 0;
-            const end = Number(newCount) || 0;
-            if (start === end) { navbarCartCount.innerText = end; return; }
-            const step = end > start ? 1 : -1;
-            const steps = Math.max(1, Math.abs(end - start));
-            const duration = 200;
-            const interval = Math.max(20, Math.floor(duration / steps));
-            let current = start;
-            navbarCartCount.classList.add('pulse');
-            const t = setInterval(() => {
-                current += step;
-                navbarCartCount.innerText = current;
-                if (current === end) {
-                    clearInterval(t);
-                    setTimeout(() => navbarCartCount.classList.remove('pulse'), 200);
-                    __lastNavbarCount = end;
-                }
-            }, interval);
-        }
-
-        function updateNavbarCartCount() {
-            if (!navbarCartCount) return;
-            animateNavbarCount(getCartQuantity());
-        }
-
-        // Render cart (just updates badge)
-        function renderCart() {
-            updateNavbarCartCount();
-            try {
-                navbarCartCount && navbarCartCount.classList.add('pulse');
-                setTimeout(() => navbarCartCount && navbarCartCount.classList.remove('pulse'), 300);
-            } catch(e){}
-            if (modal && modal.classList.contains('active')) renderModal();
-        }
-
-        // Add product to cart
-        function addProduct(id, name, price, unit) {
-            const existing = cart.find(i => i.id === id);
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ id, name, price: parseFloat(price), unit: unit || '', quantity: 1 });
-            }
-            saveCart();
-            renderCart();
-            updateNavbarCartCount();
-            showCartToast(name);
-
-            // Animate button
-            const btn = document.querySelector(`.product-card[data-id="${id}"] .add-to-cart, .slider-card[data-id="${id}"] .add-to-cart`);
-            if (btn) {
-                btn.style.transform = 'scale(1.25)';
-                btn.style.background = '#16a34a';
-                setTimeout(() => {
-                    btn.style.transform = '';
-                    btn.style.background = '';
-                }, 200);
-            }
-
-            // Flash cart button
-            if (openCartBtn) {
-                openCartBtn.style.transition = 'transform 0.18s ease';
-                openCartBtn.style.transform = 'scale(1.12)';
-                setTimeout(() => { openCartBtn.style.transform = ''; }, 200);
-            }
-        }
-
-        // Change quantity
-        function changeQuantity(id, delta) {
-            const index = cart.findIndex(i => i.id === id);
-            if (index !== -1) {
-                const newQty = cart[index].quantity + delta;
-                if (newQty <= 0) cart.splice(index, 1);
-                else cart[index].quantity = newQty;
-                saveCart();
-                renderCart();
-                if (modal && modal.classList.contains('active')) renderModal();
-            }
-        }
-
-        // Remove item
-        function removeItem(id) {
-            cart = cart.filter(i => i.id !== id);
-            saveCart();
-            renderCart();
-            if (modal && modal.classList.contains('active')) renderModal();
-        }
-
-        // Clear cart
-        function clearCart() {
-            if (cart.length === 0) return;
-            cart = [];
-            saveCart();
-            renderCart();
-            renderModal();
-        }
-
-        // Render modal
-        function renderModal() {
-            if (!modalItemsContainer) return;
-            const isEmpty = cart.length === 0;
-            let total = 0;
-            let itemsHtml = '';
-            if (isEmpty) {
-                itemsHtml = '<div class="empty-cart">Tu carrito está vacío. Agrega productos para hacer un pedido.</div>';
-            } else {
-                cart.forEach(item => {
-                    const subtotal = item.price * item.quantity;
-                    total += subtotal;
-                    itemsHtml += `
-                        <div class="modal-item" data-modal-id="${item.id}">
-                            <div class="modal-item-info">
-                                <div class="modal-item-name">${escapeHtml(item.name || 'Producto')}</div>
-                                <div class="modal-item-price">${formatMoney(typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0)} c/u · ${escapeHtml(item.unit || '')}</div>
-                            </div>
-                            <div class="modal-item-controls">
-                                <button type="button" class="cart-qty-btn" data-id="${item.id}" data-action="decrease" aria-label="Disminuir cantidad">−</button>
-                                <span class="modal-item-qty">${item.quantity}</span>
-                                <button type="button" class="cart-qty-btn" data-id="${item.id}" data-action="increase" aria-label="Aumentar cantidad">+</button>
-                                <span class="modal-item-subtotal">${formatMoney(subtotal)}</span>
-                                <button type="button" class="modal-item-remove" data-id="${item.id}" aria-label="Eliminar producto">×</button>
-                            </div>
-                        </div>
-                    `;
-                });
-            }
-            modalItemsContainer.innerHTML = itemsHtml;
-            modalTotalSpan.innerText = formatMoney(total);
-            updateModalSendState();
-
-            // Bind modal item events
-            document.querySelectorAll('.modal-item-remove').forEach(btn => {
-                btn.addEventListener('click', () => { removeItem(btn.dataset.id); renderModal(); });
-            });
-            document.querySelectorAll('.cart-qty-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    changeQuantity(btn.dataset.id, btn.dataset.action === 'increase' ? 1 : -1);
-                    renderModal();
-                });
-            });
-        }
-
-        function updateModalSendState() {
-            if (!sendWhatsappBtn) return;
-            const hasName = modalBuyerName && modalBuyerName.value.trim().length > 0;
-            sendWhatsappBtn.disabled = !(cart.length > 0 && hasName);
-        }
-
-        function openModal() {
-            if (!modal) return;
-            renderModal();
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            if (!modal) return;
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function generateWhatsAppMessage() {
-            if (cart.length === 0) return '';
-            const buyerName = modalBuyerName ? (modalBuyerName.value || '').trim() : '';
-            const buyerLast = modalBuyerLast ? (modalBuyerLast.value || '').trim() : '';
-            if (!buyerName) return '';
-            const buyerFullName = `${buyerName}${buyerLast ? ' ' + buyerLast : ''}`;
-            const lines = [
-                '🛍️ *Nuevo Pedido - Verfrut\'s y R&M*', '',
-                `*Comprador:* ${buyerFullName}`, '', '*Resumen de productos:*'
-            ];
-            let total = 0;
-            cart.forEach(item => {
-                const subtotal = item.price * item.quantity;
-                total += subtotal;
-                lines.push(`- ${item.name} x${item.quantity} (${item.unit}) → ${formatMoney(subtotal)}`);
-            });
-            lines.push('', `*Total estimado:* ${formatMoney(total)}`);
-            return encodeURIComponent(lines.join('\n'));
-        }
-
-        function sendOrder() {
-            if (cart.length === 0) { alert('No hay productos para enviar.'); return; }
-            const text = generateWhatsAppMessage();
-            if (!text) { alert('Por favor ingresa tu nombre antes de enviar el pedido.'); return; }
-            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
-            window.open(url, '_blank');
-            cart = [];
-            saveCart();
-            renderCart();
-            closeModal();
-            setTimeout(() => alert('✅ Pedido enviado. Revisa WhatsApp para confirmar y completar el envío.'), 300);
-        }
-
-        function escapeHtml(str) {
-            return String(str).replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m;
-            });
-        }
-
-        // Toast notification
-        const cartToast = document.getElementById('cartToast');
-        const cartToastText = document.getElementById('cartToastText');
-        const cartToastAction = document.getElementById('cartToastAction');
-        let _toastTimeout = null;
-        function showCartToast(productName) {
-            if (!cartToast) return;
-            cartToastText.textContent = `"${productName}" al carrito`;
-            cartToast.classList.add('show');
-            if (_toastTimeout) clearTimeout(_toastTimeout);
-            _toastTimeout = setTimeout(() => cartToast.classList.remove('show'), 3000);
-        }
-        if (cartToastAction) {
-            cartToastAction.addEventListener('click', () => {
-                cartToast.classList.remove('show');
-                openModal();
-            });
-        }
-
-        // Event listeners
-        if (openCartBtn) openCartBtn.addEventListener('click', openModal);
-        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-        if (sendWhatsappBtn) sendWhatsappBtn.addEventListener('click', sendOrder);
-        if (clearCartBtn) clearCartBtn.addEventListener('click', clearCart);
-        if (modalBuyerName) modalBuyerName.addEventListener('input', updateModalSendState);
-        if (modalBuyerLast) modalBuyerLast.addEventListener('input', updateModalSendState);
-        if (modal) {
-            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-            });
-        }
-
-        // Add to cart delegation
-        document.addEventListener('click', function(e) {
-            const btn = e.target.closest('.add-to-cart');
-            if (!btn) return;
-            e.preventDefault();
-            const card = btn.closest('.product-card');
-            if (!card) return;
-
-            // Get data from card attributes or extract from DOM
-            let id = card.dataset.id;
-            let name = card.dataset.name;
-            let price = card.dataset.price;
-            let unit = card.dataset.unit;
-
-            // If no data attributes, try to extract from DOM
-            if (!id) {
-                const nameEl = card.querySelector('.product-name');
-                const priceEl = card.querySelector('.price');
-                const unitEl = card.querySelector('.price-unit');
-                if (nameEl) name = nameEl.textContent.trim();
-                if (priceEl) {
-                    const priceText = priceEl.textContent.trim();
-                    const priceMatches = priceText.match(/\$([0-9]+\.?[0-9]*)/g);
-                    if (priceMatches && priceMatches.length > 0) {
-                        const lastMatch = priceMatches[priceMatches.length - 1];
-                        const numMatch = lastMatch.match(/\$([0-9]+\.?[0-9]*)/);
-                        price = numMatch ? parseFloat(numMatch[1]) : 0;
-                    }
-                }
-                if (unitEl) unit = unitEl.textContent.trim();
-                id = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-            }
-
-            if (id && name && price !== undefined) {
-                addProduct(id, name, price, unit);
-            }
-        });
-
-        // Listen for storage events (sync across tabs/pages)
-        window.addEventListener('storage', function(e) {
-            if (e.key === CART_KEY) { try { loadCart(); } catch(ex) {} }
-        });
-
-        // Initialize
-        initProductCards();
-        loadCart();
-    })();
-    </script>
-
+<!-- Inicio JavaScript global -->
+<script src="script.js"></script>
+<!-- Fin JavaScript global -->
 </body>
 
 </html>

@@ -501,7 +501,8 @@
             initSlider();
             initMobileMenu();
             initDropdown();
-            initScrollTop();
+            initScrollTop();
+
             initSmoothScroll();
             initLightbox();
             initLightboxGallery();
@@ -593,15 +594,18 @@ var scrollLeft;
 if (timelineScroll) {
     timelineScroll.addEventListener('mousedown', function(e) {
         isDown = true;
-        isUserInteracting = true;
+        isUserInteracting = true;
+
         startX = e.pageX - timelineScroll.offsetLeft;
         scrollLeft = timelineScroll.scrollLeft;
     });
     timelineScroll.addEventListener('mouseleave', function() {
-        isDown = false;
+        isDown = false;
+
     });
     timelineScroll.addEventListener('mouseup', function() {
-        isDown = false;
+        isDown = false;
+
         var closest = 0;
         var minDiff = Infinity;
         timelineNodes.forEach(function(node, i) {
@@ -651,6 +655,7 @@ if (timelineScroll) {
 function initActiveNav() {
     const page = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
     document.querySelectorAll('.nav-links a[href]').forEach(function(link) {
+        if (link.closest('.dropdown-menu')) return; // Excluir subenlaces del dropdown
         const href = (link.getAttribute('href') || '').split('#')[0].toLowerCase();
         link.classList.toggle('active', href === page || (page === '' && href === 'index.html'));
     });
