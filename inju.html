@@ -6,1045 +6,11 @@
     <title>Verfrut's y R&M | DevTeam — INJU</title>
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* ============================================================
-           BASE
-           ============================================================ */
-
-        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-        body {
-            background: #050c12;
-            color: #e2e8f0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* ============================================================
-           HERO
-           ============================================================ */
-        .inju-hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center;
-            padding: 120px 20px 100px;
-            overflow: hidden;
-        }
-
-        .inju-hero-bg {
-            position: absolute; inset: 0;
-            width: 100%; height: 100%;
-            object-fit: cover; z-index: 0;
-            opacity: 0.35;
-            filter: saturate(0.6) contrast(1.1);
-            transition: transform 8s ease;
-        }
-        .inju-hero:hover .inju-hero-bg { transform: scale(1.04); }
-
-        .hero-overlay {
-            position: absolute; inset: 0; z-index: 1;
-            background:
-                linear-gradient(180deg, rgba(5,12,18,0.4) 0%, rgba(5,12,18,0.65) 40%, rgba(5,12,18,0.98) 100%),
-                radial-gradient(ellipse at 30% 60%, rgba(34,197,94,0.06) 0%, transparent 60%);
-        }
-
-        .inju-hero-content { position: relative; z-index: 2; max-width: 900px; }
-
-        .hero-eyebrow {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 0.7rem; font-weight: 700; letter-spacing: 4px;
-            text-transform: uppercase; color: #4ade80;
-            padding: 8px 20px; margin-bottom: 30px;
-            border: 1px solid rgba(34,197,94,0.15);
-            background: rgba(34,197,94,0.05);
-            border-radius: 40px;
-            animation: fadeDown 0.8s ease both;
-        }
-        .hero-eyebrow::before {
-            content: ''; width: 6px; height: 6px; border-radius: 50%;
-            background: #22c55e; animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5)} 50%{box-shadow:0 0 0 6px rgba(34,197,94,0)} }
-
-        .inju-hero h1 {
-            font-size: clamp(4rem, 13vw, 10rem);
-            font-weight: 900; letter-spacing: 8px; line-height: 0.9;
-            background: linear-gradient(135deg, #f8fafc 0%, #22c55e 45%, #15803d 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 16px;
-            animation: fadeUp 0.9s 0.1s ease both;
-        }
-
-        .hero-subtitle-italic {
-            display: block;
-            font-family: Georgia, serif; font-style: italic;
-            font-size: clamp(1.1rem, 3vw, 1.8rem);
-            color: #cbd5e1; letter-spacing: 1px;
-            margin-bottom: 20px;
-            animation: fadeUp 0.9s 0.2s ease both;
-            -webkit-text-fill-color: #cbd5e1;
-        }
-
-        .hero-since {
-            display: inline-block;
-            font-size: 0.65rem; letter-spacing: 6px; text-transform: uppercase;
-            color: #4ade80; opacity: 0.6; margin-bottom: 32px;
-            animation: fadeUp 0.9s 0.3s ease both;
-        }
-
-        .inju-hero p {
-            font-size: clamp(0.95rem, 2vw, 1.15rem);
-            color: #94a3b8; max-width: 580px; margin: 0 auto 48px;
-            line-height: 1.9;
-            animation: fadeUp 0.9s 0.4s ease both;
-        }
-
-        .hero-divider {
-            width: 50px; height: 2px; margin: 0 auto 28px;
-            background: linear-gradient(90deg, transparent, #22c55e, transparent);
-            animation: fadeUp 0.9s 0.35s ease both;
-        }
-
-        .scroll-cue {
-            position: absolute; bottom: 42px; left: 50%;
-            transform: translateX(-50%); z-index: 2;
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            color: #64748b; font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
-            cursor: pointer; transition: color 0.3s ease;
-            animation: fadeUp 1s 0.8s ease both;
-        }
-        .scroll-cue:hover { color: #22c55e; }
-        .scroll-cue .mouse {
-            width: 24px; height: 40px;
-            border: 1.5px solid currentColor; border-radius: 12px;
-            position: relative; opacity: 0.5;
-        }
-        .scroll-cue .mouse::after {
-            content: ''; position: absolute;
-            top: 7px; left: 50%; transform: translateX(-50%);
-            width: 3px; height: 7px;
-            background: currentColor; border-radius: 2px;
-            animation: wheel 2s infinite;
-        }
-        @keyframes wheel { 0%{top:7px;opacity:1} 100%{top:22px;opacity:0} }
-
-        /* ============================================================
-           STATS BAR
-           ============================================================ */
-        .stats-bar {
-            background: linear-gradient(90deg, #070f18, #0c1a28, #070f18);
-            border-top: 1px solid rgba(34,197,94,0.15);
-            border-bottom: 1px solid rgba(34,197,94,0.15);
-            padding: 50px 20px;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            max-width: 1100px; margin: 0 auto;
-        }
-        .stat-item {
-            text-align: center; padding: 10px 20px;
-            border-right: 1px solid rgba(255,255,255,0.05);
-            position: relative;
-        }
-        .stat-item:last-child { border-right: none; }
-        .stat-num {
-            font-size: clamp(2.4rem, 5vw, 3.8rem);
-            font-weight: 900; letter-spacing: -2px; line-height: 1;
-            background: linear-gradient(135deg, #f8fafc, #22c55e);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            margin-bottom: 6px;
-        }
-        .stat-suffix { color: #4ade80; }
-        .stat-label {
-            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px;
-            color: #64748b; font-weight: 600;
-        }
-        @media (max-width: 640px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .stat-item:nth-child(2) { border-right: none; }
-            .stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.05); }
-            .stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.05); border-right: none; }
-        }
-
-        /* ============================================================
-           SECTIONS BASE
-           ============================================================ */
-        .inju-sec {
-            padding: 100px 20px;
-            max-width: 1200px; margin: 0 auto;
-        }
-        .sec-label {
-            font-size: 0.65rem; font-weight: 800; letter-spacing: 5px;
-            text-transform: uppercase; color: #4ade80;
-            margin-bottom: 14px; display: block;
-        }
-        .sec-title {
-            font-family: Georgia, serif; font-style: italic;
-            font-size: clamp(2rem, 4.5vw, 3.2rem);
-            color: #f8fafc; line-height: 1.15; margin-bottom: 20px;
-        }
-        .sec-desc {
-            color: #94a3b8; font-size: 1.05rem;
-            max-width: 560px; line-height: 1.85;
-        }
-        .section-sep {
-            width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.15), transparent);
-        }
-
-        /* ============================================================
-           INSTITUTO — MEJORADO
-           ============================================================ */
-        .institute-wrap {
-            padding: 90px 20px 80px;
-            position: relative; overflow: hidden;
-        }
-        .institute-wrap::before {
-            content: '';
-            position: absolute; top: 0; right: -10%; width: 50%; height: 100%;
-            background: radial-gradient(ellipse at 80% 50%, rgba(34,197,94,0.04) 0%, transparent 65%);
-            pointer-events: none;
-        }
-
-        .institute-header {
-            max-width: 1200px; margin: 0 auto 70px;
-            display: flex; align-items: flex-end;
-            justify-content: space-between; gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .institute-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            max-width: 1200px; margin: 0 auto 50px;
-        }
-
-        .info-pillar {
-            background: linear-gradient(160deg, rgba(12,28,45,0.9), rgba(5,10,18,0.98));
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 24px; padding: 40px 32px;
-            position: relative; overflow: hidden;
-            transition: all 0.45s cubic-bezier(0.165,0.84,0.44,1);
-        }
-        .info-pillar::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.5), transparent);
-            transform: scaleX(0); transition: transform 0.5s ease;
-        }
-        .info-pillar:hover { border-color: rgba(34,197,94,0.15); transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
-        .info-pillar:hover::before { transform: scaleX(1); }
-        .pillar-icon {
-            font-size: 2rem; margin-bottom: 20px; display: block;
-            filter: drop-shadow(0 4px 12px rgba(34,197,94,0.2));
-        }
-        .pillar-tag {
-            font-size: 0.6rem; font-weight: 800; letter-spacing: 3px;
-            text-transform: uppercase; color: #4ade80;
-            margin-bottom: 12px; display: block;
-        }
-        .info-pillar h3 {
-            font-size: 1.1rem; color: #f8fafc; margin-bottom: 12px; font-weight: 700;
-        }
-        .info-pillar p { color: #94a3b8; font-size: 0.9rem; line-height: 1.8; }
-        .info-pillar p strong { color: #e2e8f0; font-weight: 600; }
-
-        /* Details grid */
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            max-width: 1200px; margin: 0 auto;
-        }
-        .detail-chip {
-            background: rgba(255,255,255,0.015);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 14px; padding: 18px 16px;
-            display: flex; align-items: center; gap: 14px;
-            transition: all 0.35s ease;
-        }
-        .detail-chip:hover {
-            background: rgba(34,197,94,0.04);
-            border-color: rgba(34,197,94,0.15);
-            transform: translateY(-3px);
-        }
-        .chip-ico {
-            width: 40px; height: 40px; min-width: 40px;
-            background: rgba(34,197,94,0.07);
-            border: 1px solid rgba(34,197,94,0.1);
-            border-radius: 12px; display: flex; align-items: center;
-            justify-content: center; font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        .detail-chip:hover .chip-ico { background: rgba(34,197,94,0.14); transform: scale(1.1) rotate(-5deg); }
-        .chip-txt h4 {
-            font-size: 0.58rem; text-transform: uppercase;
-            letter-spacing: 2px; color: #64748b; font-weight: 700; margin-bottom: 4px;
-        }
-        .chip-txt p { color: #cbd5e1; font-size: 0.82rem; font-weight: 500; line-height: 1.3; }
-
-        @media (max-width: 1024px) {
-            .institute-cards { grid-template-columns: repeat(2, 1fr); }
-            .detail-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 600px) {
-            .institute-cards { grid-template-columns: 1fr; }
-            .detail-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ============================================================
-           EL PROYECTO — NUEVA SECCIÓN
-           ============================================================ */
-        .project-section {
-            padding: 100px 20px;
-            position: relative; overflow: hidden;
-            background: linear-gradient(180deg, transparent, rgba(7,15,24,0.6), transparent);
-        }
-        .project-section::before {
-            content: '';
-            position: absolute; inset: 0;
-            background:
-                radial-gradient(ellipse at 0% 50%, rgba(34,197,94,0.05) 0%, transparent 55%),
-                radial-gradient(ellipse at 100% 50%, rgba(34,197,94,0.03) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        .project-inner {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 80px; align-items: center;
-        }
-        .project-left { position: relative; }
-        .project-img-wrap {
-            position: relative; border-radius: 28px; overflow: hidden;
-            aspect-ratio: 4/3;
-            border: 1px solid rgba(34,197,94,0.15);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
-        }
-        .project-img-wrap img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-        .project-img-wrap:hover img { transform: scale(1.05); }
-        .project-img-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(5,12,18,0.7) 0%, transparent 50%);
-        }
-        .project-img-badge {
-            position: absolute; bottom: 24px; left: 24px;
-            background: rgba(5,12,18,0.9); border: 1px solid rgba(34,197,94,0.15);
-            border-radius: 16px; padding: 14px 20px; backdrop-filter: blur(10px);
-        }
-        .project-img-badge .badge-num {
-            font-size: 1.8rem; font-weight: 900; color: #22c55e;
-            line-height: 1; margin-bottom: 4px;
-        }
-        .project-img-badge .badge-txt {
-            font-size: 0.65rem; text-transform: uppercase;
-            letter-spacing: 2px; color: #94a3b8;
-        }
-        .project-float-tag {
-            position: absolute; top: -18px; right: 24px;
-            background: #22c55e; color: #050c12;
-            font-size: 0.65rem; font-weight: 800;
-            letter-spacing: 2px; text-transform: uppercase;
-            padding: 8px 18px; border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(34,197,94,0.35);
-        }
-
-        .project-right .sec-desc { margin-bottom: 28px; max-width: 100%; }
-        .project-story {
-            color: #94a3b8; font-size: 0.95rem; line-height: 1.9;
-            margin-bottom: 16px;
-        }
-        .project-story:last-of-type { margin-bottom: 32px; }
-
-        .project-pillars {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-            margin-top: 32px;
-        }
-        .proj-pill {
-            background: rgba(255,255,255,0.015);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 14px; padding: 18px 20px;
-            display: flex; align-items: flex-start; gap: 12px;
-            transition: all 0.35s ease;
-        }
-        .proj-pill:hover { border-color: rgba(34,197,94,0.15); background: rgba(34,197,94,0.03); }
-        .proj-pill-ico { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
-        .proj-pill h4 { font-size: 0.78rem; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; }
-        .proj-pill p { font-size: 0.78rem; color: #64748b; line-height: 1.5; }
-
-        @media (max-width: 900px) {
-            .project-inner { grid-template-columns: 1fr; gap: 48px; }
-        }
-
-        /* ============================================================
-           TIMELINE HORIZONTAL AUTOMATICA
-           ============================================================ */
-        .timeline-section {
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .timeline-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
-        }
-        .tl-header {
-            text-align: center;
-            padding: 0 20px;
-            margin-bottom: 64px;
-        }
-        .timeline-wrapper {
-            max-width: 1220px;
-            margin: 0 auto;
-            padding: 0 56px;
-            position: relative;
-        }
-        .timeline-scroll {
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            cursor: grab;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-            padding: 20px 0 28px;
-        }
-        .timeline-scroll::-webkit-scrollbar { display: none; }
-        .timeline-track {
-            display: flex;
-            gap: 24px;
-            width: max-content;
-            position: relative;
-        }
-        .timeline-track::before {
-            content: '';
-            position: absolute;
-            left: 110px;
-            right: 110px;
-            top: 62px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.45), transparent);
-            pointer-events: none;
-        }
-        .timeline-node {
-            width: min(360px, 78vw);
-            flex: 0 0 min(360px, 78vw);
-            scroll-snap-align: center;
-            position: relative;
-            padding-top: 44px;
-        }
-        .timeline-node-inner {
-            min-height: 320px;
-            background: linear-gradient(160deg, rgba(12,28,48,0.95), rgba(5,10,20,0.98));
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 24px;
-            padding: 34px 30px;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
-            box-shadow: 0 16px 48px rgba(0,0,0,0.34);
-        }
-        .timeline-node-inner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.65), transparent);
-            opacity: 0;
-            transition: opacity 0.35s ease;
-        }
-        .timeline-node-inner:hover {
-            border-color: rgba(34,197,94,0.28);
-            transform: translateY(-6px);
-            box-shadow: 0 28px 70px rgba(0,0,0,0.48);
-        }
-        .timeline-node-inner:hover::before { opacity: 1; }
-        .timeline-number {
-            position: absolute;
-            top: 18px;
-            left: 30px;
-            z-index: 2;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #070f18;
-            border: 2px solid rgba(34,197,94,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #4ade80;
-            font-weight: 900;
-            box-shadow: 0 0 0 8px rgba(34,197,94,0.06);
-        }
-        .timeline-year {
-            display: inline-flex;
-            align-items: center;
-            min-height: 28px;
-            padding: 5px 14px;
-            margin-bottom: 18px;
-            border: 1px solid rgba(34,197,94,0.14);
-            border-radius: 20px;
-            background: rgba(34,197,94,0.06);
-            color: #4ade80;
-            font-size: 0.62rem;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-        .timeline-title {
-            font-family: Georgia, serif;
-            font-style: italic;
-            color: #f8fafc;
-            font-size: 1.35rem;
-            line-height: 1.2;
-            margin-bottom: 14px;
-        }
-        .timeline-text {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            line-height: 1.8;
-        }
-        .timeline-arrows {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            margin-top: 36px;
-        }
-        .timeline-arrow {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(12,26,40,0.75);
-            color: #cbd5e1;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease, background 0.25s ease;
-        }
-        .timeline-arrow:hover {
-            border-color: rgba(34,197,94,0.45);
-            color: #4ade80;
-            background: rgba(34,197,94,0.08);
-            transform: translateY(-2px);
-        }
-        .timeline-arrow .inju-icon {
-            width: 20px;
-            height: 20px;
-            color: currentColor;
-        }
-        .timeline-dots {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .timeline-dot-btn {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(255,255,255,0.14);
-            cursor: pointer;
-            transition: width 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-        }
-        .timeline-dot-btn.active {
-            width: 28px;
-            border-radius: 999px;
-            background: #22c55e;
-            box-shadow: 0 0 18px rgba(34,197,94,0.4);
-        }
-        @media (max-width: 768px) {
-            .timeline-section { padding: 82px 0; }
-            .timeline-wrapper { padding: 0 20px; }
-            .timeline-track { gap: 18px; }
-            .timeline-node-inner { min-height: 340px; padding: 32px 24px; }
-            .timeline-track::before { display: none; }
-        }
-
-        /* ============================================================
-           DOCENTE — MEJORADO
-           ============================================================ */
-        .teacher-section {
-            padding: 90px 20px;
-            position: relative;
-        }
-        .teacher-section::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.18), transparent);
-        }
-
-        .teacher-card {
-            display: grid; grid-template-columns: 380px 1fr;
-            max-width: 1100px; margin: 0 auto;
-            background: linear-gradient(145deg, #0c1e35 0%, #060d18 100%);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 30px; overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-            position: relative;
-            transition: box-shadow 0.5s ease;
-        }
-        .teacher-card:hover { box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
-        .teacher-card::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, #22c55e, #16a34a, transparent);
-        }
-        .teacher-card::after {
-            content: '';
-            position: absolute; top: -30%; right: -10%;
-            width: 380px; height: 380px;
-            background: radial-gradient(circle, rgba(34,197,94,0.05) 0%, transparent 65%);
-            pointer-events: none;
-        }
-
-        .teacher-visual {
-            position: relative; overflow: hidden;
-            background: linear-gradient(180deg, #0c1e33, #040a12);
-        }
-        .teacher-visual img {
-            width: 100%; height: 100%; object-fit: cover; display: block;
-            transition: transform 0.8s ease;
-        }
-        .teacher-card:hover .teacher-visual img { transform: scale(1.06); }
-        .teacher-vis-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(6,13,24,0.95) 0%, transparent 55%);
-        }
-        .teacher-vis-name {
-            position: absolute; bottom: 32px; left: 32px; right: 32px;
-            font-family: Georgia, serif; font-style: italic;
-            font-size: 1.5rem; color: #fff;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.6); z-index: 2;
-        }
-        .teacher-vis-role {
-            position: absolute; bottom: 14px; left: 32px;
-            font-size: 0.65rem; color: #4ade80; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 3px; z-index: 2;
-        }
-
-        .teacher-body {
-            padding: 52px 56px; position: relative; z-index: 2;
-            display: flex; flex-direction: column; justify-content: center;
-        }
-        .teacher-name {
-            font-family: Georgia, serif; font-style: italic;
-            font-size: clamp(1.8rem, 3vw, 2.5rem); color: #f8fafc;
-            margin-bottom: 8px; line-height: 1.1;
-        }
-        .teacher-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-size: 0.7rem; color: #4ade80; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 3px;
-            padding: 6px 16px; margin-bottom: 28px;
-            background: rgba(34,197,94,0.06);
-            border: 1px solid rgba(34,197,94,0.12); border-radius: 6px;
-            width: fit-content;
-        }
-        .teacher-badge-mark {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #4ade80;
-            display: inline-block;
-            box-shadow: 0 0 12px rgba(74,222,128,0.5);
-        }
-        .teacher-quote {
-            color: #94a3b8; font-size: 1rem; line-height: 1.9;
-            margin-bottom: 32px; font-style: italic;
-            border-left: 2px solid rgba(34,197,94,0.2);
-            padding-left: 20px;
-        }
-        .teacher-stats {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
-        }
-        .t-stat {
-            background: rgba(255,255,255,0.015);
-            border: 1px solid rgba(34,197,94,0.06);
-            border-radius: 14px; padding: 16px 18px;
-            position: relative; overflow: hidden;
-            transition: all 0.35s ease;
-        }
-        .t-stat::before {
-            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, #22c55e, #16a34a);
-            opacity: 0.4; transition: opacity 0.3s ease;
-        }
-        .t-stat:hover { border-color: rgba(34,197,94,0.15); transform: translateX(4px); }
-        .t-stat:hover::before { opacity: 0.8; }
-        .t-stat h4 { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 2.5px; color: #4ade80; font-weight: 800; margin-bottom: 6px; }
-        .t-stat p { color: #cbd5e1; font-size: 0.85rem; line-height: 1.45; }
-
-        @media (max-width: 900px) {
-            .teacher-card { grid-template-columns: 1fr; }
-            .teacher-visual { height: 280px; }
-            .teacher-vis-name, .teacher-vis-role { display: none; }
-            .teacher-body { padding: 36px 30px; }
-            .teacher-stats { grid-template-columns: 1fr; }
-        }
-
-        /* ============================================================
-           ALUMNOS — MEJORADO
-           ============================================================ */
-        .students-section {
-            padding: 90px 20px 100px;
-            position: relative;
-        }
-        .students-section::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.18), transparent);
-        }
-
-        .students-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px; max-width: 1400px; margin: 0 auto;
-        }
-
-        .student-card {
-            position: relative; border-radius: 24px; overflow: hidden;
-            aspect-ratio: 3/4;
-            border: 1px solid rgba(34,197,94,0.1);
-            transition: all 0.55s cubic-bezier(0.165,0.84,0.44,1);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-        }
-        .student-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(34,197,94,0.35);
-            box-shadow: 0 30px 70px rgba(0,0,0,0.5);
-        }
-
-        /* Gradient background for cards with no image */
-        .student-bg {
-            position: absolute; inset: 0; z-index: 0;
-        }
-        .student-bg-1 { background: linear-gradient(145deg, #0d2a3e, #041420); }
-        .student-bg-2 { background: linear-gradient(145deg, #0a2010, #051208); }
-        .student-bg-3 { background: linear-gradient(145deg, #1a1a2e, #0a0a18); }
-        .student-bg-4 { background: linear-gradient(145deg, #2a1a0a, #180e04); }
-
-        .student-visual {
-            position: absolute; inset: 0; z-index: 1;
-        }
-        .student-visual img {
-            width: 100%; height: 100%; object-fit: cover; display: block;
-            transition: all 0.6s cubic-bezier(0.165,0.84,0.44,1);
-        }
-        .student-card:hover .student-visual img { opacity: 0.12; transform: scale(1.08); }
-
-        /* Avatar placeholder for missing photos */
-        .student-avatar {
-            position: absolute; inset: 0; z-index: 1;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 8px;
-        }
-        .student-avatar .av-icon {
-            width: 90px; height: 90px; border-radius: 50%;
-            border: 2px solid rgba(34,197,94,0.25);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2.8rem;
-            background: rgba(34,197,94,0.06);
-            transition: all 0.5s ease;
-        }
-        .student-card:hover .student-avatar .av-icon {
-            opacity: 0; transform: scale(0.8);
-        }
-
-        .student-bottom {
-            position: absolute; inset: auto 0 0 0; z-index: 2;
-            background: linear-gradient(to top, rgba(5,10,20,0.98) 0%, rgba(5,10,20,0.5) 60%, transparent 100%);
-            padding: 60px 20px 22px;
-            transition: all 0.4s ease;
-        }
-        .student-card:hover .student-bottom { opacity: 0; transform: translateY(10px); }
-        .student-name {
-            font-family: Georgia, serif; font-style: italic;
-            font-size: 1.2rem; color: #fff; margin-bottom: 5px;
-        }
-        .student-role {
-            font-size: 0.62rem; color: #4ade80; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 2px;
-        }
-
-        /* Hover reveal */
-        .student-hover {
-            position: absolute; inset: 0; z-index: 3;
-            background: rgba(5,10,20,0.96);
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            padding: 28px; text-align: center;
-            opacity: 0; transform: scale(0.94);
-            transition: all 0.5s cubic-bezier(0.165,0.84,0.44,1);
-        }
-        .student-card:hover .student-hover { opacity: 1; transform: scale(1); }
-
-        .student-hover-name {
-            font-family: Georgia, serif; font-style: italic;
-            font-size: 1.25rem; color: #f8fafc; margin-bottom: 4px;
-        }
-        .student-hover-role {
-            font-size: 0.6rem; color: #4ade80; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 3px; margin-bottom: 18px;
-        }
-        .student-hover-divider {
-            width: 30px; height: 1px;
-            background: linear-gradient(90deg, transparent, #22c55e, transparent);
-            margin: 0 auto 18px;
-        }
-        .student-hover h4 {
-            font-size: 0.62rem; text-transform: uppercase; letter-spacing: 3px;
-            color: #4ade80; margin-bottom: 10px; font-weight: 800;
-            opacity: 0; transform: translateY(-5px);
-            transition: all 0.4s ease 0.05s;
-        }
-        .student-hover p {
-            color: #cbd5e1; font-size: 0.82rem; line-height: 1.7;
-            margin-bottom: 14px;
-            opacity: 0; transform: translateY(5px);
-            transition: all 0.4s ease 0.1s;
-        }
-        .student-tags {
-            display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
-            opacity: 0; transform: translateY(5px);
-            transition: all 0.4s ease 0.15s;
-        }
-        .student-card:hover .student-hover h4,
-        .student-card:hover .student-hover p,
-        .student-card:hover .student-tags { opacity: 1; transform: translateY(0); }
-
-        .s-tag {
-            background: rgba(34,197,94,0.08);
-            border: 1px solid rgba(34,197,94,0.18);
-            color: #4ade80; font-size: 0.6rem;
-            padding: 4px 11px; border-radius: 20px; font-weight: 600;
-        }
-
-        .student-card::after {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.8), transparent);
-            transform: scaleX(0); transition: transform 0.6s ease; z-index: 5;
-        }
-        .student-card:hover::after { transform: scaleX(1); }
-
-        @media (max-width: 1024px) { .students-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 540px)  { .students-grid { grid-template-columns: 1fr; } }
-
-        /* ============================================================
-           TECNOLOGÍAS — NUEVA SECCIÓN
-           ============================================================ */
-        .tech-section {
-            padding: 90px 20px 100px;
-            position: relative; overflow: hidden;
-        }
-        .tech-section::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.18), transparent);
-        }
-        .tech-section::after {
-            content: '';
-            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 70%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(34,197,94,0.1), transparent);
-        }
-        .tech-inner { max-width: 1100px; margin: 0 auto; }
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 14px; margin-top: 60px;
-        }
-        .tech-badge {
-            background: rgba(255,255,255,0.015);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 18px; padding: 28px 16px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
-            position: relative; overflow: hidden;
-        }
-        .tech-badge::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: radial-gradient(circle at 50% 100%, rgba(34,197,94,0.08) 0%, transparent 70%);
-            opacity: 0; transition: opacity 0.4s ease;
-        }
-        .tech-badge:hover {
-            border-color: rgba(34,197,94,0.15);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        }
-        .tech-badge:hover::before { opacity: 1; }
-        .tech-ico { font-size: 2.2rem; margin-bottom: 12px; display: block; }
-        .tech-name {
-            font-size: 0.72rem; font-weight: 700; color: #cbd5e1;
-            text-transform: uppercase; letter-spacing: 1.5px;
-        }
-        .tech-badge:hover .tech-name { color: #4ade80; }
-
-        @media (max-width: 900px) { .tech-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 500px) { .tech-grid { grid-template-columns: repeat(2, 1fr); } }
-
-        /* ============================================================
-           CTA CIERRE
-           ============================================================ */
-        .cta-section {
-            padding: 100px 20px;
-            text-align: center;
-            background: linear-gradient(180deg, transparent, rgba(34,197,94,0.03), transparent);
-            position: relative;
-        }
-        .cta-glow {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px; height: 300px;
-            background: radial-gradient(ellipse, rgba(34,197,94,0.08) 0%, transparent 65%);
-            pointer-events: none;
-        }
-        .cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-        .cta-inner .sec-title { text-align: center; }
-        .cta-inner .sec-desc { margin: 0 auto 40px; text-align: center; }
-        .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-        .cta-btn-primary {
-            padding: 14px 32px; border-radius: 50px;
-            background: #22c55e; color: #050c12;
-            font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer;
-            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 24px rgba(34,197,94,0.3);
-        }
-        .cta-btn-primary:hover { background: #4ade80; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(34,197,94,0.4); }
-        .cta-btn-secondary {
-            padding: 14px 32px; border-radius: 50px;
-            background: transparent; color: #e2e8f0;
-            font-weight: 700; font-size: 0.9rem;
-            border: 1px solid rgba(255,255,255,0.12); cursor: pointer;
-            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-            transition: all 0.3s ease;
-        }
-        .cta-btn-secondary:hover { border-color: rgba(34,197,94,0.15); color: #4ade80; transform: translateY(-2px); }
-
-        /* ============================================================
-           REVEAL
-           ============================================================ */
-        .reveal {
-            opacity: 0; transform: translateY(28px);
-            transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.165,0.84,0.44,1);
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-l { opacity: 0; transform: translateX(-28px); transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.165,0.84,0.44,1); }
-        .reveal-l.active { opacity: 1; transform: translateX(0); }
-        .reveal-r { opacity: 0; transform: translateX(28px); transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.165,0.84,0.44,1); }
-        .reveal-r.active { opacity: 1; transform: translateX(0); }
-
-        .inju-icon {
-            width: 24px;
-            height: 24px;
-            display: block;
-            fill: currentColor;
-            color: #4ade80;
-        }
-        .pillar-icon,
-        .chip-ico,
-        .proj-pill-ico,
-        .tech-ico,
-        .cta-btn-primary .inju-icon,
-        .cta-btn-secondary .inju-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .pillar-icon .inju-icon,
-        .tech-ico .inju-icon {
-            width: 34px;
-            height: 34px;
-        }
-        .chip-ico .inju-icon,
-        .proj-pill-ico .inju-icon {
-            width: 22px;
-            height: 22px;
-        }
-        .student-avatar .inju-icon {
-            width: 46px;
-            height: 46px;
-        }
-        .footer-contact .inju-icon {
-            width: 16px;
-            height: 16px;
-            display: inline-block;
-            vertical-align: -3px;
-            margin-right: 6px;
-        }
-        .inju-hero-title-main {
-            display: block;
-            max-width: 1000px;
-            margin: 0 auto 14px;
-            font-size: clamp(2.8rem, 8vw, 6.4rem);
-            line-height: 0.98;
-            letter-spacing: 0;
-        }
-        .inju-hero-title-mark {
-            display: block;
-            font-size: clamp(1.25rem, 4vw, 2.4rem);
-            letter-spacing: 0.34em;
-            color: #4ade80;
-            -webkit-text-fill-color: #4ade80;
-            text-transform: uppercase;
-        }
-        .project-img-wrap {
-            aspect-ratio: 3/2;
-            background: #050c12;
-        }
-        .project-img-wrap img {
-            object-fit: contain;
-            background: #050c12;
-        }
-        .project-img-wrap:hover img {
-            transform: none;
-        }
-        .cta-btn-primary .inju-icon,
-        .cta-btn-secondary .inju-icon {
-            width: 18px;
-            height: 18px;
-        }
-        .cta-btn-primary:focus-visible,
-        .cta-btn-secondary:focus-visible,
-        .timeline-arrow:focus-visible,
-        .timeline-dot-btn:focus-visible {
-            outline: 2px solid #4ade80;
-            outline-offset: 4px;
-        }
-
-        /* ============================================================
-           ANIMATIONS
-           ============================================================ */
-        @keyframes fadeUp   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes fadeDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
-    </style>
 </head>
 
 <body>
     <!-- ============================================ LOADER -->
-    <div class="page-loader" id="pageLoader" style="background: linear-gradient(145deg,#071207,#0d2815,#051a05);">
+    <div class="page-loader inju-loader" id="pageLoader">
         <div class="loader-wrapper">
             <div class="loader-spinner"></div>
             <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
@@ -1053,34 +19,44 @@
     </div>
 
     <!-- ============================================ NAVBAR -->
-    <div id="navOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:998;"
-        onclick="document.getElementById('navLinks').classList.remove('active');this.style.display='none';"></div>
-
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <img width="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
-                <div class="nav-logo-text"><span class="nav-logo-title">Verfrut's y R&amp;M</span></div>
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Inicio</a></li>
-                <li class="dropdown">
-                    <a href="productos.html">Productos <span class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="productos.html#hogar">Hogar</a></li>
-                        <li><a href="productos.html#frutas">Frutas</a></li>
-                        <li><a href="productos.html#verduras">Verduras</a></li>
-                        <li><a href="productos.html#embutidos">Embutidos</a></li>
-                        <li><a href="productos.html#canasta">Canasta Básica</a></li>
-                    </ul>
-                </li>
-                <li><a href="compras.html">Compras</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="ubicacion.html">Ubicación</a></li>
-            </ul>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menú">&#9776;</button>
-        </div>
-    </nav>
+    <!-- Inicio navbar compartido -->
+<div id="navOverlay" class="nav-overlay"></div>
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img width="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
+            <div class="nav-logo-text"><span class="nav-logo-title">Verfrut's y R&amp;M</span></div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="productos.html">Productos <span class="arrow">&#9662;</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="productos.html#hogar">Hogar</a></li>
+                    <li><a href="productos.html#frutas">Frutas</a></li>
+                    <li><a href="productos.html#verduras">Verduras</a></li>
+                    <li><a href="productos.html#embutidos">Embutidos</a></li>
+                    <li><a href="productos.html#canasta">Canasta Básica</a></li>
+                </ul>
+            </li>
+            <li><a href="compras.html">Compras</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="ubicacion.html">Ubicación</a></li>
+            <li class="nav-cart-item">
+                <button id="openCartBtn" class="nav-cart-button" type="button" aria-label="Abrir carrito">
+                    <span class="nav-cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span>
+                    <span id="navbarCartCount" class="nav-cart-badge">0</span>
+                </button>
+            </li>
+        </ul>
+        <button id="openCartMobileBtn" class="nav-cart-button nav-cart-mobile" type="button" aria-label="Abrir carrito">
+            <span class="nav-cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span>
+            <span id="navbarCartCountMobile" class="nav-cart-badge">0</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menú">&#9776;</button>
+    </div>
+</nav>
+<!-- Fin navbar compartido -->
 
     <!-- ============================================ HERO -->
     <section class="inju-hero" id="hero">
@@ -1095,7 +71,7 @@
             <p>Excelencia Académica, Estudiantes Integros y Compromiso con la Educación de Calidad. La Cuna de los Desarrolladores Detrás del Proyecto Verfrut's y R&amp;M.</p>
         </div>
 
-        <div class="scroll-cue" onclick="document.querySelector('.stats-bar').scrollIntoView({behavior:'smooth'})">
+        <div class="scroll-cue" data-scroll-target=".stats-bar" role="button" tabindex="0">
             <div class="mouse"></div>
             <span>| Explorar |</span>
         </div>
@@ -1189,9 +165,9 @@
             <div class="project-right reveal-r">
                 <center><span class="sec-label">El Proyecto Educativo.</span></center>
                 <h2 class="sec-title">¿Cómo nació<br>Verfrut's y R&M?</h2>
-                <p class="project-story">En el marco de la especialidad de <strong style="color:#e2e8f0">Desarrollo de Software</strong> del tercer año del INJU, cuatro estudiantes recibieron el desafío de construir un sitio web real para un negocio local: la tienda de frutas, verduras y productos del hogar <strong style="color:#e2e8f0">Verfrut's y R&M</strong>.</p>
+                <p class="project-story">En el marco de la especialidad de <strong>Desarrollo de Software</strong> del tercer año del INJU, cuatro estudiantes recibieron el desafío de construir un sitio web real para un negocio local: la tienda de frutas, verduras y productos del hogar <strong>Verfrut's y R&M</strong>.</p>
                 <p class="project-story">El objetivo era claro: crear una solución funcional que permitiera a la tienda mostrar su catálogo, recibir pedidos por WhatsApp, y conectar con sus clientes de Jucuapa de forma digital. Un proyecto real, para un cliente real, desarrollado con tecnologías reales.</p>
-                <p class="project-story">Bajo la guía del Licenciado: <strong style="color:#e2e8f0">Roberto Antonio García Machado</strong>, el equipo trabajó durante semanas diseñando, programando y refinando cada página — desde la idea, hasta la implementacion.</p>
+                <p class="project-story">Bajo la guía del Licenciado: <strong>Roberto Antonio García Machado</strong>, el equipo trabajó durante semanas diseñando, programando y refinando cada página — desde la idea, hasta la implementacion.</p>
 
                 <div class="project-pillars">
                     <div class="proj-pill">
@@ -1297,7 +273,7 @@
     <!-- ============================================ DOCENTE -->
     <div class="section-sep"></div>
     <section class="teacher-section reveal">
-        <div style="text-align:center;margin-bottom:60px;padding:0 20px">
+        <div class="section-heading-center">
             <span class="sec-label">Nuestro Guía.</span>
             <h2 class="sec-title">El mentor detrás del equipo</h2>
         </div>
@@ -1336,11 +312,11 @@
 
     <!-- ============================================ ALUMNOS -->
     <div class="section-sep"></div>
-    <section class="students-section">
-        <div style="text-align:center;margin-bottom:60px;padding:0 20px" class="reveal">
+    <section class="students-section" id="equipo">
+        <div class="section-heading-center reveal">
             <span class="sec-label">El Equipo de Desarrollo.</span>
             <h2 class="sec-title">Talento INJU 2026</h2>
-            <p class="sec-desc" style="margin:0 auto;text-align:center">Los cuatro estudiantes de 3° año de Software que construyeron Verfrut's y R&M desde cero — Idea, Diseño, Código, y Lanzamiento.</p>
+            <p class="sec-desc sec-desc-centered">Los cuatro estudiantes de 3° año de Software que construyeron Verfrut's y R&M desde cero — Idea, Diseño, Código, y Lanzamiento.</p>
         </div>
         <div class="students-grid">
 
@@ -1447,10 +423,10 @@
     <div class="section-sep"></div>
     <section class="tech-section">
         <div class="tech-inner">
-            <div style="text-align:center" class="reveal">
+            <div class="text-center reveal">
                 <span class="sec-label">Nuestro Stack Tecnológico.</span>
                 <h2 class="sec-title">Las herramientas que utilizamos.</h2>
-                <p class="sec-desc" style="margin:16px auto 0;text-align:center">Sin frameworks externos. Solo las herramientas base de la web — porque dominar los fundamentos es lo que hace a un gran desarrollador.</p>
+                <p class="sec-desc sec-desc-centered sec-desc-tech">Sin frameworks externos. Solo las herramientas base de la web — porque dominar los fundamentos es lo que hace a un gran desarrollador.</p>
             </div>
             <div class="tech-grid reveal">
                 <div class="tech-badge">
@@ -1485,7 +461,7 @@
     <section class="cta-section reveal">
         <div class="cta-glow"></div>
         <div class="cta-inner">
-            <span class="sec-label" style="display:block;text-align:center;margin-bottom:14px">¿Listo para comprar?</span>
+            <span class="sec-label sec-label-block">¿Listo para comprar?</span>
             <h2 class="sec-title">Visita nuestra tienda<br>digital</h2>
             <p class="sec-desc">Explora el catálogo completo de Verfrut's y R&M, agrega productos al carrito y realiza tu pedido directo por WhatsApp.</p>
             <div class="cta-btns">
@@ -1496,167 +472,93 @@
     </section>
 
     <!-- ============================================ FOOTER -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <img width="40" height="40" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
-                    Verfrut's y R&amp;M
-                </div>
-                <p>Tu tienda de referencia en Jucuapa, donde la frescura se encuentra con la excelencia.</p>
-                <div class="social-links">
-                    <a href="#" class="social-facebook" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </a>
-                    <a href="#" class="social-instagram" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                    </a>
-                    <a href="#" class="social-whatsapp" aria-label="WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Negocio</h4>
-                <div class="footer-line"></div>
-                <ul>
-                    <li><a href="galeria.html">Galería</a></li>
-                    <li><a href="inju.html">Historia</a></li>
-                    <li><a href="compras.html">Compras</a></li>
-                    <li><a href="productos.html">Productos</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Team</h4>
-                <div class="footer-line"></div>
-                <ul>
-                    <li><a href="inju.html">Historia</a></li>
-                    <li><a href="inju.html">Conoce al equipo detras del proyecto</a></li>
-                </ul>
-            </div>
-            <div class="footer-col footer-contact">
-                <h4>Contáctanos</h4>
-                <div class="footer-line"></div>
-                <p>Jucuapa, Usulután, El Salvador.</p>
-                <p>+503 6064-9103 | +503 6971-8315</p>
-                <p><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 3.2V17h14V8.2l-7 5-7-5Zm1.5-1.2 5.5 3.9L17.5 7h-11Z"/></svg>verfrutsrm.shop@gmail.com</p>
+    <!-- Inicio carrito compartido -->
+<div id="cartToast" class="cart-toast" aria-live="polite">
+    <span class="toast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.2 16.6-4.1-4.1-1.4 1.4 5.5 5.5L21 7.6l-1.4-1.4L9.2 16.6Z"/></svg></span>
+    <span class="toast-text" id="cartToastText">Producto agregado</span>
+    <button class="toast-action" id="cartToastAction" type="button">Ver carrito</button>
+</div>
+
+<div id="checkoutModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="cartModalTitle">
+        <div class="modal-header">
+            <h3 id="cartModalTitle"><span class="cart-title-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span><span>Mi carrito</span></h3>
+            <button id="closeModalXBtn" class="modal-close-btn" type="button" aria-label="Cerrar carrito">&times;</button>
+        </div>
+        <div id="modalItemsList" class="modal-items"></div>
+        <div class="modal-total">
+            <span>Total a pagar</span>
+            <span id="modalTotal">$0.00</span>
+        </div>
+        <div class="modal-form">
+            <p class="modal-hint">Ingresa tu nombre para que el vendedor te identifique.</p>
+            <div class="modal-name-grid">
+                <input id="modalBuyerName" type="text" placeholder="Nombre" autocomplete="name">
+                <input id="modalBuyerLast" type="text" placeholder="Apellido" autocomplete="family-name">
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
-                <span class="footer-italic">This website was designed and created by:</span>
-                <span class="footer-bold">Either Design STR Team.</span>
-            </p>
+        <div class="modal-buttons">
+            <button id="closeModalBtn" class="btn-secondary" type="button">Seguir comprando</button>
+            <button id="clearCartBtn" class="btn-secondary" type="button">Limpiar carrito</button>
+            <button id="sendWhatsappBtn" class="btn-primary" type="button" disabled>Enviar por WhatsApp</button>
         </div>
-    </footer>
+    </div>
+</div>
+<!-- Fin carrito compartido -->
+
+<!-- Inicio footer compartido -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <img width="40" height="40" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
+                Verfrut's y R&amp;M
+            </div>
+            <p>Tu tienda de referencia en Jucuapa, donde la frescura se encuentra con la excelencia.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/" class="social-facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                <a href="https://www.instagram.com/" class="social-instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg></a>
+                <a href="https://wa.me/50360649103" class="social-whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Negocio</h4>
+            <div class="footer-line"></div>
+            <ul>
+                <li><a href="historiaempresa.html">Historia de la empresa</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="compras.html">Compras</a></li>
+                <li><a href="productos.html">Productos</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Team</h4>
+            <div class="footer-line"></div>
+            <ul>
+                <li><a href="inju.html">Historia INJU</a></li>
+                <li><a href="inju.html#equipo">Conoce al equipo detrás del proyecto</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-contact">
+            <h4>Contacto e Información</h4>
+            <div class="footer-line"></div>
+            <p>Jucuapa, Usulután, El Salvador.</p>
+            <p>+503 6064-9103 | +503 6971-8315</p>
+            <p class="footer-email"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 3.2V17h14V8.2l-7 5-7-5Zm1.5-1.2 5.5 3.9L17.5 7h-11Z"/></svg><span>verfrutsrm.shop@gmail.com</span></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
+            <span class="footer-italic">This website was designed and created by:</span>
+            <span class="footer-bold">Either Design STR Team.</span>
+        </p>
+    </div>
+</footer>
+<!-- Fin footer compartido -->
 
     <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
-
-    <script src="script.js"></script>
-    <script>
-    (function() {
-        // SCROLL REVEAL ─────────────────────────────────────────
-        const obs = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('active');
-                    obs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => obs.observe(el));
-
-        // ── ANIMATED COUNTERS ─────────────────────────────────────
-        const counterObs = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    animateCounter(e.target);
-                    counterObs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
-
-        function animateCounter(el) {
-            const target = parseInt(el.dataset.target);
-            const duration = 1800;
-            const start = performance.now();
-            function step(now) {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                el.textContent = Math.floor(eased * target);
-                if (progress < 1) requestAnimationFrame(step);
-                else el.textContent = target;
-            }
-            requestAnimationFrame(step);
-        }
-
-        // ── NAVBAR SCROLL ─────────────────────────────────────────
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
-        }, { passive: true });
-
-        // ── SCROLL TOP ────────────────────────────────────────────
-        const scrollTopBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-        }, { passive: true });
-        if (scrollTopBtn) scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-        // ── LOADER ────────────────────────────────────────────────
-        const loader = document.getElementById('pageLoader');
-        if (loader) {
-            window.addEventListener('load', () => setTimeout(() => loader.classList.add('hidden'), 400));
-            if (document.readyState === 'complete') setTimeout(() => loader.classList.add('hidden'), 400);
-        }
-
-        // ── MOBILE MENU ───────────────────────────────────────────
-        const toggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        if (toggle && navLinks) {
-            toggle.addEventListener('click', () => navLinks.classList.toggle('active'));
-            navLinks.querySelectorAll('a').forEach(a => {
-                a.addEventListener('click', () => {
-                    if (!a.closest('.dropdown') || a.closest('.dropdown-menu')) navLinks.classList.remove('active');
-                });
-            });
-        }
-
-        // ── DROPDOWN MOBILE ───────────────────────────────────────
-        document.querySelectorAll('.dropdown > a').forEach(link => {
-            link.addEventListener('click', e => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault(); e.stopPropagation();
-                    link.parentElement.classList.toggle('active');
-                }
-            });
-        });
-
-        // ── HERO LOADED ───────────────────────────────────────────
-        setTimeout(() => { const h = document.getElementById('hero'); if (h) h.classList.add('loaded'); }, 100);
-
-        // ── CURSOR ────────────────────────────────────────────────
-        if (!window.matchMedia('(pointer: coarse)').matches) {
-            let dot = document.querySelector('.cursor-dot') || (() => { const d = document.createElement('div'); d.className = 'cursor-dot'; document.body.appendChild(d); return d; })();
-            let ring = document.querySelector('.cursor-ring') || (() => { const r = document.createElement('div'); r.className = 'cursor-ring'; document.body.appendChild(r); return r; })();
-            let mx=0,my=0,dx=0,dy=0,rx=0,ry=0;
-            document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.opacity='1'; ring.style.opacity='1'; });
-            (function animate() {
-                dx+=(mx-dx)*0.25; dy+=(my-dy)*0.25;
-                rx+=(mx-rx)*0.15; ry+=(my-ry)*0.15;
-                dot.style.left=`${dx}px`; dot.style.top=`${dy}px`;
-                ring.style.left=`${rx}px`; ring.style.top=`${ry}px`;
-                requestAnimationFrame(animate);
-            })();
-            document.addEventListener('mouseover', e => { if (e.target.closest('a,button,.tech-badge,.student-card,.teacher-card,.info-pillar,.proj-pill,.tl-card,.detail-chip')) document.body.classList.add('hover-link'); });
-            document.addEventListener('mouseout',  e => { if (e.target.closest('a,button,.tech-badge,.student-card,.teacher-card,.info-pillar,.proj-pill,.tl-card,.detail-chip')) document.body.classList.remove('hover-link'); });
-            document.addEventListener('mouseleave', () => { dot.style.opacity='0'; ring.style.opacity='0'; });
-        }
-    })();
-    </script>
+<!-- Inicio JavaScript global -->
+<script src="script.js"></script>
+<!-- Fin JavaScript global -->
 </body>
 </html>

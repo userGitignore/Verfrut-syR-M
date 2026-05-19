@@ -103,7 +103,17 @@
             const toggle = document.getElementById('menuToggle');
             const nav = document.getElementById('navLinks');
             if (!toggle || !nav) return;
-            toggle.addEventListener('click', function () { nav.classList.toggle('active'); });
+            const overlay = document.getElementById('navOverlay');
+            function closeMenu() {
+                nav.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+            }
+            function toggleMenu() {
+                nav.classList.toggle('active');
+                if (overlay) overlay.classList.toggle('active', nav.classList.contains('active'));
+            }
+            toggle.addEventListener('click', toggleMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
 
             nav.querySelectorAll('a').forEach(function (a) {
                 a.addEventListener('click', function (e) {
@@ -114,11 +124,11 @@
                     }
 
                     if (a.closest('.dropdown-menu')) {
-                        nav.classList.remove('active');
+                        closeMenu();
                         return;
                     }
 
-                    nav.classList.remove('active');
+                    closeMenu();
                 });
             });
         }
@@ -157,75 +167,7 @@
             });
         }
 
-        /* ============================================
-           6. CURSOR PERSONALIZADO - ORIGINAL RESTAURADO
-           ============================================
-           Círculo verde oscuro grande + punto central verde brillante.
-           Hover: círculo se hace blanco y más grande.
-           Compatible con TODAS las páginas del sitio.
-           ============================================ */
-        function initCursor() {
-            if (window.matchMedia('(pointer: coarse)').matches) return;
-
-            let dot = document.querySelector('.cursor-dot');
-            let ring = document.querySelector('.cursor-ring');
-
-            if (!dot) {
-                dot = document.createElement('div');
-                dot.className = 'cursor-dot';
-                document.body.appendChild(dot);
-            }
-            if (!ring) {
-                ring = document.createElement('div');
-                ring.className = 'cursor-ring';
-                document.body.appendChild(ring);
-            }
-
-            let mouseX = 0, mouseY = 0;
-            let dotX = 0, dotY = 0;
-            let ringX = 0, ringY = 0;
-
-            document.addEventListener('mousemove', function (e) {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                dot.style.opacity = '1';
-                ring.style.opacity = '1';
-            });
-
-            function renderCursor() {
-                dotX += (mouseX - dotX) * 0.25;
-                dotY += (mouseY - dotY) * 0.25;
-                ringX += (mouseX - ringX) * 0.15;
-                ringY += (mouseY - ringY) * 0.15;
-
-                dot.style.left = `${dotX}px`;
-                dot.style.top = `${dotY}px`;
-                ring.style.left = `${ringX}px`;
-                ring.style.top = `${ringY}px`;
-
-                requestAnimationFrame(renderCursor);
-            }
-            requestAnimationFrame(renderCursor);
-
-            const interactivesSelector = 'a, button, .slider-arrow, .product-card, .category-card, .add-to-cart, .scroll-top, .menu-toggle, .lightbox-close, .product-image, .hero-btn, .show-more-btn, .carousel-btn, .lightbox-nav, .gallery-item, .info-card, .social-links a, .dropdown > a, .nav-links a, .footer-col a';
-
-            document.addEventListener('mouseover', function (e) {
-                if (e.target.closest(interactivesSelector)) {
-                    document.body.classList.add('hover-link');
-                }
-            });
-
-            document.addEventListener('mouseout', function (e) {
-                if (e.target.closest(interactivesSelector)) {
-                    document.body.classList.remove('hover-link');
-                }
-            });
-
-            document.addEventListener('mouseleave', function() {
-                dot.style.opacity = '0';
-                ring.style.opacity = '0';
-            });
-        }
+        
 
         /* ============================================
            7. SCROLL SUAVE PARA ANCLAS INTERNAS
@@ -559,8 +501,7 @@
             initSlider();
             initMobileMenu();
             initDropdown();
-            initScrollTop();
-            initCursor();
+            initScrollTop();
             initSmoothScroll();
             initLightbox();
             initLightboxGallery();
@@ -572,9 +513,9 @@
 
 
 /* ============================================
-   JS EXTRACTED FROM INJU.HTML <script> BLOCK
+   JS EXTRACTED FROM INJU.HTML script BLOCK
    ============================================
-   All JavaScript previously inside <script> in inju.html
+   All JavaScript previously inside script in inju.html
    has been moved here. No logic changes made.
    ============================================ */
 
@@ -652,18 +593,15 @@ var scrollLeft;
 if (timelineScroll) {
     timelineScroll.addEventListener('mousedown', function(e) {
         isDown = true;
-        isUserInteracting = true;
-        timelineScroll.style.cursor = 'grabbing';
+        isUserInteracting = true;
         startX = e.pageX - timelineScroll.offsetLeft;
         scrollLeft = timelineScroll.scrollLeft;
     });
     timelineScroll.addEventListener('mouseleave', function() {
-        isDown = false;
-        if (timelineScroll) timelineScroll.style.cursor = 'grab';
+        isDown = false;
     });
     timelineScroll.addEventListener('mouseup', function() {
-        isDown = false;
-        if (timelineScroll) timelineScroll.style.cursor = 'grab';
+        isDown = false;
         var closest = 0;
         var minDiff = Infinity;
         timelineNodes.forEach(function(node, i) {
@@ -706,3 +644,345 @@ if (timelineScroll) {
     goToTimeline(0, false);
     startAuto();
 }
+
+/* ============================================
+   INICIO JS: NAVEGACION Y CARRITO COMPARTIDO
+   ============================================ */
+function initActiveNav() {
+    const page = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    document.querySelectorAll('.nav-links a[href]').forEach(function(link) {
+        const href = (link.getAttribute('href') || '').split('#')[0].toLowerCase();
+        link.classList.toggle('active', href === page || (page === '' && href === 'index.html'));
+    });
+}
+
+function initScrollTargets() {
+    document.querySelectorAll('[data-scroll-target]').forEach(function(trigger) {
+        function go() {
+            const target = document.querySelector(trigger.getAttribute('data-scroll-target'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        trigger.addEventListener('click', go);
+        trigger.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                go();
+            }
+        });
+    });
+}
+
+function initSharedCart() {
+    const page = (window.location.pathname.split('/').pop() || '').toLowerCase();
+    if (page === 'productos.html' || page === 'compras.html') return;
+
+    const CART_KEY = 'verfruts_cart';
+    const WHATSAPP_NUMBER = '50360649103';
+    let cart = [];
+
+    const openCartBtn = document.getElementById('openCartBtn');
+    const openCartMobileBtn = document.getElementById('openCartMobileBtn');
+    const openCartPageBtn = document.getElementById('openCartPageBtn');
+    const openCartButtons = [openCartBtn, openCartMobileBtn, openCartPageBtn].filter(Boolean);
+    const navbarCartCounts = [document.getElementById('navbarCartCount'), document.getElementById('navbarCartCountMobile')].filter(Boolean);
+    const modal = document.getElementById('checkoutModal');
+    const modalItemsContainer = document.getElementById('modalItemsList');
+    const modalTotalSpan = document.getElementById('modalTotal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const closeModalXBtn = document.getElementById('closeModalXBtn');
+    const sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
+    const modalBuyerName = document.getElementById('modalBuyerName');
+    const modalBuyerLast = document.getElementById('modalBuyerLast');
+    const clearCartBtn = document.getElementById('clearCartBtn');
+    const cartToast = document.getElementById('cartToast');
+    const cartToastText = document.getElementById('cartToastText');
+    const cartToastAction = document.getElementById('cartToastAction');
+    let toastTimeout = null;
+    let lastNavbarCount = 0;
+
+    if (navbarCartCounts.length === 0 && !modal) return;
+
+    function formatMoney(value) {
+        return '$' + Number(value || 0).toFixed(2);
+    }
+
+    function escapeHtml(str) {
+        return String(str).replace(/[&<>]/g, function(mark) {
+            if (mark === '&') return '&amp;';
+            if (mark === '<') return '&lt;';
+            if (mark === '>') return '&gt;';
+            return mark;
+        });
+    }
+
+    function normalizeItem(item) {
+        if (!item || !item.id) return null;
+        const name = item.name || item.nombre || 'Producto';
+        const price = typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0;
+        const quantity = Number(item.quantity) || 0;
+        if (quantity <= 0) return null;
+        return { id: String(item.id), name: String(name), price: price, unit: item.unit || '', quantity: quantity };
+    }
+
+    function saveCart(shouldRender) {
+        localStorage.setItem(CART_KEY, JSON.stringify(cart.map(function(item) {
+            return {
+                id: item.id,
+                name: item.name,
+                price: typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0,
+                unit: item.unit || '',
+                quantity: Number(item.quantity) || 0
+            };
+        }).filter(function(item) {
+            return item.id && item.quantity > 0;
+        })));
+        if (shouldRender !== false) renderCart();
+    }
+
+    function loadCart() {
+        try {
+            const stored = localStorage.getItem(CART_KEY);
+            const parsed = stored ? JSON.parse(stored) : [];
+            cart = Array.isArray(parsed) ? parsed.map(normalizeItem).filter(Boolean) : [];
+        } catch (error) {
+            cart = [];
+        }
+        saveCart(false);
+        renderCart();
+    }
+
+    function getCartQuantity() {
+        return cart.reduce(function(sum, item) { return sum + item.quantity; }, 0);
+    }
+
+    function animateNavbarCount(newCount) {
+        navbarCartCounts.forEach(function(countEl) {
+            countEl.textContent = String(newCount);
+            if (lastNavbarCount !== newCount) {
+                countEl.classList.add('pulse');
+                setTimeout(function() { countEl.classList.remove('pulse'); }, 320);
+            }
+        });
+        lastNavbarCount = newCount;
+    }
+
+    function renderCart() {
+        animateNavbarCount(getCartQuantity());
+        if (modal && modal.classList.contains('active')) renderModal();
+    }
+
+    function initProductCards() {
+        const cards = document.querySelectorAll('.carousel-track .product-card, #ofertas .product-card');
+        cards.forEach(function(card, index) {
+            const nameEl = card.querySelector('.product-name');
+            const priceEl = card.querySelector('.price');
+            const unitEl = card.querySelector('.price-unit');
+            const descEl = card.querySelector('.product-desc');
+            const catEl = card.querySelector('.product-category');
+            if (!nameEl || !priceEl) return;
+            const name = nameEl.textContent.trim();
+            const priceMatch = priceEl.textContent.trim().match(/\$([0-9]+\.?[0-9]*)/);
+            const price = priceMatch ? parseFloat(priceMatch[1]) : 0;
+            const id = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') + '-' + index;
+            card.setAttribute('data-id', card.dataset.id || id);
+            card.setAttribute('data-name', card.dataset.name || name);
+            card.setAttribute('data-price', card.dataset.price || price);
+            card.setAttribute('data-unit', card.dataset.unit || (unitEl ? unitEl.textContent.trim() : ''));
+            card.setAttribute('data-desc', card.dataset.desc || (descEl ? descEl.textContent.trim() : ''));
+            card.setAttribute('data-category', card.dataset.category || (catEl ? catEl.textContent.trim() : ''));
+        });
+    }
+
+    function showCartToast(productName) {
+        if (!cartToast || !cartToastText) return;
+        cartToastText.textContent = '"' + productName + '" al carrito';
+        cartToast.classList.add('show');
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(function() { cartToast.classList.remove('show'); }, 3000);
+    }
+
+    function addProduct(id, name, price, unit) {
+        const existing = cart.find(function(item) { return item.id === id; });
+        if (existing) existing.quantity += 1;
+        else cart.push({ id: id, name: name, price: parseFloat(price) || 0, unit: unit || '', quantity: 1 });
+        saveCart();
+        showCartToast(name);
+        openCartButtons.forEach(function(button) {
+            button.classList.add('bump');
+            setTimeout(function() { button.classList.remove('bump'); }, 240);
+        });
+    }
+
+    function changeQuantity(id, delta) {
+        const index = cart.findIndex(function(item) { return item.id === id; });
+        if (index === -1) return;
+        cart[index].quantity += delta;
+        if (cart[index].quantity <= 0) cart.splice(index, 1);
+        saveCart();
+    }
+
+    function removeItem(id) {
+        cart = cart.filter(function(item) { return item.id !== id; });
+        saveCart();
+    }
+
+    function clearCart() {
+        if (cart.length === 0) return;
+        cart = [];
+        saveCart();
+    }
+
+    function updateModalSendState() {
+        if (!sendWhatsappBtn) return;
+        const hasName = modalBuyerName && modalBuyerName.value.trim().length > 0;
+        sendWhatsappBtn.disabled = !(cart.length > 0 && hasName);
+    }
+
+    function renderModal() {
+        if (!modalItemsContainer || !modalTotalSpan) return;
+        let total = 0;
+        if (cart.length === 0) {
+            modalItemsContainer.innerHTML = '<div class="empty-cart">Tu carrito está vacío. Agrega productos para hacer un pedido.</div>';
+        } else {
+            modalItemsContainer.innerHTML = cart.map(function(item) {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                return '<div class="modal-item" data-modal-id="' + escapeHtml(item.id) + '">' +
+                    '<div class="modal-item-info">' +
+                    '<div class="modal-item-name">' + escapeHtml(item.name || 'Producto') + '</div>' +
+                    '<div class="modal-item-price">' + formatMoney(item.price) + ' c/u · ' + escapeHtml(item.unit || '') + '</div>' +
+                    '</div>' +
+                    '<div class="modal-item-controls">' +
+                    '<button type="button" class="cart-qty-btn" data-id="' + escapeHtml(item.id) + '" data-action="decrease" aria-label="Disminuir cantidad">−</button>' +
+                    '<span class="modal-item-qty">' + item.quantity + '</span>' +
+                    '<button type="button" class="cart-qty-btn" data-id="' + escapeHtml(item.id) + '" data-action="increase" aria-label="Aumentar cantidad">+</button>' +
+                    '<span class="modal-item-subtotal">' + formatMoney(subtotal) + '</span>' +
+                    '<button type="button" class="modal-item-remove" data-id="' + escapeHtml(item.id) + '" aria-label="Eliminar producto">×</button>' +
+                    '</div>' +
+                    '</div>';
+            }).join('');
+        }
+        modalTotalSpan.textContent = formatMoney(total);
+        updateModalSendState();
+    }
+
+    function openModal() {
+        if (!modal) return;
+        renderModal();
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    function generateWhatsAppMessage() {
+        if (cart.length === 0) return '';
+        const buyerName = modalBuyerName ? (modalBuyerName.value || '').trim() : '';
+        const buyerLast = modalBuyerLast ? (modalBuyerLast.value || '').trim() : '';
+        if (!buyerName) return '';
+        const buyerFullName = buyerName + (buyerLast ? ' ' + buyerLast : '');
+        const lines = [
+            "*Nuevo Pedido - Verfrut's y R&M*",
+            '',
+            '*Comprador:* ' + buyerFullName,
+            '',
+            '*Resumen de productos:*'
+        ];
+        let total = 0;
+        cart.forEach(function(item) {
+            const subtotal = item.price * item.quantity;
+            total += subtotal;
+            lines.push('- ' + item.name + ' x' + item.quantity + ' (' + item.unit + ') -> ' + formatMoney(subtotal));
+        });
+        lines.push('', '*Total estimado:* ' + formatMoney(total));
+        return encodeURIComponent(lines.join('\n'));
+    }
+
+    function sendOrder() {
+        if (cart.length === 0) {
+            alert('No hay productos para enviar.');
+            return;
+        }
+        const text = generateWhatsAppMessage();
+        if (!text) {
+            alert('Por favor ingresa tu nombre antes de enviar el pedido.');
+            return;
+        }
+        window.location.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
+        cart = [];
+        saveCart();
+        closeModal();
+    }
+
+    openCartButtons.forEach(function(button) {
+        button.addEventListener('click', openModal);
+    });
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (closeModalXBtn) closeModalXBtn.addEventListener('click', closeModal);
+    if (sendWhatsappBtn) sendWhatsappBtn.addEventListener('click', sendOrder);
+    if (clearCartBtn) clearCartBtn.addEventListener('click', clearCart);
+    if (modalBuyerName) modalBuyerName.addEventListener('input', updateModalSendState);
+    if (modalBuyerLast) modalBuyerLast.addEventListener('input', updateModalSendState);
+    if (cartToastAction) cartToastAction.addEventListener('click', function() {
+        if (cartToast) cartToast.classList.remove('show');
+        openModal();
+    });
+    if (modal) {
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) closeModal();
+            const qtyBtn = event.target.closest('.cart-qty-btn');
+            const removeBtn = event.target.closest('.modal-item-remove');
+            if (qtyBtn) changeQuantity(qtyBtn.dataset.id, qtyBtn.dataset.action === 'increase' ? 1 : -1);
+            if (removeBtn) removeItem(removeBtn.dataset.id);
+        });
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.classList.contains('active')) closeModal();
+        });
+    }
+
+    document.addEventListener('click', function(event) {
+        const btn = event.target.closest('.add-to-cart');
+        if (!btn) return;
+        const card = btn.closest('.product-card, .slider-card');
+        if (!card) return;
+        event.preventDefault();
+        let id = card.dataset.id;
+        let name = card.dataset.name;
+        let price = card.dataset.price;
+        let unit = card.dataset.unit;
+        if (!id || !name || price === undefined) {
+            const nameEl = card.querySelector('.product-name');
+            const priceEl = card.querySelector('.price');
+            const unitEl = card.querySelector('.price-unit');
+            name = name || (nameEl ? nameEl.textContent.trim() : '');
+            if (price === undefined && priceEl) {
+                const match = priceEl.textContent.trim().match(/\$([0-9]+\.?[0-9]*)/);
+                price = match ? parseFloat(match[1]) : 0;
+            }
+            unit = unit || (unitEl ? unitEl.textContent.trim() : '');
+            id = id || name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+        }
+        if (id && name && price !== undefined) addProduct(id, name, price, unit);
+    });
+
+    window.addEventListener('storage', function(event) {
+        if (event.key === CART_KEY) loadCart();
+    });
+
+    initProductCards();
+    loadCart();
+    if (document.body && document.body.dataset.cartPage === 'true') setTimeout(openModal, 500);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initActiveNav();
+    initScrollTargets();
+    initSharedCart();
+});
+/* FIN JS: NAVEGACION Y CARRITO COMPARTIDO */

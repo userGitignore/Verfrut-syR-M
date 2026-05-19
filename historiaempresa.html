@@ -3,32 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1e3a2f">
-    <title>Ubicación | Verfrut's y R&M</title>
-    <link rel="icon" href="img-navbar-and-icon/img-navbar.png"> 
+    <title>Historia de Verfrut's y R&amp;M</title>
+    <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
-
-    <!-- ============================================
-         ESTILOS ESPECÍFICOS PARA INFO CARDS DE UBICACIÓN
-         Centra los 4 cards con igual tamaño y ancho
-         ============================================ -->
 </head>
 <body>
-    <!-- ============================================
-         PANTALLA DE CARGA INICIAL
-         ============================================ -->
+    <!-- Inicio loader -->
     <div class="page-loader inju-loader" id="pageLoader">
         <div class="loader-wrapper">
             <div class="loader-spinner"></div>
             <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
         </div>
-        <p class="loader-text">Verfrut's y R&M</p>
+        <p class="loader-text">Verfrut's y R&amp;M</p>
     </div>
+    <!-- Fin loader -->
 
-    <!-- ============================================
-         BARRA DE NAVEGACION
-         ============================================ -->
-    <!-- Inicio navbar compartido -->
+<!-- Inicio navbar compartido -->
 <div id="navOverlay" class="nav-overlay"></div>
 <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -67,65 +57,53 @@
 </nav>
 <!-- Fin navbar compartido -->
 
-    <!-- ============================================
-         SECCION UBICACION
-         ============================================ -->
-    <section class="ubicacion-section" id="ubicacion">
-        <div class="container">
-            <div class="section-header">
-                <h2>¿Dónde estamos?</h2>
-                <p>Ven a visitarnos y disfruta de la mejor calidad. Estamos ubicados en Jucuapa, Usulután.</p>
-            </div>
-
-            <!-- Inicio video local de ubicación -->
-            <div class="location-video-block">
-                <div class="local-video-frame">
-                    <video class="location-video" controls preload="metadata">
-                        <source src="videos/video-ubicacion.mp4" type="video/mp4">
-                        Tu navegador no soporta video HTML5.
-                    </video>
-                </div>
-            </div>
-            <!-- Fin video local de ubicación -->
-
-            <div class="map-wrapper">
-                <div class="map-corner tl"></div>
-                <div class="map-corner tr"></div>
-                <div class="map-corner bl"></div>
-                <div class="map-corner br"></div>
-                <div class="map-overlay"></div>
-                <iframe src="https://maps.google.com/maps?q=Jucuapa%2C%20Usulutan%2C%20El%20Salvador&output=embed" title="Ubicación Verfrut&apos;s y R&amp;M" loading="lazy"></iframe>
-            </div>
-
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-icon">&#128205;</div>
-                    <h3>Dirección</h3>
-                    <p>Jucuapa, Usulután<br>El Salvador, Centroamérica</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">&#128336;</div>
-                    <h3>Horario de Atención</h3>
-                    <p>Lunes a Sábado: 6:00 AM - 6:00 PM<br>Domingo: 6:00 AM - 1:00 PM</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">&#128222;</div>
-                    <h3>Teléfonos</h3>
-                    <p>+503 6064-9103<br>+503 6971-8315</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">&#9993;</div>
-                    <h3>Correo Electrónico</h3>
-                    <p>verfrutsrm.shop@gmail.com<br>Responderemos en 24h</p>
-                </div>
-            </div>
+    <!-- Inicio hero historia empresa -->
+    <section class="business-hero">
+        <img class="business-hero-bg" src="img-start-galeria-mixtas/Tienda11.jpg" alt="Fachada de Verfrut's y R&amp;M">
+        <div class="business-hero-overlay"></div>
+        <div class="business-hero-content reveal">
+            <span class="sec-label">Historia del negocio</span>
+            <h1>Verfrut's y R&amp;M</h1>
+            <p>Una tienda local nacida para acercar productos frescos, trato amable y soluciones del hogar a las familias de Jucuapa.</p>
+            <button class="scroll-cue" type="button" data-scroll-target=".business-story-section" aria-label="Ir a la historia"><span></span></button>
         </div>
     </section>
+    <!-- Fin hero historia empresa -->
 
-<!-- ============================================
-         FOOTER
-         ============================================ -->
-    <!-- Inicio carrito compartido -->
+    <!-- Inicio historia del negocio -->
+    <main class="business-story-section">
+        <section class="business-story-wrap">
+            <div class="business-story-intro reveal">
+                <span class="sec-label">Raíces locales</span>
+                <h2 class="sec-title">Una historia construida con frescura y confianza.</h2>
+                <p class="sec-desc">Verfrut's y R&amp;M representa el esfuerzo de un negocio familiar que creció escuchando a sus clientes, cuidando la calidad de sus productos y manteniendo una atención cercana en cada compra.</p>
+            </div>
+            <div class="business-history-grid">
+                <article class="business-history-card reveal"><span class="history-step">01</span><h3>El comienzo</h3><p>El negocio empezó con la idea sencilla de ofrecer frutas, verduras y productos básicos con precios accesibles para la comunidad. Cada venta ayudó a fortalecer una relación directa con las familias que buscaban calidad sin complicaciones.</p></article>
+                <article class="business-history-card reveal"><span class="history-step">02</span><h3>La confianza diaria</h3><p>Con el paso del tiempo, Verfrut's y R&amp;M se convirtió en un punto de referencia para compras rápidas, productos frescos y atención honesta. La constancia permitió ampliar la variedad y responder mejor a las necesidades del hogar.</p></article>
+                <article class="business-history-card reveal"><span class="history-step">03</span><h3>Una nueva etapa digital</h3><p>El sitio web nació como una oportunidad para mostrar el catálogo, ordenar la información del negocio y acercar la tienda a más personas mediante una experiencia clara, moderna y fácil de consultar.</p></article>
+            </div>
+            <div class="license-deal-card reveal">
+                <div><span class="sec-label">El puente con INJU</span><h2>El trato que abrió la puerta al sitio web.</h2></div>
+                <p>El Lic. Roberto Antonio García Machado se encargó de contactar con la empresa, conversar con sus encargados y negociar el acuerdo para que el equipo de desarrollo pudiera crear este sitio web con el nombre de Verfrut's y R&amp;M. Ese acercamiento convirtió una tarea académica en un proyecto real para una empresa local.</p>
+            </div>
+        </section>
+    </main>
+    <!-- Fin historia del negocio -->
+
+    <!-- Inicio llamado hacia INJU -->
+    <section class="history-inju-section reveal">
+        <div class="history-inju-glow"></div>
+        <div class="history-inju-inner">
+            <span class="sec-label sec-label-block">Ahora mira quién lo hizo posible.</span>
+            <h2>¿Te atreves a conocer al equipo detrás del proyecto?</h2>
+            <p>El origen del sitio está en el aula, pero su impacto mira hacia la comunidad.</p>
+            <a href="inju.html" class="history-inju-cta"><span>Ir al INJU</span><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5 11.6 6.4l4.6 4.6H4v2h12.2l-4.6 4.6L13 19l7-7-7-7Z"/></svg></a>
+        </div>
+    </section>
+    <!-- Fin llamado hacia INJU -->
+
+<!-- Inicio carrito compartido -->
 <div id="cartToast" class="cart-toast" aria-live="polite">
     <span class="toast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.2 16.6-4.1-4.1-1.4 1.4 5.5 5.5L21 7.6l-1.4-1.4L9.2 16.6Z"/></svg></span>
     <span class="toast-text" id="cartToastText">Producto agregado</span>
@@ -209,14 +187,10 @@
 </footer>
 <!-- Fin footer compartido -->
 
-
     <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
 
-    <!-- ============================================
-         JAVASCRIPT - LOGICA DE INTERACTIVIDAD
-         ============================================ -->
-<!-- Inicio JavaScript global -->
-<script src="script.js"></script>
-<!-- Fin JavaScript global -->
+    <!-- Inicio JavaScript global -->
+    <script src="script.js"></script>
+    <!-- Fin JavaScript global -->
 </body>
 </html>
