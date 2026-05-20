@@ -3,7 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verfrut's y R&M | DevTeam — INJU</title>
+    <title>INJU — Instituto Nacional de Jucuapa | Verfrut's y R&M</title>
+    <meta name="description" content="Conoce al Instituto Nacional de Jucuapa (INJU), la institución educativa detrás del proyecto Verfrut's y R&M. Excelencia académica desde 1966.">
+    <meta name="keywords" content="INJU, Instituto Nacional de Jucuapa, Jucuapa, Usulután, El Salvador, educación, desarrollo de software, Verfrut's y R&M">
+    <meta name="author" content="Either Design STR Team">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="INJU — Instituto Nacional de Jucuapa | Verfrut's y R&M">
+    <meta property="og:description" content="Conoce al Instituto Nacional de Jucuapa (INJU), la institución educativa detrás del proyecto Verfrut's y R&M.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://verfrutsrm.shop/inju.html">
+    <meta property="og:image" content="img-navbar-and-icon/img-navbar.png">
+    <meta property="og:locale" content="es_SV">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="INJU — Instituto Nacional de Jucuapa">
+    <meta name="twitter:description" content="Conoce al Instituto Nacional de Jucuapa, la cuna de los desarrolladores detrás de Verfrut's y R&M.">
+    <meta name="twitter:image" content="img-navbar-and-icon/img-navbar.png">
+
+    <link rel="canonical" href="https://verfrutsrm.shop/inju.html">
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -13,554 +33,565 @@
     <div class="page-loader inju-loader" id="pageLoader">
         <div class="loader-wrapper">
             <div class="loader-spinner"></div>
-            <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
+            <img src="img-navbar-and-icon/img-navbar.png" alt="Logo de Verfrut's y R&M" class="loader-logo" width="28" height="28">
         </div>
         <p class="loader-text">Verfrut's y R&amp;M</p>
     </div>
 
     <!-- ============================================ NAVBAR -->
-    <!-- Inicio navbar compartido -->
-<div id="navOverlay" class="nav-overlay"></div>
-<nav class="navbar" id="navbar">
-    <div class="nav-container">
-        <a href="index.html" class="nav-logo">
-            <img width="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
-            <div class="nav-logo-text"><span class="nav-logo-title">Verfrut's y R&amp;M</span></div>
-        </a>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Inicio</a></li>
-            <li class="dropdown">
-                <a href="productos.html">Productos <span class="arrow">&#9662;</span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="productos.html#frutas">Frutas</a></li>
-                    <li><a href="productos.html#bebidas">Bebidas</a></li>
-                    <li><a href="productos.html#verduras">Verduras</a></li>
-                    <li><a href="productos.html#embutidos">Embutidos</a></li>
-                    <li><a href="productos.html#variedades">Variedades</a></li>
-                    <li><a href="productos.html#hogar">Aseo y Hogar</a></li>
-                    <li><a href="productos.html#canasta">Canasta Básica</a></li>
-                </ul>
-            </li>
-            <li><a href="compras.html">Compras</a></li>
-            <li><a href="galeria.html">Galería</a></li>
-            <li><a href="ubicacion.html">Ubicación</a></li>
-            <li class="nav-cart-item">
-                <button id="openCartBtn" class="nav-cart-button" type="button" aria-label="Abrir carrito">
-                    <span class="nav-cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span>
-                    <span id="navbarCartCount" class="nav-cart-badge">0</span>
-                </button>
-            </li>
-        </ul>
-        <button id="openCartMobileBtn" class="nav-cart-button nav-cart-mobile" type="button" aria-label="Abrir carrito">
-            <span class="nav-cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span>
-            <span id="navbarCartCountMobile" class="nav-cart-badge">0</span>
-        </button>
-        <button class="menu-toggle" id="menuToggle" aria-label="Menú">&#9776;</button>
+    <div id="navOverlay" class="nav-overlay"></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img width="44" height="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo de Verfrut's y R&M">
+                <div class="nav-logo-text">
+                    <span class="nav-logo-title">Verfrut's y R&amp;M</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="productos.html">Productos <span class="arrow">&#9662;</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="productos.html#frutas">Frutas</a></li>
+                        <li><a href="productos.html#bebidas">Bebidas</a></li>
+                        <li><a href="productos.html#verduras">Verduras</a></li>
+                        <li><a href="productos.html#embutidos">Embutidos</a></li>
+                        <li><a href="productos.html#variedades">Variedades</a></li>
+                        <li><a href="productos.html#hogar">Aseo y Hogar</a></li>
+                        <li><a href="productos.html#canasta">Canasta Básica</a></li>
+                    </ul>
+                </li>
+                <li><a href="compras.html">Compras</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="ubicacion.html">Ubicación</a></li>
+                <li class="nav-cart-item">
+                    <button type="button" id="openCartBtn" class="nav-cart-button" aria-label="Abrir carrito">
+                        <span class="nav-cart-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
+                        </span>
+                        <span id="navbarCartCount" class="nav-cart-badge">0</span>
+                    </button>
+                </li>
+            </ul>
+            <button type="button" id="openCartMobileBtn" class="nav-cart-button nav-cart-mobile" aria-label="Abrir carrito">
+                <span class="nav-cart-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
+                </span>
+                <span id="navbarCartCountMobile" class="nav-cart-badge">0</span>
+            </button>
+            <button type="button" class="menu-toggle" id="menuToggle" aria-label="Menú" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
+        </div>
+    </nav>
+
+    <!-- ============================================ MAIN -->
+    <main>
+        <!-- ============================================ HERO -->
+        <section class="inju-hero" id="hero" aria-label="Hero del Instituto Nacional de Jucuapa">
+            <img class="inju-hero-bg" src="img-INJU-page/img-porton-INJU.jpg" alt="Portón del Instituto Nacional de Jucuapa" loading="eager" width="1920" height="1080">
+            <div class="inju-hero-overlay"></div>
+            <div class="inju-hero-content">
+                <div class="hero-eyebrow">INJU</div>
+                <h1>
+                    <span class="inju-hero-title-main">Instituto Nacional de Jucuapa</span>
+                </h1>
+                <span class="hero-subtitle-italic">Formando el futuro de El Salvador</span>
+                <span class="hero-since">Desde 1966 · Jucuapa, Usulután.</span>
+                <div class="hero-divider"></div>
+                <p>Excelencia Académica, Estudiantes Integros y Compromiso con la Educación de Calidad. La Cuna de los Desarrolladores Detrás del Proyecto Verfrut's y R&amp;M.</p>
+            </div>
+
+            <div class="scroll-cue" data-scroll-target=".institute-wrap" role="button" tabindex="0" aria-label="Desplazarse a la sección siguiente">
+                <div class="mouse"></div>
+                <span>| Explorar |</span>
+            </div>
+        </section>
+
+        <!-- ============================================ INFORMACIÓN DEL INSTITUTO -->
+        <div class="section-sep"></div>
+        <section class="institute-wrap" aria-labelledby="institute-heading">
+            <div class="institute-header reveal">
+                <div>
+                    <span class="sec-label">Sobre la Institución</span>
+                    <h2 class="sec-title" id="institute-heading">El Instituto Nacional<br>de Jucuapa</h2>
+                </div>
+                <p class="sec-desc">Fundado en 1966, el INJU es una institución educativa de referencia en el departamento de Usulután, municipio de Jucuapa. Reconocida por su compromiso con la calidad académica y el desarrollo integral de sus estudiantes.</p>
+            </div>
+
+            <div class="institute-cards">
+                <article class="info-pillar reveal">
+                    <span class="pillar-icon">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M12 3 2 8l10 5 10-5-10-5Zm-6 8.1V15c0 2.3 3 4 6 4s6-1.7 6-4v-3.9l-6 3-6-3Zm14-.1v5h2V9.9l-2 1.1Z"/></svg>
+                    </span>
+                    <span class="pillar-tag">Excelencia</span>
+                    <h3>Tradición Académica</h3>
+                    <p>Con más de <strong>cinco décadas de trayectoria</strong>, el INJU ha formado miles de profesionales comprometidos con el desarrollo de El Salvador, manteniendo altos estándares de calidad.</p>
+                </article>
+                <article class="info-pillar reveal">
+                    <span class="pillar-icon">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M5 3h11a3 3 0 0 1 3 3v14H7a3 3 0 0 1-3-3V4a1 1 0 0 1 1-1Zm2 2v12a1 1 0 0 0 1 1h9V6a1 1 0 0 0-1-1H7Zm2 3h6v2H9V8Zm0 4h6v2H9v-2Z"/></svg>
+                    </span>
+                    <span class="pillar-tag">Oferta Educativa</span>
+                    <h3>Especialidades Amplias</h3>
+                    <p>Especialidades en <strong>ciencias naturales, sociales, matemáticas, idiomas, humanidades y desarrollo de software</strong>. Actividades extracurriculares para el crecimiento integral.</p>
+                </article>
+                <article class="info-pillar reveal">
+                    <span class="pillar-icon">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="m8.7 16.3-1.4 1.4L1.6 12l5.7-5.7 1.4 1.4L4.4 12l4.3 4.3Zm6.6 0 4.3-4.3-4.3-4.3 1.4-1.4 5.7 5.7-5.7 5.7-1.4-1.4ZM10 20l2.3-16h2L12 20h-2Z"/></svg>
+                    </span>
+                    <span class="pillar-tag">Innovación</span>
+                    <h3>Tecnología y Futuro</h3>
+                    <p>La especialidad en <strong>Desarrollo de Software</strong> prepara a los jóvenes para los desafíos del mundo digital, fomentando el pensamiento lógico y la resolución de problemas reales.</p>
+                </article>
+            </div>
+
+            <div class="detail-grid reveal">
+                <div class="detail-chip">
+                    <div class="chip-ico">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M12 3 3 8v13h6v-6h6v6h6V8l-9-5Zm0 2.3 6.5 3.6V19H17v-6H7v6H5.5V8.9L12 5.3Zm-3 5.2h2v2H9v-2Zm4 0h2v2h-2v-2Z"/></svg>
+                    </div>
+                    <div class="chip-txt"><h4>Nombre</h4><p>Instituto Nacional de Jucuapa</p></div>
+                </div>
+                <div class="detail-chip">
+                    <div class="chip-ico" aria-hidden="true">#</div>
+                    <div class="chip-txt"><h4>Código Institucional</h4><p>12585</p></div>
+                </div>
+                <div class="detail-chip">
+                    <div class="chip-ico">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+                    </div>
+                    <div class="chip-txt"><h4>Tipo de Sede</h4><p>Centro educativo oficial</p></div>
+                </div>
+                <div class="detail-chip">
+                    <div class="chip-ico">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0-5h2v3h-2V2Zm0 17h2v3h-2v-3ZM2 11h3v2H2v-2Zm17 0h3v2h-3v-2ZM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4-2.1-2.1Zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4-2.1-2.1Zm2.1-13.5 1.4 1.4-2.1 2.1-1.4-1.4 2.1-2.1ZM6.3 16.3l1.4 1.4-2.1 2.1-1.4-1.4 2.1-2.1Z"/></svg>
+                    </div>
+                    <div class="chip-txt"><h4>Jornada</h4><p>Matutino</p></div>
+                </div>
+                <div class="detail-chip">
+                    <div class="chip-ico">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.4 2.6.6 4 .6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3.4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.4.2 2.7.6 4 .1.4 0 .8-.2 1.1l-2.3 2.3Z"/></svg>
+                    </div>
+                    <div class="chip-txt"><h4>Teléfono</h4><p>2665-2154</p></div>
+                </div>
+                <div class="detail-chip">
+                    <div class="chip-ico">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M3 5h18v14H3V5Zm2 3.2V17h14V8.2l-7 5-7-5Zm1.5-1.2 5.5 3.9L17.5 7h-11Z"/></svg>
+                    </div>
+                    <div class="chip-txt"><h4>Correo</h4><p>institutodejucuapa@gmail.com</p></div>
+                </div>
+                <div class="detail-chip">
+                    <div class="chip-ico">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M7 2h2v3h6V2h2v3h4v16H3V5h4V2Zm12 8H5v9h14v-9ZM5 7v1h14V7H5Z"/></svg>
+                    </div>
+                    <div class="chip-txt"><h4>Calendario</h4><p>Nacional</p></div>
+                </div>
+                <div class="detail-chip">
+                    <div class="chip-ico">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="m9 4 6 2 5-2v16l-5 2-6-2-5 2V6l5-2Zm1 2.3v11.9l4 1.4V7.7l-4-1.4Zm-2 0L6 7v11.9l2-.8V6.3Zm8 1.5v11.9l2-.8V7l-2 .8Z"/></svg>
+                    </div>
+                    <div class="chip-txt"><h4>Dirección</h4><p>Final Calle 2 de Abril, Barrio La Cruz, Jucuapa</p></div>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- ============================================ TIMELINE HORIZONTAL -->
+        <div class="section-sep"></div>
+        <section class="timeline-section" aria-labelledby="timeline-heading">
+            <div class="tl-header reveal">
+                <span class="sec-label">Nuestra Trayectoria</span>
+                <h2 class="sec-title" id="timeline-heading">Una historia de<br>excelencia académica</h2>
+            </div>
+
+            <div class="timeline-wrapper">
+                <div class="timeline-scroll" id="timelineScroll" aria-label="Línea de tiempo del INJU">
+                    <div class="timeline-track">
+                        <article class="timeline-node reveal">
+                            <div class="timeline-number">1</div>
+                            <div class="timeline-node-inner">
+                                <span class="timeline-year">1966</span>
+                                <h3 class="timeline-title">Fundación del INJU</h3>
+                                <p class="timeline-text">El Instituto Nacional de Jucuapa abre sus puertas con el firme compromiso de brindar educación de calidad al departamento de Usulután, convirtiéndose desde sus inicios en un referente académico regional.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-node reveal">
+                            <div class="timeline-number">2</div>
+                            <div class="timeline-node-inner">
+                                <span class="timeline-year">Cuerpo Docente</span>
+                                <h3 class="timeline-title">Maestros Comprometidos</h3>
+                                <p class="timeline-text">Docentes altamente capacitados y en formación continua conforman el motor del INJU. Su dedicación va más allá del aula: son mentores que inspiran vocaciones y transforman vidas.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-node reveal">
+                            <div class="timeline-number">3</div>
+                            <div class="timeline-node-inner">
+                                <span class="timeline-year">Especialidades</span>
+                                <h3 class="timeline-title">Oferta Académica Diversa</h3>
+                                <p class="timeline-text">Ciencias naturales, sociales, matemáticas, idiomas, humanidades y desarrollo de software. Una oferta pensada para que cada estudiante encuentre su camino y se prepare para los desafíos del mundo moderno.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-node reveal">
+                            <div class="timeline-number">4</div>
+                            <div class="timeline-node-inner">
+                                <span class="timeline-year">Desarrollo Integral</span>
+                                <h3 class="timeline-title">Más Allá del Aula</h3>
+                                <p class="timeline-text">Deportes, cultura, arte y actividades extracurriculares completan la formación de los estudiantes. El INJU cree en el desarrollo completo del ser humano: mente, cuerpo y espíritu.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-node reveal">
+                            <div class="timeline-number">5</div>
+                            <div class="timeline-node-inner">
+                                <span class="timeline-year">Presente 2026</span>
+                                <h3 class="timeline-title">Pilar de la Comunidad</h3>
+                                <p class="timeline-text">Hoy el INJU sigue siendo un faro educativo en Jucuapa. Sus egresados se destacan en universidades, empresas y proyectos de innovación, como este sitio web, que demuestran que la educación pública de calidad transforma comunidades enteras.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="timeline-arrows" aria-label="Controles de línea de tiempo">
+                    <button type="button" class="timeline-arrow" id="timelinePrev" aria-label="Evento anterior">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M11 5 4 12l7 7 1.4-1.4L7.8 13H20v-2H7.8l4.6-4.6L11 5Z"/></svg>
+                    </button>
+                    <div class="timeline-dots" aria-hidden="true">
+                        <button type="button" class="timeline-dot-btn active" data-index="0" aria-label="Ir al evento 1"></button>
+                        <button type="button" class="timeline-dot-btn" data-index="1" aria-label="Ir al evento 2"></button>
+                        <button type="button" class="timeline-dot-btn" data-index="2" aria-label="Ir al evento 3"></button>
+                        <button type="button" class="timeline-dot-btn" data-index="3" aria-label="Ir al evento 4"></button>
+                        <button type="button" class="timeline-dot-btn" data-index="4" aria-label="Ir al evento 5"></button>
+                    </div>
+                    <button type="button" class="timeline-arrow" id="timelineNext" aria-label="Evento siguiente">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M13 5 11.6 6.4l4.6 4.6H4v2h12.2l-4.6 4.6L13 19l7-7-7-7Z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ DOCENTE -->
+        <div class="section-sep"></div>
+        <section class="teacher-section reveal" aria-labelledby="teacher-heading">
+            <div class="section-heading-center">
+                <span class="sec-label">Nuestro Guía</span>
+                <h2 class="sec-title" id="teacher-heading">El mentor detrás del equipo</h2>
+            </div>
+            <div class="teacher-card">
+                <div class="teacher-visual">
+                    <img src="img-INJU-page/img-teacher-alumnos/profeRoberto.jpg" alt="Foto del Licenciado Roberto Antonio García Machado" loading="lazy" width="340" height="400">
+                    <div class="teacher-vis-overlay"></div>
+                    <div class="teacher-vis-name">Lic. Roberto Antonio García Machado</div>
+                    <div class="teacher-vis-role">Facilitador</div>
+                </div>
+                <div class="teacher-body">
+                    <h3 class="teacher-name">Lic. Roberto Antonio García Machado</h3>
+                    <div class="teacher-badge"><span class="teacher-badge-mark"></span>Facilitador</div>
+                    <p class="teacher-quote">"El mejor código que un estudiante puede escribir es aquel que resuelve un problema real de su comunidad. Eso es exactamente lo que lograron con este proyecto."</p>
+                    <div class="teacher-stats">
+                        <div class="t-stat">
+                            <h4>Especialidad</h4>
+                            <p>Desarrollo de Software &amp; Programación Web Avanzada</p>
+                        </div>
+                        <div class="t-stat">
+                            <h4>Experiencia</h4>
+                            <p>Más de 15 años formando programadores en El Salvador</p>
+                        </div>
+                        <div class="t-stat">
+                            <h4>Metodología</h4>
+                            <p>Proyectos reales, pensamiento lógico y trabajo en equipo</p>
+                        </div>
+                        <div class="t-stat">
+                            <h4>Misión</h4>
+                            <p>Convertir la educación técnica en oportunidades de vida real</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ ALUMNOS -->
+        <div class="section-sep"></div>
+        <section class="students-section" id="equipo" aria-labelledby="team-heading">
+            <div class="section-heading-center reveal">
+                <span class="sec-label">El Equipo de Desarrollo</span>
+                <h2 class="sec-title" id="team-heading">Talento INJU 2026</h2>
+                <p class="sec-desc sec-desc-centered">Los cuatro estudiantes de 3° año de Software que construyeron Verfrut's y R&amp;M desde cero — Idea, Diseño, Código y Lanzamiento.</p>
+            </div>
+            <div class="students-grid">
+
+                <!-- Estudiante 1 -->
+                <article class="student-card reveal">
+                    <div class="student-bg student-bg-1"></div>
+                    <div class="student-avatar">
+                        <div class="av-icon">
+                            <svg class="inju-icon student-svg" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9c.6-4.2 3.2-7 7-7s6.4 2.8 7 7H5Z"/><path d="M18.5 6.5h2v2h2v2h-2v2h-2v-2h-2v-2h2v-2Z"/></svg>
+                        </div>
+                    </div>
+                    <div class="student-bottom">
+                        <h3 class="student-name">Valverde</h3>
+                        <div class="student-role">Programador</div>
+                    </div>
+                    <div class="student-hover">
+                        <div class="student-hover-name">Valverde</div>
+                        <div class="student-hover-role">Programador</div>
+                        <div class="student-hover-divider"></div>
+                        <h4>Responsabilidades</h4>
+                        <p>Desarrolló la página de Productos — catálogo interactivo, filtrado por categorías y el sistema de precios dinámico.</p>
+                        <div class="student-tags">
+                            <span class="s-tag">Productos</span>
+                            <span class="s-tag">JavaScript</span>
+                            <span class="s-tag">UI/UX</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Estudiante 2 -->
+                <article class="student-card reveal">
+                    <div class="student-bg student-bg-2"></div>
+                    <div class="student-avatar">
+                        <div class="av-icon">
+                            <svg class="inju-icon student-svg" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9c.6-4.2 3.2-7 7-7s6.4 2.8 7 7H5Z"/><path d="M18.5 6.5h2v2h2v2h-2v2h-2v-2h-2v-2h2v-2Z"/></svg>
+                        </div>
+                    </div>
+                    <div class="student-bottom">
+                        <h3 class="student-name">Jaime Guzmán</h3>
+                        <div class="student-role">Programador</div>
+                    </div>
+                    <div class="student-hover">
+                        <div class="student-hover-name">Jaime Guzmán</div>
+                        <div class="student-hover-role">Programador</div>
+                        <div class="student-hover-divider"></div>
+                        <h4>Responsabilidades</h4>
+                        <p>Diseñó la Galería y la identidad visual del sitio — animaciones CSS, efectos de hover y la paleta de colores.</p>
+                        <div class="student-tags">
+                            <span class="s-tag">Galería</span>
+                            <span class="s-tag">CSS3</span>
+                            <span class="s-tag">Diseño</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Estudiante 3 -->
+                <article class="student-card reveal">
+                    <div class="student-bg student-bg-3"></div>
+                    <div class="student-visual">
+                        <img src="img-INJU-page/img-teacher-alumnos/Daniel-Galdámez.jpg" alt="Foto de Daniel Galdámez" loading="lazy" width="300" height="400">
+                    </div>
+                    <div class="student-bottom">
+                        <h3 class="student-name">Daniel Galdámez</h3>
+                        <div class="student-role">Programador</div>
+                    </div>
+                    <div class="student-hover">
+                        <div class="student-hover-name">Daniel Galdámez</div>
+                        <div class="student-hover-role">Programador</div>
+                        <div class="student-hover-divider"></div>
+                        <h4>Responsabilidades</h4>
+                        <p>Implementó el módulo de Compras, el carrito de pedidos y el sistema de ubicación con mapa interactivo.</p>
+                        <div class="student-tags">
+                            <span class="s-tag">Compras</span>
+                            <span class="s-tag">Maps API</span>
+                            <span class="s-tag">Lógica</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Estudiante 4 -->
+                <article class="student-card reveal">
+                    <div class="student-bg student-bg-4"></div>
+                    <div class="student-avatar">
+                        <div class="av-icon">
+                            <svg class="inju-icon student-svg" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9c.6-4.2 3.2-7 7-7s6.4 2.8 7 7H5Z"/><path d="M18.5 6.5h2v2h2v2h-2v2h-2v-2h-2v-2h2v-2Z"/></svg>
+                        </div>
+                    </div>
+                    <div class="student-bottom">
+                        <h3 class="student-name">Elena Torres</h3>
+                        <div class="student-role">Programadora</div>
+                    </div>
+                    <div class="student-hover">
+                        <div class="student-hover-name">Elena Torres</div>
+                        <div class="student-hover-role">Programadora</div>
+                        <div class="student-hover-divider"></div>
+                        <h4>Responsabilidades</h4>
+                        <p>Arquitectura general, responsive design, optimización de rendimiento e integración final de todos los módulos.</p>
+                        <div class="student-tags">
+                            <span class="s-tag">Arquitectura</span>
+                            <span class="s-tag">Responsive</span>
+                            <span class="s-tag">Deploy</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ============================================ TECNOLOGÍAS -->
+        <div class="section-sep"></div>
+        <section class="tech-section" aria-labelledby="tech-heading">
+            <div class="tech-inner">
+                <div class="text-center reveal">
+                    <span class="sec-label">Nuestro Stack Tecnológico</span>
+                    <h2 class="sec-title" id="tech-heading">Las herramientas que utilizamos</h2>
+                    <p class="sec-desc sec-desc-centered sec-desc-tech">Sin frameworks externos. Solo las herramientas base de la web — porque dominar los fundamentos es lo que hace a un gran desarrollador.</p>
+                </div>
+                <div class="tech-grid reveal">
+                    <div class="tech-badge">
+                        <span class="tech-ico">
+                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M3 2h18l-1.6 18L12 22l-7.4-2L3 2Zm4.1 5 .2 2h9.4l-.2 2H7.5l.6 6.1 3.9 1.1 3.9-1.1.4-4.1h-2l-.2 2.5-2.1.6-2.1-.6-.1-1.5h-2l.3 3 4 1.1 4-1.1.8-8H7.3L7.1 7Z"/></svg>
+                        </span>
+                        <div class="tech-name">HTML5</div>
+                    </div>
+                    <div class="tech-badge">
+                        <span class="tech-ico">
+                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M3 2h18l-1.6 18L12 22l-7.4-2L3 2Zm4.2 5 .2 2h8.7l-.2 2H7.6l.2 2h7.9l-.3 2.5-3.4.9-3.4-.9-.2-1.5h-2l.4 3 5.2 1.5 5.2-1.5.7-8H7.4L7.2 7Z"/></svg>
+                        </span>
+                        <div class="tech-name">CSS3</div>
+                    </div>
+                    <div class="tech-badge">
+                        <span class="tech-ico">
+                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M3 3h18v18H3V3Zm5 14.5c.5.9 1.3 1.5 2.7 1.5 1.7 0 2.8-.9 2.8-3v-6h-2v6c0 .8-.3 1.1-.9 1.1-.5 0-.8-.3-1.1-.8L8 17.5Zm6.3-.2c.7 1.1 1.8 1.7 3.2 1.7 1.7 0 2.9-.9 2.9-2.5 0-1.5-.9-2.1-2.5-2.8l-.5-.2c-.8-.3-1.1-.5-1.1-.9s.3-.7.8-.7c.5 0 .9.2 1.2.8l1.5-1c-.6-1.1-1.5-1.6-2.7-1.6-1.7 0-2.8 1.1-2.8 2.5 0 1.5.9 2.2 2.3 2.8l.5.2c.9.4 1.3.6 1.3 1.1 0 .4-.4.8-1.1.8-.8 0-1.3-.4-1.7-1.1l-1.6.9Z"/></svg>
+                        </span>
+                        <div class="tech-name">JavaScript</div>
+                    </div>
+                    <div class="tech-badge">
+                        <span class="tech-ico">
+                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="m9 4 6 2 5-2v16l-5 2-6-2-5 2V6l5-2Zm1 2.3v11.9l4 1.4V7.7l-4-1.4Zm-2 0L6 7v11.9l2-.8V6.3Zm8 1.5v11.9l2-.8V7l-2 .8Z"/></svg>
+                        </span>
+                        <div class="tech-name">Google Maps</div>
+                    </div>
+                    <div class="tech-badge">
+                        <span class="tech-ico">
+                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M12 3c5 0 9 1.6 9 3.5v11c0 1.9-4 3.5-9 3.5s-9-1.6-9-3.5v-11C3 4.6 7 3 12 3Zm0 2C7.7 5 5 6.1 5 6.5S7.7 8 12 8s7-1.1 7-1.5S16.3 5 12 5Zm7 4.1C17.4 10.2 14.8 11 12 11s-5.4-.8-7-1.9v3.4C5 13 7.7 14 12 14s7-1 7-1.5V9.1Zm0 6C17.4 16.2 14.8 17 12 17s-5.4-.8-7-1.9v2.4C5 18 7.7 19 12 19s7-1 7-1.5v-2.4Z"/></svg>
+                        </span>
+                        <div class="tech-name">LocalStorage</div>
+                    </div>
+                    <div class="tech-badge">
+                        <span class="tech-ico">
+                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M4 4h16v11H8l-4 4V4Zm2 2v8.2L7.2 13H18V6H6Zm3 3h6v2H9V9Z"/></svg>
+                        </span>
+                        <div class="tech-name">WhatsApp API</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ CTA CIERRE -->
+        <section class="cta-section reveal" aria-labelledby="cta-heading">
+            <div class="cta-glow"></div>
+            <div class="cta-inner">
+                <span class="sec-label sec-label-block">¿Listo para comprar?</span>
+                <h2 class="sec-title" id="cta-heading">Visita nuestra tienda<br>digital</h2>
+                <p class="sec-desc">Explora el catálogo completo de Verfrut's y R&amp;M, agrega productos al carrito y realiza tu pedido directo por WhatsApp.</p>
+                <div class="cta-btns">
+                    <a href="productos.html" class="cta-btn-primary">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
+                        <span>Ver Productos</span>
+                    </a>
+                    <a href="index.html" class="cta-btn-secondary">
+                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M11 5 4 12l7 7 1.4-1.4L7.8 13H20v-2H7.8l4.6-4.6L11 5Z"/></svg>
+                        <span>Inicio</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ CARRITO COMPARTIDO -->
+    <div id="cartToast" class="cart-toast" aria-live="polite">
+        <span class="toast-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="14" height="14"><path d="m9.2 16.6-4.1-4.1-1.4 1.4 5.5 5.5L21 7.6l-1.4-1.4L9.2 16.6Z"/></svg>
+        </span>
+        <span class="toast-text" id="cartToastText">Producto agregado</span>
+        <button type="button" class="toast-action" id="cartToastAction">Ver carrito</button>
     </div>
-</nav>
-<!-- Fin navbar compartido -->
 
-    <!-- ============================================ HERO -->
-    <section class="inju-hero" id="hero">
-        <img class="inju-hero-bg" src="img-INJU-page/img-porton-INJU.jpg" alt="Fondo INJU" loading="eager">
-        <div class="hero-overlay"></div>
-        <div class="inju-hero-content">
-            <div class="hero-eyebrow">INJU</div>
-            <h1><span class="inju-hero-title-main">Instituto Nacional de Jucuapa</span><span class="inju-hero-title-mark">Instituto Nacional de Jucuapa</span></h1>
-            <span class="hero-subtitle-italic">Formando el futuro de El Salvador</span>
-            <span class="hero-since">Desde 1966 · Jucuapa, Usulután.</span>
-            <div class="hero-divider"></div>
-            <p>Excelencia Académica, Estudiantes Integros y Compromiso con la Educación de Calidad. La Cuna de los Desarrolladores Detrás del Proyecto Verfrut's y R&amp;M.</p>
-        </div>
-
-        <div class="scroll-cue" data-scroll-target=".stats-bar" role="button" tabindex="0">
-            <div class="mouse"></div>
-            <span>| Explorar |</span>
-        </div>
-    </section>
-
-    
-    <!-- ============================================ INFORMACIÓN DEL INSTITUTO -->
-    <div class="section-sep"></div>
-    <div class="institute-wrap">
-        <div class="institute-header reveal">
-            <div>
-                <span class="sec-label">Sobre la Institución</span>
-                <h2 class="sec-title">El Instituto Nacional<br>de Jucuapa</h2>
+    <div id="checkoutModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="cartModalTitle">
+            <div class="modal-header">
+                <h3 id="cartModalTitle">
+                    <span class="cart-title-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
+                    </span>
+                    <span>Mi carrito</span>
+                </h3>
+                <button type="button" id="closeModalXBtn" class="modal-close-btn" aria-label="Cerrar carrito">&times;</button>
             </div>
-            <p class="sec-desc">Fundado en 1966, el INJU es una institución educativa de referencia en el departamento de Usulután, municipio de Jucuapa. Reconocida por su compromiso con la calidad académica y el desarrollo integral de sus estudiantes.</p>
-        </div>
-
-        <div class="institute-cards">
-            <div class="info-pillar reveal">
-                <span class="pillar-icon"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 8l10 5 10-5-10-5Zm-6 8.1V15c0 2.3 3 4 6 4s6-1.7 6-4v-3.9l-6 3-6-3Zm14-.1v5h2V9.9l-2 1.1Z"/></svg></span>
-                <span class="pillar-tag">Excelencia</span>
-                <h3>Tradición Académica</h3>
-                <p>Con más de <strong>cinco décadas de trayectoria</strong>, el INJU ha formado miles de profesionales comprometidos con el desarrollo de El Salvador, manteniendo altos estándares de calidad.</p>
+            <div id="modalItemsList" class="modal-items"></div>
+            <div class="modal-total">
+                <span>Total a pagar</span>
+                <span id="modalTotal">$0.00</span>
             </div>
-            <div class="info-pillar reveal">
-                <span class="pillar-icon"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h11a3 3 0 0 1 3 3v14H7a3 3 0 0 1-3-3V4a1 1 0 0 1 1-1Zm2 2v12a1 1 0 0 0 1 1h9V6a1 1 0 0 0-1-1H7Zm2 3h6v2H9V8Zm0 4h6v2H9v-2Z"/></svg></span>
-                <span class="pillar-tag">Oferta Educativa</span>
-                <h3>Especialidades Amplias</h3>
-                <p>Especialidades en <strong>ciencias naturales, sociales, matemáticas, idiomas, humanidades y desarrollo de software</strong>. Actividades extracurriculares para el crecimiento integral.</p>
+            <div class="modal-form">
+                <p class="modal-hint">Ingresa tu nombre para que el vendedor te identifique.</p>
+                <div class="modal-name-grid">
+                    <input id="modalBuyerName" type="text" placeholder="Nombre" autocomplete="name" aria-label="Nombre del comprador">
+                    <input id="modalBuyerLast" type="text" placeholder="Apellido" autocomplete="family-name" aria-label="Apellido del comprador">
+                </div>
             </div>
-            <div class="info-pillar reveal">
-                <span class="pillar-icon"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8.7 16.3-1.4 1.4L1.6 12l5.7-5.7 1.4 1.4L4.4 12l4.3 4.3Zm6.6 0 4.3-4.3-4.3-4.3 1.4-1.4 5.7 5.7-5.7 5.7-1.4-1.4ZM10 20l2.3-16h2L12 20h-2Z"/></svg></span>
-                <span class="pillar-tag">Innovación</span>
-                <h3>Tecnología y Futuro</h3>
-                <p>La especialidad en <strong>Desarrollo de Software</strong> prepara a los jóvenes para los desafíos del mundo digital, fomentando el pensamiento lógico y la resolución de problemas reales.</p>
-            </div>
-        </div>
-
-        <div class="detail-grid reveal">
-            <div class="detail-chip">
-                <div class="chip-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 8v13h6v-6h6v6h6V8l-9-5Zm0 2.3 6.5 3.6V19H17v-6H7v6H5.5V8.9L12 5.3Zm-3 5.2h2v2H9v-2Zm4 0h2v2h-2v-2Z"/></svg></div>
-                <div class="chip-txt"><h4>Nombre.</h4><p>Instituto Nacional de Jucuapa</p></div>
-            </div>
-            <div class="detail-chip">
-                <div class="chip-ico">#</div>
-                <div class="chip-txt"><h4>Código Institutcional.</h4><p>12585</p></div>
-            </div>
-            <div class="detail-chip">
-                <div class="chip-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg></div>
-                <div class="chip-txt"><h4>Tipo de Sede.</h4><p>Centro educativo oficial</p></div>
-            </div>
-            <div class="detail-chip">
-                <div class="chip-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0-5h2v3h-2V2Zm0 17h2v3h-2v-3ZM2 11h3v2H2v-2Zm17 0h3v2h-3v-2ZM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4-2.1-2.1Zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4-2.1-2.1Zm2.1-13.5 1.4 1.4-2.1 2.1-1.4-1.4 2.1-2.1ZM6.3 16.3l1.4 1.4-2.1 2.1-1.4-1.4 2.1-2.1Z"/></svg></div>
-                <div class="chip-txt"><h4>Jornada.</h4><p>Matutino</p></div>
-            </div>
-            <div class="detail-chip">
-                <div class="chip-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.4 2.6.6 4 .6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3.4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.4.2 2.7.6 4 .1.4 0 .8-.2 1.1l-2.3 2.3Z"/></svg></div>
-                <div class="chip-txt"><h4>Teléfono.</h4><p>2665-2154</p></div>
-            </div>
-            <div class="detail-chip">
-                <div class="chip-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 3.2V17h14V8.2l-7 5-7-5Zm1.5-1.2 5.5 3.9L17.5 7h-11Z"/></svg></div>
-                <div class="chip-txt"><h4>Correo.</h4><p>institutodejucuapa@gmail.com</p></div>
-            </div>
-            <div class="detail-chip">
-                <div class="chip-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v3h6V2h2v3h4v16H3V5h4V2Zm12 8H5v9h14v-9ZM5 7v1h14V7H5Z"/></svg></div>
-                <div class="chip-txt"><h4>Calendario</h4><p>Nacional</p></div>
-            </div>
-            <div class="detail-chip">
-                <div class="chip-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 6 2 5-2v16l-5 2-6-2-5 2V6l5-2Zm1 2.3v11.9l4 1.4V7.7l-4-1.4Zm-2 0L6 7v11.9l2-.8V6.3Zm8 1.5v11.9l2-.8V7l-2 .8Z"/></svg></div>
-                <div class="chip-txt"><h4>Dirección.</h4><p>Final Calle 2 de Abril, Barrio La Cruz, Jucuapa</p></div>
+            <div class="modal-buttons">
+                <button type="button" id="closeModalBtn" class="btn-secondary">Seguir comprando</button>
+                <button type="button" id="clearCartBtn" class="btn-secondary">Limpiar carrito</button>
+                <button type="button" id="sendWhatsappBtn" class="btn-primary" disabled>Enviar por WhatsApp</button>
             </div>
         </div>
     </div>
-
-    <!-- ============================================ EL PROYECTO -->
-    <div class="section-sep"></div>
-    <section class="project-section">
-        <div class="project-inner">
-            
-            <div class="project-left reveal-l">
-               
-                <div class="project-img-wrap">
-                    <img src="img-start-galeria-mixtas/Tienda11.jpg" alt="Verfrut's y R&M">
-                    <div class="project-img-overlay"></div>
-                    <div class="project-img-badge">
-                        <div class="badge-num">2026</div>
-                        <div class="badge-txt">Año de lanzamiento</div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-right reveal-r">
-                <center><span class="sec-label">El Proyecto Educativo.</span></center>
-                <h2 class="sec-title">¿Cómo nació<br>Verfrut's y R&M?</h2>
-                <p class="project-story">En el marco de la especialidad de <strong>Desarrollo de Software</strong> del tercer año del INJU, cuatro estudiantes recibieron el desafío de construir un sitio web real para un negocio local: la tienda de frutas, verduras y productos del hogar <strong>Verfrut's y R&M</strong>.</p>
-                <p class="project-story">El objetivo era claro: crear una solución funcional que permitiera a la tienda mostrar su catálogo, recibir pedidos por WhatsApp, y conectar con sus clientes de Jucuapa de forma digital. Un proyecto real, para un cliente real, desarrollado con tecnologías reales.</p>
-                <p class="project-story">Bajo la guía del Licenciado: <strong>Roberto Antonio García Machado</strong>, el equipo trabajó durante semanas diseñando, programando y refinando cada página — desde la idea, hasta la implementacion.</p>
-
-                <div class="project-pillars">
-                    <div class="proj-pill">
-                        <span class="proj-pill-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10h-2a8 8 0 1 1-8-8V2Zm0 4a6 6 0 1 0 6 6h-2a4 4 0 1 1-4-4V6Zm8.6-3.4-3.1 3.1H15v2.5l-3.7 3.7 1.4 1.4 3.7-3.7H19V7.1l3.1-3.1-1.5-1.4Z"/></svg></span>
-                        <div>
-                            <h4>Cliente Real.</h4>
-                            <p>Negocio local de Jucuapa como caso de estudio práctico</p>
-                        </div>
-                    </div>
-                    <div class="proj-pill">
-                        <span class="proj-pill-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 10-13h-7l1-7Z"/></svg></span>
-                        <div>
-                            <h4>Sin Frameworks Externos.</h4>
-                            <p>Se utilizo unicamente HTML5, CSS3 y JavaScript Vanilla</p>
-                        </div>
-                    </div>
-                    <div class="proj-pill">
-                        <span class="proj-pill-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 3v14h8V5H8Zm3 15h2v1h-2v-1Z"/></svg></span>
-                        <div>
-                            <h4>Responsive Design.</h4>
-                            <p>Diseñado para funcionar en cualquier dispositivo</p>
-                        </div>
-                    </div>
-                    <div class="proj-pill">
-                        <span class="proj-pill-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span>
-                        <div>
-                            <h4>Electronic-commerce Real.</h4>
-                            <p>Catálogo, carrito y pedidos por WhatsApp integrados</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ TIMELINE HORIZONTAL -->
-    <div class="section-sep"></div>
-    <section class="timeline-section">
-        <div class="tl-header reveal">
-            <span class="sec-label">Nuestra Trayectoria</span>
-            <h2 class="sec-title">Una historia de<br>excelencia academica</h2>
-        </div>
-
-        <div class="timeline-wrapper">
-            <div class="timeline-scroll" id="timelineScroll" aria-label="Linea de tiempo del INJU">
-                <div class="timeline-track">
-                    <article class="timeline-node reveal">
-                        <div class="timeline-number">1</div>
-                        <div class="timeline-node-inner">
-                            <span class="timeline-year">1966</span>
-                            <h3 class="timeline-title">Fundacion del INJU</h3>
-                            <p class="timeline-text">El Instituto Nacional de Jucuapa abre sus puertas con el firme compromiso de brindar educacion de calidad al departamento de Usulutan, convirtiendose desde sus inicios en un referente academico regional.</p>
-                        </div>
-                    </article>
-                    <article class="timeline-node reveal">
-                        <div class="timeline-number">2</div>
-                        <div class="timeline-node-inner">
-                            <span class="timeline-year">Cuerpo Docente</span>
-                            <h3 class="timeline-title">Maestros Comprometidos</h3>
-                            <p class="timeline-text">Docentes altamente capacitados y en formacion continua conforman el motor del INJU. Su dedicacion va mas alla del aula: son mentores que inspiran vocaciones y transforman vidas.</p>
-                        </div>
-                    </article>
-                    <article class="timeline-node reveal">
-                        <div class="timeline-number">3</div>
-                        <div class="timeline-node-inner">
-                            <span class="timeline-year">Especialidades</span>
-                            <h3 class="timeline-title">Oferta Academica Diversa</h3>
-                            <p class="timeline-text">Ciencias naturales, sociales, matematicas, idiomas, humanidades y desarrollo de software. Una oferta pensada para que cada estudiante encuentre su camino y se prepare para los desafios del mundo moderno.</p>
-                        </div>
-                    </article>
-                    <article class="timeline-node reveal">
-                        <div class="timeline-number">4</div>
-                        <div class="timeline-node-inner">
-                            <span class="timeline-year">Desarrollo Integral</span>
-                            <h3 class="timeline-title">Mas Alla del Aula</h3>
-                            <p class="timeline-text">Deportes, cultura, arte y actividades extracurriculares completan la formacion de los estudiantes. El INJU cree en el desarrollo completo del ser humano: mente, cuerpo y espiritu.</p>
-                        </div>
-                    </article>
-                    <article class="timeline-node reveal">
-                        <div class="timeline-number">5</div>
-                        <div class="timeline-node-inner">
-                            <span class="timeline-year">Presente 2026</span>
-                            <h3 class="timeline-title">Pilar de la Comunidad</h3>
-                            <p class="timeline-text">Hoy el INJU sigue siendo un faro educativo en Jucuapa. Sus egresados se destacan en universidades, empresas y proyectos de innovacion, como este sitio web, que demuestran que la educacion publica de calidad transforma comunidades enteras.</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-            <div class="timeline-arrows" aria-label="Controles de linea de tiempo">
-                <button class="timeline-arrow" id="timelinePrev" type="button" aria-label="Evento anterior"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 4 12l7 7 1.4-1.4L7.8 13H20v-2H7.8l4.6-4.6L11 5Z"/></svg></button>
-                <div class="timeline-dots" aria-hidden="true">
-                    <button class="timeline-dot-btn active" type="button" data-index="0"></button>
-                    <button class="timeline-dot-btn" type="button" data-index="1"></button>
-                    <button class="timeline-dot-btn" type="button" data-index="2"></button>
-                    <button class="timeline-dot-btn" type="button" data-index="3"></button>
-                    <button class="timeline-dot-btn" type="button" data-index="4"></button>
-                </div>
-                <button class="timeline-arrow" id="timelineNext" type="button" aria-label="Evento siguiente"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5 11.6 6.4l4.6 4.6H4v2h12.2l-4.6 4.6L13 19l7-7-7-7Z"/></svg></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ DOCENTE -->
-    <div class="section-sep"></div>
-    <section class="teacher-section reveal">
-        <div class="section-heading-center">
-            <span class="sec-label">Nuestro Guía.</span>
-            <h2 class="sec-title">El mentor detrás del equipo</h2>
-        </div>
-        <div class="teacher-card">
-            <div class="teacher-visual">
-                <img src="img-INJU-page/img-teacher-alumnos/profeRoberto.jpg" alt="Roberto Machado García">
-                <div class="teacher-vis-overlay"></div>
-                <div class="teacher-vis-name">Lic. Roberto Antonio García Machado</div>
-                <div class="teacher-vis-role"></div>
-            </div>
-            <div class="teacher-body">
-                <h3 class="teacher-name">Lic. Roberto Antonio García Machado</h3>
-                <div class="teacher-badge"><span class="teacher-badge-mark"></span>Facilitador</div>
-                <p class="teacher-quote">"El mejor código que un estudiante puede escribir es aquel que resuelve un problema real de su comunidad. Eso es exactamente lo que lograron con este proyecto."</p>
-                <div class="teacher-stats">
-                    <div class="t-stat">
-                        <h4>Especialidad</h4>
-                        <p>Desarrollo de Software & Programación Web Avanzada</p>
-                    </div>
-                    <div class="t-stat">
-                        <h4>Experiencia</h4>
-                        <p>Más de 15 años formando programadores en El Salvador</p>
-                    </div>
-                    <div class="t-stat">
-                        <h4>Metodología</h4>
-                        <p>Proyectos reales, pensamiento lógico y trabajo en equipo</p>
-                    </div>
-                    <div class="t-stat">
-                        <h4>Misión</h4>
-                        <p>Convertir la educación técnica en oportunidades de vida real</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ ALUMNOS -->
-    <div class="section-sep"></div>
-    <section class="students-section" id="equipo">
-        <div class="section-heading-center reveal">
-            <span class="sec-label">El Equipo de Desarrollo.</span>
-            <h2 class="sec-title">Talento INJU 2026</h2>
-            <p class="sec-desc sec-desc-centered">Los cuatro estudiantes de 3° año de Software que construyeron Verfrut's y R&M desde cero — Idea, Diseño, Código, y Lanzamiento.</p>
-        </div>
-        <div class="students-grid">
-
-            <!-- Estudiante 1 -->
-            <div class="student-card reveal">
-                <div class="student-bg student-bg-1"></div>
-                <div class="student-avatar">
-                    <div class="av-icon"><svg class="inju-icon student-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9c.6-4.2 3.2-7 7-7s6.4 2.8 7 7H5Z"/><path d="M18.5 6.5h2v2h2v2h-2v2h-2v-2h-2v-2h2v-2Z"/></svg></div>
-                </div>
-                <div class="student-bottom">
-                    <h3 class="student-name">Valverde</h3>
-                    <div class="student-role">Programador</div>
-                </div>
-                <div class="student-hover">
-                    <div class="student-hover-name">Valverde</div>
-                    <div class="student-hover-role">Programador</div>
-                    <div class="student-hover-divider"></div>
-                    <h4>Responsabilidades</h4>
-                    <p>Desarrolló la página de Productos — catálogo interactivo, filtrado por categorías y el sistema de precios dinámico.</p>
-                    <div class="student-tags">
-                        <span class="s-tag">Productos</span>
-                        <span class="s-tag">JavaScript</span>
-                        <span class="s-tag">UI/UX</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Estudiante 2 — sin foto: avatar CSS -->
-            <div class="student-card reveal">
-                <div class="student-bg student-bg-2"></div>
-                <div class="student-avatar">
-                    <div class="av-icon"><svg class="inju-icon student-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9c.6-4.2 3.2-7 7-7s6.4 2.8 7 7H5Z"/><path d="M18.5 6.5h2v2h2v2h-2v2h-2v-2h-2v-2h2v-2Z"/></svg></div>
-                </div>
-                <div class="student-bottom">
-                    <h3 class="student-name">Jaime Guzmán</h3>
-                    <div class="student-role">Programador</div>
-                </div>
-                <div class="student-hover">
-                    <div class="student-hover-name">Jaime Guzmán</div>
-                    <div class="student-hover-role">Programador</div>
-                    <div class="student-hover-divider"></div>
-                    <h4>Responsabilidades</h4>
-                    <p>Diseñó la Galería y la identidad visual del sitio — animaciones CSS, efectos de hover y la paleta de colores.</p>
-                    <div class="student-tags">
-                        <span class="s-tag">Galería</span>
-                        <span class="s-tag">CSS3</span>
-                        <span class="s-tag">Diseño</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Estudiante 3 -->
-            <div class="student-card reveal">
-                <div class="student-bg student-bg-3"></div>
-                <div class="student-visual">
-                    <img src="img-INJU-page/img-teacher-alumnos/Daniel-Galdámez.jpg" alt="Daniel Galdámez">
-                </div>
-                <div class="student-bottom">
-                    <h3 class="student-name">Daniel Galdámez</h3>
-                    <div class="student-role">Programador</div>
-                </div>
-                <div class="student-hover">
-                    <div class="student-hover-name">Daniel Galdámez</div>
-                    <div class="student-hover-role">Programador</div>
-                    <div class="student-hover-divider"></div>
-                    <h4>Responsabilidades</h4>
-                    <p>Implementó el módulo de Compras, el carrito de pedidos y el sistema de ubicación con mapa interactivo.</p>
-                    <div class="student-tags">
-                        <span class="s-tag">Compras</span>
-                        <span class="s-tag">Maps API</span>
-                        <span class="s-tag">Lógica</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Estudiante 4 — sin foto: avatar CSS -->
-            <div class="student-card reveal">
-                <div class="student-bg student-bg-4"></div>
-                <div class="student-avatar">
-                    <div class="av-icon"><svg class="inju-icon student-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9c.6-4.2 3.2-7 7-7s6.4 2.8 7 7H5Z"/><path d="M18.5 6.5h2v2h2v2h-2v2h-2v-2h-2v-2h2v-2Z"/></svg></div>
-                </div>
-                <div class="student-bottom">
-                    <h3 class="student-name">Elena Torres</h3>
-                    <div class="student-role">Programadora</div>
-                </div>
-                <div class="student-hover">
-                    <div class="student-hover-name">Elena Torres</div>
-                    <div class="student-hover-role">Programadora</div>
-                    <div class="student-hover-divider"></div>
-                    <h4>Responsabilidades</h4>
-                    <p>Arquitectura general, responsive design, optimización de rendimiento e integración final de todos los módulos.</p>
-                    <div class="student-tags">
-                        <span class="s-tag">Arquitectura</span>
-                        <span class="s-tag">Responsive</span>
-                        <span class="s-tag">Deploy</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ============================================ TECNOLOGÍAS -->
-    <div class="section-sep"></div>
-    <section class="tech-section">
-        <div class="tech-inner">
-            <div class="text-center reveal">
-                <span class="sec-label">Nuestro Stack Tecnológico.</span>
-                <h2 class="sec-title">Las herramientas que utilizamos.</h2>
-                <p class="sec-desc sec-desc-centered sec-desc-tech">Sin frameworks externos. Solo las herramientas base de la web — porque dominar los fundamentos es lo que hace a un gran desarrollador.</p>
-            </div>
-            <div class="tech-grid reveal">
-                <div class="tech-badge">
-                    <span class="tech-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2h18l-1.6 18L12 22l-7.4-2L3 2Zm4.1 5 .2 2h9.4l-.2 2H7.5l.6 6.1 3.9 1.1 3.9-1.1.4-4.1h-2l-.2 2.5-2.1.6-2.1-.6-.1-1.5h-2l.3 3 4 1.1 4-1.1.8-8H7.3L7.1 7Z"/></svg></span>
-                    <div class="tech-name">HTML5</div>
-                </div>
-                <div class="tech-badge">
-                    <span class="tech-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2h18l-1.6 18L12 22l-7.4-2L3 2Zm4.2 5 .2 2h8.7l-.2 2H7.6l.2 2h7.9l-.3 2.5-3.4.9-3.4-.9-.2-1.5h-2l.4 3 5.2 1.5 5.2-1.5.7-8H7.4L7.2 7Z"/></svg></span>
-                    <div class="tech-name">CSS3</div>
-                </div>
-                <div class="tech-badge">
-                    <span class="tech-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v18H3V3Zm5 14.5c.5.9 1.3 1.5 2.7 1.5 1.7 0 2.8-.9 2.8-3v-6h-2v6c0 .8-.3 1.1-.9 1.1-.5 0-.8-.3-1.1-.8L8 17.5Zm6.3-.2c.7 1.1 1.8 1.7 3.2 1.7 1.7 0 2.9-.9 2.9-2.5 0-1.5-.9-2.1-2.5-2.8l-.5-.2c-.8-.3-1.1-.5-1.1-.9s.3-.7.8-.7c.5 0 .9.2 1.2.8l1.5-1c-.6-1.1-1.5-1.6-2.7-1.6-1.7 0-2.8 1.1-2.8 2.5 0 1.5.9 2.2 2.3 2.8l.5.2c.9.4 1.3.6 1.3 1.1 0 .4-.4.8-1.1.8-.8 0-1.3-.4-1.7-1.1l-1.6.9Z"/></svg></span>
-                    <div class="tech-name">JavaScript</div>
-                </div>
-                <div class="tech-badge">
-                    <span class="tech-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 6 2 5-2v16l-5 2-6-2-5 2V6l5-2Zm1 2.3v11.9l4 1.4V7.7l-4-1.4Zm-2 0L6 7v11.9l2-.8V6.3Zm8 1.5v11.9l2-.8V7l-2 .8Z"/></svg></span>
-                    <div class="tech-name">Google Maps</div>
-                </div>
-                <div class="tech-badge">
-                    <span class="tech-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c5 0 9 1.6 9 3.5v11c0 1.9-4 3.5-9 3.5s-9-1.6-9-3.5v-11C3 4.6 7 3 12 3Zm0 2C7.7 5 5 6.1 5 6.5S7.7 8 12 8s7-1.1 7-1.5S16.3 5 12 5Zm7 4.1C17.4 10.2 14.8 11 12 11s-5.4-.8-7-1.9v3.4C5 13 7.7 14 12 14s7-1 7-1.5V9.1Zm0 6C17.4 16.2 14.8 17 12 17s-5.4-.8-7-1.9v2.4C5 18 7.7 19 12 19s7-1 7-1.5v-2.4Z"/></svg></span>
-                    <div class="tech-name">LocalStorage</div>
-                </div>
-                <div class="tech-badge">
-                    <span class="tech-ico"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v11H8l-4 4V4Zm2 2v8.2L7.2 13H18V6H6Zm3 3h6v2H9V9Z"/></svg></span>
-                    <div class="tech-name">WhatsApp API</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ CTA CIERRE -->
-    <section class="cta-section reveal">
-        <div class="cta-glow"></div>
-        <div class="cta-inner">
-            <span class="sec-label sec-label-block">¿Listo para comprar?</span>
-            <h2 class="sec-title">Visita nuestra tienda<br>digital</h2>
-            <p class="sec-desc">Explora el catálogo completo de Verfrut's y R&M, agrega productos al carrito y realiza tu pedido directo por WhatsApp.</p>
-            <div class="cta-btns">
-                <a href="productos.html" class="cta-btn-primary"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg><span>Ver Productos</span></a>
-                <a href="index.html" class="cta-btn-secondary"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 4 12l7 7 1.4-1.4L7.8 13H20v-2H7.8l4.6-4.6L11 5Z"/></svg><span>Inicio</span></a>
-            </div>
-        </div>
-    </section>
 
     <!-- ============================================ FOOTER -->
-    <!-- Inicio carrito compartido -->
-<div id="cartToast" class="cart-toast" aria-live="polite">
-    <span class="toast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.2 16.6-4.1-4.1-1.4 1.4 5.5 5.5L21 7.6l-1.4-1.4L9.2 16.6Z"/></svg></span>
-    <span class="toast-text" id="cartToastText">Producto agregado</span>
-    <button class="toast-action" id="cartToastAction" type="button">Ver carrito</button>
-</div>
-
-<div id="checkoutModal" class="modal-overlay" aria-hidden="true">
-    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="cartModalTitle">
-        <div class="modal-header">
-            <h3 id="cartModalTitle"><span class="cart-title-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span><span>Mi carrito</span></h3>
-            <button id="closeModalXBtn" class="modal-close-btn" type="button" aria-label="Cerrar carrito">&times;</button>
-        </div>
-        <div id="modalItemsList" class="modal-items"></div>
-        <div class="modal-total">
-            <span>Total a pagar</span>
-            <span id="modalTotal">$0.00</span>
-        </div>
-        <div class="modal-form">
-            <p class="modal-hint">Ingresa tu nombre para que el vendedor te identifique.</p>
-            <div class="modal-name-grid">
-                <input id="modalBuyerName" type="text" placeholder="Nombre" autocomplete="name">
-                <input id="modalBuyerLast" type="text" placeholder="Apellido" autocomplete="family-name">
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img width="40" height="40" src="img-navbar-and-icon/img-navbar.png" alt="Logo de Verfrut's y R&M">
+                    Verfrut's y R&amp;M
+                </div>
+                <p>Tu tienda de referencia en Jucuapa, donde la frescura se encuentra con la excelencia.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/" class="social-facebook" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/" class="social-instagram" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg>
+                    </a>
+                    <a href="https://wa.me/50360649103" class="social-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Negocio</h4>
+                <div class="footer-line"></div>
+                <ul>
+                    <li><a href="historiaempresa.html">Historia de la empresa</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="compras.html">Compras</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Team</h4>
+                <div class="footer-line"></div>
+                <ul>
+                    <li><a href="inju.html">Historia INJU</a></li>
+                    <li><a href="inju.html#equipo">Conoce al equipo detrás del proyecto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h4>Contacto e Información</h4>
+                <div class="footer-line"></div>
+                <p>Jucuapa, Usulután, El Salvador.</p>
+                <p>+503 6064-9103 | +503 6971-8315</p>
+                <p class="footer-email">
+                    <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M3 5h18v14H3V5Zm2 3.2V17h14V8.2l-7 5-7-5Zm1.5-1.2 5.5 3.9L17.5 7h-11Z"/></svg>
+                    <span>verfrutsrm.shop@gmail.com</span>
+                </p>
             </div>
         </div>
-        <div class="modal-buttons">
-            <button id="closeModalBtn" class="btn-secondary" type="button">Seguir comprando</button>
-            <button id="clearCartBtn" class="btn-secondary" type="button">Limpiar carrito</button>
-            <button id="sendWhatsappBtn" class="btn-primary" type="button" disabled>Enviar por WhatsApp</button>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
+                <span class="footer-italic">This website was designed and created by:</span>
+                <span class="footer-bold">Either Design STR Team.</span>
+            </p>
         </div>
-    </div>
-</div>
-<!-- Fin carrito compartido -->
+    </footer>
 
-<!-- Inicio footer compartido -->
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-brand">
-            <div class="footer-logo">
-                <img width="40" height="40" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
-                Verfrut's y R&amp;M
-            </div>
-            <p>Tu tienda de referencia en Jucuapa, donde la frescura se encuentra con la excelencia.</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/" class="social-facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                <a href="https://www.instagram.com/" class="social-instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg></a>
-                <a href="https://wa.me/50360649103" class="social-whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Negocio</h4>
-            <div class="footer-line"></div>
-            <ul>
-                <li><a href="historiaempresa.html">Historia de la empresa</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="compras.html">Compras</a></li>
-                <li><a href="productos.html">Productos</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Team</h4>
-            <div class="footer-line"></div>
-            <ul>
-                <li><a href="inju.html">Historia INJU</a></li>
-                <li><a href="inju.html#equipo">Conoce al equipo detrás del proyecto</a></li>
-            </ul>
-        </div>
-        <div class="footer-col footer-contact">
-            <h4>Contacto e Información</h4>
-            <div class="footer-line"></div>
-            <p>Jucuapa, Usulután, El Salvador.</p>
-            <p>+503 6064-9103 | +503 6971-8315</p>
-            <p class="footer-email"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 3.2V17h14V8.2l-7 5-7-5Zm1.5-1.2 5.5 3.9L17.5 7h-11Z"/></svg><span>verfrutsrm.shop@gmail.com</span></p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Verfrut's y R&amp;M. Todos los derechos reservados. | 3° Año en Desarrollo de Software. |
-            <span class="footer-italic">This website was designed and created by:</span>
-            <span class="footer-bold">Either Design STR Team.</span>
-        </p>
-    </div>
-</footer>
-<!-- Fin footer compartido -->
-
-    <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
-<!-- Inicio JavaScript global -->
-<script src="script.js"></script>
-<!-- Fin JavaScript global -->
+    <button type="button" class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
+    <script src="script.js"></script>
 </body>
 </html>
