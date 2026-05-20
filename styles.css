@@ -3069,6 +3069,7 @@
             font-weight: 800;
             letter-spacing: -0.5px;
             transition: all 0.4s ease;
+            font-family: Georgia, 'Times New Roman', serif;
         }
 
         .section-header h2:hover {
