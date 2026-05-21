@@ -138,29 +138,137 @@
             100% { background-position: 200% 0; }
         }
 
-        /* Estadísticas hero */
+        /* ================================================
+           ESTADÍSTICAS HERO — colores empresa, llamativos
+           ================================================ */
         .biz-hero-stats {
             display: flex;
             justify-content: center;
-            gap: 1.2rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            border-top: 1px solid rgba(255,255,255,0.04);
         }
+
         .biz-stat {
-            text-align: center;
-            padding: 1rem 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.75rem 1.4rem;
             background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px;
-            backdrop-filter: blur(10px);
-            transition: border-color 0.3s, transform 0.3s;
+            border: 1.5px solid rgba(255,255,255,0.06);
+            border-radius: 999px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
         }
-        .biz-stat:hover { border-color: rgba(34,197,94,0.25); transform: translateY(-4px); }
-        .biz-stat-ico { color: #22c55e; margin-bottom: 6px; display:flex; align-items:center; justify-content:center; }
-        .biz-stat-num { display:block; font-size:1.3rem; font-weight:900; color:#4ade80; line-height:1; }
-        .biz-stat-lbl { display:block; font-size:0.62rem; text-transform:uppercase; letter-spacing:1.5px; color:#64748b; margin-top:4px; }
+
+        .biz-stat::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            padding: 1.5px;
+            background: linear-gradient(135deg, #22c55e, #4ade80, #FF6F00);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .biz-stat:hover::before {
+            opacity: 1;
+        }
+
+        .biz-stat:hover {
+            background: rgba(34,197,94,0.08);
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(34,197,94,0.15), 0 0 0 1px rgba(34,197,94,0.1);
+        }
+
+        .biz-stat-ico {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(255,111,0,0.1));
+            border: 1.5px solid rgba(34,197,94,0.25);
+            color: #4ade80;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .biz-stat-ico::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(34,197,94,0.3), rgba(255,111,0,0.2));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .biz-stat:hover .biz-stat-ico {
+            border-color: rgba(34,197,94,0.5);
+            transform: scale(1.12);
+            box-shadow: 0 0 20px rgba(34,197,94,0.25);
+        }
+
+        .biz-stat:hover .biz-stat-ico::after {
+            opacity: 1;
+        }
+
+        .biz-stat-ico svg {
+            width: 16px;
+            height: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .biz-stat-body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+
+        .biz-stat-num {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.02em;
+            transition: all 0.3s ease;
+        }
+
+        .biz-stat:hover .biz-stat-num {
+            color: #4ade80;
+            text-shadow: 0 0 20px rgba(74,222,128,0.4);
+        }
+
+        .biz-stat-lbl {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #64748b;
+            margin-top: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .biz-stat:hover .biz-stat-lbl {
+            color: #FF6F00;
+            letter-spacing: 0.18em;
+        }
 
         /* ================================================
            STORY SECTION
@@ -188,7 +296,7 @@
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 20px;
             background: linear-gradient(135deg, #fff 0%, #4ade80 100%);
-            -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -426,42 +534,90 @@
         }
 
         /* ================================================
-           SECCIÓN "IR AL INJU" — sin glow feo
+           SECCIÓN "IR AL INJU" — minimalista
            ================================================ */
         .history-inju-section {
             position: relative;
-            overflow: hidden;
-            background: #07100c;
+            background: #040a06;
             color: #e2e8f0;
-            padding: 90px 20px;
-            border-top: 1px solid rgba(34,197,94,0.06);
+            padding: 80px 20px 100px;
             text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.04);
         }
 
-        .history-inju-section::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%,-50%);
-            width: 600px; height: 600px;
-            border-radius: 50%;
-            border: 1px solid rgba(34,197,94,0.04);
-            pointer-events: none;
+        .history-inju-section .sec-label {
+            display: inline-block;
+            margin-bottom: 1.2rem;
+            color: #4ade80;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
         }
 
-        .history-inju-section::after {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%,-50%);
-            width: 400px; height: 400px;
-            border-radius: 50%;
-            border: 1px solid rgba(34,197,94,0.03);
-            pointer-events: none;
+        .history-inju-section h2 {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 400;
+            color: #f1f5f9;
+            margin-bottom: 0.9rem;
+            line-height: 1.25;
+        }
+
+        .history-inju-section p {
+            color: #94a3b8;
+            font-size: 1rem;
+            max-width: 480px;
+            margin: 0 auto 2.2rem;
+            line-height: 1.7;
+        }
+
+        /* Botón INJU */
+        .history-inju-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: #22c55e;
+            color: #05140a;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            border-radius: 999px;
+            border: 1.5px solid rgba(34,197,94,0.35);
+            box-shadow: 0 10px 30px rgba(34,197,94,0.18);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            cursor: pointer;
+        }
+
+        .history-inju-cta:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 18px 40px rgba(34,197,94,0.28);
+            background: #4ade80;
+        }
+
+        .history-inju-cta:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .history-inju-cta .inju-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .history-inju-cta:hover .inju-icon {
+            transform: translateX(4px);
         }
 
         .history-inju-glow { display: none !important; }
     </style>
+<base target="_blank">
+<base target="_blank">
+<base target="_blank">
 </head>
 <body>
     <!-- Inicio loader -->
@@ -532,27 +688,33 @@
             <div class="biz-hero-stats">
                 <div class="biz-stat">
                     <div class="biz-stat-ico">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5.2-7 13-7 13S5 14.2 5 9a7 7 0 0 1 7-7Zm0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5.5Z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5.2-7 13-7 13S5 14.2 5 9a7 7 0 0 1 7-7Zm0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5.5Z"/></svg>
                     </div>
-                    <span class="biz-stat-num">Jucuapa</span>
-                    <span class="biz-stat-lbl">Usulután, SV</span>
+                    <div class="biz-stat-body">
+                        <span class="biz-stat-num">Jucuapa</span>
+                        <span class="biz-stat-lbl">Usulután, SV</span>
+                    </div>
                 </div>
                 <div class="biz-stat">
                     <div class="biz-stat-ico">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
                     </div>
-                    <span class="biz-stat-num">7+</span>
-                    <span class="biz-stat-lbl">Categorías</span>
+                    <div class="biz-stat-body">
+                        <span class="biz-stat-num">7+</span>
+                        <span class="biz-stat-lbl">Categorías</span>
+                    </div>
                 </div>
                 <div class="biz-stat">
                     <div class="biz-stat-ico">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
                     </div>
-                    <span class="biz-stat-num">WhatsApp</span>
-                    <span class="biz-stat-lbl">Pedidos directos</span>
+                    <div class="biz-stat-body">
+                        <span class="biz-stat-num">WhatsApp</span>
+                        <span class="biz-stat-lbl">Pedidos directos</span>
+                    </div>
                 </div>
             </div>
-            <button class="scroll-cue" type="button" data-scroll-target=".business-story-section" aria-label="Ir a la historia"><span></span></button>
+            
         </div>
     </section>
 
@@ -646,15 +808,16 @@
         </section>
     </main>
 
-    <!-- Llamado hacia INJU — sin el glow feo -->
+    <!-- Llamado hacia INJU — minimalista -->
     <section class="history-inju-section reveal">
         <div class="history-inju-glow"></div><!-- oculto por CSS -->
-        <div class="history-inju-inner">
-            <span class="sec-label sec-label-block">Ahora mira quién lo hizo posible.</span>
-            <h2>¿Te atreves a conocer al equipo detrás del proyecto?</h2>
-            <p>El origen del sitio está en el aula, pero su impacto mira hacia la comunidad.</p>
-            <a href="inju.html" class="history-inju-cta"><span>Ir al INJU</span><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5 11.6 6.4l4.6 4.6H4v2h12.2l-4.6 4.6L13 19l7-7-7-7Z"/></svg></a>
-        </div>
+        <span class="sec-label">Ahora mira quién lo hizo posible.</span>
+        <h2>¿Te atreves a conocer al equipo detrás del proyecto?</h2>
+        <p>El origen del sitio está en el aula, pero su impacto mira hacia la comunidad.</p>
+        <a href="inju.html" class="history-inju-cta">
+            <span>Ir al INJU</span>
+            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5 11.6 6.4l4.6 4.6H4v2h12.2l-4.6 4.6L13 19l7-7-7-7Z"/></svg>
+        </a>
     </section>
 
 <!-- Inicio carrito compartido -->
