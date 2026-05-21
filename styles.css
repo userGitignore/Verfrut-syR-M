@@ -7141,4 +7141,63 @@
     }
 }
 
+/* --- FIX: Color uniforme en lista de Valores (MVV) --- */
+.mvv-list li {
+    color: #ffffff !important;
+}
 
+/* --- TikTok hover con colores de la app --- */
+.social-tiktok {
+    transition: color 0.25s, background 0.25s, transform 0.25s;
+}
+.social-tiktok:hover {
+    background: linear-gradient(135deg, #010101 40%, #69C9D0 100%);
+    color: #EE1D52 !important;
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 0 10px rgba(238,29,82,0.45), 0 0 18px rgba(105,201,208,0.3);
+}
+
+/* --- Botón WhatsApp footer --- */
+.footer-whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 9px 16px;
+    background: #1a1a1a;
+    border: 1.5px solid rgba(37,211,102,0.35);
+    border-radius: 50px;
+    color: #e5e7eb;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+    animation: waPulse 2.8s ease-in-out infinite;
+}
+.footer-whatsapp-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: #25D366;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+.footer-whatsapp-btn:hover {
+    background: #111;
+    border-color: #25D366;
+    box-shadow: 0 0 14px rgba(37,211,102,0.45);
+    transform: translateY(-2px);
+    color: #ffffff;
+    animation: none;
+}
+.footer-whatsapp-btn:hover svg {
+    transform: scale(1.15) rotate(-8deg);
+}
+
+@keyframes waPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.0); border-color: rgba(37,211,102,0.25); }
+    40%  { box-shadow: 0 0 0 5px rgba(37,211,102,0.18); border-color: rgba(37,211,102,0.7); }
+    70%  { box-shadow: 0 0 0 9px rgba(37,211,102,0.06); border-color: rgba(37,211,102,0.4); }
+    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.0); border-color: rgba(37,211,102,0.25); }
+}

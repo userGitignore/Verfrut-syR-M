@@ -773,50 +773,46 @@
     </div>
 
     <!-- ============================================ NAVBAR -->
-    <div id="navOverlay" class="nav-overlay"></div>
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <img width="44" height="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo de Verfrut's y R&M">
-                <div class="nav-logo-text">
-                    <span class="nav-logo-title">Verfrut's y R&amp;M</span>
-                </div>
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Inicio</a></li>
-                <li class="dropdown">
-                    <a href="productos.html">Productos <span class="arrow">&#9662;</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="productos.html#frutas">Frutas</a></li>
-                        <li><a href="productos.html#bebidas">Bebidas</a></li>
-                        <li><a href="productos.html#verduras">Verduras</a></li>
-                        <li><a href="productos.html#embutidos">Embutidos</a></li>
-                        <li><a href="productos.html#variedades">Variedades</a></li>
-                        <li><a href="productos.html#hogar">Aseo y Hogar</a></li>
-                        <li><a href="productos.html#canasta">Canasta Básica</a></li>
-                    </ul>
-                </li>
-                <li><a href="compras.html">Compras</a></li>
-                <li><a href="galeria.html">Galería</a></li>
-                <li><a href="ubicacion.html">Ubicación</a></li>
-                <li class="nav-cart-item">
-                    <button type="button" id="openCartBtn" class="nav-cart-button" aria-label="Abrir carrito">
-                        <span class="nav-cart-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
-                        </span>
-                        <span id="navbarCartCount" class="nav-cart-badge">0</span>
-                    </button>
-                </li>
-            </ul>
-            <button type="button" id="openCartMobileBtn" class="nav-cart-button nav-cart-mobile" aria-label="Abrir carrito">
-                <span class="nav-cart-icon">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
-                </span>
-                <span id="navbarCartCountMobile" class="nav-cart-badge">0</span>
-            </button>
-            <button type="button" class="menu-toggle" id="menuToggle" aria-label="Menú" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
-        </div>
-    </nav>
+    <!-- Inicio navbar compartido -->
+<div id="navOverlay" class="nav-overlay"></div>
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img width="44" src="img-navbar-and-icon/img-navbar.png" alt="Logo">
+            <div class="nav-logo-text"><span class="nav-logo-title">Verfrut's y R&amp;M</span></div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="productos.html">Productos <span class="arrow">&#9662;</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="productos.html#frutas">Frutas</a></li>
+                    <li><a href="productos.html#bebidas">Bebidas</a></li>
+                    <li><a href="productos.html#verduras">Verduras</a></li>
+                    <li><a href="productos.html#embutidos">Embutidos</a></li>
+                    <li><a href="productos.html#variedades">Variedades</a></li>
+                    <li><a href="productos.html#hogar">Aseo y Hogar</a></li>
+                    <li><a href="productos.html#canasta">Canasta Básica</a></li>
+                </ul>
+            </li>
+            <li><a href="compras.html">Compras</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="ubicacion.html">Ubicación</a></li>
+            <li class="nav-cart-item">
+                <button id="openCartBtn" class="nav-cart-button" type="button" aria-label="Abrir carrito">
+                    <span class="nav-cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span>
+                    <span id="navbarCartCount" class="nav-cart-badge">0</span>
+                </button>
+            </li>
+        </ul>
+        <button id="openCartMobileBtn" class="nav-cart-button nav-cart-mobile" type="button" aria-label="Abrir carrito">
+            <span class="nav-cart-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span>
+            <span id="navbarCartCountMobile" class="nav-cart-badge">0</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menú">&#9776;</button>
+    </div>
+</nav>
+<!-- Fin navbar compartido -->
 
     <!-- ============================================ MAIN -->
     <main>
@@ -1322,48 +1318,43 @@
         </div>
     </div>
 
-    <!-- ============================================ CARRITO COMPARTIDO -->
-    <div id="cartToast" class="cart-toast" aria-live="polite">
-        <span class="toast-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true" width="14" height="14"><path d="m9.2 16.6-4.1-4.1-1.4 1.4 5.5 5.5L21 7.6l-1.4-1.4L9.2 16.6Z"/></svg>
-        </span>
-        <span class="toast-text" id="cartToastText">Producto agregado</span>
-        <button type="button" class="toast-action" id="cartToastAction">Ver carrito</button>
-    </div>
+    <!-- Inicio carrito compartido -->
+<div id="cartToast" class="cart-toast" aria-live="polite">
+    <span class="toast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.2 16.6-4.1-4.1-1.4 1.4 5.5 5.5L21 7.6l-1.4-1.4L9.2 16.6Z"/></svg></span>
+    <span class="toast-text" id="cartToastText">Producto agregado</span>
+    <button class="toast-action" id="cartToastAction" type="button">Ver carrito</button>
+</div>
 
-    <div id="checkoutModal" class="modal-overlay" aria-hidden="true">
-        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="cartModalTitle">
-            <div class="modal-header">
-                <h3 id="cartModalTitle">
-                    <span class="cart-title-icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
-                    </span>
-                    <span>Mi carrito</span>
-                </h3>
-                <button type="button" id="closeModalXBtn" class="modal-close-btn" aria-label="Cerrar carrito">&times;</button>
-            </div>
-            <div id="modalItemsList" class="modal-items"></div>
-            <div class="modal-total">
-                <span>Total a pagar</span>
-                <span id="modalTotal">$0.00</span>
-            </div>
-            <div class="modal-form">
-                <p class="modal-hint">Ingresa tu nombre para que el vendedor te identifique.</p>
-                <div class="modal-name-grid">
-                    <input id="modalBuyerName" type="text" placeholder="Nombre" autocomplete="name" aria-label="Nombre del comprador">
-                    <input id="modalBuyerLast" type="text" placeholder="Apellido" autocomplete="family-name" aria-label="Apellido del comprador">
-                </div>
-            </div>
-            <div class="modal-buttons">
-                <button type="button" id="closeModalBtn" class="btn-secondary">Seguir comprando</button>
-                <button type="button" id="clearCartBtn" class="btn-secondary">Limpiar carrito</button>
-                <button type="button" id="sendWhatsappBtn" class="btn-primary" disabled>Enviar por WhatsApp</button>
+<div id="checkoutModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="cartModalTitle">
+        <div class="modal-header">
+            <h3 id="cartModalTitle"><span class="cart-title-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg></span><span>Mi carrito</span></h3>
+            <button id="closeModalXBtn" class="modal-close-btn" type="button" aria-label="Cerrar carrito">&times;</button>
+        </div>
+        <div id="modalItemsList" class="modal-items"></div>
+        <div class="modal-total">
+            <span>Total a pagar</span>
+            <span id="modalTotal">$0.00</span>
+        </div>
+        <div class="modal-form">
+            <p class="modal-hint">Ingresa tu nombre para que el vendedor te identifique.</p>
+            <div class="modal-name-grid">
+                <input id="modalBuyerName" type="text" placeholder="Nombre" autocomplete="name">
+                <input id="modalBuyerLast" type="text" placeholder="Apellido" autocomplete="family-name">
             </div>
         </div>
+        <div class="modal-buttons">
+            <button id="closeModalBtn" class="btn-secondary" type="button">Seguir comprando</button>
+            <button id="clearCartBtn" class="btn-secondary" type="button">Limpiar carrito</button>
+            <button id="sendWhatsappBtn" class="btn-primary" type="button" disabled>Enviar por WhatsApp</button>
+        </div>
     </div>
+</div>
+<!-- Fin carrito compartido -->
 
     <!-- ============================================ FOOTER -->
-    <footer class="footer">
+    <!-- Inicio footer compartido -->
+<footer class="footer">
     <div class="footer-container">
         <div class="footer-brand">
             <div class="footer-logo">
@@ -1414,6 +1405,7 @@
         </p>
     </div>
 </footer>
+<!-- Fin footer compartido -->
 
     <button type="button" class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
     <script src="script.js"></script>
