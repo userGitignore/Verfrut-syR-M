@@ -6,6 +6,337 @@
     <title>Historia de Verfrut's y R&amp;M</title>
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- ── Estilos propios de la página ── -->
+    <style>
+        /* ================================================
+           HERO MEJORADO
+           ================================================ */
+        .business-hero {
+            position: relative;
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .business-hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1.04);
+            transition: transform 12s ease;
+        }
+
+        .business-hero:hover .business-hero-bg { transform: scale(1); }
+
+        .business-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                160deg,
+                rgba(4,12,4,0.82) 0%,
+                rgba(10,28,10,0.65) 50%,
+                rgba(4,12,4,0.88) 100%
+            );
+        }
+
+        /* Mesh grid decorativo */
+        .business-hero-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(34,197,94,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34,197,94,0.03) 1px, transparent 1px);
+            background-size: 55px 55px;
+        }
+
+        .business-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+            max-width: 820px;
+        }
+
+        /* Badge animada */
+        .biz-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 20px 6px 10px;
+            background: rgba(15,23,42,0.7);
+            border: 1px solid rgba(34,197,94,0.25);
+            border-radius: 999px;
+            backdrop-filter: blur(12px);
+            margin-bottom: 1.4rem;
+            animation: badgePulse 3.5s ease-in-out infinite;
+        }
+        .biz-hero-badge-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 10px rgba(34,197,94,0.8);
+            animation: dotBlink 1.8s ease-in-out infinite;
+        }
+        .biz-hero-badge-text {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #4ade80;
+        }
+        @keyframes badgePulse {
+            0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.2); }
+            50%      { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+        }
+        @keyframes dotBlink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+        .business-hero-content h1 {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #e2e8f0 0%, #22c55e 35%, #4ade80 55%, #e2e8f0 100%);
+            background-size: 250% 250%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGradient 7s ease-in-out infinite;
+        }
+        @keyframes titleGradient {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .business-hero-content p {
+            color: #94a3b8;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            max-width: 580px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        /* Divisor animado */
+        .biz-hero-divider {
+            width: 80px; height: 2px;
+            background: linear-gradient(90deg, transparent, #22c55e, transparent);
+            background-size: 200% 100%;
+            animation: divScan 3s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+        @keyframes divScan {
+            0%   { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Estadísticas hero */
+        .biz-hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .biz-stat {
+            text-align: center;
+            padding: 1rem 1.4rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .biz-stat:hover { border-color: rgba(34,197,94,0.25); transform: translateY(-4px); }
+        .biz-stat-ico { color: #22c55e; margin-bottom: 6px; display:flex; align-items:center; justify-content:center; }
+        .biz-stat-num { display:block; font-size:1.3rem; font-weight:900; color:#4ade80; line-height:1; }
+        .biz-stat-lbl { display:block; font-size:0.62rem; text-transform:uppercase; letter-spacing:1.5px; color:#64748b; margin-top:4px; }
+
+        /* ================================================
+           STORY SECTION
+           ================================================ */
+        .business-story-section {
+            background: #07100c;
+            color: #e2e8f0;
+        }
+
+        .business-story-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 24px;
+        }
+
+        .business-story-intro {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 70px;
+        }
+
+        /* Cards de historia rediseñadas */
+        .business-history-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 900px) { .business-history-grid { grid-template-columns: 1fr; } }
+
+        .business-history-card {
+            position: relative;
+            background: linear-gradient(155deg, rgba(12,28,20,0.8) 0%, rgba(6,14,10,0.95) 100%);
+            border: 1px solid rgba(34,197,94,0.08);
+            border-radius: 24px;
+            padding: 36px 30px;
+            transition: all 0.45s cubic-bezier(0.165,0.84,0.44,1);
+            overflow: hidden;
+        }
+
+        .business-history-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #22c55e, transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .business-history-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(34,197,94,0.22);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.45), 0 0 40px rgba(34,197,94,0.05);
+        }
+        .business-history-card:hover::before { opacity: 1; }
+
+        .history-step {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.2);
+            color: #22c55e;
+            font-size: 1rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+            font-family: Georgia, serif;
+        }
+
+        .business-history-card h3 {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            margin-bottom: 14px;
+        }
+
+        .business-history-card p {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            line-height: 1.8;
+        }
+
+        /* Card INJU deal mejorada */
+        .license-deal-card {
+            background: linear-gradient(145deg, rgba(12,28,20,0.6), rgba(6,14,10,0.95));
+            border: 1px solid rgba(34,197,94,0.12);
+            border-radius: 24px;
+            padding: 44px 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .license-deal-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, #22c55e, #4ade80, transparent);
+        }
+
+        .license-deal-card::after {
+            content: '';
+            position: absolute;
+            top: -40%; right: -10%;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(34,197,94,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .license-deal-card h2 {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+            color: #f1f5f9;
+            margin-top: 10px;
+            line-height: 1.25;
+        }
+
+        .license-deal-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.85;
+            border-left: 2px solid rgba(34,197,94,0.15);
+            padding-left: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .license-deal-card { grid-template-columns: 1fr; padding: 32px 24px; }
+        }
+
+        /* ================================================
+           SECCIÓN "IR AL INJU" — sin glow feo
+           ================================================ */
+        .history-inju-section {
+            position: relative;
+            overflow: hidden;
+            background: #07100c;
+            color: #e2e8f0;
+            padding: 90px 20px;
+            border-top: 1px solid rgba(34,197,94,0.06);
+        }
+
+        /* Reemplaza el glow con líneas decorativas sutiles */
+        .history-inju-section::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            border: 1px solid rgba(34,197,94,0.04);
+            pointer-events: none;
+        }
+
+        .history-inju-section::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            border: 1px solid rgba(34,197,94,0.03);
+            pointer-events: none;
+        }
+
+        /* Ocultar el div glow del HTML */
+        .history-inju-glow { display: none !important; }
+    </style>
 </head>
 <body>
     <!-- Inicio loader -->
@@ -59,20 +390,48 @@
 </nav>
 <!-- Fin navbar compartido -->
 
-    <!-- Inicio hero historia empresa -->
+    <!-- Hero historia empresa -->
     <section class="business-hero">
-        <img class="business-hero-bg" src="img-start-galeria-mixtas/Tienda11.jpg" alt="Fachada de Verfrut's y R&amp;M">
+        <img class="business-hero-bg" src="img-start-galeria-mixtas/Tienda11.jpg" alt="Fachada de Verfrut's y R&amp;M" loading="eager">
         <div class="business-hero-overlay"></div>
         <div class="business-hero-content reveal">
+            <div class="biz-hero-badge">
+                <span class="biz-hero-badge-dot"></span>
+                <span class="biz-hero-badge-text">Tienda local · Jucuapa, Usulután</span>
+            </div>
             <span class="sec-label">Historia del negocio</span>
             <h1>Verfrut's y R&amp;M</h1>
+            <div class="biz-hero-divider"></div>
             <p>Una tienda local nacida para acercar productos frescos, trato amable y soluciones del hogar a las familias de Jucuapa.</p>
+            <!-- Estadísticas -->
+            <div class="biz-hero-stats">
+                <div class="biz-stat">
+                    <div class="biz-stat-ico">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5.2-7 13-7 13S5 14.2 5 9a7 7 0 0 1 7-7Zm0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5.5Z"/></svg>
+                    </div>
+                    <span class="biz-stat-num">Jucuapa</span>
+                    <span class="biz-stat-lbl">Usulután, SV</span>
+                </div>
+                <div class="biz-stat">
+                    <div class="biz-stat-ico">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
+                    </div>
+                    <span class="biz-stat-num">7+</span>
+                    <span class="biz-stat-lbl">Categorías</span>
+                </div>
+                <div class="biz-stat">
+                    <div class="biz-stat-ico">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                    </div>
+                    <span class="biz-stat-num">WhatsApp</span>
+                    <span class="biz-stat-lbl">Pedidos directos</span>
+                </div>
+            </div>
             <button class="scroll-cue" type="button" data-scroll-target=".business-story-section" aria-label="Ir a la historia"><span></span></button>
         </div>
     </section>
-    <!-- Fin hero historia empresa -->
 
-    <!-- Inicio historia del negocio -->
+    <!-- Historia del negocio -->
     <main class="business-story-section">
         <section class="business-story-wrap">
             <div class="business-story-intro reveal">
@@ -81,77 +440,35 @@
                 <p class="sec-desc">Verfrut's y R&amp;M representa el esfuerzo de un negocio familiar que creció escuchando a sus clientes, cuidando la calidad de sus productos y manteniendo una atención cercana en cada compra.</p>
             </div>
             <div class="business-history-grid">
-                <article class="business-history-card reveal"><span class="history-step">01</span><h3>El comienzo</h3><p>El negocio empezó con la idea sencilla de ofrecer frutas, verduras y productos básicos con precios accesibles para la comunidad. Cada venta ayudó a fortalecer una relación directa con las familias que buscaban calidad sin complicaciones.</p></article>
-                <article class="business-history-card reveal"><span class="history-step">02</span><h3>La confianza diaria</h3><p>Con el paso del tiempo, Verfrut's y R&amp;M se convirtió en un punto de referencia para compras rápidas, productos frescos y atención honesta. La constancia permitió ampliar la variedad y responder mejor a las necesidades del hogar.</p></article>
-                <article class="business-history-card reveal"><span class="history-step">03</span><h3>Una nueva etapa digital</h3><p>El sitio web nació como una oportunidad para mostrar el catálogo, ordenar la información del negocio y acercar la tienda a más personas mediante una experiencia clara, moderna y fácil de consultar.</p></article>
+                <article class="business-history-card reveal">
+                    <span class="history-step">01</span>
+                    <h3>El comienzo</h3>
+                    <p>El negocio empezó con la idea sencilla de ofrecer frutas, verduras y productos básicos con precios accesibles para la comunidad. Cada venta ayudó a fortalecer una relación directa con las familias que buscaban calidad sin complicaciones.</p>
+                </article>
+                <article class="business-history-card reveal">
+                    <span class="history-step">02</span>
+                    <h3>La confianza diaria</h3>
+                    <p>Con el paso del tiempo, Verfrut's y R&amp;M se convirtió en un punto de referencia para compras rápidas, productos frescos y atención honesta. La constancia permitió ampliar la variedad y responder mejor a las necesidades del hogar.</p>
+                </article>
+                <article class="business-history-card reveal">
+                    <span class="history-step">03</span>
+                    <h3>Una nueva etapa digital</h3>
+                    <p>El sitio web nació como una oportunidad para mostrar el catálogo, ordenar la información del negocio y acercar la tienda a más personas mediante una experiencia clara, moderna y fácil de consultar.</p>
+                </article>
             </div>
             <div class="license-deal-card reveal">
-                <div><span class="sec-label">El puente con INJU</span><h2>El trato que abrió la puerta al sitio web.</h2></div>
+                <div>
+                    <span class="sec-label">El puente con INJU</span>
+                    <h2>El trato que abrió la puerta al sitio web.</h2>
+                </div>
                 <p>El Lic. Roberto Antonio García Machado se encargó de contactar con la empresa, conversar con sus encargados y negociar el acuerdo para que el equipo de desarrollo pudiera crear este sitio web con el nombre de Verfrut's y R&amp;M. Ese acercamiento convirtió una tarea académica en un proyecto real para una empresa local.</p>
             </div>
         </section>
-
-        <!-- ============================================ CTA CIERRE -->
-        <section class="cta-section reveal" aria-labelledby="cta-heading">
-            <div class="cta-glow"></div>
-            <div class="cta-orb cta-orb-1" aria-hidden="true"></div>
-            <div class="cta-orb cta-orb-2" aria-hidden="true"></div>
-            <div class="cta-inner">
-                <span class="sec-label sec-label-block">¿Listo para comprar?</span>
-                <h2 class="sec-title cta-title" id="cta-heading">Visita nuestra<br><em>tienda digital</em></h2>
-                <p class="sec-desc sec-desc-centered">Explora el catálogo completo de Verfrut's y R&amp;M, agrega productos al carrito y realiza tu pedido directo por WhatsApp.</p>
-
-                <!-- Feature chips -->
-                <div class="cta-features">
-                    <div class="cta-feat">
-                        <span class="cta-feat-ico">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5.2-7 13-7 13S5 14.2 5 9a7 7 0 0 1 7-7Zm0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5.5Z"/></svg>
-                        </span>
-                        <span>Jucuapa, Usulután</span>
-                    </div>
-                    <div class="cta-feat">
-                        <span class="cta-feat-ico">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
-                        </span>
-                        <span>Pedidos por carrito</span>
-                    </div>
-                    <div class="cta-feat">
-                        <span class="cta-feat-ico">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-                        </span>
-                        <span>Envío por WhatsApp</span>
-                    </div>
-                    <div class="cta-feat">
-                        <span class="cta-feat-ico">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-2 14.5v-9l6 4.5-6 4.5Z"/></svg>
-                        </span>
-                        <span>Catálogo siempre activo</span>
-                    </div>
-                </div>
-
-                <div class="cta-btns">
-                    <a href="productos.html" class="cta-btn-primary">
-                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
-                        <span>Ver Productos</span>
-                    </a>
-                    <a href="https://wa.me/50360649103" class="cta-btn-whatsapp" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-                        <span>WhatsApp directo</span>
-                    </a>
-                    <a href="index.html" class="cta-btn-secondary">
-                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M11 5 4 12l7 7 1.4-1.4L7.8 13H20v-2H7.8l4.6-4.6L11 5Z"/></svg>
-                        <span>Inicio</span>
-                    </a>
-                </div>
-            </div>
-        </section>
     </main>
-    </main>
-    <!-- Fin historia del negocio -->
 
-    <!-- Inicio llamado hacia INJU -->
+    <!-- Llamado hacia INJU — sin el glow feo -->
     <section class="history-inju-section reveal">
-        <div class="history-inju-glow"></div>
+        <div class="history-inju-glow"></div><!-- oculto por CSS -->
         <div class="history-inju-inner">
             <span class="sec-label sec-label-block">Ahora mira quién lo hizo posible.</span>
             <h2>¿Te atreves a conocer al equipo detrás del proyecto?</h2>
@@ -159,7 +476,6 @@
             <a href="inju.html" class="history-inju-cta"><span>Ir al INJU</span><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5 11.6 6.4l4.6 4.6H4v2h12.2l-4.6 4.6L13 19l7-7-7-7Z"/></svg></a>
         </div>
     </section>
-    <!-- Fin llamado hacia INJU -->
 
 <!-- Inicio carrito compartido -->
 <div id="cartToast" class="cart-toast" aria-live="polite">
@@ -195,7 +511,6 @@
 </div>
 <!-- Fin carrito compartido -->
 
-<!-- Inicio footer compartido -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-brand">
@@ -207,7 +522,7 @@
             <div class="social-links">
                 <a href="https://www.facebook.com/" class="social-facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
                 <a href="https://www.instagram.com/" class="social-instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"/></svg></a>
-                <a href="https://wa.me/50360649103" class="social-whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+                <a href="https://www.tiktok.com/" class="social-tiktok" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a>
             </div>
         </div>
         <div class="footer-col">
@@ -234,6 +549,10 @@
             <p>Jucuapa, Usulután, El Salvador.</p>
             <p>+503 6064-9103 | +503 6971-8315</p>
             <p class="footer-email"><svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 3.2V17h14V8.2l-7 5-7-5Zm1.5-1.2 5.5 3.9L17.5 7h-11Z"/></svg><span>verfrutsrm.shop@gmail.com</span></p>
+            <a href="https://wa.me/50360649103" class="footer-whatsapp-btn" aria-label="Chatea con nosotros por WhatsApp">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                <span>Chatea con nosotros</span>
+            </a>
         </div>
     </div>
     <div class="footer-bottom">
@@ -243,12 +562,8 @@
         </p>
     </div>
 </footer>
-<!-- Fin footer compartido -->
 
     <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
-
-    <!-- Inicio JavaScript global -->
     <script src="script.js"></script>
-    <!-- Fin JavaScript global -->
 </body>
 </html>
