@@ -26,6 +26,740 @@
     <link rel="canonical" href="https://verfrutsrm.shop/inju.html">
     <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- ============================================ INJU ENHANCEMENTS -->
+    <style>
+        /* ================================================
+           HERO — MEJORAS VISUALES
+           ================================================ */
+
+        /* Mesh overlay sobre la imagen de fondo */
+        .inju-hero-mesh {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(34,197,94,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34,197,94,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+
+        /* Partículas flotantes */
+        .inju-hero-particles {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(34,197,94,0.35) 0%, transparent 70%);
+            animation: particleFloat linear infinite;
+        }
+
+        .hp1  { width: 6px;  height: 6px;  top: 15%; left: 8%;   animation-duration: 18s; animation-delay: 0s;   }
+        .hp2  { width: 4px;  height: 4px;  top: 70%; left: 12%;  animation-duration: 22s; animation-delay: -5s;  }
+        .hp3  { width: 8px;  height: 8px;  top: 40%; left: 85%;  animation-duration: 16s; animation-delay: -3s;  }
+        .hp4  { width: 3px;  height: 3px;  top: 80%; left: 75%;  animation-duration: 25s; animation-delay: -8s;  }
+        .hp5  { width: 5px;  height: 5px;  top: 25%; left: 55%;  animation-duration: 20s; animation-delay: -12s; }
+        .hp6  { width: 7px;  height: 7px;  top: 55%; left: 30%;  animation-duration: 14s; animation-delay: -7s;  }
+        .hp7  { width: 4px;  height: 4px;  top: 10%; left: 70%;  animation-duration: 28s; animation-delay: -2s;  }
+        .hp8  { width: 6px;  height: 6px;  top: 88%; left: 45%;  animation-duration: 19s; animation-delay: -10s; }
+
+        @keyframes particleFloat {
+            0%   { transform: translateY(0) scale(1);   opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 0.6; }
+            100% { transform: translateY(-80px) scale(0.5); opacity: 0; }
+        }
+
+        /* Anillo de resplandor detrás del contenido */
+        .inju-hero-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 560px;
+            height: 560px;
+            border-radius: 50%;
+            border: 1px solid rgba(34,197,94,0.08);
+            animation: ringBreath 5s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .inju-hero-ring::before {
+            content: '';
+            position: absolute;
+            inset: 30px;
+            border-radius: 50%;
+            border: 1px solid rgba(34,197,94,0.05);
+            animation: ringBreath 5s ease-in-out infinite reverse;
+        }
+        .inju-hero-ring::after {
+            content: '';
+            position: absolute;
+            inset: -30px;
+            border-radius: 50%;
+            border: 1px solid rgba(34,197,94,0.04);
+        }
+        @keyframes ringBreath {
+            0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 0.8; }
+            50%       { transform: translate(-50%, -50%) scale(1.06); opacity: 0.4; }
+        }
+
+        /* Insignia año flotante */
+        .hero-year-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1.4rem;
+            padding: 6px 20px 6px 10px;
+            background: rgba(15,23,42,0.7);
+            border: 1px solid rgba(34,197,94,0.25);
+            border-radius: 999px;
+            backdrop-filter: blur(12px);
+            animation: badgePulse 3.5s ease-in-out infinite;
+        }
+        .hero-year-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 10px rgba(34,197,94,0.8);
+            animation: dotBlink 1.8s ease-in-out infinite;
+        }
+        .hero-year-badge-text {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #4ade80;
+        }
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0   rgba(34,197,94,0.2); }
+            50%       { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+        }
+        @keyframes dotBlink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.3; }
+        }
+
+        /* Gradiente animado en el título principal */
+        .inju-hero-title-main {
+            background: linear-gradient(135deg,
+                #e2e8f0 0%,
+                #22c55e 25%,
+                #4ade80 45%,
+                #16a34a 65%,
+                #e2e8f0 100%);
+            background-size: 250% 250%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGradient 8s ease-in-out infinite;
+        }
+        @keyframes titleGradient {
+            0%   { background-position: 0%   50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0%   50%; }
+        }
+
+        /* Eyebrow pulsante */
+        .hero-eyebrow {
+            animation: eyebrowPulse 3s ease-in-out infinite;
+        }
+        @keyframes eyebrowPulse {
+            0%, 100% { box-shadow: 0 0 0 0   rgba(34,197,94,0.35); }
+            50%       { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
+        }
+
+        /* Línea divisora animada */
+        .hero-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #22c55e, #4ade80, transparent);
+            background-size: 200% 100%;
+            animation: dividerScan 3s linear infinite;
+            margin: 0 auto 28px;
+        }
+        @keyframes dividerScan {
+            0%   { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Barra de estadísticas del hero */
+        .hero-stats-bar {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2.8rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .hero-stat-item {
+            text-align: center;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            min-width: 100px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+        .hero-stat-item:hover {
+            border-color: rgba(34,197,94,0.25);
+            transform: translateY(-4px);
+        }
+        .hero-stat-icon {
+            color: #22c55e;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-stat-number {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #4ade80;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1;
+        }
+        .hero-stat-label {
+            display: block;
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        /* Animaciones de entrada escalonadas del hero */
+        .inju-hero-content > * {
+            opacity: 0;
+            transform: translateY(28px);
+        }
+        .inju-hero-content.hero-loaded .hero-year-badge  { animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s forwards; }
+        .inju-hero-content.hero-loaded .hero-eyebrow     { animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s forwards; }
+        .inju-hero-content.hero-loaded h1                { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s forwards; }
+        .inju-hero-content.hero-loaded .hero-subtitle-italic { animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.65s forwards; }
+        .inju-hero-content.hero-loaded .hero-since       { animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.75s forwards; }
+        .inju-hero-content.hero-loaded .hero-divider     { animation: heroFadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.85s forwards; }
+        .inju-hero-content.hero-loaded p                 { animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.95s forwards; }
+        .inju-hero-content.hero-loaded .hero-stats-bar   { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 1.1s  forwards; }
+        @keyframes heroFadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ================================================
+           TIMELINE CARRUSEL BELT — CONTINUO Y AUTOMÁTICO
+           ================================================ */
+
+        /* Convertir scroll normal a overflow hidden para belt */
+        .timeline-scroll {
+            overflow: hidden !important;
+            cursor: default !important;
+            padding: 50px 0 !important;
+        }
+
+        /* Belt animation: el track se mueve solo de izquierda a derecha */
+        .timeline-track {
+            animation: timelineBelt 38s linear infinite;
+            will-change: transform;
+        }
+
+        /* Pausa al hacer hover sobre cualquier tarjeta */
+        .timeline-track.belt-paused {
+            animation-play-state: paused;
+        }
+
+        /* Reducir ancho de cada nodo para que quepan más */
+        .timeline-node,
+        .timeline-node-clone {
+            width: 300px;
+            flex-shrink: 0;
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .timeline-node-clone::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(34,197,94,0.3), transparent);
+        }
+        .timeline-node-clone:last-child::after { display: none; }
+
+        @keyframes timelineBelt {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Fade edges para efecto de "banda continua" */
+        .timeline-wrapper::before,
+        .timeline-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 4;
+            pointer-events: none;
+        }
+        .timeline-wrapper::before {
+            left: 60px;
+            background: linear-gradient(90deg, #0b1120, transparent);
+        }
+        .timeline-wrapper::after {
+            right: 60px;
+            background: linear-gradient(270deg, #0b1120, transparent);
+        }
+
+        /* Barra de progreso decorativa debajo del carrusel */
+        .timeline-progress-bar {
+            height: 2px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 2px;
+            margin: 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .timeline-progress-bar::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; height: 100%;
+            width: 30%;
+            background: linear-gradient(90deg, transparent, #22c55e, transparent);
+            animation: progressScan 38s linear infinite;
+        }
+        @keyframes progressScan {
+            0%   { left: -30%; }
+            100% { left: 130%; }
+        }
+
+        /* Botones de flecha mejorados */
+        .timeline-arrow {
+            background: rgba(15,23,42,0.9) !important;
+            border-color: rgba(34,197,94,0.2) !important;
+            backdrop-filter: blur(10px);
+        }
+        .timeline-arrow:hover {
+            background: rgba(34,197,94,0.15) !important;
+            border-color: rgba(34,197,94,0.5) !important;
+            transform: scale(1.1) !important;
+        }
+
+        /* Card hover glow mejorado */
+        .timeline-node-inner:hover,
+        .timeline-node-clone .timeline-node-inner:hover {
+            box-shadow: 0 0 0 1px rgba(34,197,94,0.2),
+                        0 20px 60px rgba(0,0,0,0.5),
+                        0 0 40px rgba(34,197,94,0.06) !important;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-wrapper::before,
+            .timeline-wrapper::after { width: 60px; }
+            .timeline-wrapper::before { left: 20px; }
+            .timeline-wrapper::after  { right: 20px; }
+            .timeline-progress-bar    { margin: 0 20px; }
+        }
+
+        /* ================================================
+           NÚMEROS MINIMALISTAS BAJO LAS FLECHAS
+           ================================================ */
+        .tl-num-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tl-num-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(15,23,42,0.6);
+            color: #64748b;
+            font-size: 0.72rem;
+            font-weight: 700;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            cursor: pointer;
+            transition: all 0.22s cubic-bezier(0.16,1,0.3,1);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tl-num-btn:hover {
+            border-color: rgba(34,197,94,0.4);
+            color: #4ade80;
+            background: rgba(34,197,94,0.08);
+            transform: translateY(-2px);
+        }
+
+        .tl-num-btn.active {
+            border-color: #22c55e;
+            background: rgba(34,197,94,0.12);
+            color: #4ade80;
+            box-shadow: 0 0 12px rgba(34,197,94,0.2);
+        }
+
+        /* ================================================
+           POPUP DE DETALLE DEL TIMELINE
+           ================================================ */
+        .tl-popup-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            background: rgba(4,9,18,0.75);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .tl-popup-overlay.tl-popup-open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .tl-popup-container {
+            position: relative;
+            background: linear-gradient(160deg, #0d1f38 0%, #060d18 100%);
+            border: 1px solid rgba(34,197,94,0.15);
+            border-radius: 22px;
+            padding: 40px 36px 32px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03);
+            transform: translateY(16px) scale(0.97);
+            transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.25s ease;
+        }
+
+        .tl-popup-overlay.tl-popup-open .tl-popup-container {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Línea superior decorativa */
+        .tl-popup-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 10%; right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #22c55e, transparent);
+            border-radius: 1px;
+        }
+
+        .tl-popup-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.04);
+            color: #64748b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .tl-popup-close:hover {
+            background: rgba(255,255,255,0.1);
+            color: #f8fafc;
+            border-color: rgba(255,255,255,0.14);
+        }
+
+        .tl-popup-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.2);
+            color: #22c55e;
+            font-size: 1.1rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .tl-popup-year {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #4ade80;
+            background: rgba(34,197,94,0.07);
+            border: 1px solid rgba(34,197,94,0.12);
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 14px;
+        }
+
+        .tl-popup-title {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .tl-popup-text {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.75;
+        }
+
+        .tl-popup-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 28px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tl-popup-nav-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+            color: #94a3b8;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .tl-popup-nav-btn:not(:disabled):hover {
+            border-color: rgba(34,197,94,0.35);
+            color: #4ade80;
+            background: rgba(34,197,94,0.07);
+        }
+
+        .tl-popup-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .tl-popup-counter {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #475569;
+            letter-spacing: 0.1em;
+        }
+
+        /* ================================================
+           TECH BADGES — TRIO CENTRADO MEJORADO
+           ================================================ */
+        .tech-grid-trio {
+            grid-template-columns: repeat(3, 1fr) !important;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            gap: 24px !important;
+        }
+
+        .tech-badge {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-badge-glow {
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .tech-badge-html .tech-badge-glow  { background: radial-gradient(circle at 50% 0%, rgba(227,79,38,0.12), transparent 70%); }
+        .tech-badge-css  .tech-badge-glow  { background: radial-gradient(circle at 50% 0%, rgba(38,77,228,0.12), transparent 70%); }
+        .tech-badge-js   .tech-badge-glow  { background: radial-gradient(circle at 50% 0%, rgba(247,223,30,0.1),  transparent 70%); }
+
+        .tech-badge:hover .tech-badge-glow { opacity: 1; }
+
+        /* Icon colors per tech */
+        .tech-badge-html .tech-ico { background: rgba(227,79,38,0.1);  color: #e34f26; border: 1px solid rgba(227,79,38,0.15); }
+        .tech-badge-css  .tech-ico { background: rgba(38,77,228,0.1);  color: #264de4; border: 1px solid rgba(38,77,228,0.15); }
+        .tech-badge-js   .tech-ico { background: rgba(247,223,30,0.1); color: #c9a500; border: 1px solid rgba(247,223,30,0.15); }
+
+        .tech-badge-html:hover { border-color: rgba(227,79,38,0.3) !important; }
+        .tech-badge-css:hover  { border-color: rgba(38,77,228,0.3)  !important; }
+        .tech-badge-js:hover   { border-color: rgba(247,223,30,0.25)!important; }
+
+        .tech-ico {
+            width: 62px !important;
+            height: 62px !important;
+            border-radius: 18px !important;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-badge:hover .tech-ico {
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        .tech-ico .inju-icon {
+            width: 32px !important;
+            height: 32px !important;
+        }
+
+        .tech-name {
+            font-size: 1rem !important;
+            font-weight: 800 !important;
+            margin-top: 4px;
+        }
+
+        .tech-desc {
+            font-size: 0.72rem;
+            color: #64748b;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        .tech-version-pill {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.07);
+            color: #475569;
+            background: rgba(255,255,255,0.03);
+        }
+
+        /* ================================================
+           CTA — ORBS, FEATURES Y WHATSAPP BUTTON
+           ================================================ */
+        .cta-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(60px);
+        }
+
+        .cta-orb-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(34,197,94,0.08), transparent 70%);
+            top: -60px;
+            left: -80px;
+            animation: orbDrift 12s ease-in-out infinite alternate;
+        }
+
+        .cta-orb-2 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255,111,0,0.06), transparent 70%);
+            bottom: -40px;
+            right: -60px;
+            animation: orbDrift 15s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes orbDrift {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(30px, 20px); }
+        }
+
+        .cta-title em {
+            font-style: italic;
+            background: linear-gradient(135deg, #FF8F00, #FF6F00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 28px 0 0;
+        }
+
+        .cta-feat {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 999px;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            transition: all 0.25s ease;
+        }
+
+        .cta-feat:hover {
+            border-color: rgba(34,197,94,0.25);
+            color: #cbd5e1;
+            background: rgba(34,197,94,0.04);
+        }
+
+        .cta-feat-ico {
+            color: #22c55e;
+            display: flex;
+            align-items: center;
+        }
+
+        .cta-btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            padding: 15px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255,255,255,0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-btn-whatsapp:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(37,211,102,0.3);
+        }
+
+        @media (max-width: 540px) {
+            .tl-num-btn  { width: 28px; height: 28px; font-size: 0.68rem; }
+            .tech-grid-trio { grid-template-columns: 1fr !important; max-width: 260px; }
+            .cta-features { gap: 8px; }
+            .cta-feat { font-size: 0.72rem; padding: 6px 12px; }
+            .tl-popup-container { padding: 32px 22px 26px; }
+        }
+    </style>
 </head>
 
 <body>
@@ -90,7 +824,30 @@
         <section class="inju-hero" id="hero" aria-label="Hero del Instituto Nacional de Jucuapa">
             <img class="inju-hero-bg" src="img-INJU-page/img-porton-INJU.jpg" alt="Portón del Instituto Nacional de Jucuapa" loading="eager" width="1920" height="1080">
             <div class="inju-hero-overlay"></div>
+
+            <!-- Partículas flotantes -->
+            <div class="inju-hero-particles" aria-hidden="true">
+                <div class="hero-particle hp1"></div>
+                <div class="hero-particle hp2"></div>
+                <div class="hero-particle hp3"></div>
+                <div class="hero-particle hp4"></div>
+                <div class="hero-particle hp5"></div>
+                <div class="hero-particle hp6"></div>
+                <div class="hero-particle hp7"></div>
+                <div class="hero-particle hp8"></div>
+            </div>
+
+            <!-- Anillo de resplandor -->
+            <div class="inju-hero-ring" aria-hidden="true"></div>
+
+            <!-- Mesh grid overlay -->
+            <div class="inju-hero-mesh" aria-hidden="true"></div>
+
             <div class="inju-hero-content">
+                <div class="hero-year-badge" aria-label="Institución activa desde 1966">
+                    <span class="hero-year-badge-dot"></span>
+                    <span class="hero-year-badge-text">Institución activa desde 1966</span>
+                </div>
                 <div class="hero-eyebrow">INJU</div>
                 <h1>
                     <span class="inju-hero-title-main">Instituto Nacional de Jucuapa</span>
@@ -98,13 +855,42 @@
                 <span class="hero-subtitle-italic">Formando el futuro de El Salvador</span>
                 <span class="hero-since">Desde 1966 · Jucuapa, Usulután.</span>
                 <div class="hero-divider"></div>
-                <p>Excelencia Académica, Estudiantes Integros y Compromiso con la Educación de Calidad. La Cuna de los Desarrolladores Detrás del Proyecto Verfrut's y R&amp;M.</p>
+                <p>Excelencia Académica, Estudiantes Íntegros y Compromiso con la Educación de Calidad. La Cuna de los Desarrolladores Detrás del Proyecto Verfrut's y R&amp;M.</p>
+
+                <!-- Estadísticas del hero -->
+                <div class="hero-stats-bar" aria-label="Datos del instituto">
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 3 2 8l10 5 10-5-10-5Zm-6 8.1V15c0 2.3 3 4 6 4s6-1.7 6-4v-3.9l-6 3-6-3Z"/></svg>
+                        </div>
+                        <span class="hero-stat-number">+58</span>
+                        <span class="hero-stat-label">Años formando</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3Zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3Zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5Zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5Z"/></svg>
+                        </div>
+                        <span class="hero-stat-number">7</span>
+                        <span class="hero-stat-label">Especialidades</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="m8.7 16.3-1.4 1.4L1.6 12l5.7-5.7 1.4 1.4L4.4 12l4.3 4.3Zm6.6 0 4.3-4.3-4.3-4.3 1.4-1.4L18.4 12l-5.7 5.7-1.4-1.4ZM10 20l2.3-16h2L12 20h-2Z"/></svg>
+                        </div>
+                        <span class="hero-stat-number">100%</span>
+                        <span class="hero-stat-label">Público oficial</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="hero-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+                        </div>
+                        <span class="hero-stat-number">Jucuapa</span>
+                        <span class="hero-stat-label">Usulután, SV</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="scroll-cue" data-scroll-target=".institute-wrap" role="button" tabindex="0" aria-label="Desplazarse a la sección siguiente">
-                <div class="mouse"></div>
-                <span>| Explorar |</span>
-            </div>
+
         </section>
 
         <!-- ============================================ INFORMACIÓN DEL INSTITUTO -->
@@ -247,18 +1033,65 @@
                                 <p class="timeline-text">Hoy el INJU sigue siendo un faro educativo en Jucuapa. Sus egresados se destacan en universidades, empresas y proyectos de innovación, como este sitio web, que demuestran que la educación pública de calidad transforma comunidades enteras.</p>
                             </div>
                         </article>
+
+                        <!-- ── CLONES para loop infinito ── -->
+                        <article class="timeline-node-clone" aria-hidden="true">
+                            <div class="timeline-number">1</div>
+                            <div class="timeline-node-inner">
+                                <span class="timeline-year">1966</span>
+                                <h3 class="timeline-title">Fundación del INJU</h3>
+                                <p class="timeline-text">El Instituto Nacional de Jucuapa abre sus puertas con el firme compromiso de brindar educación de calidad al departamento de Usulután, convirtiéndose desde sus inicios en un referente académico regional.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-node-clone" aria-hidden="true">
+                            <div class="timeline-number">2</div>
+                            <div class="timeline-node-inner">
+                                <span class="timeline-year">Cuerpo Docente</span>
+                                <h3 class="timeline-title">Maestros Comprometidos</h3>
+                                <p class="timeline-text">Docentes altamente capacitados y en formación continua conforman el motor del INJU. Su dedicación va más allá del aula: son mentores que inspiran vocaciones y transforman vidas.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-node-clone" aria-hidden="true">
+                            <div class="timeline-number">3</div>
+                            <div class="timeline-node-inner">
+                                <span class="timeline-year">Especialidades</span>
+                                <h3 class="timeline-title">Oferta Académica Diversa</h3>
+                                <p class="timeline-text">Ciencias naturales, sociales, matemáticas, idiomas, humanidades y desarrollo de software. Una oferta pensada para que cada estudiante encuentre su camino y se prepare para los desafíos del mundo moderno.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-node-clone" aria-hidden="true">
+                            <div class="timeline-number">4</div>
+                            <div class="timeline-node-inner">
+                                <span class="timeline-year">Desarrollo Integral</span>
+                                <h3 class="timeline-title">Más Allá del Aula</h3>
+                                <p class="timeline-text">Deportes, cultura, arte y actividades extracurriculares completan la formación de los estudiantes. El INJU cree en el desarrollo completo del ser humano: mente, cuerpo y espíritu.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-node-clone" aria-hidden="true">
+                            <div class="timeline-number">5</div>
+                            <div class="timeline-node-inner">
+                                <span class="timeline-year">Presente 2026</span>
+                                <h3 class="timeline-title">Pilar de la Comunidad</h3>
+                                <p class="timeline-text">Hoy el INJU sigue siendo un faro educativo en Jucuapa. Sus egresados se destacan en universidades, empresas y proyectos de innovación, como este sitio web, que demuestran que la educación pública de calidad transforma comunidades enteras.</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
+
+                <!-- Barra de progreso decorativa del belt -->
+                <div class="timeline-progress-bar" aria-hidden="true"></div>
+
                 <div class="timeline-arrows" aria-label="Controles de línea de tiempo">
                     <button type="button" class="timeline-arrow" id="timelinePrev" aria-label="Evento anterior">
                         <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M11 5 4 12l7 7 1.4-1.4L7.8 13H20v-2H7.8l4.6-4.6L11 5Z"/></svg>
                     </button>
-                    <div class="timeline-dots" aria-hidden="true">
-                        <button type="button" class="timeline-dot-btn active" data-index="0" aria-label="Ir al evento 1"></button>
-                        <button type="button" class="timeline-dot-btn" data-index="1" aria-label="Ir al evento 2"></button>
-                        <button type="button" class="timeline-dot-btn" data-index="2" aria-label="Ir al evento 3"></button>
-                        <button type="button" class="timeline-dot-btn" data-index="3" aria-label="Ir al evento 4"></button>
-                        <button type="button" class="timeline-dot-btn" data-index="4" aria-label="Ir al evento 5"></button>
+                    <!-- Números minimalistas — click abre popup con el contenido del nodo -->
+                    <div class="tl-num-row" aria-label="Ver detalle de cada evento">
+                        <button type="button" class="tl-num-btn active" data-tl="0" aria-label="Ver evento 1">1</button>
+                        <button type="button" class="tl-num-btn" data-tl="1" aria-label="Ver evento 2">2</button>
+                        <button type="button" class="tl-num-btn" data-tl="2" aria-label="Ver evento 3">3</button>
+                        <button type="button" class="tl-num-btn" data-tl="3" aria-label="Ver evento 4">4</button>
+                        <button type="button" class="tl-num-btn" data-tl="4" aria-label="Ver evento 5">5</button>
                     </div>
                     <button type="button" class="timeline-arrow" id="timelineNext" aria-label="Evento siguiente">
                         <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M13 5 11.6 6.4l4.6 4.6H4v2h12.2l-4.6 4.6L13 19l7-7-7-7Z"/></svg>
@@ -279,7 +1112,6 @@
                     <img src="img-INJU-page/img-teacher-alumnos/profeRoberto.jpg" alt="Foto del Licenciado Roberto Antonio García Machado" loading="lazy" width="340" height="400">
                     <div class="teacher-vis-overlay"></div>
                     <div class="teacher-vis-name">Lic. Roberto Antonio García Machado</div>
-                    <div class="teacher-vis-role">Facilitador</div>
                 </div>
                 <div class="teacher-body">
                     <h3 class="teacher-name">Lic. Roberto Antonio García Machado</h3>
@@ -431,67 +1263,64 @@
                     <h2 class="sec-title" id="tech-heading">Las herramientas que utilizamos</h2>
                     <p class="sec-desc sec-desc-centered sec-desc-tech">Sin frameworks externos. Solo las herramientas base de la web — porque dominar los fundamentos es lo que hace a un gran desarrollador.</p>
                 </div>
-                <div class="tech-grid reveal">
-                    <div class="tech-badge">
+                <div class="tech-grid tech-grid-trio reveal">
+                    <div class="tech-badge tech-badge-html">
+                        <div class="tech-badge-glow"></div>
                         <span class="tech-ico">
-                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M3 2h18l-1.6 18L12 22l-7.4-2L3 2Zm4.1 5 .2 2h9.4l-.2 2H7.5l.6 6.1 3.9 1.1 3.9-1.1.4-4.1h-2l-.2 2.5-2.1.6-2.1-.6-.1-1.5h-2l.3 3 4 1.1 4-1.1.8-8H7.3L7.1 7Z"/></svg>
+                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="32" height="32"><path d="M3 2h18l-1.6 18L12 22l-7.4-2L3 2Zm4.1 5 .2 2h9.4l-.2 2H7.5l.6 6.1 3.9 1.1 3.9-1.1.4-4.1h-2l-.2 2.5-2.1.6-2.1-.6-.1-1.5h-2l.3 3 4 1.1 4-1.1.8-8H7.3L7.1 7Z"/></svg>
                         </span>
                         <div class="tech-name">HTML5</div>
+                        <div class="tech-desc">Estructura semántica y accesible</div>
+                        <div class="tech-version-pill">v5</div>
                     </div>
-                    <div class="tech-badge">
+                    <div class="tech-badge tech-badge-css">
+                        <div class="tech-badge-glow"></div>
                         <span class="tech-ico">
-                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M3 2h18l-1.6 18L12 22l-7.4-2L3 2Zm4.2 5 .2 2h8.7l-.2 2H7.6l.2 2h7.9l-.3 2.5-3.4.9-3.4-.9-.2-1.5h-2l.4 3 5.2 1.5 5.2-1.5.7-8H7.4L7.2 7Z"/></svg>
+                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="32" height="32"><path d="M3 2h18l-1.6 18L12 22l-7.4-2L3 2Zm4.2 5 .2 2h8.7l-.2 2H7.6l.2 2h7.9l-.3 2.5-3.4.9-3.4-.9-.2-1.5h-2l.4 3 5.2 1.5 5.2-1.5.7-8H7.4L7.2 7Z"/></svg>
                         </span>
                         <div class="tech-name">CSS3</div>
+                        <div class="tech-desc">Diseño, animaciones y responsive</div>
+                        <div class="tech-version-pill">v3</div>
                     </div>
-                    <div class="tech-badge">
+                    <div class="tech-badge tech-badge-js">
+                        <div class="tech-badge-glow"></div>
                         <span class="tech-ico">
-                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M3 3h18v18H3V3Zm5 14.5c.5.9 1.3 1.5 2.7 1.5 1.7 0 2.8-.9 2.8-3v-6h-2v6c0 .8-.3 1.1-.9 1.1-.5 0-.8-.3-1.1-.8L8 17.5Zm6.3-.2c.7 1.1 1.8 1.7 3.2 1.7 1.7 0 2.9-.9 2.9-2.5 0-1.5-.9-2.1-2.5-2.8l-.5-.2c-.8-.3-1.1-.5-1.1-.9s.3-.7.8-.7c.5 0 .9.2 1.2.8l1.5-1c-.6-1.1-1.5-1.6-2.7-1.6-1.7 0-2.8 1.1-2.8 2.5 0 1.5.9 2.2 2.3 2.8l.5.2c.9.4 1.3.6 1.3 1.1 0 .4-.4.8-1.1.8-.8 0-1.3-.4-1.7-1.1l-1.6.9Z"/></svg>
+                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="32" height="32"><path d="M3 3h18v18H3V3Zm5 14.5c.5.9 1.3 1.5 2.7 1.5 1.7 0 2.8-.9 2.8-3v-6h-2v6c0 .8-.3 1.1-.9 1.1-.5 0-.8-.3-1.1-.8L8 17.5Zm6.3-.2c.7 1.1 1.8 1.7 3.2 1.7 1.7 0 2.9-.9 2.9-2.5 0-1.5-.9-2.1-2.5-2.8l-.5-.2c-.8-.3-1.1-.5-1.1-.9s.3-.7.8-.7c.5 0 .9.2 1.2.8l1.5-1c-.6-1.1-1.5-1.6-2.7-1.6-1.7 0-2.8 1.1-2.8 2.5 0 1.5.9 2.2 2.3 2.8l.5.2c.9.4 1.3.6 1.3 1.1 0 .4-.4.8-1.1.8-.8 0-1.3-.4-1.7-1.1l-1.6.9Z"/></svg>
                         </span>
                         <div class="tech-name">JavaScript</div>
-                    </div>
-                    <div class="tech-badge">
-                        <span class="tech-ico">
-                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="m9 4 6 2 5-2v16l-5 2-6-2-5 2V6l5-2Zm1 2.3v11.9l4 1.4V7.7l-4-1.4Zm-2 0L6 7v11.9l2-.8V6.3Zm8 1.5v11.9l2-.8V7l-2 .8Z"/></svg>
-                        </span>
-                        <div class="tech-name">Google Maps</div>
-                    </div>
-                    <div class="tech-badge">
-                        <span class="tech-ico">
-                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M12 3c5 0 9 1.6 9 3.5v11c0 1.9-4 3.5-9 3.5s-9-1.6-9-3.5v-11C3 4.6 7 3 12 3Zm0 2C7.7 5 5 6.1 5 6.5S7.7 8 12 8s7-1.1 7-1.5S16.3 5 12 5Zm7 4.1C17.4 10.2 14.8 11 12 11s-5.4-.8-7-1.9v3.4C5 13 7.7 14 12 14s7-1 7-1.5V9.1Zm0 6C17.4 16.2 14.8 17 12 17s-5.4-.8-7-1.9v2.4C5 18 7.7 19 12 19s7-1 7-1.5v-2.4Z"/></svg>
-                        </span>
-                        <div class="tech-name">LocalStorage</div>
-                    </div>
-                    <div class="tech-badge">
-                        <span class="tech-ico">
-                            <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="24" height="24"><path d="M4 4h16v11H8l-4 4V4Zm2 2v8.2L7.2 13H18V6H6Zm3 3h6v2H9V9Z"/></svg>
-                        </span>
-                        <div class="tech-name">WhatsApp API</div>
+                        <div class="tech-desc">Lógica, interacción y carrito</div>
+                        <div class="tech-version-pill">ES6+</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================ CTA CIERRE -->
-        <section class="cta-section reveal" aria-labelledby="cta-heading">
-            <div class="cta-glow"></div>
-            <div class="cta-inner">
-                <span class="sec-label sec-label-block">¿Listo para comprar?</span>
-                <h2 class="sec-title" id="cta-heading">Visita nuestra tienda<br>digital</h2>
-                <p class="sec-desc">Explora el catálogo completo de Verfrut's y R&amp;M, agrega productos al carrito y realiza tu pedido directo por WhatsApp.</p>
-                <div class="cta-btns">
-                    <a href="productos.html" class="cta-btn-primary">
-                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 3h2l2.2 10.8A3 3 0 0 0 10.1 16H18a3 3 0 0 0 2.8-2l1.7-5H7.1L6.6 7H22V5H6.2L5.8 3H3Z"/></svg>
-                        <span>Ver Productos</span>
-                    </a>
-                    <a href="index.html" class="cta-btn-secondary">
-                        <svg class="inju-icon" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><path d="M11 5 4 12l7 7 1.4-1.4L7.8 13H20v-2H7.8l4.6-4.6L11 5Z"/></svg>
-                        <span>Inicio</span>
-                    </a>
-                </div>
+        
+
+    <!-- ============================================ TIMELINE DETAIL POPUP -->
+    <div id="tlPopupOverlay" class="tl-popup-overlay" aria-hidden="true">
+        <div class="tl-popup-container" role="dialog" aria-modal="true" aria-labelledby="tlPopupTitle">
+            <button type="button" class="tl-popup-close" id="tlPopupClose" aria-label="Cerrar">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="tl-popup-num" id="tlPopupNum">1</div>
+            <div class="tl-popup-body">
+                <span class="tl-popup-year" id="tlPopupYear"></span>
+                <h3 class="tl-popup-title" id="tlPopupTitle"></h3>
+                <p class="tl-popup-text" id="tlPopupText"></p>
             </div>
-        </section>
-    </main>
+            <!-- Nav entre eventos dentro del popup -->
+            <div class="tl-popup-nav">
+                <button type="button" class="tl-popup-nav-btn" id="tlPopupPrev" aria-label="Anterior">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M11 5 4 12l7 7 1.4-1.4L7.8 13H20v-2H7.8l4.6-4.6L11 5Z"/></svg>
+                </button>
+                <span class="tl-popup-counter" id="tlPopupCounter">1 / 5</span>
+                <button type="button" class="tl-popup-nav-btn" id="tlPopupNext" aria-label="Siguiente">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M13 5 11.6 6.4l4.6 4.6H4v2h12.2l-4.6 4.6L13 19l7-7-7-7Z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- ============================================ CARRITO COMPARTIDO -->
     <div id="cartToast" class="cart-toast" aria-live="polite">
@@ -593,5 +1422,127 @@
 
     <button type="button" class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
     <script src="script.js"></script>
+
+    <!-- ============================================ INJU PAGE ENHANCEMENTS JS -->
+    <script>
+    (function () {
+        /* ── 1. Hero: animaciones de entrada escalonadas ── */
+        var heroContent = document.querySelector('.inju-hero-content');
+        if (heroContent) {
+            requestAnimationFrame(function () {
+                setTimeout(function () {
+                    heroContent.classList.add('hero-loaded');
+                }, 80);
+            });
+        }
+
+        /* ── 2. Timeline belt: pausa total al pasar el cursor sobre cualquier tarjeta ── */
+        var track = document.querySelector('.timeline-track');
+        if (track) {
+            var allInners = document.querySelectorAll('.timeline-node-inner');
+            allInners.forEach(function (card) {
+                card.addEventListener('mouseenter', function () {
+                    track.classList.add('belt-paused');
+                });
+                card.addEventListener('mouseleave', function () {
+                    track.classList.remove('belt-paused');
+                });
+            });
+
+            /* También pausa con las flechas del carrusel */
+            var pauseTimeout;
+            ['timelinePrev', 'timelineNext'].forEach(function (id) {
+                var btn = document.getElementById(id);
+                if (btn) {
+                    btn.addEventListener('click', function () {
+                        track.classList.add('belt-paused');
+                        clearTimeout(pauseTimeout);
+                        pauseTimeout = setTimeout(function () {
+                            track.classList.remove('belt-paused');
+                        }, 4000);
+                    });
+                }
+            });
+        }
+
+        /* ── 3. Neutralizar el autoScroll JS del script.js para esta página ──
+           El interval usa la variable global autoInterval definida en script.js.
+           Como overflow está en hidden, no hay efecto visual, pero lo detenemos
+           igual para no acumular trabajo innecesario. */
+        if (typeof autoInterval !== 'undefined') {
+            clearInterval(autoInterval);
+        }
+
+        /* ── 4. Popup de detalle del timeline ── */
+        var tlData = [];
+        document.querySelectorAll('.timeline-node:not(.timeline-node-clone)').forEach(function (node) {
+            tlData.push({
+                num:   node.querySelector('.timeline-number')  ? node.querySelector('.timeline-number').textContent.trim()  : '',
+                year:  node.querySelector('.timeline-year')    ? node.querySelector('.timeline-year').textContent.trim()    : '',
+                title: node.querySelector('.timeline-title')   ? node.querySelector('.timeline-title').textContent.trim()   : '',
+                text:  node.querySelector('.timeline-text')    ? node.querySelector('.timeline-text').textContent.trim()    : ''
+            });
+        });
+
+        var popupOverlay   = document.getElementById('tlPopupOverlay');
+        var popupClose     = document.getElementById('tlPopupClose');
+        var popupNum       = document.getElementById('tlPopupNum');
+        var popupYear      = document.getElementById('tlPopupYear');
+        var popupTitle     = document.getElementById('tlPopupTitle');
+        var popupText      = document.getElementById('tlPopupText');
+        var popupCounter   = document.getElementById('tlPopupCounter');
+        var popupPrev      = document.getElementById('tlPopupPrev');
+        var popupNext      = document.getElementById('tlPopupNext');
+        var currentTlIdx   = 0;
+
+        function openTlPopup(idx) {
+            if (!tlData[idx]) return;
+            currentTlIdx = idx;
+            popupNum.textContent     = tlData[idx].num;
+            popupYear.textContent    = tlData[idx].year;
+            popupTitle.textContent   = tlData[idx].title;
+            popupText.textContent    = tlData[idx].text;
+            popupCounter.textContent = (idx + 1) + ' / ' + tlData.length;
+            popupPrev.disabled = idx === 0;
+            popupNext.disabled = idx === tlData.length - 1;
+            /* Actualizar botones numéricos */
+            document.querySelectorAll('.tl-num-btn').forEach(function (b) {
+                b.classList.toggle('active', parseInt(b.dataset.tl) === idx);
+            });
+            popupOverlay.removeAttribute('aria-hidden');
+            popupOverlay.classList.add('tl-popup-open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTlPopup() {
+            popupOverlay.setAttribute('aria-hidden', 'true');
+            popupOverlay.classList.remove('tl-popup-open');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.tl-num-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                openTlPopup(parseInt(btn.dataset.tl));
+            });
+        });
+
+        if (popupClose)   popupClose.addEventListener('click', closeTlPopup);
+        if (popupOverlay) popupOverlay.addEventListener('click', function (e) {
+            if (e.target === popupOverlay) closeTlPopup();
+        });
+        if (popupPrev) popupPrev.addEventListener('click', function () {
+            if (currentTlIdx > 0) openTlPopup(currentTlIdx - 1);
+        });
+        if (popupNext) popupNext.addEventListener('click', function () {
+            if (currentTlIdx < tlData.length - 1) openTlPopup(currentTlIdx + 1);
+        });
+        document.addEventListener('keydown', function (e) {
+            if (!popupOverlay.classList.contains('tl-popup-open')) return;
+            if (e.key === 'Escape') closeTlPopup();
+            if (e.key === 'ArrowLeft'  && currentTlIdx > 0)              openTlPopup(currentTlIdx - 1);
+            if (e.key === 'ArrowRight' && currentTlIdx < tlData.length - 1) openTlPopup(currentTlIdx + 1);
+        });
+    })();
+    </script>
 </body>
 </html>
