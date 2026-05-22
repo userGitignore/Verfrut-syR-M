@@ -4,31 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1e3a2f">
-    <title>Ubicación | Verfrut's y R&M</title>
-    <link rel="icon" href="img-navbar-and-icon/img-navbar.png"> 
+    <title>Arreglos Personalizados | Verfrut's y R&amp;M</title>
+    <link rel="icon" href="img-navbar-and-icon/img-navbar.png">
     <link rel="stylesheet" href="styles.css">
-
-    <!-- ============================================
-         ESTILOS ESPECÍFICOS PARA INFO CARDS DE UBICACIÓN
-         Centra los 4 cards con igual tamaño y ancho
-         ============================================ -->
 </head>
 <body>
-    <!-- ============================================
-         PANTALLA DE CARGA INICIAL
-         ============================================ -->
+    <!-- Inicio loader -->
     <div class="page-loader inju-loader" id="pageLoader">
         <div class="loader-wrapper">
             <div class="loader-spinner"></div>
             <img src="img-navbar-and-icon/img-navbar.png" alt="Verfrut's Logo" class="loader-logo">
         </div>
-        <p class="loader-text">Verfrut's y R&M</p>
+        <p class="loader-text">Verfrut's y R&amp;M</p>
     </div>
+    <!-- Fin loader -->
 
-    <!-- ============================================
-         BARRA DE NAVEGACION
-         ============================================ -->
-    <!-- Inicio navbar compartido -->
+<!-- Inicio navbar compartido -->
 <div id="navOverlay" class="nav-overlay"></div>
 <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -70,65 +61,162 @@
 </nav>
 <!-- Fin navbar compartido -->
 
-    <!-- ============================================
-         SECCION UBICACION
-         ============================================ -->
-    <section class="ubicacion-section" id="ubicacion">
-        <div class="container">
-            <div class="section-header">
-                <h2>¿Dónde estamos?</h2>
-                <p>Ven a visitarnos y disfruta de la mejor calidad. Estamos ubicados en Jucuapa, Usulután.</p>
-            </div>
-
-            <!-- Inicio video local de ubicación -->
-            <div class="location-video-block">
-                <div class="local-video-frame">
-                    <video class="location-video" controls preload="metadata">
-                        <source src="videos/video-ubicacion.mp4" type="video/mp4">
-                        Tu navegador no soporta video HTML5.
-                    </video>
-                </div>
-            </div>
-            <!-- Fin video local de ubicación -->
-
-            <div class="map-wrapper">
-                <div class="map-corner tl"></div>
-                <div class="map-corner tr"></div>
-                <div class="map-corner bl"></div>
-                <div class="map-corner br"></div>
-                <div class="map-overlay"></div>
-                <iframe src="https://maps.google.com/maps?q=Jucuapa%2C%20Usulutan%2C%20El%20Salvador&output=embed" title="Ubicación Verfrut&apos;s y R&amp;M" loading="lazy"></iframe>
-            </div>
-
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                    <h3>Dirección</h3>
-                    <p>Jucuapa, Usulután<br>El Salvador, Centroamérica</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                    <h3>Horario de Atención</h3>
-                    <p>Lunes a Sábado: 6:00 AM - 6:00 PM<br>Domingo: 6:00 AM - 1:00 PM</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                    <h3>Teléfonos</h3>
-                    <p>+503 6064-9103<br>+503 6971-8315</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-                    <h3>Correo Electrónico</h3>
-                    <p>verfrutsrm.shop@gmail.com<br>Responderemos en 24h</p>
-                </div>
+    <!-- HERO — igual estructura que galeria.html -->
+    <section class="page-hero gallery-hero" id="hero">
+        <img class="page-hero-bg" src="img-start-galeria-mixtas/Tienda11.jpg" alt="Fondo Arreglos Personalizados" loading="eager">
+        <div class="page-hero-content">
+            <span class="page-hero-label">Categoría Especial</span>
+            <h1 class="page-hero-title">Arreglos Personalizados</h1>
+            <p class="page-hero-subtitle">Diseños únicos creados a tu medida — porque cada momento merece un detalle especial.</p>
+            <div class="scroll-line-container">
+                <div class="scroll-line"></div>
+                <span class="scroll-text">Scrollea para ver más</span>
             </div>
         </div>
     </section>
 
-<!-- ============================================
-         FOOTER
-         ============================================ -->
-    <!-- Inicio carrito compartido -->
+    <!-- INTRO BADGE — estilo historiaempresa -->
+    <div style="background:#040a06; padding:50px 24px 0; text-align:center;">
+        <div class="biz-hero-badge" style="margin:0 auto 0;">
+            <span class="biz-hero-badge-dot"></span>
+            <span class="biz-hero-badge-text">Disponibles en tienda · Jucuapa, Usulután</span>
+        </div>
+    </div>
+
+    <!-- DOS COLUMNAS — estilo timeline de historiaempresa -->
+    <div class="arreglos-columns-wrap">
+        <div class="arreglos-columns-grid">
+
+            <!-- Separador central visible -->
+            <div class="arreglos-col-divider"></div>
+
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="arreglos-col reveal">
+                <div class="arreglos-col-header">
+                    <h2>Colección A</h2>
+                    <p>Serie de arreglos clásicos</p>
+                </div>
+
+                <!-- Entrada 1 -->
+                <div class="arreglos-entry">
+                    <div class="arreglos-entry-text">
+                        <h3>Arreglo Clásico</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula sapien vel felis gravida, id tincidunt eros consequat.</p>
+                    </div>
+                    <div class="arreglos-entry-img">
+                        <span class="arreglos-img-placeholder">Imagen 1</span>
+                    </div>
+                </div>
+
+                <!-- Entrada 2 -->
+                <div class="arreglos-entry">
+                    <div class="arreglos-entry-text">
+                        <h3>Arreglo Primaveral</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada.</p>
+                    </div>
+                    <div class="arreglos-entry-img">
+                        <span class="arreglos-img-placeholder">Imagen 2</span>
+                    </div>
+                </div>
+
+                <!-- Entrada 3 -->
+                <div class="arreglos-entry">
+                    <div class="arreglos-entry-text">
+                        <h3>Arreglo Festivo</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                    </div>
+                    <div class="arreglos-entry-img">
+                        <span class="arreglos-img-placeholder">Imagen 3</span>
+                    </div>
+                </div>
+
+                <!-- Entrada 4 -->
+                <div class="arreglos-entry">
+                    <div class="arreglos-entry-text">
+                        <h3>Arreglo Especial</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium tincidunt lacus, nec aliquet nisl maximus sit amet.</p>
+                    </div>
+                    <div class="arreglos-entry-img">
+                        <span class="arreglos-img-placeholder">Imagen 4</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <div class="arreglos-col reveal">
+                <div class="arreglos-col-header">
+                    <h2>Colección B</h2>
+                    <p>Serie de arreglos premium</p>
+                </div>
+
+                <!-- Entrada 1 -->
+                <div class="arreglos-entry">
+                    <div class="arreglos-entry-text">
+                        <h3>Arreglo Premium</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur purus.</p>
+                    </div>
+                    <div class="arreglos-entry-img">
+                        <span class="arreglos-img-placeholder">Imagen 5</span>
+                    </div>
+                </div>
+
+                <!-- Entrada 2 -->
+                <div class="arreglos-entry">
+                    <div class="arreglos-entry-text">
+                        <h3>Arreglo Tropical</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+                    </div>
+                    <div class="arreglos-entry-img">
+                        <span class="arreglos-img-placeholder">Imagen 6</span>
+                    </div>
+                </div>
+
+                <!-- Entrada 3 -->
+                <div class="arreglos-entry">
+                    <div class="arreglos-entry-text">
+                        <h3>Arreglo Deluxe</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in.</p>
+                    </div>
+                    <div class="arreglos-entry-img">
+                        <span class="arreglos-img-placeholder">Imagen 7</span>
+                    </div>
+                </div>
+
+                <!-- Entrada 4 -->
+                <div class="arreglos-entry">
+                    <div class="arreglos-entry-text">
+                        <h3>Arreglo Exclusivo</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                    </div>
+                    <div class="arreglos-entry-img">
+                        <span class="arreglos-img-placeholder">Imagen 8</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FILA TIMELINE — estilo inju.html timeline (texto + imagen sobresaliendo) -->
+    <section class="arreglos-timeline-section">
+        <div class="arreglos-timeline-header reveal">
+            <span class="sec-label">Creación artesanal</span>
+            <h2>El detalle que lo cambia todo</h2>
+            <p>Cada arreglo es elaborado con cuidado y dedicación para hacer de tu momento algo verdaderamente memorable.</p>
+        </div>
+
+        <div class="arreglos-timeline-row reveal">
+            <div class="arreglos-tl-text">
+                <h3>Nuestro proceso creativo</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend libero at lobortis mollis.</p>
+            </div>
+            <div class="arreglos-tl-img">
+                <span class="arreglos-img-placeholder">Imagen Principal</span>
+            </div>
+        </div>
+    </section>
+
+<!-- Inicio carrito compartido -->
 <div id="cartToast" class="cart-toast" aria-live="polite">
     <span class="toast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.2 16.6-4.1-4.1-1.4 1.4 5.5 5.5L21 7.6l-1.4-1.4L9.2 16.6Z"/></svg></span>
     <span class="toast-text" id="cartToastText">Producto agregado</span>
@@ -216,12 +304,16 @@
 </footer>
 <!-- Fin footer compartido -->
 
-
     <button class="scroll-top" id="scrollTop" aria-label="Ir arriba">&#9650;</button>
 
-    <!-- ============================================
-         JAVASCRIPT - LOGICA DE INTERACTIVIDAD
-         ============================================ -->
+    <!-- Lightbox para galería si fuera necesario -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Vista ampliada">
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</button>
+    </div>
+
 <!-- Inicio JavaScript global -->
 <script src="script.js"></script>
 <!-- Fin JavaScript global -->
