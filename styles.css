@@ -20,6 +20,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Compensa el navbar fijo en anclas internas */
         }
 
         body {
@@ -2384,6 +2385,7 @@
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Compensa el navbar fijo en anclas internas */
             scrollbar-width: none;
             -ms-overflow-style: none;
             padding: 10px 5px 30px 5px;
@@ -4492,6 +4494,7 @@
             overflow-x: auto;
             overflow-y: hidden;
             scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Compensa el navbar fijo en anclas internas */
             scrollbar-width: none;
             -ms-overflow-style: none;
             padding: 40px 0;
@@ -6168,25 +6171,100 @@
             border-radius: 8px;
         }
         @media (max-width: 768px) {
+
+            /* Panel desplegable del menú móvil */
             .nav-links {
                 position: fixed;
-                top: 72px; left: 0; width: 100%;
+                top: 72px;
+                left: 0;
+                width: 100%;
                 background: rgba(6, 75, 40, 0.98);
                 flex-direction: column;
-                align-items: flex-start;
-                padding: 1.5rem 2rem;
+                align-items: stretch;
+                padding: 1rem 1rem 1.5rem;
+                gap: 0.25rem;
                 transform: translateY(-150%);
-                transition: transform 0.3s ease;
+                transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
                 z-index: 999;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+                border-bottom: 1px solid rgba(74, 222, 128, 0.2);
             }
-            .nav-links.active { transform: translateY(0); }
-            .dropdown-menu {
-                position: static; opacity: 1; visibility: visible; transform: none; display: none;
+
+            .nav-links.active {
+                transform: translateY(0);
             }
-            .dropdown.active .dropdown-menu { display: block; }
-            .menu-toggle { display: block; }
-            #navOverlay { display: none !important; }
-            #navOverlay.active { display: block !important; position: fixed; inset:0; background:rgba(0,0,0,0.5); z-index:998; }
+
+            /* Cada item ocupa el ancho completo */
+            .nav-links > li {
+                width: 100%;
+            }
+
+            /* Links en el panel móvil: área de toque generosa y estilo vertical */
+            .nav-links > li > a {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                padding: 0.85rem 1.1rem;
+                font-size: 0.82rem;
+                font-weight: 600;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.82);
+                border-radius: 10px;
+                border-left: 3px solid transparent;
+                overflow: visible;
+                background: transparent;
+                transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            }
+
+            /* Deshabilitar pseudo-elementos de escritorio en móvil */
+            .nav-links > li > a::before,
+            .nav-links > li > a::after {
+                display: none;
+            }
+
+            /* Hover en móvil */
+            .nav-links > li > a:hover {
+                background: rgba(255, 255, 255, 0.07);
+                border-left-color: rgba(74, 222, 128, 0.45);
+                color: #ffffff;
+            }
+
+            /* Enlace activo en móvil: borde verde izquierdo + fondo sutil */
+            .nav-links > li > a.active {
+                background: rgba(34, 197, 94, 0.13);
+                border-left-color: #22c55e;
+                color: #ffffff;
+                font-weight: 700;
+            }
+
+            /* El item del carrito en el panel no necesita estilos de link */
+            .nav-links > li.nav-cart-item {
+                display: none;
+            }
+
+            /* Separador sutil entre grupos de links */
+            .nav-links > li + li {
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            /* Boton hamburguesa */
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Overlay de fondo cuando el menu está abierto */
+            #navOverlay {
+                display: none;
+            }
+
+            #navOverlay.active {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 998;
+            }
         }
 
         
@@ -7885,6 +7963,7 @@
     overflow-x:auto;
     scroll-snap-type:x mandatory;
     scroll-behavior:smooth;
+    scroll-padding-top: 80px; /* Compensa el navbar fijo en anclas internas */
     padding:0.6rem 0.8rem 0.75rem;
     margin-bottom:0;
     touch-action:pan-x;
@@ -7960,13 +8039,17 @@
    CARRITO MÁS GRANDE — MODAL MEJORADO
    ============================================ */
 
-/* Override: modal más grande */
-.modal-container {
-    width: min(920px, calc(100vw - 32px)) !important;
-    max-height: min(820px, calc(100dvh - 40px)) !important;
-}
+/* Override: modal más grande — solo en pantallas de escritorio */
+@media (min-width: 701px) {
+    .modal-container {
+        width: min(920px, calc(100vw - 32px));
+        max-height: min(820px, calc(100dvh - 40px));
+    }
 
-.modal-items { max-height: 380px; }
+    .modal-items {
+        max-height: 380px;
+    }
+}
 
 
 /* ============================================

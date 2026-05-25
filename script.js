@@ -173,14 +173,20 @@
            7. SCROLL SUAVE PARA ANCLAS INTERNAS
            ============================================ */
         function initSmoothScroll() {
+            /* scrollIntoView no descuenta el navbar fijo, por eso calculamos
+               la posicion manualmente restando el alto del navbar + margen */
             document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
                 anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
+                    var href = this.getAttribute('href');
                     if (href !== '#') {
-                        const target = document.querySelector(href);
+                        var target = document.querySelector(href);
                         if (target) {
                             e.preventDefault();
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            var navbar = document.getElementById('navbar');
+                            var navbarOffset = navbar ? navbar.offsetHeight : 72;
+                            var margin = 12;
+                            var targetTop = target.getBoundingClientRect().top + window.pageYOffset - navbarOffset - margin;
+                            window.scrollTo({ top: targetTop, behavior: 'smooth' });
                         }
                     }
                 });
