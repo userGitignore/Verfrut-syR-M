@@ -695,10 +695,11 @@
            8. PRODUCTOS DESTACADOS (OFERTAS)
            ============================================ */
         .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+    margin-bottom: 20px;
+}
 
         .product-card {
             background: #141b24;
@@ -2926,23 +2927,31 @@
             }
         }
 
-        /* GRID ESTRICTO 3 COLUMNAS */
+        /* GRID 4 COLUMNAS — RESPONSIVO COMPLETO */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 20px;
         }
 
-        @media (max-width: 992px) {
+        @media (max-width: 1100px) {
             .products-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        @media (max-width: 650px) {
+        @media (max-width: 750px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 420px) {
             .products-grid {
                 grid-template-columns: 1fr;
+                gap: 12px;
             }
         }
 
@@ -3004,7 +3013,7 @@
 
         /* FIXED PRODUCT IMAGE STYLES */
         .product-image {
-            height: 220px !important;
+            height: 170px !important;
             width: 100%;
             overflow: hidden;
             background: #0f1a0f;
@@ -3022,6 +3031,45 @@
         .product-card:hover .product-image img {
             transform: scale(1.1);
         }
+
+
+/* ============================================
+   RESPONSIVE COMPLETO: PRODUCTOS
+   ============================================ */
+@media (max-width: 1100px) {
+    .products-hero { min-height: 480px; }
+    .page-hero-title { font-size: 3rem; }
+    .section { padding: 60px 0; }
+}
+
+@media (max-width: 768px) {
+    .products-hero { min-height: 420px; }
+    .page-hero-title { font-size: 2.2rem; }
+    .page-hero-subtitle { font-size: 0.9rem; }
+    .hero-btn { padding: 10px 18px; font-size: 0.78rem; }
+    .hero-row { gap: 10px; }
+    .section { padding: 50px 0; }
+    .section-header h2 { font-size: 1.8rem !important; }
+    .category-wrapper { padding-bottom: 10px; }
+    .show-more-btn { padding: 10px 24px; font-size: 0.82rem; }
+    .product-info { padding: 12px 14px 14px; }
+    .product-name { font-size: 0.9rem; }
+    .product-desc { font-size: 0.78rem; }
+    .price { font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+    .products-hero { min-height: 340px; }
+    .page-hero-title { font-size: 1.7rem; }
+    .page-hero-label { font-size: 0.62rem; padding: 6px 14px; }
+    .hero-btn { padding: 9px 14px; font-size: 0.72rem; letter-spacing: 0.08em; }
+    .section-header h2 { font-size: 1.5rem !important; }
+    .product-image { height: 140px !important; }
+    .product-info { padding: 10px 12px; }
+    .product-name { font-size: 0.82rem; }
+    .price { font-size: 0.9rem; }
+    .btn-add { width: 32px !important; height: 32px !important; font-size: 1rem !important; }
+}
 
 /* ============================================
    SECCION 3: ESTILOS ESPECIFICOS PARA UBICACION
@@ -6230,8 +6278,8 @@
     font-style: normal;
     font-family: 'Segoe UI', system-ui, sans-serif;
     background: linear-gradient(135deg, #e2e8f0 0%, #22c55e 50%, #16a34a 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
     background-clip: text;
     line-height: 1.05;
     margin-bottom: 12px;
@@ -7239,8 +7287,8 @@
     font-size: 1.2rem;
     letter-spacing: 0.10em;
     background: linear-gradient(90deg, #22c55e, #FFD700, #FF6F00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
     background-clip: text;
     text-shadow: none;
     margin-bottom: 0.8rem;
@@ -7406,8 +7454,8 @@
     margin-bottom: 1rem;
     background: linear-gradient(135deg, #e2e8f0 0%, #22c55e 35%, #4ade80 55%, #e2e8f0 100%);
     background-size: 250% 250%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
     background-clip: text;
     animation: titleGradient 7s ease-in-out infinite;
 }
@@ -7443,8 +7491,8 @@
     border-radius: 999px;
     padding: 1.5px;
     background: linear-gradient(135deg, #22c55e, #4ade80, #FF6F00);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
     mask-composite: exclude;
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -7475,7 +7523,7 @@
 .business-story-section { background: #040a06; color: #e2e8f0; }
 .business-story-wrap { max-width: 1200px; margin: 0 auto; padding: 100px 24px; }
 .business-story-intro { text-align: center; max-width: 800px; margin: 0 auto 70px; }
-.business-story-intro h2 { font-family: Georgia, serif; font-style: italic; font-size: clamp(2rem,4vw,3rem); margin-bottom: 20px; background: linear-gradient(135deg, #fff 0%, #4ade80 100%); background-clip: text; -webkit-text-fill-color: transparent; }
+.business-story-intro h2 { font-family: Georgia, serif; font-style: italic; font-size: clamp(2rem,4vw,3rem); margin-bottom: 20px; background: linear-gradient(135deg, #fff 0%, #4ade80 100%); background-clip: text; color: transparent; }
 .business-story-intro p { color: #94a3b8; font-size: 1.1rem; line-height: 1.8; }
 
 .license-deal-card {
@@ -7686,7 +7734,7 @@
 .hero-year-badge-dot { width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 10px rgba(34,197,94,0.8); animation:dotBlink 1.8s ease-in-out infinite; }
 .hero-year-badge-text { font-size:0.72rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#4ade80; }
 
-.inju-hero-title-main { background:linear-gradient(135deg,#e2e8f0 0%,#22c55e 25%,#4ade80 45%,#16a34a 65%,#e2e8f0 100%); background-size:250% 250%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:titleGradient 8s ease-in-out infinite; }
+.inju-hero-title-main { background:linear-gradient(135deg,#e2e8f0 0%,#22c55e 25%,#4ade80 45%,#16a34a 65%,#e2e8f0 100%); background-size:250% 250%; background-clip: text; color: transparent; background-clip:text; animation:titleGradient 8s ease-in-out infinite; }
 
 .hero-eyebrow { animation:eyebrowPulse 3s ease-in-out infinite; }
 @keyframes eyebrowPulse { 0%,100% { box-shadow:0 0 0 0 rgba(34,197,94,0.35); } 50% { box-shadow:0 0 0 10px rgba(34,197,94,0); } }
@@ -7802,7 +7850,7 @@
 .cta-orb-2 { width:250px; height:250px; background:radial-gradient(circle,rgba(255,111,0,0.06),transparent 70%); bottom:-40px; right:-60px; animation:orbDrift 15s ease-in-out infinite alternate-reverse; }
 @keyframes orbDrift { 0% { transform:translate(0,0); } 100% { transform:translate(30px,20px); } }
 
-.cta-title em { font-style:italic; background:linear-gradient(135deg,#FF8F00,#FF6F00); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.cta-title em { font-style:italic; background:linear-gradient(135deg,#FF8F00,#FF6F00); background-clip: text; color: transparent; background-clip:text; }
 .cta-features { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:28px 0 0; }
 .cta-feat { display:inline-flex; align-items:center; gap:8px; padding:8px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:999px; font-size:0.78rem; color:#94a3b8; transition:all 0.25s ease; }
 .cta-feat:hover { border-color:rgba(34,197,94,0.25); color:#cbd5e1; background:rgba(34,197,94,0.04); }
@@ -7837,7 +7885,6 @@
     overflow-x:auto;
     scroll-snap-type:x mandatory;
     scroll-behavior:smooth;
-    -webkit-overflow-scrolling:touch;
     padding:0.6rem 0.8rem 0.75rem;
     margin-bottom:0;
     touch-action:pan-x;
@@ -7998,7 +8045,7 @@
     font-size: clamp(1.4rem, 2.5vw, 1.8rem);
     background: linear-gradient(135deg, #fff 0%, #4ade80 100%);
     background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: transparent;
     margin-bottom: 8px;
 }
 
@@ -8105,7 +8152,7 @@
     font-size: clamp(1.4rem, 3vw, 2rem);
     background: linear-gradient(135deg, #fff 0%, #4ade80 100%);
     background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: transparent;
     margin-bottom: 10px;
 }
 
@@ -8176,3 +8223,75 @@
     .arreglos-entry:nth-child(even) .arreglos-entry-img,
     .arreglos-entry:nth-child(even) .arreglos-entry-text { order: unset; }
 }
+/* ============================================
+   INICIO CSS: compras.html — Sliders automáticos por categoría
+   ============================================ */
+
+/* Wrapper del slider de compras (reutiliza .carousel-wrapper pero sin fade lateral) */
+.compras-slider-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Track horizontal de cada categoría en compras.html */
+.compras-carousel-track {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+}
+
+.compras-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cada card dentro del slider de compras */
+.compras-carousel-track .product-card {
+    min-width: 220px;
+    max-width: 220px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .compras-carousel-track .product-card {
+        min-width: 175px;
+        max-width: 175px;
+    }
+}
+
+@media (max-width: 480px) {
+    .compras-carousel-track .product-card {
+        min-width: 155px;
+        max-width: 155px;
+    }
+}
+
+/* ============================================
+   FIN CSS: compras.html — Sliders automáticos por categoría
+   ============================================ */
+
+
+/* ============================================
+   INICIO CSS: productos.html — Animacion carrito al agregar
+   ============================================ */
+
+/* Expansion minimalista del icono de carrito al agregar producto */
+.nav-cart-icon svg {
+    transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-cart-button.bump .nav-cart-icon svg {
+    transform: scale(1.18);
+}
+
+/* Efecto pulse en el badge del carrito */
+.nav-cart-badge {
+    transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   FIN CSS: productos.html — Animacion carrito al agregar
+   ============================================ */

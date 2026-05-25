@@ -679,7 +679,6 @@ function initScrollTargets() {
 
 function initSharedCart() {
     const page = (window.location.pathname.split('/').pop() || '').toLowerCase();
-    if (page === 'productos.html' || page === 'compras.html') return;
 
     const CART_KEY = 'verfruts_cart';
     const WHATSAPP_NUMBER = '50360649103';
@@ -777,7 +776,7 @@ function initSharedCart() {
     }
 
     function initProductCards() {
-        const cards = document.querySelectorAll('.carousel-track .product-card, #ofertas .product-card');
+        const cards = document.querySelectorAll('.carousel-track .product-card, #ofertas .product-card, .products-grid .product-card, .compras-carousel-track .product-card');
         cards.forEach(function(card, index) {
             const nameEl = card.querySelector('.product-name');
             const priceEl = card.querySelector('.price');
@@ -919,7 +918,7 @@ function initSharedCart() {
             alert('Por favor ingresa tu nombre antes de enviar el pedido.');
             return;
         }
-        window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text, '_blank');
+        window.location.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
         cart = [];
         saveCart();
         closeModal();
@@ -991,3 +990,158 @@ document.addEventListener('DOMContentLoaded', function() {
     initSharedCart();
 });
 /* FIN JS: NAVEGACION Y CARRITO COMPARTIDO */
+/* ============================================
+   INICIO JS: compras.html — Auto-sliders por categoria
+   ============================================ */
+
+function initComprasAutoSliders() {
+    var tracks = document.querySelectorAll('.compras-carousel-track');
+    if (!tracks.length) return;
+
+    tracks.forEach(function (track) {
+        var autoTimer = null;
+        var AUTO_DELAY = 8000;
+
+        function getCardWidth() {
+            var card = track.querySelector('.product-card');
+            if (!card) return 240;
+            var style = window.getComputedStyle(track);
+            var gap = parseFloat(style.gap || style.columnGap || '0') || 22;
+            return card.offsetWidth + gap;
+        }
+
+        function scrollNext() {
+            var maxScroll = track.scrollWidth - track.clientWidth;
+            if (track.scrollLeft >= maxScroll - 8) {
+                /* Llegó al final: vuelve al inicio suavemente */
+                track.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                var cardW = getCardWidth();
+                var visible = Math.max(1, Math.floor(track.clientWidth / cardW));
+                track.scrollBy({ left: cardW * visible, behavior: 'smooth' });
+            }
+        }
+
+        function startAuto() {
+            if (autoTimer) clearInterval(autoTimer);
+            autoTimer = setInterval(scrollNext, AUTO_DELAY);
+        }
+
+        function stopAuto() {
+            clearInterval(autoTimer);
+            autoTimer = null;
+        }
+
+        /* Pausa al hacer hover o touch */
+        track.addEventListener('mouseenter', stopAuto);
+        track.addEventListener('mouseleave', startAuto);
+        track.addEventListener('touchstart', stopAuto, { passive: true });
+        track.addEventListener('touchend', function () {
+            setTimeout(startAuto, 3000);
+        }, { passive: true });
+
+        /* Botones prev/next del wrapper */
+        var wrapper = track.closest('.compras-slider-wrapper');
+        if (wrapper) {
+            var prevBtn = wrapper.querySelector('.carousel-btn.prev');
+            var nextBtn = wrapper.querySelector('.carousel-btn.next');
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    stopAuto();
+                    var cardW = getCardWidth();
+                    var visible = Math.max(1, Math.floor(track.clientWidth / cardW));
+                    track.scrollBy({ left: -(cardW * visible), behavior: 'smooth' });
+                    setTimeout(startAuto, 3000);
+                });
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    stopAuto();
+                    scrollNext();
+                    setTimeout(startAuto, 3000);
+                });
+            }
+        }
+
+        startAuto();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    initComprasAutoSliders();
+});
+
+/* ============================================
+   FIN JS: compras.html — Auto-sliders por categoria
+   ============================================ */
+
+
+/* ============================================
+   INICIO JS: index.html — Slider hero 7 slides (trasladado de inline)
+   ============================================ */
+
+(function () {
+    /* Solo ejecuta en index.html donde existe el slider con 7 dots reales */
+    var dotContainer = document.querySelector('.slider-dots');
+    var sliderTrack = document.getElementById('sliderTrack');
+    if (!dotContainer || !sliderTrack) return;
+
+    var TOTAL_REAL = dotContainer.querySelectorAll('.dot').length;
+    if (TOTAL_REAL === 0) return;
+
+    var dots = dotContainer.querySelectorAll('.dot');
+    var current = 1;
+    var isAnimating = false;
+    var autoTimer;
+
+    function goTo(index, animate) {
+        if (typeof animate === 'undefined') animate = true;
+        sliderTrack.style.transition = animate ? 'transform 0.55s cubic-bezier(.4,0,.2,1)' : 'none';
+        sliderTrack.style.transform = 'translateX(-' + (index * 100) + '%)';
+        var dotIndex = index - 1;
+        if (dotIndex < 0) dotIndex = TOTAL_REAL - 1;
+        if (dotIndex >= TOTAL_REAL) dotIndex = 0;
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === dotIndex); });
+        current = index;
+    }
+
+    function next() {
+        if (isAnimating) return;
+        isAnimating = true;
+        goTo(current + 1);
+        sliderTrack.addEventListener('transitionend', function onEnd() {
+            sliderTrack.removeEventListener('transitionend', onEnd);
+            if (current >= TOTAL_REAL + 1) { goTo(1, false); }
+            isAnimating = false;
+        });
+    }
+
+    function prev() {
+        if (isAnimating) return;
+        isAnimating = true;
+        goTo(current - 1);
+        sliderTrack.addEventListener('transitionend', function onEnd() {
+            sliderTrack.removeEventListener('transitionend', onEnd);
+            if (current <= 0) { goTo(TOTAL_REAL, false); }
+            isAnimating = false;
+        });
+    }
+
+    function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(next, 5000); }
+
+    var btnNext = document.querySelector('.slider-arrow.next');
+    var btnPrev = document.querySelector('.slider-arrow.prev');
+    if (btnNext) btnNext.addEventListener('click', function () { next(); resetAuto(); });
+    if (btnPrev) btnPrev.addEventListener('click', function () { prev(); resetAuto(); });
+
+    dots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () { goTo(i + 1); resetAuto(); });
+    });
+
+    goTo(1, false);
+    resetAuto();
+}());
+
+/* ============================================
+   FIN JS: index.html — Slider hero 7 slides
+   ============================================ */
