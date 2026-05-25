@@ -653,10 +653,10 @@ if (timelineScroll) {
    INICIO JS: NAVEGACION Y CARRITO COMPARTIDO
    ============================================ */
 function initActiveNav() {
-    const page = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    /* Obtiene el nombre del archivo actual para marcar el enlace activo en el navbar */
+    var page = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
     document.querySelectorAll('.nav-links a[href]').forEach(function(link) {
-        if (link.closest('.dropdown-menu')) return; // Excluir subenlaces del dropdown
-        const href = (link.getAttribute('href') || '').split('#')[0].toLowerCase();
+        var href = (link.getAttribute('href') || '').split('#')[0].toLowerCase();
         link.classList.toggle('active', href === page || (page === '' && href === 'index.html'));
     });
 }

@@ -7968,8 +7968,112 @@
 
 .modal-items { max-height: 380px; }
 
+
 /* ============================================
-   ESTILOS DE PÁGINA: ARREGLOS.HTML
+   RESPONSIVE EXTRA: CARRITO EN PANTALLAS MUY PEQUEÑAS
+   ============================================ */
+
+@media (max-width: 420px) {
+
+    /* Carrito ocupa pantalla completa en móvil pequeño */
+    .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .modal-container {
+        width: 100%;
+        max-height: 96dvh;
+        border-radius: 20px 20px 0 0;
+    }
+
+    /* Header del modal compacto */
+    .modal-header {
+        padding: 14px 12px;
+        gap: 8px;
+    }
+
+    .modal-header h3 {
+        font-size: 1rem;
+    }
+
+    /* Items del carrito en columna */
+    .modal-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 0.8rem 0.75rem;
+    }
+
+    .modal-item-name {
+        font-size: 0.88rem;
+    }
+
+    /* Controles del item en fila completa */
+    .modal-item-controls {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+
+    .modal-item-subtotal {
+        min-width: auto;
+        flex: 1;
+        text-align: right;
+    }
+
+    /* Total y formulario sin margen lateral */
+    .modal-total {
+        margin: 0 12px;
+        padding: 12px 0;
+        font-size: 0.95rem;
+    }
+
+    .modal-form {
+        margin: 0 12px 12px;
+        padding: 12px;
+    }
+
+    /* Inputs del formulario en columna */
+    .modal-name-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .modal-form input {
+        font-size: 0.9rem;
+    }
+
+    /* Botones en columna, ancho completo */
+    .modal-buttons {
+        padding: 12px;
+        gap: 0.6rem;
+        flex-direction: column;
+    }
+
+    .modal-buttons .btn-secondary,
+    .modal-buttons .btn-primary {
+        flex: 1 1 100%;
+        min-width: 0;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* Toast en pantallas pequeñas */
+    .cart-toast {
+        right: 0.75rem;
+        bottom: 0.75rem;
+        max-width: calc(100vw - 24px);
+        font-size: 0.85rem;
+        padding: 0.7rem 0.85rem;
+    }
+}
+
+/* ============================================
+   FIN RESPONSIVE EXTRA: CARRITO
+   ============================================ */
+/* ============================================
+   ESTILOS DE PÁGINA: SERVICIOS.HTML
    ============================================ */
 
 .arreglos-columns-wrap {
@@ -8224,7 +8328,7 @@
     .arreglos-entry:nth-child(even) .arreglos-entry-text { order: unset; }
 }
 /* ============================================
-   INICIO CSS: compras.html — Sliders automáticos por categoría
+   INICIO CSS: tienda.html — Sliders automáticos por categoría
    ============================================ */
 
 /* Wrapper del slider de compras (reutiliza .carousel-wrapper pero sin fade lateral) */
@@ -8270,7 +8374,7 @@
 }
 
 /* ============================================
-   FIN CSS: compras.html — Sliders automáticos por categoría
+   FIN CSS: tienda.html — Sliders automáticos por categoría
    ============================================ */
 
 
