@@ -405,7 +405,7 @@
             const closeBtn = document.getElementById('lightboxClose');
             const prevBtn = document.getElementById('lightboxPrev');
             const nextBtn = document.getElementById('lightboxNext');
-            const galleryItems = document.querySelectorAll('.gallery-item');
+            const galleryItems = document.querySelectorAll('.gallery-item, .service-lightbox-item');
             if (!overlay || !img || galleryItems.length === 0) return;
 
             let currentIndex = 0;
@@ -959,9 +959,10 @@ function initSharedCart() {
     document.addEventListener('click', function(event) {
         const btn = event.target.closest('.add-to-cart');
         if (!btn) return;
-        const card = btn.closest('.product-card, .slider-card');
+        const card = btn.closest('.product-card, .slider-card, .arreglo-product');
         if (!card) return;
         event.preventDefault();
+        event.stopPropagation();
         let id = card.dataset.id;
         let name = card.dataset.name;
         let price = card.dataset.price;

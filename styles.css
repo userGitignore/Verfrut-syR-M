@@ -2655,7 +2655,7 @@
         }
 
         /* ============================================
-           CATEGORIAS: 3 arriba, 2 abajo centradas
+           CATEGORIAS: 4 arriba, 4 abajo centradas
            ============================================ */
         .categories-grid {
             display: flex;
@@ -2665,9 +2665,9 @@
         }
 
         .categories-grid .category-card {
-            flex: 0 0 calc(33.333% - 20px);
-            max-width: 380px;
-            min-width: 280px;
+            flex: 0 0 calc(25% - 23px);
+            max-width: 280px;
+            min-width: 250px;
         }
 
         @media (max-width: 768px) {
@@ -11651,7 +11651,7 @@
         }
 
         /* ============================================
-           CATEGORIAS: 3 arriba, 2 abajo centradas
+           CATEGORIAS: 4 arriba, 4 abajo centradas
            ============================================ */
         .categories-grid {
             display: flex;
@@ -11661,9 +11661,9 @@
         }
 
         .categories-grid .category-card {
-            flex: 0 0 calc(33.333% - 20px);
-            max-width: 380px;
-            min-width: 280px;
+            flex: 0 0 calc(25% - 23px);
+            max-width: 280px;
+            min-width: 250px;
         }
 
         @media (max-width: 768px) {
@@ -20528,7 +20528,7 @@
         }
 
         /* ============================================
-           CATEGORIAS: 3 arriba, 2 abajo centradas
+           CATEGORIAS: 4 arriba, 4 abajo centradas
            ============================================ */
         .categories-grid {
             display: flex;
@@ -20538,9 +20538,9 @@
         }
 
         .categories-grid .category-card {
-            flex: 0 0 calc(33.333% - 20px);
-            max-width: 380px;
-            min-width: 280px;
+            flex: 0 0 calc(25% - 23px);
+            max-width: 280px;
+            min-width: 250px;
         }
 
         @media (max-width: 768px) {
@@ -27035,4 +27035,181 @@ body.modal-open {
     .modal-total span:last-child {
         font-size: 1rem !important;
     }
+}
+
+/* ============================================
+   AJUSTES SOLICITADOS: INDEX, SERVICIOS, UBICACION E INJU
+   ============================================ */
+
+.categories-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.categories-grid .category-card {
+    flex: 0 0 calc(25% - 23px);
+    max-width: 280px;
+    min-width: 250px;
+}
+
+@media (max-width: 768px) {
+    .categories-grid .category-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+.arreglo-product {
+    position: relative;
+}
+
+.arreglos-entry-img .service-lightbox-item,
+.arreglos-tl-img .service-lightbox-item {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: zoom-in;
+}
+
+.arreglos-entry-img .service-lightbox-item img,
+.arreglos-tl-img .service-lightbox-item img {
+    pointer-events: none;
+}
+
+.service-add-btn {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    z-index: 3;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    background: rgba(4, 10, 6, 0.66);
+    color: #f8fafc;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.78;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.arreglos-entry-img:hover .service-add-btn,
+.arreglos-tl-img:hover .service-add-btn,
+.service-add-btn:focus-visible {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.service-add-btn:hover {
+    background: rgba(34, 197, 94, 0.92);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.location-video-block {
+    position: relative;
+    z-index: 1;
+    max-width: 1040px;
+    margin: 0 auto 42px;
+    padding: clamp(20px, 4vw, 42px);
+    border-radius: 28px;
+    overflow: hidden;
+    background: #050c12;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+    isolation: isolate;
+}
+
+.location-video-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image:
+        url('img-start-galeria-mixtas/Tienda1.jpg'),
+        url('img-start-galeria-mixtas/Tienda3.jpg'),
+        url('img-start-galeria-mixtas/Tienda7.jpg'),
+        url('img-start-galeria-mixtas/Tienda10.jpg'),
+        url('img-start-galeria-mixtas/Tienda11.jpg');
+    background-size: 34% auto, 24% auto, 30% auto, 26% auto, 52% auto;
+    background-position: left top, right 8% top 8%, left 16% bottom 6%, right bottom, center;
+    background-repeat: no-repeat;
+    opacity: 0.36;
+    filter: saturate(1.08) brightness(0.82);
+}
+
+.location-video-block::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(2, 8, 6, 0.54);
+}
+
+.local-video-frame {
+    position: relative;
+    z-index: 1;
+    width: min(390px, 100%);
+    aspect-ratio: 9 / 16;
+    margin: 0 auto;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(74, 222, 128, 0.32);
+    background: #050c12;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+.location-video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #050c12;
+    object-fit: contain;
+}
+
+@media (max-width: 640px) {
+    .location-video-block {
+        padding: 16px;
+        border-radius: 22px;
+    }
+
+    .local-video-frame {
+        width: min(330px, 100%);
+        border-radius: 18px;
+    }
+}
+
+.tech-badge-git .tech-badge-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(240, 80, 50, 0.12), transparent 70%);
+}
+
+.tech-badge-github .tech-badge-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(248, 250, 252, 0.1), transparent 70%);
+}
+
+.tech-badge-git .tech-ico {
+    background: rgba(240, 80, 50, 0.1);
+    color: #f05032;
+    border: 1px solid rgba(240, 80, 50, 0.18);
+}
+
+.tech-badge-github .tech-ico {
+    background: rgba(248, 250, 252, 0.08);
+    color: #f8fafc;
+    border: 1px solid rgba(248, 250, 252, 0.18);
+}
+
+.tech-badge-git:hover {
+    border-color: rgba(240, 80, 50, 0.32) !important;
+}
+
+.tech-badge-github:hover {
+    border-color: rgba(248, 250, 252, 0.28) !important;
 }
