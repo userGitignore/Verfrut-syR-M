@@ -924,7 +924,7 @@ function initSharedCart() {
             alert('Por favor ingresa tu nombre antes de enviar el pedido.');
             return;
         }
-        window.location.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
+        window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text, '_blank');
         cart = [];
         saveCart();
         closeModal();
