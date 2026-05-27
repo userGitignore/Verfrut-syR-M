@@ -27194,6 +27194,30 @@ body.modal-open {
     background: radial-gradient(circle at 50% 0%, rgba(248, 250, 252, 0.1), transparent 70%);
 }
 
+.tech-badge-chrome .tech-badge-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(66, 133, 244, 0.12), transparent 70%);
+}
+
+.tech-badge-google .tech-badge-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(66, 133, 244, 0.12), transparent 70%);
+}
+
+.tech-badge-capcut .tech-badge-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(248, 250, 252, 0.12), transparent 70%);
+}
+
+.tech-badge-filezilla .tech-badge-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(191, 32, 38, 0.12), transparent 70%);
+}
+
+.tech-badge-notepad .tech-badge-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 70%);
+}
+
+.tech-badge-gmail .tech-badge-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(234, 67, 53, 0.12), transparent 70%);
+}
+
 .tech-badge-git .tech-ico {
     background: rgba(240, 80, 50, 0.1);
     color: #f05032;
@@ -27206,10 +27230,79 @@ body.modal-open {
     border: 1px solid rgba(248, 250, 252, 0.18);
 }
 
+.tech-badge-chrome .tech-ico {
+    background: rgba(66, 133, 244, 0.1);
+    color: #4285f4;
+    border: 1px solid rgba(66, 133, 244, 0.18);
+}
+
+.tech-badge-google .tech-ico {
+    background: rgba(66, 133, 244, 0.1);
+    color: #4285f4;
+    border: 1px solid rgba(66, 133, 244, 0.18);
+}
+
+.tech-badge-capcut .tech-ico {
+    background: rgba(248, 250, 252, 0.08);
+    color: #f8fafc;
+    border: 1px solid rgba(248, 250, 252, 0.18);
+}
+
+.tech-badge-filezilla .tech-ico {
+    background: rgba(191, 32, 38, 0.1);
+    color: #bf2026;
+    border: 1px solid rgba(191, 32, 38, 0.18);
+}
+
+.tech-badge-notepad .tech-ico {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.18);
+}
+
+.tech-badge-gmail .tech-ico {
+    background: rgba(234, 67, 53, 0.1);
+    color: #ea4335;
+    border: 1px solid rgba(234, 67, 53, 0.18);
+}
+
 .tech-badge-git:hover {
     border-color: rgba(240, 80, 50, 0.32) !important;
 }
 
 .tech-badge-github:hover {
     border-color: rgba(248, 250, 252, 0.28) !important;
+}
+
+.tech-badge-chrome:hover {
+    border-color: rgba(66, 133, 244, 0.32) !important;
+}
+
+.tech-badge-google:hover {
+    border-color: rgba(66, 133, 244, 0.32) !important;
+}
+
+.tech-badge-capcut:hover {
+    border-color: rgba(248, 250, 252, 0.28) !important;
+}
+
+.tech-badge-filezilla:hover {
+    border-color: rgba(191, 32, 38, 0.32) !important;
+}
+
+.tech-badge-notepad:hover {
+    border-color: rgba(56, 189, 248, 0.32) !important;
+}
+
+.tech-badge-gmail:hover {
+    border-color: rgba(234, 67, 53, 0.32) !important;
+}
+
+.history-license-wrap {
+    padding-top: 0;
+    padding-bottom: 36px;
+}
+
+.history-license-wrap .license-deal-card {
+    margin-bottom: 0;
 }

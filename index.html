@@ -62,13 +62,13 @@
 
     <section class="hero">
         <div class="slider-track" id="sliderTrack">
-            <!-- Clon INICIO — Canasta Básica (para loop infinito hacia atrás) -->
+            <!-- Clon INICIO — Especies (para loop infinito hacia atrás) -->
             <div class="slide">
-                <img src="img-slider-index/canastabasica.jpg" alt="Canasta Básica clon">
+                <img src="img-slider-index/Especies.jpg" alt="Especies clon">
                 <div class="slide-content">
-                    <h2>Canasta Básica</h2>
-                    <p>Productos básicos, frescos y de calidad.</p>
-                    <a href="tienda.html#canasta" class="btn-primary">Visitar el catalogo</a>
+                    <h2>Especies</h2>
+                    <p>Sabor y aroma para cada preparación.</p>
+                    <a href="tienda.html#especies" class="btn-primary">Visitar el catalogo</a>
                 </div>
             </div>
             <!-- Slide 1 — Frutas (current=1 → primer slide visible) -->
@@ -134,6 +134,15 @@
                     <a href="tienda.html#canasta" class="btn-primary">Visitar el catalogo</a>
                 </div>
             </div>
+            <!-- Slide 8 — Especies — agrega tu imagen: img-slider-index/Especies.jpg -->
+            <div class="slide">
+                <img src="imgs-for-products-page/Especies/MiximgEspecies.jpg" alt="Especies">
+                <div class="slide-content">
+                    <h2>Especies</h2>
+                    <p>Sabor y aroma para cada preparación.</p>
+                    <a href="tienda.html#especies" class="btn-primary">Visitar el catalogo</a>
+                </div>
+            </div>
             <!-- Clon FIN — Frutas (para loop infinito hacia adelante) -->
             <div class="slide">
                 <img src="img-slider-index/frutas.jpg" alt="Frutas Frescas clon">
@@ -154,6 +163,7 @@
             <span class="dot" data-index="4"></span>
             <span class="dot" data-index="5"></span>
             <span class="dot" data-index="6"></span>
+            <span class="dot" data-index="7"></span>
         </div>
     </section>
 
@@ -598,9 +608,9 @@
      ============================================ -->
 
 <script>
-/* --- Actualiza el slider a 7 slides reales --- */
+/* --- Actualiza el slider a 8 slides reales --- */
 (function () {
-    var TOTAL_REAL = 7;
+    var TOTAL_REAL = 8;
     var track  = document.getElementById('sliderTrack');
     var dots   = document.querySelectorAll('.slider-dots .dot');
     if (!track || !dots.length) return;

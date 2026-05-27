@@ -1084,11 +1084,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 /* ============================================
-   INICIO JS: index.html — Slider hero 7 slides (trasladado de inline)
+   INICIO JS: index.html — Slider hero 8 slides (trasladado de inline)
    ============================================ */
 
 (function () {
-    /* Solo ejecuta en index.html donde existe el slider con 7 dots reales */
+    /* Solo ejecuta en index.html donde existe el slider con dots reales */
     var dotContainer = document.querySelector('.slider-dots');
     var sliderTrack = document.getElementById('sliderTrack');
     if (!dotContainer || !sliderTrack) return;
@@ -1150,5 +1150,5 @@ document.addEventListener('DOMContentLoaded', function () {
 }());
 
 /* ============================================
-   FIN JS: index.html — Slider hero 7 slides
+   FIN JS: index.html — Slider hero 8 slides
    ============================================ */
