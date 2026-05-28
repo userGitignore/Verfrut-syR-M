@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /Verfrut-syR-M/
+Disallow: /Verfrut-syR-M/carrito.html
+Disallow: /Verfrut-syR-M/leerimportante.html
+
+Sitemap: https://usergitignore.github.io/Verfrut-syR-M/sitemap.xml
