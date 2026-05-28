@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Manual SEO Técnico - Elementos Head</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 40px auto; padding: 20px; color: #333; }
+    h1 { color: #1a5276; border-bottom: 3px solid #2980b9; padding-bottom: 10px; }
+    h2 { color: #2874a6; margin-top: 30px; border-left: 4px solid #2980b9; padding-left: 12px; }
+    h3 { color: #2e86c1; margin-top: 25px; }
+    code { background: #f4f6f7; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; color: #c0392b; }
+    pre { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 14px; line-height: 1.5; }
+    pre code { background: none; color: inherit; padding: 0; }
+    .comment { color: #6a9955; }
+    .tag { color: #569cd6; }
+    .attr { color: #9cdcfe; }
+    .string { color: #ce9178; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th, td { border: 1px solid #bdc3c7; padding: 10px; text-align: left; }
+    th { background: #2980b9; color: white; }
+    tr:nth-child(even) { background: #f8f9f9; }
+    .highlight { background: #fef9e7; padding: 12px; border-left: 4px solid #f1c40f; margin: 15px 0; }
+    .note { background: #eaf2f8; padding: 12px; border-left: 4px solid #3498db; margin: 15px 0; }
+    ul, ol { margin: 10px 0; padding-left: 25px; }
+    li { margin: 5px 0; }
+  </style>
+</head>
+<body>
+
+<h1>Manual SEO Técnico: Elementos &lt;head&gt; para Indexación Orgánica</h1>
+
+<p><strong>Aplicación:</strong> Estas modificaciones deben implementarse en <strong>todas las páginas</strong> del sitio web, no solo en <code>index.html</code>. Cada página es una entrada de indexación independiente.</p>
+
+<hr>
+
+<h2>1. Metadatos Fundamentales</h2>
+
+<pre><code><span class="comment">&lt;!-- Título (obligatorio) - máximo 60 caracteres --&gt;</span>
+<span class="tag">&lt;title&gt;</span>Título Descriptivo | Marca<span class="tag">&lt;/title&gt;</span>
+
+<span class="comment">&lt;!-- Descripción (obligatorio) - máximo 160 caracteres --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"Descripción atractiva que invite al clic"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Codificación de caracteres --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Idioma (atributo en etiqueta html) --&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="string">"es"</span><span class="tag">&gt;</span></code></pre>
+
+<h2>2. Indexación y Rastreo</h2>
+
+<pre><code><span class="comment">&lt;!-- Control de indexación (por defecto: index, follow) --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"robots"</span> <span class="attr">content</span>=<span class="string">"index, follow"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Variante específica para Google --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"googlebot"</span> <span class="attr">content</span>=<span class="string">"index, follow"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- URL canónica (obligatorio si hay duplicados o parámetros URL) --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="string">"canonical"</span> <span class="attr">href</span>=<span class="string">"https://www.ejemplo.com/pagina"</span><span class="tag">&gt;</span></code></pre>
+
+<h2>3. Open Graph (Redes Sociales + SEO Indirecto)</h2>
+
+<pre><code><span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="string">"og:title"</span> <span class="attr">content</span>=<span class="string">"Título para compartir"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="string">"og:description"</span> <span class="attr">content</span>=<span class="string">"Descripción para redes sociales"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="string">"og:url"</span> <span class="attr">content</span>=<span class="string">"https://www.ejemplo.com/pagina"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="string">"og:type"</span> <span class="attr">content</span>=<span class="string">"website"</span><span class="tag">&gt;</span> <span class="comment">&lt;!-- o article, product --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="string">"og:image"</span> <span class="attr">content</span>=<span class="string">"https://www.ejemplo.com/imagen.jpg"</span><span class="tag">&gt;</span></code></pre>
+
+<h2>4. Datos Estructurados (Schema.org)</h2>
+
+<pre><code><span class="comment">&lt;!-- JSON-LD: formato recomendado por Google --&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="string">"application/ld+json"</span><span class="tag">&gt;</span>
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Título de la página",
+  "description": "Descripción",
+  "url": "https://www.ejemplo.com/pagina"
+}
+<span class="tag">&lt;/script&gt;</span></code></pre>
+
+<h2>5. Enlaces y Navegación</h2>
+
+<pre><code><span class="comment">&lt;!-- Favicon (obligatorio para identidad de marca) --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">type</span>=<span class="string">"image/x-icon"</span> <span class="attr">href</span>=<span class="string">"/favicon.ico"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Paginación: página siguiente y anterior --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="string">"next"</span> <span class="attr">href</span>=<span class="string">"https://www.ejemplo.com/pagina/2"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="string">"prev"</span> <span class="attr">href</span>=<span class="string">"https://www.ejemplo.com/pagina/1"</span><span class="tag">&gt;</span></code></pre>
+
+<h2>6. Metadatos Opcionales pero Recomendados</h2>
+
+<pre><code><span class="comment">&lt;!-- Autor del contenido --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">content</span>=<span class="string">"Nombre del autor"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Palabras clave (Google no las usa; Bing sí marginalmente) --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"palabra1, palabra2"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Verificación de propiedad (Google Search Console, Bing Webmaster) --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"google-site-verification"</span> <span class="attr">content</span>=<span class="string">"código-verificación"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"msvalidate.01"</span> <span class="attr">content</span>=<span class="string">"código-verificación"</span><span class="tag">&gt;</span></code></pre>
+
+<hr>
+
+<h2>Plantilla Completa Mínima Viable</h2>
+
+<pre><code><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="string">"es"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>Título Optimizado | Marca<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"Descripción de 150-160 caracteres con palabra clave principal."</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="string">"robots"</span> <span class="attr">content</span>=<span class="string">"index, follow"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="string">"canonical"</span> <span class="attr">href</span>=<span class="string">"https://www.ejemplo.com/pagina"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">href</span>=<span class="string">"/favicon.ico"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Open Graph --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="string">"og:title"</span> <span class="attr">content</span>=<span class="string">"Título Optimizado"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="string">"og:description"</span> <span class="attr">content</span>=<span class="string">"Descripción de 150-160 caracteres."</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="string">"og:url"</span> <span class="attr">content</span>=<span class="string">"https://www.ejemplo.com/pagina"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="string">"og:type"</span> <span class="attr">content</span>=<span class="string">"website"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="string">"og:image"</span> <span class="attr">content</span>=<span class="string">"https://www.ejemplo.com/og-image.jpg"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Schema.org básico --&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="string">"application/ld+json"</span><span class="tag">&gt;</span>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Título Optimizado",
+    "description": "Descripción",
+    "url": "https://www.ejemplo.com/pagina"
+  }
+  <span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;/head&gt;</span></code></pre>
+
+<hr>
+
+<h2>Checklist de Implementación</h2>
+
+<table>
+  <tr>
+    <th>Elemento</th>
+    <th>Prioridad</th>
+    <th>Observación</th>
+  </tr>
+  <tr>
+    <td><code>&lt;title&gt;</code></td>
+    <td><strong>Crítica</strong></td>
+    <td>Único por página. Máx. 60 caracteres.</td>
+  </tr>
+  <tr>
+    <td><code>&lt;meta name="description"&gt;</code></td>
+    <td><strong>Crítica</strong></td>
+    <td>Único por página. Máx. 160 caracteres.</td>
+  </tr>
+  <tr>
+    <td><code>&lt;link rel="canonical"&gt;</code></td>
+    <td><strong>Alta</strong></td>
+    <td>Obligatorio si existen duplicados o parámetros URL.</td>
+  </tr>
+  <tr>
+    <td><code>lang</code> + <code>charset</code></td>
+    <td><strong>Alta</strong></td>
+    <td>Configuración global del sitio.</td>
+  </tr>
+  <tr>
+    <td>Schema.org (JSON-LD)</td>
+    <td>Media</td>
+    <td>Según tipo de contenido: WebPage, Article, Product, etc.</td>
+  </tr>
+  <tr>
+    <td>Open Graph</td>
+    <td>Media</td>
+    <td>Esencial para compartir en redes sociales.</td>
+  </tr>
+  <tr>
+    <td><code>robots</code></td>
+    <td>Baja</td>
+    <td>Solo si necesitas restringir indexación.</td>
+  </tr>
+</table>
+
+<div class="note">
+  <strong>Nota clave:</strong> Google ignora la etiqueta <code>keywords</code>. Enfócate en título, descripción, canonical y datos estructurados.
+</div>
+
+<hr>
+
+<h2>Aplicación en Todas las Páginas</h2>
+
+<table>
+  <tr>
+    <th>Elemento</th>
+    <th>¿Cambia por página?</th>
+    <th>Ejemplo</th>
+  </tr>
+  <tr>
+    <td><code>&lt;title&gt;</code></td>
+    <td>✅ Sí</td>
+    <td>"Servicios de Diseño Web | Marca" vs "Contacto | Marca"</td>
+  </tr>
+  <tr>
+    <td><code>&lt;meta name="description"&gt;</code></td>
+    <td>✅ Sí</td>
+    <td>Descripción específica del contenido de esa página</td>
+  </tr>
+  <tr>
+    <td><code>&lt;link rel="canonical"&gt;</code></td>
+    <td>✅ Sí</td>
+    <td>URL absoluta de <strong>esa</strong> página</td>
+  </tr>
+  <tr>
+    <td><code>og:title</code>, <code>og:description</code>, <code>og:url</code></td>
+    <td>✅ Sí</td>
+    <td>Datos específicos de cada página</td>
+  </tr>
+  <tr>
+    <td>Schema.org <code>@type</code></td>
+    <td>✅ Sí</td>
+    <td>WebPage, Article, Product, FAQPage, etc.</td>
+  </tr>
+  <tr>
+    <td><code>og:image</code></td>
+    <td>✅ Sí</td>
+    <td>Imagen representativa de cada página</td>
+  </tr>
+  <tr>
+    <td><code>charset</code>, <code>viewport</code>, <code>lang</code></td>
+    <td>❌ No</td>
+    <td>Globales, iguales en todo el sitio</td>
+  </tr>
+  <tr>
+    <td><code>favicon</code></td>
+    <td>❌ No</td>
+    <td>Mismo archivo para todo el sitio</td>
+  </tr>
+</table>
+
+<div class="highlight">
+  <strong>Recomendación práctica:</strong> Si tu sitio es estático (HTML puro), copia la plantilla base y modifica solo los campos variables en cada archivo. Si usas un framework o CMS, configura una plantilla dinámica que genere estos metadatos automáticamente según el contenido de cada página.
+</div>
+
+</body>
+</html>
