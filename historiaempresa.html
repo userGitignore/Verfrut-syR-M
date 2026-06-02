@@ -31,6 +31,105 @@
     <link rel="stylesheet" href="styles.css">
 
     <!-- ── Estilos propios de la página ── -->
+    <style>
+        /* ─── Hero: título blanco con acento negro ─── */
+        .business-hero-content h1 {
+            background: none !important;
+            -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+            color: #ffffff !important;
+            animation: none !important;
+            font-size: clamp(3rem, 7.5vw, 5.6rem) !important;
+            text-shadow: 0 4px 40px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.4) !important;
+            letter-spacing: -0.025em !important;
+            line-height: 1.05 !important;
+        }
+        .htitle-sep {
+            display: inline-flex;
+            align-items: center;
+            color: #0a0a0a;
+            background: rgba(255,255,255,0.93);
+            padding: 3px 11px 5px;
+            border-radius: 6px;
+            font-size: 0.48em;
+            font-style: normal;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            vertical-align: middle;
+            margin: 0 8px;
+            line-height: 1;
+            text-shadow: none;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.35);
+            position: relative;
+            top: -3px;
+        }
+
+        /* ─── Eliminar espacios vacíos excesivos ─── */
+        .business-story-wrap {
+            padding: 56px 24px 48px !important;
+        }
+        .business-story-intro {
+            margin-bottom: 44px !important;
+        }
+        .history-license-wrap {
+            padding: 36px 24px 56px !important;
+        }
+        .timeline-section {
+            padding: 0 20px 56px !important;
+        }
+        .history-inju-section {
+            padding: 64px 20px 80px !important;
+        }
+
+        /* ─── Botón INJU rediseñado ─── */
+        .history-inju-section .history-inju-cta {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            background: transparent !important;
+            color: #e2e8f0 !important;
+            border: 1.5px solid rgba(255,255,255,0.18) !important;
+            border-radius: 5px !important;
+            padding: 14px 34px !important;
+            font-size: 0.78rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.22em !important;
+            text-transform: uppercase !important;
+            box-shadow: none !important;
+            animation: none !important;
+            transition: border-color 0.3s ease, color 0.3s ease, letter-spacing 0.3s ease, background 0.3s ease !important;
+            cursor: pointer !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+        .history-inju-section .history-inju-cta::before,
+        .history-inju-section .history-inju-cta::after {
+            content: none !important;
+            display: none !important;
+            animation: none !important;
+        }
+        .history-inju-section .history-inju-cta:hover {
+            background: rgba(34,197,94,0.07) !important;
+            border-color: rgba(34,197,94,0.55) !important;
+            color: #4ade80 !important;
+            letter-spacing: 0.28em !important;
+            transform: none !important;
+            box-shadow: 0 0 22px rgba(34,197,94,0.09) !important;
+        }
+        .history-inju-section .history-inju-cta:active {
+            transform: scale(0.98) !important;
+        }
+        .history-inju-section .history-inju-cta .inju-icon {
+            width: 16px !important;
+            height: 16px !important;
+            fill: currentColor !important;
+            transition: transform 0.3s ease !important;
+        }
+        .history-inju-section .history-inju-cta:hover .inju-icon {
+            transform: translateX(5px) !important;
+        }
+    </style>
 </head>
 <body>
         <!-- Inicio loader -->
@@ -83,7 +182,7 @@
                 <span class="biz-hero-badge-text">Tienda local · Jucuapa, Usulután</span>
             </div>
             <span class="sec-label">Historia del negocio</span>
-            <h1>Verfrut's y R&amp;M</h1>
+            <h1>Verfrut's <span class="htitle-sep">y</span> R&amp;M</h1>
             <div class="biz-hero-divider"></div>
             <p>Una tienda local nacida para acercar productos, trato amable y soluciones de hogar a las familias de Jucuapa.</p>
             <!-- Estadísticas -->
@@ -138,14 +237,13 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content timeline-text-wrap">
                         <div class="timeline-text-box">
-                            <center><h3>El comienzo</h3></center>
-                            <center><p>El negocio empezó con la idea sencilla de ofrecer frutas, verduras y productos básicos con precios accesibles para la comunidad. Cada venta ayudó a fortalecer una relación directa con las familias que buscaban calidad sin complicaciones.</p></center>
+                            <center><h3>Como Inició</h3></center>
+                            <center><p>El negocio nació de una necesidad clara: llevar frutas, verduras y productos de canasta básica a las familias de Jucuapa con precios honestos y sin complicaciones. Lo que inició como un pequeño espacio de venta fue ganando terreno gracias a la dedicación de sus dueños, quienes ponían en cada venta la misma atención que darían a un familiar. No había estrategia elaborada detrás — solo la convicción de que una comunidad merece productos de calidad y un trato cercano. Así, venta a venta, Verfrut's y R&M fue construyendo su propio lugar en el corazón del barrio.</p></center>
                         </div>
                     </div>
                     <div class="timeline-content timeline-image-wrap">
                         <div class="timeline-img-box">
-                            <!-- Aquí la imagen 1, usando un div placeholder como se solicitó "las imagenes yo las colocare" o un img src vacio -->
-                            <img src="img-historyVR&M-page/ElcomienzoDOS.jpg" alt="">
+                            <img src="img-historyVR&M-page/ElcomienzoDOS.jpg" alt="Los inicios de Verfrut's y R&M">
                         </div>
                     </div>
                 </div>
@@ -156,12 +254,12 @@
                     <div class="timeline-content timeline-text-wrap">
                         <div class="timeline-text-box">
                             <center><h3>La confianza diaria</h3></center>
-                            <center><p>Con el paso del tiempo, Verfrut's y R&amp;M se convirtió en un local de referencia para compras rápidas, productos frescos y atención honesta. La constancia permitió ampliar la variedad y responder mejor a las necesidades de los clientes.</p></center>
+                            <center><p>La perseverancia fue el gran activo del negocio. Con el tiempo, los mismos rostros regresaban: madres de familia buscando la canasta básica completa, personas mayores que encontraban en el local una atención sin prisa, jóvenes que valoraban la cercanía del barrio. El catálogo fue creciendo — frutas y verduras de temporada, abarrotes, artículos de aseo y más — porque el negocio aprendía de lo que sus clientes necesitaban semana a semana. Ese ciclo de escuchar y responder fue lo que convirtió una tienda local en un punto confiable.</p></center>
                         </div>
                     </div>
                     <div class="timeline-content timeline-image-wrap">
                         <div class="timeline-img-box">
-                            <img src="img-historyVR&M-page/SecondStart.jpg" alt="">
+                            <img src="img-historyVR&M-page/SecondStart.jpg" alt="La confianza que creció con los clientes">
                         </div>
                     </div>
                 </div>
@@ -172,12 +270,12 @@
                     <div class="timeline-content timeline-text-wrap">
                         <div class="timeline-text-box">
                             <center><h3>Una nueva etapa digital</h3></center>
-                            <center><p>El Sitio Web nació como una oportunidad para mostrar el catálogo, ordenar la información del negocio y acercar la tienda a más personas mediante una experiencia clara, moderna y fácil de consultar.</p></center>
+                            <center><p>Esperamos que el Sitio Web Verfrut's y R&amp;M sea un antes y un despues. Desarrollado por Either Design STR Team como parte de un proyecto con el INJU, el portal nació para digitalizar la experiencia del negocio: mostrar el catálogo de productos organizado por categorías, permitir pedidos directos por WhatsApp y dar a conocer algunos de los servicios disponibles. Cualquier persona con un teléfono puede ver los productos, revisar precios y hacer su encargo. Lo físico y lo digital trabajan juntos para servir mejor a las familias de la comunidad.</p></center>
                         </div>
                     </div>
                     <div class="timeline-content timeline-image-wrap">
                         <div class="timeline-img-box">
-                            <img src="img-historyVR&M-page/TercerVR.jpg" alt="">
+                            <img src="img-historyVR&M-page/TercerVR.jpg" alt="La etapa digital de Verfrut's y R&M">
                         </div>
                     </div>
                 </div>
@@ -188,12 +286,12 @@
                     <div class="timeline-content timeline-text-wrap">
                         <div class="timeline-text-box">
                             <center><h3>El futuro</h3></center>
-                            <center><p>Con la base sólida de nuestra historia y la innovación de nuevas plataformas, seguiremos creciendo y ofreciendo lo mejor de nosotros a la comunidad, manteniendo nuestra esencia que nos ha caracterizado desde el primer día.</p></center>
+                            <center><p>Verfrut's y R&amp;M mira hacia adelante con la misma esencia que la hizo crecer: compromiso con la calidad, trato honesto y vocación de servicio a la comunidad. Con la vitrina digital operando como extensión del local físico, queremos mostrar gran parte de las categorías de productos y fortalecer la comunicación directa con cada cliente. En este nuevo capítulo cada pedido, cada visita y cada recomendación de boca en boca sigue siendo para nosotros una bendicion.</p></center>
                         </div>
                     </div>
                     <div class="timeline-content timeline-image-wrap">
                         <div class="timeline-img-box">
-                            <img src="img-historyVR&M-page/logo.jpg" alt="">
+                            <img src="img-historyVR&M-page/logo.jpg" alt="El futuro de Verfrut's y R&M">
                         </div>
                     </div>
                 </div>
